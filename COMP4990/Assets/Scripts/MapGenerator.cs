@@ -2,6 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+
+generate random terrain using perlin noise and a pre made noise map to ensure the spawn is always similar
+select random points on the map to be used for structures and landmarks
+generate the structures and landmarks using wave function collapse
+
+*/
+
+/*
+
+similar to core keeper, ground tile and wall tile only.
+
+*/
+
 public class MapGenerator : MonoBehaviour
 {
     Dictionary<int, GameObject> tileset;
@@ -22,6 +36,8 @@ public class MapGenerator : MonoBehaviour
     List<List<GameObject>> tile_grid = null;
 
     public float magnification = 7.0f;
+
+    // MAKE FLOAT
     public int x_offset = 0;
     public int y_offset = 0;
 
@@ -64,9 +80,9 @@ public class MapGenerator : MonoBehaviour
     {
         tileset = new Dictionary<int, GameObject>
         {
-            { 0, pfb_plains },
-            { 1, pfb_forest },
-            { 2, pfb_ocean },
+            { 0, pfb_ocean },
+            { 1, pfb_plains },
+            { 2, pfb_forest },
             { 3, pfb_snow }
         };
     }
@@ -92,13 +108,14 @@ public class MapGenerator : MonoBehaviour
             for(int y = 0; y < map_height; y++)
             {
                 int tile_id = GetIdUsingPerlin(x, y);
+                // TODO: change this so we can adjust the ranges that tiles can spawn
                 noise_grid[x].Add(tile_id);
                 CreateTile(tile_id, x, y);
             }
         }
     }
 
-    int GetIdUsingPerlin(int x, int y)
+    int GetIdUsingPerlin(float x, float y)
     {
         float raw_perlin = Mathf.PerlinNoise(
             (x - x_offset) / magnification, 
