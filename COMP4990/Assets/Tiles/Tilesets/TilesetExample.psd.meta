@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8ba4221a2c4db8c4d9a9980909a0aa41
+guid: 2b9222b7a89f61d4dbe962ff48932864
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -427,7 +427,7 @@ TextureImporter:
       name: TilesetExample_6
       rect:
         serializedVersion: 2
-        x: 160
+        x: 224
         y: 320
         width: 32
         height: 32
@@ -1749,7 +1749,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: cee18264c0ecb3b46a6b646afcb4c4bc
+    spriteID: 16f4f6ae429663441842c5ef9a1f7976
     internalID: 0
     vertices: []
     indices: 
