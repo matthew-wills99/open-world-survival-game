@@ -8,6 +8,8 @@ public class PlacementController : MonoBehaviour
     public Tilemap tilemap;
     public Tile tileToBePlaced;
 
+    public CameraController cameraController;
+
     public bool enable;
 
     Tile selectedTile;
@@ -35,6 +37,7 @@ public class PlacementController : MonoBehaviour
     {
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;
+        mouseWorldPosition -= cameraController.GetOffset();
 
         if(enable)
         {

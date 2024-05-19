@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.Tilemaps;
 
-public class MapToTiles : MonoBehaviour
+public class MapController : MonoBehaviour
 {
     public Tilemap tilemap;
     public NoiseGenerator noiseGenerator; // map generator script tied to map empty
@@ -25,8 +25,8 @@ public class MapToTiles : MonoBehaviour
     public int renderDist = 2;
 
     // key is in the format of Coords.ToString() 
-    Dictionary<string, Chunk> chunks;
-    Dictionary<string, Coords> chunksInRenderDistance;
+    Dictionary<string, Chunk> groundChunks;
+    Dictionary<string, Coords> groundChunksInRenderDistance;
 
     Coords playerChunkCoords;
 
@@ -66,7 +66,7 @@ public class MapToTiles : MonoBehaviour
     void GenerateChunk(int chunkX, int chunkY)
     {
         Coords chunkCoords = new Coords(chunkX, chunkY);
-        if(!chunks.ContainsKey(chunkCoords.ToString()))
+        if(!groundChunks.ContainsKey(chunkCoords.ToString()))
         {
             int xCoord = chunkX * chunkSize; // tile coords
             int yCoord = chunkY * chunkSize;
@@ -81,7 +81,7 @@ public class MapToTiles : MonoBehaviour
             }
 
             //Debug.Log($"Generated Chunk: ({chunkX}, {chunkY})");
-            chunks.Add(chunkCoords.ToString(), new Chunk(chunkX, chunkY, chunkTiles));
+            groundChunks.Add(chunkCoords.ToString(), new Chunk(chunkX, chunkY, chunkTiles));
             //chunksInRenderDistance.Add(chunkCoords.ToString(), new Chunk(chunkX, chunkY, chunkTiles));
         }
     }
@@ -149,12 +149,12 @@ public class MapToTiles : MonoBehaviour
                 Coords chunkCoords = new Coords(chunkX, chunkY);
 
                 // if this chunk has not yet been generated, generate it
-                if(!chunks.ContainsKey(chunkCoords.ToString()))
+                if(!groundChunks.ContainsKey(chunkCoords.ToString()))
                 {
                     GenerateChunk(chunkX, chunkY);
                 }
 
-                float[,] currentChunk = chunks[chunkCoords.ToString()].chunkTiles;
+                float[,] currentChunk = groundChunks[chunkCoords.ToString()].chunkTiles;
 
                 // tile coords
                 for(int x = 0; x < chunkSize; x++)
@@ -177,20 +177,20 @@ public class MapToTiles : MonoBehaviour
 
         Coords chunkCoords;
         
-        chunksInRenderDistance = new Dictionary<string, Coords>();
+        groundChunksInRenderDistance = new Dictionary<string, Coords>();
 
         for(int x = playerChunkX - renderDist; x < playerChunkX + renderDist; x++)
         {
             for(int y = playerChunkY - renderDist; y < playerChunkY + renderDist; y++)
             {
                 chunkCoords = new Coords(x, y);
-                chunksInRenderDistance.Add(chunkCoords.ToString(), chunkCoords);
+                groundChunksInRenderDistance.Add(chunkCoords.ToString(), chunkCoords);
             }
         }
 
-        foreach(var chunk in chunks)
+        foreach(var chunk in groundChunks)
         {
-            if(!chunksInRenderDistance.ContainsKey(chunk.Key))
+            if(!groundChunksInRenderDistance.ContainsKey(chunk.Key))
             {
                 DisposeChunk(chunk.Value);
             }
@@ -231,8 +231,8 @@ public class MapToTiles : MonoBehaviour
 
     void Start()
     {
-        chunks = new Dictionary<string, Chunk>();
-        chunksInRenderDistance = new Dictionary<string, Coords>();
+        groundChunks = new Dictionary<string, Chunk>();
+        groundChunksInRenderDistance = new Dictionary<string, Coords>();
 
         playerChunkCoords = GetChunkCoords(GetPlayerCoords().xCoord, GetPlayerCoords().yCoord);
         RenderChunks();
