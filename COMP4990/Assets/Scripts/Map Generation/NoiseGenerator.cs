@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class MapGenerator : MonoBehaviour
+public class NoiseGenerator : MonoBehaviour
 {
+    public bool enable = false;
     public bool useColour = false;
 
     public int width = 256;
@@ -16,16 +17,17 @@ public class MapGenerator : MonoBehaviour
     [Range(0f, 1f)]
     public float[] biomeThresholds; // should be in ascending order and equal in length to biomes
     
-    //private new Renderer renderer;
+    private new Renderer renderer;
 
     void Start()
     {
-        //renderer = GetComponent<Renderer>();
+        renderer = GetComponent<Renderer>();
     }
 
     void Update()
     {
-        //renderer.material.mainTexture = GenerateTexture();
+        renderer.material.mainTexture = GenerateTexture();
+        renderer.enabled = enable;
     }
 
     Texture2D GenerateTexture()

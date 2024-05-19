@@ -1,18 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Xml;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.Tilemaps;
-using System.Linq;
-using System.Dynamic;
 
 public class MapToTiles : MonoBehaviour
 {
     public Tilemap tilemap;
-    public MapGenerator mapGenerator; // map generator script tied to map empty
+    public NoiseGenerator noiseGenerator; // map generator script tied to map empty
     public Transform playerTransform; // transform tied to player game object
     
     public Tile grassTile;
@@ -80,7 +76,7 @@ public class MapToTiles : MonoBehaviour
             {
                 for(int y = 0; y < chunkSize; y++)
                 {
-                    chunkTiles[x, y] = mapGenerator.GetTileNoise(xCoord + x, yCoord + y);
+                    chunkTiles[x, y] = noiseGenerator.GetTileNoise(xCoord + x, yCoord + y);
                 }
             }
 
