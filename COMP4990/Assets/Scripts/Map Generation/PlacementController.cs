@@ -9,10 +9,14 @@ public class PlacementController : MonoBehaviour
     public Tile tileToBePlaced;
 
     public CameraController cameraController;
+    public MapController mapController;
+    public TileIndex tileIndex;
+
+    Dictionary<int, Tile> tiles;
 
     public bool enable;
 
-    Tile selectedTile;
+    int selectedTile;
     Vector3 mouseWorldPosition;
 
     void PlaceSelectedTile()
@@ -20,7 +24,11 @@ public class PlacementController : MonoBehaviour
         Vector3Int cellPos = tilemap.WorldToCell(mouseWorldPosition);
         if(tilemap.GetTile(cellPos) == null)
         {
-            tilemap.SetTile(cellPos, selectedTile);
+            mapController.PlaceTile(cellPos, selectedTile);
+
+            MapController.Coords chunkPos = mapController.GetChunkCoords(cellPos.x, cellPos.y);
+            //Debug.Log($"Placed tile. Tilemap coords: ({cellPos.x}, {cellPos.y}) Chunk coords: ({chunkPos.xCoord}, {chunkPos.yCoord}) Tile in chunk coords: ({cellPos.x % mapController.chunkSize},{cellPos.y % mapController.chunkSize})");
+            return;
         }
     }
 
@@ -29,6 +37,7 @@ public class PlacementController : MonoBehaviour
         Vector3Int cellPos = tilemap.WorldToCell(mouseWorldPosition);
         if(tilemap.GetTile(cellPos) != null)
         {
+            mapController.PlaceTile(cellPos, -1);
             tilemap.SetTile(cellPos, null);
         }
     }
@@ -58,6 +67,7 @@ public class PlacementController : MonoBehaviour
 
     void Start()
     {
-        selectedTile = tileToBePlaced;
+        tiles = new Dictionary<int, Tile>();
+        selectedTile = 2;
     }
 }

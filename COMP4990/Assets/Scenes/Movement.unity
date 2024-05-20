@@ -342,7 +342,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 2037547273}
   tileToBePlaced: {fileID: 11400000, guid: 69789f6bb8fc4ff48a3e4287d7a490e4, type: 2}
-  enable: 0
+  cameraController: {fileID: 2037019431}
+  mapController: {fileID: 2016540724}
+  tileIndex: {fileID: 2016540726}
+  enable: 1
 --- !u!4 &247874562
 Transform:
   m_ObjectHideFlags: 0
@@ -792,6 +795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2016540725}
   - component: {fileID: 2016540724}
+  - component: {fileID: 2016540726}
   m_Layer: 0
   m_Name: Tilemap Generator
   m_TagString: Untagged
@@ -811,12 +815,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c70c7c86f780d340bf5b3b7093c2b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 2012406743}
+  groundTilemap: {fileID: 2012406743}
+  buildingTilemap: {fileID: 2037547273}
   noiseGenerator: {fileID: 1701369561}
   playerTransform: {fileID: 2064317576}
-  grassTile: {fileID: 11400000, guid: 9967eecb153768b4dbefeb44d524c6cc, type: 2}
-  sandTile: {fileID: 11400000, guid: 025811f1614d63549b57fe09b453641e, type: 2}
-  waterTile: {fileID: 11400000, guid: 69789f6bb8fc4ff48a3e4287d7a490e4, type: 2}
+  tileIndex: {fileID: 2016540726}
   grassThreshold: 0.718
   sandThreshold: 1
   chunkSize: 16
@@ -835,6 +838,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2016540726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016540723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d1d3220ec0ee44f9b788d7a6d72c4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grass: {fileID: 11400000, guid: 609de41d6a953274f93f587a9dc822d0, type: 2}
+  sand: {fileID: 11400000, guid: 5de73118023c9904f930f1947b8277ff, type: 2}
+  water: {fileID: 11400000, guid: 69789f6bb8fc4ff48a3e4287d7a490e4, type: 2}
 --- !u!1 &2037019427
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2064317576}
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 2, z: -10}
 --- !u!1 &2037547272
 GameObject:
   m_ObjectHideFlags: 0
