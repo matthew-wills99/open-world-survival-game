@@ -345,7 +345,7 @@ public class MapController : MonoBehaviour
         if(!GetChunkCoords(GetPlayerCoords().xCoord, GetPlayerCoords().yCoord).ToString().Equals(playerChunkCoords.ToString()))
         {
             RenderGroundChunks();
-            //RenderBuildingChunks();
+            RenderBuildingChunks();
             CleanupChunks();
             // update the player chunk coords
             playerChunkCoords = GetChunkCoords(GetPlayerCoords().xCoord, GetPlayerCoords().yCoord);
@@ -353,7 +353,7 @@ public class MapController : MonoBehaviour
     }
 
     void Update()
-    {
+    { 
         TryRender();
         //Debug.Log(chunks.Keys.Count);
     }
