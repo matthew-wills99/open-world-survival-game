@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+//This script is for items and stacking items, and dragging items
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
    
+
     [Header("UI")]
     public Image image;
     public Text countText;
@@ -15,16 +16,19 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public Item item; //Whats the item homes?
    
     //Item Sprites are loaded in to the correct type
+    //The stack count is refreshed
     public void InitialiseItem(Item newItem){
         item = newItem;
         image.sprite = newItem.image;
         RefreshCount();
     }
 
+    //Displaying the correct stack count
     public void RefreshCount(){
         countText.text = count.ToString();
         bool textActive = count > 1;
-        countText.gameObject.SetActive(textActive);
+        countText.
+        gameObject.SetActive(textActive);
     }
     //Starting the dragging, Raycast off means we can move it into different slots. SetAsLastSibling means its going to stay above all slots
     public void OnBeginDrag(PointerEventData eventData){
@@ -43,7 +47,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         
     }
 
-    //Raycast true so we can place it on the right block
+    //Raycast true so we can place it on the right item slot
     public void OnEndDrag(PointerEventData eventData){
         Debug.Log("End Drag");
         transform.SetParent(parentAfterDrag);
