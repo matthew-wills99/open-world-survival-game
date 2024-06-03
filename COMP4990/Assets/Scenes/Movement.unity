@@ -820,6 +820,9 @@ MonoBehaviour:
   noiseGenerator: {fileID: 1701369561}
   playerTransform: {fileID: 2064317576}
   tileIndex: {fileID: 2016540726}
+  grass: {fileID: 11400000, guid: 66f258c2d21bdb5479ac5722f3a9fa46, type: 2}
+  sand: {fileID: 11400000, guid: 82c5b8355fe10064f9bdbeda64eee71f, type: 2}
+  water: {fileID: 11400000, guid: 69789f6bb8fc4ff48a3e4287d7a490e4, type: 2}
   grassThreshold: 0.718
   sandThreshold: 1
   chunkSize: 16
@@ -1243,6 +1246,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 100
   aim: {fileID: 157800192}
+  cameraController: {fileID: 2037019431}
 --- !u!1 &2076465297
 GameObject:
   m_ObjectHideFlags: 0

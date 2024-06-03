@@ -10,6 +10,7 @@ public class MapController : MonoBehaviour
     public Tilemap groundTilemap;
     public Tilemap buildingTilemap;
     public NoiseGenerator noiseGenerator; // map generator script tied to map empty
+    public StructureGenerator structureGenerator; // structure generator script
     public Transform playerTransform; // transform tied to player game object
     public TileIndex tileIndex;
 
@@ -28,6 +29,8 @@ public class MapController : MonoBehaviour
 
     public int chunkSize = 16;
     public int renderDist = 2;
+    public int worldSizeInChunks = 32; // 32 small, 64 medium, 128 large, 256 huge (for now)
+
 
     // key is in the format of Coords.ToString() 
     Dictionary<string, Chunk> groundChunks;
@@ -130,11 +133,24 @@ public class MapController : MonoBehaviour
         Coords chunkCoords = new Coords(chunkX, chunkY);
         if(!groundChunks.ContainsKey(chunkCoords.ToString()))
         {
-
             //Debug.Log($"Generating chunk: {chunkX}, {chunkY}");
             int xCoord = chunkX * chunkSize; // tile coords
             int yCoord = chunkY * chunkSize;
             int[,] chunkTiles = new int[chunkSize, chunkSize];
+
+            // check if the chunk coordinate is outside the world limit bounds
+            if(chunkX > worldSizeInChunks || chunkX < -worldSizeInChunks || chunkY > worldSizeInChunks || chunkY < -worldSizeInChunks)
+            {
+                for(int x = 0; x < chunkSize; x++)
+                {
+                    for(int y = 0; y < chunkSize; y++)
+                    {
+                        chunkTiles[x, y] = 2; // water tile
+                    }
+                }
+                groundChunks.Add(chunkCoords.ToString(), new Chunk(chunkX, chunkY, chunkTiles));
+                return;
+            }
 
             for(int x = 0; x < chunkSize; x++)
             {

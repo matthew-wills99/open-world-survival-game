@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public Transform aim;
     Vector3 mouseWorldPosition;
 
+    public CameraController cameraController;
+
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
     void RotateTowardsCursor()
     {
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPosition -= cameraController.GetOffset();
         mouseWorldPosition.z = 0;
 
         Vector2 dir = mouseWorldPosition - aim.position;
