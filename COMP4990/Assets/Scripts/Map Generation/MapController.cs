@@ -445,10 +445,12 @@ public class MapController : MonoBehaviour
         InitializeBuildingChunks();
         Debug.Log("Done initializing chunks.");
         // pick random chunk from -worldSizeInChunks to= 0 on x axis, and +worldSizeInChunks to= 0 on y axis
-        for(int x = -worldSizeInChunks; x >= 0; x--)
-        {
-
-        }
+        int structX = random.Next(-worldSizeInChunks, 0 + 1);
+        int structY = random.Next(0, worldSizeInChunks + 1);
+        Coords cc = new Coords(structX, structY);
+        int[,]chunkTiles = buildingChunks[cc.ToString()].chunkTiles;
+        chunkTiles[chunkSize / 2, chunkSize / 2] = 3;
+        Debug.Log($"Placing a strucure at {structX}, {structY}");
         Debug.Log("Done generating structures.");
     }
 
@@ -504,6 +506,26 @@ public class MapController : MonoBehaviour
             }
         }
         Debug.Log("Done rendering.");
+
+        Debug.Log("Rendering structures...");
+        for(int chunkX = -worldSizeInChunks - 1; chunkX <= worldSizeInChunks + 1; chunkX++)
+        {
+            for(int chunkY = -worldSizeInChunks - 1; chunkY <= worldSizeInChunks + 1; chunkY++)
+            {
+                Coords chunkCoords = new Coords(chunkX, chunkY);
+                if(buildingChunks.ContainsKey(chunkCoords.ToString()))
+                {
+                    int[,] currentBuildingChunk = buildingChunks[chunkCoords.ToString()].chunkTiles;
+                    for(int x = 0; x < chunkSize; x++)
+                    {
+                        for(int y = 0; y < chunkSize; y++)
+                        {
+                            buildingTilemap.SetTile(new Vector3Int((chunkX * chunkSize) + x, (chunkY * chunkSize) + y, 0), tiles[currentBuildingChunk[x, y]]);
+                        }
+                    }
+                }
+            }
+        }
 
         //RenderGroundChunks(); // TODO: add back render distance lol
     }

@@ -598,6 +598,7 @@ MonoBehaviour:
   scale: 10
   offsetX: 100
   offsetY: 100
+  mapController: {fileID: 2016540724}
   biomes:
   - {r: 0.0339154, g: 1, b: 0, a: 0}
   - {r: 0.7853844, g: 1, b: 0, a: 0}
@@ -796,6 +797,7 @@ GameObject:
   - component: {fileID: 2016540725}
   - component: {fileID: 2016540724}
   - component: {fileID: 2016540726}
+  - component: {fileID: 2016540727}
   m_Layer: 0
   m_Name: Tilemap Generator
   m_TagString: Untagged
@@ -815,18 +817,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c70c7c86f780d340bf5b3b7093c2b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldSeed: 938
   groundTilemap: {fileID: 2012406743}
   buildingTilemap: {fileID: 2037547273}
   noiseGenerator: {fileID: 1701369561}
+  structureGenerator: {fileID: 0}
   playerTransform: {fileID: 2064317576}
   tileIndex: {fileID: 2016540726}
   grass: {fileID: 11400000, guid: 66f258c2d21bdb5479ac5722f3a9fa46, type: 2}
   sand: {fileID: 11400000, guid: 82c5b8355fe10064f9bdbeda64eee71f, type: 2}
   water: {fileID: 11400000, guid: 69789f6bb8fc4ff48a3e4287d7a490e4, type: 2}
+  stone: {fileID: 11400000, guid: ce6138f6d11c7ca489b6138025fd929d, type: 2}
   grassThreshold: 0.718
   sandThreshold: 1
   chunkSize: 16
   renderDist: 2
+  worldSizeInChunks: 16
+  structuresPerQuadrant: 2
+  minimumDistanceBetweenStructures: 2
 --- !u!4 &2016540725
 Transform:
   m_ObjectHideFlags: 0
@@ -856,6 +864,21 @@ MonoBehaviour:
   grass: {fileID: 11400000, guid: 609de41d6a953274f93f587a9dc822d0, type: 2}
   sand: {fileID: 11400000, guid: 5de73118023c9904f930f1947b8277ff, type: 2}
   water: {fileID: 11400000, guid: 69789f6bb8fc4ff48a3e4287d7a490e4, type: 2}
+--- !u!114 &2016540727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016540723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0440dcd7ed5144478f175d36b00fbcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapController: {fileID: 2016540724}
+  structuresPerQuadrant: 2
+  minimumDistanceBetweenStructures: 2
 --- !u!1 &2037019427
 GameObject:
   m_ObjectHideFlags: 0
