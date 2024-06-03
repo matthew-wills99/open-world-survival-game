@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class MapController : MonoBehaviour
 {
+    public int worldSeed = 420;
+
     public Tilemap groundTilemap;
     public Tilemap buildingTilemap;
     public NoiseGenerator noiseGenerator; // map generator script tied to map empty
@@ -19,6 +23,7 @@ public class MapController : MonoBehaviour
     public Tile grass;
     public Tile sand;
     public Tile water;
+    public Tile stone;
     // convert to tileindex dict
 
     // max accepted values
@@ -30,6 +35,23 @@ public class MapController : MonoBehaviour
     public int chunkSize = 16;
     public int renderDist = 2;
     public int worldSizeInChunks = 32; // 32 small, 64 medium, 128 large, 256 huge (for now)
+
+    // structure generator stuff start -------------------------------------------------------------------
+
+    public int structuresPerQuadrant = 2; // how many structures in each quadrant of the map (+, +), (-, -), (+, -), (-, +)
+    public int minimumDistanceBetweenStructures = 2; // minimum distance between structures in chunks, must be at most (worldSize / 2) - 1
+
+    /*
+    quadrants are
+    x < 0, y > 0
+    x > 0, y > 0
+    x < 0, y < 0
+    x > 0, y < 0
+    */
+
+    System.Random random;
+
+    // structure generator stuff end ---------------------------------------------------------------------
 
 
     // key is in the format of Coords.ToString() 
@@ -69,6 +91,11 @@ public class MapController : MonoBehaviour
         {
             return $"({xCoord}, {yCoord})";
         }
+    }
+
+    public int GetWorldSeed()
+    {
+        return worldSeed;
     }
 
     public void PlaceTile(Vector3Int cellPos, int selectedTile)
@@ -166,6 +193,30 @@ public class MapController : MonoBehaviour
         }
     }
 
+    void InitializeBuildingChunks()
+    {
+        for(int chunkX = -worldSizeInChunks - 1; chunkX <= worldSizeInChunks + 1; chunkX++)
+        {
+            for(int chunkY = -worldSizeInChunks - 1; chunkY <= worldSizeInChunks + 1; chunkY++)
+            {
+                Coords chunkCoords = new Coords(chunkX, chunkY);
+                if(!buildingChunks.ContainsKey(chunkCoords.ToString()))
+                {
+                    int[,] chunkTiles = new int[chunkSize, chunkSize];
+
+                    for(int x = 0; x < chunkSize; x++)
+                    {
+                        for(int y = 0; y < chunkSize; y++)
+                        {
+                            chunkTiles[x, y] = -1;
+                        }
+                    }
+                    buildingChunks.Add(chunkCoords.ToString(), new Chunk(chunkX, chunkY, chunkTiles));
+                }
+            }
+        }
+    }
+
     public Coords GetChunkCoords(int x, int y)
     {
         if(x < 0 && y < 0)
@@ -182,6 +233,11 @@ public class MapController : MonoBehaviour
         }
 
         return new Coords(x / chunkSize, y / chunkSize);
+    }
+
+    public int GetWorldSize()
+    {
+        return worldSizeInChunks;
     }
 
     Coords GetPlayerCoords()
@@ -230,10 +286,10 @@ public class MapController : MonoBehaviour
                 //***********************************************************************
 
                 // if this chunk has not yet been generated, generate it
-                if(!groundChunks.ContainsKey(chunkCoords.ToString()))
-                {
-                    GenerateChunk(chunkX, chunkY);
-                }
+                //if(!groundChunks.ContainsKey(chunkCoords.ToString()))
+                //{
+                //    GenerateChunk(chunkX, chunkY);
+                //}
 
                 int[,] currentGroundChunk = groundChunks[chunkCoords.ToString()].chunkTiles;
 
@@ -368,29 +424,88 @@ public class MapController : MonoBehaviour
         }
     }
 
+    void GenerateMap()
+    {
+        Debug.Log("Generating map...");
+        Debug.Log("Generating ground...");
+        for(int x = -worldSizeInChunks - 1; x <= worldSizeInChunks + 1; x++)
+        {
+            for(int y = -worldSizeInChunks - 1; y <= worldSizeInChunks + 1; y++)
+            {
+                Coords chunkCoords = new Coords(x, y);
+                if(!groundChunks.ContainsKey(chunkCoords.ToString()))
+                {
+                    GenerateChunk(x, y);
+                }
+            }
+        }
+        Debug.Log("Done generating ground.");
+        Debug.Log("Generating structures...");
+        Debug.Log("Initializing chunks...");
+        InitializeBuildingChunks();
+        Debug.Log("Done initializing chunks.");
+        // pick random chunk from -worldSizeInChunks to= 0 on x axis, and +worldSizeInChunks to= 0 on y axis
+        for(int x = -worldSizeInChunks; x >= 0; x--)
+        {
+
+        }
+        Debug.Log("Done generating structures.");
+    }
+
     void Update()
     { 
-        TryRender();
+        //TryRender();
         //Debug.Log(chunks.Keys.Count);
     }
 
     void Start()
     {
+        random = new System.Random(worldSeed);
+
+        if(minimumDistanceBetweenStructures > (worldSizeInChunks / 2) - 1)
+        {
+            minimumDistanceBetweenStructures = (worldSizeInChunks / 2) - 1;
+        }
+
         groundChunks = new Dictionary<string, Chunk>();
         buildingChunks = new Dictionary<string, Chunk>();
         groundChunksInRenderDistance = new Dictionary<string, Coords>();
         buildingChunksInRenderDistance = new Dictionary<string, Coords>();
         
         Debug.Log("Getting Tiles");
-        tiles = new Dictionary<int, Tile>();
-        tiles.Add(-1, null);
-        tiles.Add(0, grass);
-        tiles.Add(1, sand);
-        tiles.Add(2, water);
+        tiles = new Dictionary<int, Tile>
+        {
+            { -1, null },
+            { 0, grass },
+            { 1, sand },
+            { 2, water },
+            { 3, stone }
+        };
 
         playerChunkCoords = GetChunkCoords(GetPlayerCoords().xCoord, GetPlayerCoords().yCoord);
-        RenderGroundChunks();
-        //RenderBuildingChunks();
+
+        GenerateMap();
+        
+        // render entire map at once
+        Debug.Log("Rendering map...");
+        for(int x = -worldSizeInChunks - 1; x <= worldSizeInChunks + 1; x++)
+        {
+            for(int y = -worldSizeInChunks - 1; y <= worldSizeInChunks + 1; y++)
+            {
+                Coords chunkCoords = new Coords(x, y);
+                Chunk chunk = groundChunks[chunkCoords.ToString()];
+                for(int i = 0; i < chunkSize; i ++)
+                {
+                    for(int j = 0; j < chunkSize; j++)
+                    {
+                        DrawGroundTile((x * chunkSize) + i, (y * chunkSize) + j, chunk.chunkTiles[i, j]);
+                    }
+                }
+            }
+        }
+        Debug.Log("Done rendering.");
+
+        //RenderGroundChunks(); // TODO: add back render distance lol
     }
 }
 
