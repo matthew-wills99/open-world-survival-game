@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
     //This script is for the inventory. Managing the slots, items, stacks, classes, etc.\
@@ -11,7 +12,6 @@ public class InventoryManager : MonoBehaviour
     public int maxStackedItems = 4;
     public GameObject InventoryItemPrefab;
     public InventorySlot[] inventorySlots;
-
     int selectedSlot = -1;
 
     private void Awake(){
@@ -79,21 +79,15 @@ public class InventoryManager : MonoBehaviour
 
     //This checks if the item that is currently being used by the player is being used.
     //If its stackable reduce the stack until there is none left.
-    public Item GetSelectedItem(bool use){
+    public Item GetSelectedItem(){
+        if (selectedSlot < 0 || selectedSlot >= inventorySlots.Length) return null;
+
         InventorySlot slot = inventorySlots[selectedSlot];
         InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-        if(itemInSlot != null) {
-            Item item = itemInSlot.item;
-            if(use == true){
-                itemInSlot.count--;
-                if(itemInSlot.count <= 0){
-                    Destroy(itemInSlot.gameObject);
-                }else{
-                    itemInSlot.RefreshCount();
-                }
-            }
-            return item;
+        if(itemInSlot != null){
+            return itemInSlot.item;
         }
-        return null;  
+
+        return null;
     }
 }
