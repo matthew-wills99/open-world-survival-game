@@ -38,6 +38,15 @@ public class MapController : MonoBehaviour
 
     // structure generator stuff start -------------------------------------------------------------------
 
+    // quadrant number, chunk coords of structure
+    List<KeyValuePair<int, Coords>> structures;
+    /*
+    1 is -, +
+    2 is -, -
+    3 is +, -
+    4 is +, +
+    */
+
     public int structuresPerQuadrant = 2; // how many structures in each quadrant of the map (+, +), (-, -), (+, -), (-, +)
     public int minimumDistanceBetweenStructures = 2; // minimum distance between structures in chunks, must be at most (worldSize / 2) - 1
 
@@ -424,6 +433,50 @@ public class MapController : MonoBehaviour
         }
     }
 
+    void PlaceStructures()
+    {
+        if(worldSizeInChunks < 32)
+        {
+            // smaller worlds get 1 structure per quad
+            // -, +
+            int structX = random.Next(-worldSizeInChunks, 0 + 1);
+            int structY = random.Next(0, worldSizeInChunks + 1);
+            Coords cc = new Coords(structX, structY);
+            buildingChunks[cc.ToString()].chunkTiles[chunkSize / 2, chunkSize / 2] = 3;
+            structures.Add(new KeyValuePair<int, Coords>(1, cc));
+            Debug.Log($"Placing a strucure at {structX}, {structY}");
+
+            // +, +
+            structX = random.Next(0, worldSizeInChunks + 1);
+            structY = random.Next(0, worldSizeInChunks + 1);
+            cc = new Coords(structX, structY);
+            buildingChunks[cc.ToString()].chunkTiles[chunkSize / 2, chunkSize / 2] = 3;
+            structures.Add(new KeyValuePair<int, Coords>(2, cc));
+            Debug.Log($"Placing a strucure at {structX}, {structY}");
+
+            // +, -
+            structX = random.Next(0, worldSizeInChunks + 1);
+            structY = random.Next(-worldSizeInChunks, 0);
+            cc = new Coords(structX, structY);
+            buildingChunks[cc.ToString()].chunkTiles[chunkSize / 2, chunkSize / 2] = 3;
+            structures.Add(new KeyValuePair<int, Coords>(3, cc));
+            Debug.Log($"Placing a strucure at {structX}, {structY}");
+
+            // -, -
+            structX = random.Next(-worldSizeInChunks, 0 + 1);
+            structY = random.Next(-worldSizeInChunks, 0);
+            cc = new Coords(structX, structY);
+            buildingChunks[cc.ToString()].chunkTiles[chunkSize / 2, chunkSize / 2] = 3;
+            structures.Add(new KeyValuePair<int, Coords>(4, cc));
+            Debug.Log($"Placing a strucure at {structX}, {structY}");
+        }
+        else
+        {
+            // large worlds get 2 structures per quad
+            Debug.Log("i didnt set that up yet lol");
+        }
+    }
+
     void GenerateMap()
     {
         Debug.Log("Generating map...");
@@ -444,13 +497,7 @@ public class MapController : MonoBehaviour
         Debug.Log("Initializing chunks...");
         InitializeBuildingChunks();
         Debug.Log("Done initializing chunks.");
-        // pick random chunk from -worldSizeInChunks to= 0 on x axis, and +worldSizeInChunks to= 0 on y axis
-        int structX = random.Next(-worldSizeInChunks, 0 + 1);
-        int structY = random.Next(0, worldSizeInChunks + 1);
-        Coords cc = new Coords(structX, structY);
-        int[,]chunkTiles = buildingChunks[cc.ToString()].chunkTiles;
-        chunkTiles[chunkSize / 2, chunkSize / 2] = 3;
-        Debug.Log($"Placing a strucure at {structX}, {structY}");
+        PlaceStructures();
         Debug.Log("Done generating structures.");
     }
 
@@ -473,6 +520,8 @@ public class MapController : MonoBehaviour
         buildingChunks = new Dictionary<string, Chunk>();
         groundChunksInRenderDistance = new Dictionary<string, Coords>();
         buildingChunksInRenderDistance = new Dictionary<string, Coords>();
+
+        structures = new List<KeyValuePair<int, Coords>>();
         
         Debug.Log("Getting Tiles");
         tiles = new Dictionary<int, Tile>
