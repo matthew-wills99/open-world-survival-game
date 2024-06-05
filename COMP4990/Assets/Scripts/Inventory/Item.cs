@@ -28,7 +28,8 @@ public class Item : ScriptableObject
     }
 
     public enum ActionType {
-        Dig,
-        Mine
+        Chop,
+        Mine,
+        None
     }
 }

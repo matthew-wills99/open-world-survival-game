@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88b7d5827be3ae041bc7b0d414bc4723, type: 3}
-  m_Name: Digging Block
+  m_Name: Chopping Block
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
   type: 0
-  actionType: 0
+  actionType: 2
   range: {x: 5, y: 4}
   stackable: 1
-  image: {fileID: -2392478610822884833, guid: 2b9222b7a89f61d4dbe962ff48932864, type: 3}
+  image: {fileID: 21300000, guid: 8c69f3cd16f534bec8236a6484f500d4, type: 3}

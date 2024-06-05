@@ -19,7 +19,7 @@ public class DemoScript : MonoBehaviour
 
     //Get Selected Item detects what item has been added to the inventory
     public void GetSelectedItem(){
-        Item recievedItem = inventoryManager.GetSelectedItem(false);
+        Item recievedItem = inventoryManager.GetSelectedItem();
         if (recievedItem != null) {
             Debug.Log("Received" + recievedItem);
         }else{
@@ -29,7 +29,7 @@ public class DemoScript : MonoBehaviour
 
     //UseSelectedItem detects if an item has been used or not.
     public void UseSelectedItem(){
-        Item recievedItem = inventoryManager.GetSelectedItem(true);
+        Item recievedItem = inventoryManager.GetSelectedItem();
         if (recievedItem != null) {
             Debug.Log("Used " + recievedItem);
         }else{
