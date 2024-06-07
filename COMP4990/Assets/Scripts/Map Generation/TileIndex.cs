@@ -24,8 +24,9 @@ public class TileIndex : MonoBehaviour
     public Tile d8;
     public Tile d9;
     public Tile d10;
+    public Tile d11;
     
-    void Start()
+    void Awake()
     {
         tileIndex = new Dictionary<int, Tile>();
         structureTileIndex = new Dictionary<int, Tile>();
@@ -35,25 +36,37 @@ public class TileIndex : MonoBehaviour
 
     void InitializeTileIndex()
     {
-        tileIndex.Add(-1, water);
+        tileIndex.Add(-1, null);
         tileIndex.Add(0, grass);
         tileIndex.Add(1, sand);
         tileIndex.Add(2, water);
         tileIndex.Add(3, stone);
+        tileIndex.Add(4, d1);
+        tileIndex.Add(5, d2);
+        tileIndex.Add(6, d3);
+        tileIndex.Add(7, d4);
+        tileIndex.Add(8, d5);
+        tileIndex.Add(9, d6);
+        tileIndex.Add(10, d7);
+        tileIndex.Add(11, d8);
+        tileIndex.Add(12, d9);
+        tileIndex.Add(13, d10);
+        tileIndex.Add(14, d11);
     }
 
     void InitializeStructureTileIndex()
     {
-        tileIndex.Add(0, d1);
-        tileIndex.Add(1, d2);
-        tileIndex.Add(2, d3);
-        tileIndex.Add(3, d4);
-        tileIndex.Add(4, d5);
-        tileIndex.Add(5, d6);
-        tileIndex.Add(6, d7);
-        tileIndex.Add(7, d8);
-        tileIndex.Add(8, d9);
-        tileIndex.Add(9, d10);
+        structureTileIndex.Add(0, d1);
+        structureTileIndex.Add(1, d2);
+        structureTileIndex.Add(2, d3);
+        structureTileIndex.Add(3, d4);
+        structureTileIndex.Add(4, d5);
+        structureTileIndex.Add(5, d6);
+        structureTileIndex.Add(6, d7);
+        structureTileIndex.Add(7, d8);
+        structureTileIndex.Add(8, d9);
+        structureTileIndex.Add(9, d10);
+        structureTileIndex.Add(10, d11);
     }
 
     public Dictionary<int, Tile> GetStructureTileIndex()

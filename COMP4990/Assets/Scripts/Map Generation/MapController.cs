@@ -15,6 +15,8 @@ public class MapController : MonoBehaviour
     public Tilemap buildingTilemap;
     public NoiseGenerator noiseGenerator; // map generator script tied to map empty
     public StructureGenerator structureGenerator; // structure generator script
+    public WaveFunction waveFunction;
+
     public Transform playerTransform; // transform tied to player game object
     public TileIndex tileIndex;
 
@@ -49,6 +51,7 @@ public class MapController : MonoBehaviour
 
     public int structuresPerQuadrant = 2; // how many structures in each quadrant of the map (+, +), (-, -), (+, -), (-, +)
     public int minimumDistanceBetweenStructures = 2; // minimum distance between structures in chunks, must be at most (worldSize / 2) - 1
+    public int structureRadius = 5;
 
     /*
     quadrants are
@@ -141,12 +144,24 @@ public class MapController : MonoBehaviour
             }
             chunkTiles[tilePosInChunk.xCoord, tilePosInChunk.yCoord] = selectedTile;
             buildingChunks.Add(chunkCoords.ToString(), new Chunk(chunkCoords.xCoord, chunkCoords.yCoord, chunkTiles));
-            buildingTilemap.SetTile(cellPos, tiles[selectedTile]);
+            buildingTilemap.SetTile(cellPos, tileIndex.GetTileIndex()[selectedTile]);
             return;
         }
         Debug.Log($"Old chunk: ({chunkCoords.xCoord}, {chunkCoords.yCoord}) : ({tilePosInChunk.xCoord}, {tilePosInChunk.yCoord})");
         buildingChunks[chunkCoords.ToString()].chunkTiles[tilePosInChunk.xCoord, tilePosInChunk.yCoord] = selectedTile;
-        buildingTilemap.SetTile(cellPos, tiles[selectedTile]);
+        if(buildingTilemap != null)
+        {
+            Debug.Log("have map");
+        }
+        if(tileIndex != null)
+        {
+            Debug.Log("Have tile index");
+        }
+        if(tileIndex.GetTileIndex() != null)
+        {
+            Debug.Log("Have tile inedx real");
+        }
+        buildingTilemap.SetTile(cellPos, tileIndex.GetTileIndex()[selectedTile]);
     }
 
     int GetTileIndex(float noise)
@@ -226,6 +241,11 @@ public class MapController : MonoBehaviour
         }
     }
 
+    public Coords GetTileCoords(Coords chunkCoords, Coords tileInChunk)
+    {
+        return new Coords(chunkCoords.xCoord * chunkSize + tileInChunk.xCoord, chunkCoords.yCoord * chunkSize + tileInChunk.yCoord);
+    }
+
     public Coords GetChunkCoords(int x, int y)
     {
         if(x < 0 && y < 0)
@@ -262,10 +282,10 @@ public class MapController : MonoBehaviour
 
     // x and y coord of tilemap where tile will go
     // tile index
-    void DrawGroundTile(int x, int y, int tileIndex)
+    void DrawGroundTile(int x, int y, int tileID)
     {
         Vector3Int pos = new Vector3Int(x, y, 0);
-        groundTilemap.SetTile(pos, tiles[tileIndex]);
+        groundTilemap.SetTile(pos, tileIndex.GetTileIndex()[tileID]);
     }
 
     // lag when crossing chunk borders
@@ -446,6 +466,11 @@ public class MapController : MonoBehaviour
             structures.Add(new KeyValuePair<int, Coords>(1, cc));
             Debug.Log($"Placing a strucure at {structX}, {structY}");
 
+            Coords tileInChunk = new Coords(chunkSize / 2, chunkSize / 2);
+            Debug.Log("Building structure...");
+            waveFunction.GenerateStructure(GetTileCoords(cc, tileInChunk), structureRadius);
+            Debug.Log("Built structure");
+
             // +, +
             structX = random.Next(0, worldSizeInChunks + 1);
             structY = random.Next(0, worldSizeInChunks + 1);
@@ -453,6 +478,11 @@ public class MapController : MonoBehaviour
             buildingChunks[cc.ToString()].chunkTiles[chunkSize / 2, chunkSize / 2] = 3;
             structures.Add(new KeyValuePair<int, Coords>(2, cc));
             Debug.Log($"Placing a strucure at {structX}, {structY}");
+
+            tileInChunk = new Coords(chunkSize / 2, chunkSize / 2);
+            Debug.Log("Building structure...");
+            waveFunction.GenerateStructure(GetTileCoords(cc, tileInChunk), structureRadius);
+            Debug.Log("Built structure");
 
             // +, -
             structX = random.Next(0, worldSizeInChunks + 1);
@@ -462,6 +492,11 @@ public class MapController : MonoBehaviour
             structures.Add(new KeyValuePair<int, Coords>(3, cc));
             Debug.Log($"Placing a strucure at {structX}, {structY}");
 
+            tileInChunk = new Coords(chunkSize / 2, chunkSize / 2);
+            Debug.Log("Building structure...");
+            waveFunction.GenerateStructure(GetTileCoords(cc, tileInChunk), structureRadius);
+            Debug.Log("Built structure");
+
             // -, -
             structX = random.Next(-worldSizeInChunks, 0 + 1);
             structY = random.Next(-worldSizeInChunks, 0);
@@ -469,6 +504,11 @@ public class MapController : MonoBehaviour
             buildingChunks[cc.ToString()].chunkTiles[chunkSize / 2, chunkSize / 2] = 3;
             structures.Add(new KeyValuePair<int, Coords>(4, cc));
             Debug.Log($"Placing a strucure at {structX}, {structY}");
+
+            tileInChunk = new Coords(chunkSize / 2, chunkSize / 2);
+            Debug.Log("Building structure...");
+            waveFunction.GenerateStructure(GetTileCoords(cc, tileInChunk), structureRadius);
+            Debug.Log("Built structure");
         }
         else
         {
@@ -497,7 +537,9 @@ public class MapController : MonoBehaviour
         Debug.Log("Initializing chunks...");
         InitializeBuildingChunks();
         Debug.Log("Done initializing chunks.");
+        Debug.Log("Placing structures...");
         PlaceStructures();
+        Debug.Log("All structures placed.");
         Debug.Log("Done generating structures.");
     }
 
@@ -524,14 +566,14 @@ public class MapController : MonoBehaviour
         structures = new List<KeyValuePair<int, Coords>>();
         
         Debug.Log("Getting Tiles");
-        tiles = new Dictionary<int, Tile>
+        /*tiles = new Dictionary<int, Tile>
         {
             { -1, null },
             { 0, grass },
             { 1, sand },
             { 2, water },
             { 3, stone }
-        };
+        };*/
 
         playerChunkCoords = GetChunkCoords(GetPlayerCoords().xCoord, GetPlayerCoords().yCoord);
 
@@ -569,7 +611,7 @@ public class MapController : MonoBehaviour
                     {
                         for(int y = 0; y < chunkSize; y++)
                         {
-                            buildingTilemap.SetTile(new Vector3Int((chunkX * chunkSize) + x, (chunkY * chunkSize) + y, 0), tiles[currentBuildingChunk[x, y]]);
+                            buildingTilemap.SetTile(new Vector3Int((chunkX * chunkSize) + x, (chunkY * chunkSize) + y, 0), tileIndex.GetTileIndex()[currentBuildingChunk[x, y]]);
                         }
                     }
                 }

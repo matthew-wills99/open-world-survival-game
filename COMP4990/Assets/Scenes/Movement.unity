@@ -798,6 +798,7 @@ GameObject:
   - component: {fileID: 2016540724}
   - component: {fileID: 2016540726}
   - component: {fileID: 2016540727}
+  - component: {fileID: 2016540728}
   m_Layer: 0
   m_Name: Tilemap Generator
   m_TagString: Untagged
@@ -817,7 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c70c7c86f780d340bf5b3b7093c2b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldSeed: 938
+  worldSeed: 420
   groundTilemap: {fileID: 2012406743}
   buildingTilemap: {fileID: 2037547273}
   noiseGenerator: {fileID: 1701369561}
@@ -832,7 +833,7 @@ MonoBehaviour:
   sandThreshold: 1
   chunkSize: 16
   renderDist: 2
-  worldSizeInChunks: 16
+  worldSizeInChunks: 8
   structuresPerQuadrant: 2
   minimumDistanceBetweenStructures: 2
 --- !u!4 &2016540725
@@ -864,6 +865,18 @@ MonoBehaviour:
   grass: {fileID: 11400000, guid: 609de41d6a953274f93f587a9dc822d0, type: 2}
   sand: {fileID: 11400000, guid: 5de73118023c9904f930f1947b8277ff, type: 2}
   water: {fileID: 11400000, guid: 69789f6bb8fc4ff48a3e4287d7a490e4, type: 2}
+  stone: {fileID: 11400000, guid: ce6138f6d11c7ca489b6138025fd929d, type: 2}
+  d1: {fileID: 11400000, guid: 26f313fd18e624143b68bef88735c2bb, type: 2}
+  d2: {fileID: 11400000, guid: 7336610f55a7c1e438fd91a53dddf8f4, type: 2}
+  d3: {fileID: 11400000, guid: 143c3b2b97a331c489573679f90ab0cc, type: 2}
+  d4: {fileID: 11400000, guid: 17dd46aefee3cb34e84acca185a85fd3, type: 2}
+  d5: {fileID: 11400000, guid: 42cfea420d8c88041a373f2f959b4e52, type: 2}
+  d6: {fileID: 11400000, guid: e517d4503c5c0964982e1c3fcfc24adc, type: 2}
+  d7: {fileID: 11400000, guid: 710e90c23f824ff4b974204bb4ae3e5b, type: 2}
+  d8: {fileID: 11400000, guid: 7cff0465edf85324a8314d74e0e3b656, type: 2}
+  d9: {fileID: 11400000, guid: 28ccad50d455d4443a772b2cb529bd9f, type: 2}
+  d10: {fileID: 11400000, guid: 95038dc71df324049a7b16782853eff4, type: 2}
+  d11: {fileID: 11400000, guid: a90144ba38bbb784798b3952504898c4, type: 2}
 --- !u!114 &2016540727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -877,8 +890,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapController: {fileID: 2016540724}
+  tileIndex: {fileID: 2016540726}
   structuresPerQuadrant: 2
   minimumDistanceBetweenStructures: 2
+--- !u!114 &2016540728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016540723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d917fd2c23ecc4d860d95953648aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapController: {fileID: 0}
+  dimensions: 16
+  tiles: 
+  gridComponents: []
+  cellObj: {fileID: 8163033928675353763, guid: a53a587392a3ce64ca6d9099b2815ddc, type: 3}
 --- !u!1 &2037019427
 GameObject:
   m_ObjectHideFlags: 0
