@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float health, maxHealth = 100f;
-
+    public int maxHealth = 100;
+    public int currentHealth;
+    public HealthBar healthBar;
     // transform of aim empty (child of player)
     public Transform aim;
     Vector3 mouseWorldPosition;
 
     public CameraController cameraController;
+    void Start()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+    }
+    void Update()
+    {
+        RotateTowardsCursor();
+        if(Input.GetKeyDown(KeyCode.Space)){
+            TakeDamage(20);
+        }
+    }
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if(health <= 0)
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        if(currentHealth <= 0)
         {
             Debug.Log("player died lol");
         }
@@ -36,13 +50,5 @@ public class Player : MonoBehaviour
         // default aim position is to the right (x = 1)
     }
 
-    void Update()
-    {
-        RotateTowardsCursor();
-    }
 
-    void Start()
-    {
-        health = maxHealth;
-    }
 }
