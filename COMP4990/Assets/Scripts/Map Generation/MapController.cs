@@ -15,7 +15,7 @@ public class MapController : MonoBehaviour
     public Tilemap buildingTilemap;
     public NoiseGenerator noiseGenerator; // map generator script tied to map empty
     public StructureGenerator structureGenerator; // structure generator script
-    public WaveFunction waveFunction;
+    public BetterWaveFunction waveFunction;
 
     public Transform playerTransform; // transform tied to player game object
     public TileIndex tileIndex;
@@ -40,6 +40,8 @@ public class MapController : MonoBehaviour
 
     // structure generator stuff start -------------------------------------------------------------------
 
+    public Tilemap tempTilemap;
+
     // quadrant number, chunk coords of structure
     List<KeyValuePair<int, Coords>> structures;
     /*
@@ -51,7 +53,7 @@ public class MapController : MonoBehaviour
 
     public int structuresPerQuadrant = 2; // how many structures in each quadrant of the map (+, +), (-, -), (+, -), (-, +)
     public int minimumDistanceBetweenStructures = 2; // minimum distance between structures in chunks, must be at most (worldSize / 2) - 1
-    public int structureRadius = 5;
+    public int structureRadius = 10;
 
     /*
     quadrants are
@@ -131,7 +133,7 @@ public class MapController : MonoBehaviour
         // if the player has not built in this chunk before
         if(!buildingChunks.ContainsKey(chunkCoords.ToString()))
         {
-            Debug.Log($"New Chunk: ({chunkCoords.xCoord}, {chunkCoords.yCoord}) : ({tilePosInChunk.xCoord}, {tilePosInChunk.yCoord})");
+            //Debug.Log($"New Chunk: ({chunkCoords.xCoord}, {chunkCoords.yCoord}) : ({tilePosInChunk.xCoord}, {tilePosInChunk.yCoord})");
             int[,] chunkTiles = new int[chunkSize, chunkSize];
 
             // initialize entire array with -1
@@ -145,23 +147,25 @@ public class MapController : MonoBehaviour
             chunkTiles[tilePosInChunk.xCoord, tilePosInChunk.yCoord] = selectedTile;
             buildingChunks.Add(chunkCoords.ToString(), new Chunk(chunkCoords.xCoord, chunkCoords.yCoord, chunkTiles));
             buildingTilemap.SetTile(cellPos, tileIndex.GetTileIndex()[selectedTile]);
+            Debug.Log($"Placed tile: {selectedTile} in chunk: ({chunkCoords.xCoord}, {chunkCoords.yCoord}) at: ({cellPos.x}, {cellPos.y})");
             return;
         }
-        Debug.Log($"Old chunk: ({chunkCoords.xCoord}, {chunkCoords.yCoord}) : ({tilePosInChunk.xCoord}, {tilePosInChunk.yCoord})");
+        //Debug.Log($"Old chunk: ({chunkCoords.xCoord}, {chunkCoords.yCoord}) : ({tilePosInChunk.xCoord}, {tilePosInChunk.yCoord})");
         buildingChunks[chunkCoords.ToString()].chunkTiles[tilePosInChunk.xCoord, tilePosInChunk.yCoord] = selectedTile;
         if(buildingTilemap != null)
         {
-            Debug.Log("have map");
+            //Debug.Log("have map");
         }
         if(tileIndex != null)
         {
-            Debug.Log("Have tile index");
+            //Debug.Log("Have tile index");
         }
         if(tileIndex.GetTileIndex() != null)
         {
-            Debug.Log("Have tile inedx real");
+            //Debug.Log("Have tile inedx real");
         }
         buildingTilemap.SetTile(cellPos, tileIndex.GetTileIndex()[selectedTile]);
+        Debug.Log($"Placed tile: {selectedTile} in chunk: ({chunkCoords.xCoord}, {chunkCoords.yCoord}) at: ({cellPos.x}, {cellPos.y})");
     }
 
     int GetTileIndex(float noise)
@@ -291,7 +295,7 @@ public class MapController : MonoBehaviour
     // lag when crossing chunk borders
     void RenderGroundChunks()
     {
-        Debug.Log("Render ground chunks");
+        //Debug.Log("Render ground chunks");
         Coords playerChunkCoords = GetPlayerChunkCoords();
         
         int playerChunkX = playerChunkCoords.xCoord;
@@ -337,7 +341,7 @@ public class MapController : MonoBehaviour
     // this is causing problems somehow
     void RenderBuildingChunks()
     {
-        Debug.Log("Yeppers");
+        //Debug.Log("Yeppers");
         Coords playerChunkCoords = GetPlayerChunkCoords();
         
         int playerChunkX = playerChunkCoords.xCoord;
@@ -453,10 +457,18 @@ public class MapController : MonoBehaviour
         }
     }
 
-    void PlaceStructures()
+    public void PlaceStructures()
     {
         if(worldSizeInChunks < 32)
         {
+            int xx = 0;
+            int yy = 0;
+            Coords cc = new Coords(xx, yy);
+            //buildingChunks[cc.ToString()].chunkTiles[chunkSize / 2, chunkSize / 2] = 3;
+            structures.Add(new KeyValuePair<int, Coords>(1, cc));
+            waveFunction.GenerateStructure(xx, yy, 20);
+
+            /*
             // smaller worlds get 1 structure per quad
             // -, +
             int structX = random.Next(-worldSizeInChunks, 0 + 1);
@@ -465,7 +477,7 @@ public class MapController : MonoBehaviour
             buildingChunks[cc.ToString()].chunkTiles[chunkSize / 2, chunkSize / 2] = 3;
             structures.Add(new KeyValuePair<int, Coords>(1, cc));
             Debug.Log($"Placing a strucure at {structX}, {structY}");
-
+            
             Coords tileInChunk = new Coords(chunkSize / 2, chunkSize / 2);
             Debug.Log("Building structure...");
             waveFunction.GenerateStructure(GetTileCoords(cc, tileInChunk), structureRadius);
@@ -509,6 +521,7 @@ public class MapController : MonoBehaviour
             Debug.Log("Building structure...");
             waveFunction.GenerateStructure(GetTileCoords(cc, tileInChunk), structureRadius);
             Debug.Log("Built structure");
+            */
         }
         else
         {
@@ -541,6 +554,11 @@ public class MapController : MonoBehaviour
         PlaceStructures();
         Debug.Log("All structures placed.");
         Debug.Log("Done generating structures.");
+    }
+
+    public int GetStructureOffset()
+    {
+        return 4;
     }
 
     void Update()
@@ -580,7 +598,7 @@ public class MapController : MonoBehaviour
         GenerateMap();
         
         // render entire map at once
-        Debug.Log("Rendering map...");
+        /*Debug.Log("Rendering map...");
         for(int x = -worldSizeInChunks - 1; x <= worldSizeInChunks + 1; x++)
         {
             for(int y = -worldSizeInChunks - 1; y <= worldSizeInChunks + 1; y++)
@@ -617,7 +635,7 @@ public class MapController : MonoBehaviour
                 }
             }
         }
-
+        */
         //RenderGroundChunks(); // TODO: add back render distance lol
     }
 }

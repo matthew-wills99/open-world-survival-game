@@ -63,434 +63,250 @@ public class StructureGenerator : MonoBehaviour
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 0, // tile number (as per TileIndex.GetStructureTileIndex())
                 new List<KeyValuePair<Direction, List<int>>>{ // List of directions, each with a list of valid neighbour tiles for that direction
-                    new KeyValuePair<Direction, List<int>>( // specific direction
-                        Direction.Up, new List<int>{ // up direction
-                            1, // valid tiles in this direction
-                            7,
-                            8,
-                            9,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Down, new List<int>{ // down direction
-                            6,
-                            7
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Left, new List<int>{ // left direction
-                            2,
-                            4,
-                            5,
-                            8,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Right, new List<int>{ // right direction
-                            1,
-                            2,
-                            4,
-                            8
-                        }
-                    )
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9, 21}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11, 21}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5, 21}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7, 21})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 1,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Up, new List<int>{ // up direction
-                            1,
-                            7,
-                            8,
-                            9,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Down, new List<int>{ // down direction
-                            6,
-                            7
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Left, new List<int>{ // left direction
-                            2,
-                            4,
-                            5,
-                            8
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Right, new List<int>{ // right direction
-                            1,
-                            2,
-                            4,
-                            8
-                        }
-                    )
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9, 21}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11, 21}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5, 21}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7, 21})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 2,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Up, new List<int>{ // up direction
-                            1,
-                            7,
-                            8,
-                            9,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Down, new List<int>{ // down direction
-                            5,
-                            8
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Left, new List<int>{ // left direction
-                            0,
-                            1,
-                            3,
-                            7
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Right, new List<int>{ // right direction
-                            0,
-                            3,
-                            6,
-                            7,
-                            10
-                        }
-                    )
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9, 21}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11, 21}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5, 21}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7, 21})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 3,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Up, new List<int>{ // up direction
-                            1,
-                            7,
-                            8,
-                            9
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Down, new List<int>{ // down direction
-                            6,
-                            7
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Left, new List<int>{ // left direction
-                            2,
-                            4,
-                            5,
-                            8
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Right, new List<int>{ // right direction
-                            1,
-                            2,
-                            4,
-                            8,
-                            9
-                        }
-                    )
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9, 21}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11, 21}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5, 21}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7, 21})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 4,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Up, new List<int>{ // up direction
-                            1,
-                            7,
-                            8,
-                            9
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Down, new List<int>{ // down direction
-                            5,
-                            8
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Left, new List<int>{ // left direction
-                            0,
-                            1,
-                            3,
-                            7,
-                            9
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Right, new List<int>{ // right direction
-                            0,
-                            3,
-                            6,
-                            7
-                        }
-                    )
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 5,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Up, new List<int>{ // up direction
-                            0,
-                            2,
-                            4,
-                            5
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Down, new List<int>{ // down direction
-                            5,
-                            7,
-                            8
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Left, new List<int>{ // left direction
-                            2,
-                            6,
-                            8,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Right, new List<int>{ // right direction
-                            1,
-                            2,
-                            4,
-                            8
-                        }
-                    )
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 6,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Up, new List<int>{ // up direction
-                            0,
-                            2,
-                            3,
-                            6
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Down, new List<int>{ // down direction
-                            6,
-                            7,
-                            8
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Left, new List<int>{ // left direction
-                            2,
-                            4,
-                            5,
-                            8
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Right, new List<int>{ // right direction
-                            0,
-                            5,
-                            7,
-                            10
-                        }
-                    )
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 7,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Up, new List<int>{ // up direction
-                            0,
-                            2,
-                            3,
-                            4,
-                            6
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Down, new List<int>{ // down direction
-                            0,
-                            1,
-                            2,
-                            3,
-                            4,
-                            9,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Left, new List<int>{ // left direction
-                            2,
-                            4,
-                            5,
-                            6,
-                            8,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Right, new List<int>{ // right direction
-                            2,
-                            4,
-                            8,
-                            9
-                        }
-                    )
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 8,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Up, new List<int>{ // up direction
-                            0,
-                            2,
-                            3,
-                            4,
-                            5
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Down, new List<int>{ // down direction
-                            0,
-                            1,
-                            2,
-                            3,
-                            4,
-                            9,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Left, new List<int>{ // left direction
-                            0,
-                            3,
-                            7,
-                            9
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Right, new List<int>{ // right direction
-                            0,
-                            3,
-                            5,
-                            6,
-                            7,
-                            10
-                        }
-                    )
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 9,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Up, new List<int>{ // up direction
-                            1,
-                            7,
-                            8,
-                            9,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Down, new List<int>{ // down direction
-                            0,
-                            1,
-                            2,
-                            3,
-                            4,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Left, new List<int>{ // left direction
-                            3,
-                            7,
-                            9
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Right, new List<int>{ // right direction
-                            4,
-                            8,
-                            9
-                        }
-                    )
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 10,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Up, new List<int>{ // up direction
-                            1,
-                            7,
-                            8,
-                            9,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Down, new List<int>{ // down direction
-                            0,
-                            1,
-                            2,
-                            3,
-                            4,
-                            9,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Left, new List<int>{ // left direction
-                            2,
-                            4,
-                            5,
-                            6,
-                            8,
-                            10
-                        }
-                    ),
-                    new KeyValuePair<Direction, List<int>>(
-                        Direction.Right, new List<int>{ // right direction
-                            0,
-                            3,
-                            5,
-                            6,
-                            7,
-                            10
-                        }
-                    )
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                11,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                12,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{15, 18}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{13, 14})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                13,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{16, 19}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{13, 12}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{13, 14})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                14,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{17, 20}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{13, 12}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                15,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{15, 12}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{15, 18}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{16, 17})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                16,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{16, 13}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{16, 19}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{16, 15}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{16, 17})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                17,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{17, 14}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{17, 20}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{16, 15}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                18,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{12, 15}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{19, 20})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                19,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{13, 16}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{19, 18}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{19, 20})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                20,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{14, 17}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{18, 19}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                21,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                22,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                23,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                24,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
                 }
             ),
         };
@@ -511,3 +327,9 @@ public class StructureGenerator : MonoBehaviour
         }
     }
 }
+
+//0 = {0, 1, 2, 3}
+//4 = {4, 5}
+//6 = {6, 7}
+//8 = {8, 9}
+//10 = {10, 11}
