@@ -27,8 +27,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void RefreshCount(){
         countText.text = count.ToString();
         bool textActive = count > 1;
-        countText.
-        gameObject.SetActive(textActive);
+        countText.gameObject.SetActive(textActive);
     }
     //Starting the dragging, Raycast off means we can move it into different slots. SetAsLastSibling means its going to stay above all slots
     public void OnBeginDrag(PointerEventData eventData){

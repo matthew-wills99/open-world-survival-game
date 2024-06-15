@@ -31,6 +31,7 @@ public class DemoScript : MonoBehaviour
     public void UseSelectedItem(){
         Item recievedItem = inventoryManager.GetSelectedItem();
         if (recievedItem != null) {
+            inventoryManager.RemoveItem(recievedItem);
             Debug.Log("Used " + recievedItem);
         }else{
             Debug.Log("No Item Used!");

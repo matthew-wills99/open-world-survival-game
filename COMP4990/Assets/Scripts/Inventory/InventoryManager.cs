@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.InteropServices.ComTypes;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography.X509Certificates;
+using UnityEditor;
 using UnityEngine;
     //This script is for the inventory. Managing the slots, items, stacks, classes, etc.\
 public class InventoryManager : MonoBehaviour
 {
     //Allows other scripts to use this script (Building, resources, etc.)
     public static InventoryManager instance;
-    public Item[] startItems;
-    public int maxStackedItems = 4;
+    public List<Item> startItems;
+    public int maxStackedItems = 73;
     public GameObject InventoryItemPrefab;
-    public InventorySlot[] inventorySlots;
+    public List<InventorySlot> inventorySlots;
     int selectedSlot = -1;
 
     private void Awake(){
@@ -46,20 +49,20 @@ public class InventoryManager : MonoBehaviour
     //When "picking up" items this will search for the closets empty slot
     public bool AddItem(Item item){
         //This for loop is if a stackable item is in the inventory it will add the item to that stack
-        for(int i = 0; i < inventorySlots.Length; i++){
+        for(int i = 0; i < inventorySlots.Count; i++){
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if(itemInSlot != null && 
-            itemInSlot.item == item && 
-            itemInSlot.count < maxStackedItems &&
-            itemInSlot.item.stackable == true){
+                itemInSlot.item == item && 
+                itemInSlot.count < maxStackedItems &&
+                itemInSlot.item.stackable){
                 itemInSlot.count++;
                 itemInSlot.RefreshCount();
                 return true;
             }
         }
         //If there is no stackable item in teh inventory this will find teh closest slot (both hotbar adn backpack)
-        for(int i = 0; i < inventorySlots.Length; i++){
+        for(int i = 0; i < inventorySlots.Count; i++){
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if(itemInSlot == null){
@@ -78,9 +81,8 @@ public class InventoryManager : MonoBehaviour
     }
 
     //This checks if the item that is currently being used by the player is being used.
-    //If its stackable reduce the stack until there is none left.
     public Item GetSelectedItem(){
-        if (selectedSlot < 0 || selectedSlot >= inventorySlots.Length) return null;
+        if (selectedSlot < 0 || selectedSlot >= inventorySlots.Count) return null;
 
         InventorySlot slot = inventorySlots[selectedSlot];
         InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
@@ -90,4 +92,29 @@ public class InventoryManager : MonoBehaviour
 
         return null;
     }
+
+    public void RemoveItem(Item item)
+    {
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (itemInSlot != null && 
+            itemInSlot.item == item && 
+            item.type != Item.ItemType.Tool)
+            {
+                itemInSlot.count--;
+                if (itemInSlot.count <= 0)
+                {
+                    Destroy(itemInSlot.gameObject);
+                }
+                else
+                {
+                    itemInSlot.RefreshCount();
+                }
+            return;
+            }
+        }   
+    }   
+
 }
