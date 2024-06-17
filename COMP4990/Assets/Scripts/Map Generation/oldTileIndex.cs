@@ -1,14 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TileIndex : MonoBehaviour
+public class OldTileIndex : MonoBehaviour
 {
     Dictionary<int, Tile> structureTileIndex;
 
     Dictionary<int, Tile> tileIndex;
+
+    Dictionary<int, int> structToIndex;
+    Dictionary<int, int> indexToStruct;
+
     public Tile farGrass;
     public Tile grass;
     public Tile sand;
@@ -41,13 +46,73 @@ public class TileIndex : MonoBehaviour
     public Tile structGrass2;
     public Tile structGrass3;
     public Tile structGrass4;
+    public Tile structTopLeftCorner;
+    public Tile structTopRightCorner;
+    public Tile structBottomLeftCorner;
+    public Tile structbottomRightCorner;
     
     void Awake()
     {
         tileIndex = new Dictionary<int, Tile>();
         structureTileIndex = new Dictionary<int, Tile>();
+        structToIndex = new Dictionary<int, int>();
+        indexToStruct = new Dictionary<int, int>();
         InitializeTileIndex();
         InitializeStructureTileIndex();
+        InitializeStructToIndex();
+    }
+
+    public int ConvertStructToIndex(int idx)
+    {
+        Debug.Log($"LOOKING FOR {idx}");
+        if(structToIndex.ContainsKey(idx))
+        {
+            return structToIndex[idx];
+        }
+        return -1;
+    }
+    
+    public int ConvertIndexToStruct(int idx)
+    {
+        Debug.Log($"LOOKING FOR {idx}");
+        return indexToStruct[idx];
+    }
+
+    public int GetStructCount()
+    {
+        return structToIndex.Count;
+    }
+
+    void InitializeStructToIndex()
+    {
+        structToIndex.Add(0, 12);
+        structToIndex.Add(1, 13);
+        structToIndex.Add(2, 14);
+        structToIndex.Add(3, 15);
+        structToIndex.Add(4, 16);
+        structToIndex.Add(5, 17);
+        structToIndex.Add(6, 18);
+        structToIndex.Add(7, 19);
+        structToIndex.Add(8, 20);
+        structToIndex.Add(9, 25);
+        structToIndex.Add(10, 26);
+        structToIndex.Add(11, 27);
+        structToIndex.Add(12, 28);
+
+        indexToStruct.Add(12, 0);
+        indexToStruct.Add(13, 1);
+        indexToStruct.Add(14, 2);
+        indexToStruct.Add(15, 3);
+        indexToStruct.Add(16, 4);
+        indexToStruct.Add(17, 5);
+        indexToStruct.Add(18, 6);
+        indexToStruct.Add(19, 7);
+        indexToStruct.Add(20, 8);
+        indexToStruct.Add(25, 9);
+        indexToStruct.Add(26, 10);
+        indexToStruct.Add(27, 11);
+        indexToStruct.Add(28, 12);
+
     }
 
     void InitializeTileIndex()
@@ -82,6 +147,10 @@ public class TileIndex : MonoBehaviour
         tileIndex.Add(26, structGrass2);
         tileIndex.Add(27, structGrass3);
         tileIndex.Add(28, structGrass4);
+        tileIndex.Add(29, structTopLeftCorner);
+        tileIndex.Add(30, structTopRightCorner);
+        tileIndex.Add(31, structBottomLeftCorner);
+        tileIndex.Add(32, structbottomRightCorner);
         // start next at 100
         tileIndex.Add(100, purpleThing);
         tileIndex.Add(101, farGrass);
@@ -114,6 +183,10 @@ public class TileIndex : MonoBehaviour
         structureTileIndex.Add(22, structGrass2);
         structureTileIndex.Add(23, structGrass3);
         structureTileIndex.Add(24, structGrass4);
+        structureTileIndex.Add(25, structTopLeftCorner);
+        structureTileIndex.Add(26, structTopRightCorner);
+        structureTileIndex.Add(27, structBottomLeftCorner);
+        structureTileIndex.Add(28, structbottomRightCorner);
     }
 
     public Dictionary<int, Tile> GetStructureTileIndex()

@@ -18,7 +18,7 @@ public class MapController : MonoBehaviour
     public BetterWaveFunction waveFunction;
 
     public Transform playerTransform; // transform tied to player game object
-    public TileIndex tileIndex;
+    public OldTileIndex tileIndex;
 
     Dictionary<int, Tile> tiles;
 
@@ -466,7 +466,7 @@ public class MapController : MonoBehaviour
             Coords cc = new Coords(xx, yy);
             //buildingChunks[cc.ToString()].chunkTiles[chunkSize / 2, chunkSize / 2] = 3;
             structures.Add(new KeyValuePair<int, Coords>(1, cc));
-            waveFunction.GenerateStructure(xx, yy, 20);
+            waveFunction.GenerateStructure(xx, yy, structureRadius);
 
             /*
             // smaller worlds get 1 structure per quad
