@@ -1,17 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
-[Serializable]
-public struct itemAmount{
-    public Item Item;
-    [Range(1,4)]
-    public int Amount;
-}
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Scriptable object/CraftingRecipe")]
 public class CraftingReceipes : ScriptableObject
 {
-    public List<itemAmount> Materials;
-    public List<itemAmount> Results;
+    public Item resultItem;
+    public List<Ingredient> ingredients;
+
+    [Serializable]
+    public class Ingredient{
+        public Item item;
+        public int count;
+    }
 }

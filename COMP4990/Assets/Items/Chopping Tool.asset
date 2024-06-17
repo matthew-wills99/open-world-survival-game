@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7d5827be3ae041bc7b0d414bc4723, type: 3}
   m_Name: Chopping Tool
   m_EditorClassIdentifier: 
+  index: 2
+  itemName: 
   tile: {fileID: 0}
   type: 1
   actionType: 0

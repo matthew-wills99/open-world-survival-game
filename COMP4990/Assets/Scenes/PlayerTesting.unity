@@ -2027,7 +2027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RequiredAction: 0
-  itemToAdd: {fileID: 0}
+  itemToAdd: {fileID: 11400000, guid: 63381a471c92dc041a3b98c199406512, type: 2}
   cooldownTime: 5
 --- !u!1 &397429835
 GameObject:
@@ -6144,6 +6144,24 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4566058683362650456, guid: 303bec0dd462edd43bfb00d157b5a1ca, type: 3}
   m_PrefabInstance: {fileID: 1577193610}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1588887996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1442428779330135350, guid: cd1e7ef05e8625e478c162345ff85943, type: 3}
+  m_PrefabInstance: {fileID: 1442428780640904377}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1588887997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588887996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f9051f161d279418be2f56d207addc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recipes: []
 --- !u!114 &1616300252 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3977000850500258708, guid: 303bec0dd462edd43bfb00d157b5a1ca, type: 3}
@@ -6339,7 +6357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -515.93, y: 134.84}
+  m_AnchoredPosition: {x: -492.93, y: 127.66}
   m_SizeDelta: {x: 173.134, y: 269.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1673320582
@@ -6394,9 +6412,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 1435797833}
   itemsToPickup:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 63381a471c92dc041a3b98c199406512, type: 2}
+  - {fileID: 11400000, guid: 72832a2c669f5b940a8c9f661555413e, type: 2}
+  - {fileID: 11400000, guid: 3ed3974dd4fa3f3468b33e1bb21bd2e8, type: 2}
 --- !u!114 &1689145865 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3977000850500258708, guid: 303bec0dd462edd43bfb00d157b5a1ca, type: 3}
@@ -6426,7 +6444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RequiredAction: 0
-  itemToAdd: {fileID: 0}
+  itemToAdd: {fileID: 11400000, guid: 63381a471c92dc041a3b98c199406512, type: 2}
   cooldownTime: 5
 --- !u!1 &1732574133
 GameObject:
@@ -6866,7 +6884,7 @@ PrefabInstance:
     - target: {fileID: 1442428779330135337, guid: cd1e7ef05e8625e478c162345ff85943, type: 3}
       propertyPath: itemToAdd
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 72832a2c669f5b940a8c9f661555413e, type: 2}
     - target: {fileID: 1442428779330135337, guid: cd1e7ef05e8625e478c162345ff85943, type: 3}
       propertyPath: cooldownTime
       value: 5
@@ -7319,7 +7337,7 @@ PrefabInstance:
     - target: {fileID: 1442428779330135337, guid: cd1e7ef05e8625e478c162345ff85943, type: 3}
       propertyPath: itemToAdd
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 72832a2c669f5b940a8c9f661555413e, type: 2}
     - target: {fileID: 1442428779330135337, guid: cd1e7ef05e8625e478c162345ff85943, type: 3}
       propertyPath: RequiredAction
       value: 1
