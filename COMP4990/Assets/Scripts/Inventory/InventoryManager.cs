@@ -93,7 +93,22 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
-    public void RemoveItem(Item item)
+    public bool HasItem (Item item, int count){
+        int itemCount = 0;
+        for(int i = 0; i < inventorySlots.Count; i++){
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if(itemInSlot != null && itemInSlot.item == item){
+                itemCount += itemInSlot.count;
+                if(itemCount > count){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool RemoveItem(Item item)
     {
         for (int i = 0; i < inventorySlots.Count; i++)
         {
@@ -103,18 +118,58 @@ public class InventoryManager : MonoBehaviour
             itemInSlot.item == item && 
             item.type != Item.ItemType.Tool)
             {
-                itemInSlot.count--;
-                if (itemInSlot.count <= 0)
+                if (itemInSlot.count > 1)
                 {
-                    Destroy(itemInSlot.gameObject);
+                    itemInSlot.count--;
+                    itemInSlot.RefreshCount();
+                    return true;
                 }
                 else
                 {
-                    itemInSlot.RefreshCount();
+                    Destroy(itemInSlot.gameObject);
+                    return true;
                 }
-            return;
+            
             }
-        }   
-    }   
+        } 
+        return false;  
+    } 
+
+    public bool RemoveItemForCrafting(Item item, int count)
+    {
+        Debug.Log(count);
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (itemInSlot != null && 
+            itemInSlot.item == item && 
+            item.type != Item.ItemType.Tool)
+            {
+                if (itemInSlot.count >= count)
+                {
+                    itemInSlot.count -= count;
+                    if(itemInSlot.count == 0){
+                        Destroy(itemInSlot.gameObject);
+                    }else{
+                        itemInSlot.RefreshCount();
+                    }
+                    return true;
+                }
+                else
+                {
+                    count -= itemInSlot.count;
+                    Destroy(itemInSlot.gameObject);
+                    return true;
+                }
+            
+            }
+        } 
+        return false;  
+    }     
 
 }
+
+    
+
+

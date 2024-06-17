@@ -9,14 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88b7d5827be3ae041bc7b0d414bc4723, type: 3}
-  m_Name: Mining Block
+  m_Script: {fileID: 11500000, guid: ed61ed416944574409e7d5854f5edc4a, type: 3}
+  m_Name: Wooden Axe Recipe
   m_EditorClassIdentifier: 
-  index: 4
-  itemName: 
-  tile: {fileID: 0}
-  type: 0
-  actionType: 2
-  range: {x: 5, y: 4}
-  stackable: 1
-  image: {fileID: 21300000, guid: 3bc0f8978d0114d568eb440fca26e64b, type: 3}
+  resultItem: {fileID: 11400000, guid: 55f08b6ab78a6c7449008fa4684b87f6, type: 2}
+  ingredients:
+  - item: {fileID: 11400000, guid: 63381a471c92dc041a3b98c199406512, type: 2}
+    count: 3

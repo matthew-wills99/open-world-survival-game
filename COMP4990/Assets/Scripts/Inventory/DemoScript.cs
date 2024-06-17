@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using TreeEditor;
 using UnityEngine;
 //This script is only for testing the Inventory
 public class DemoScript : MonoBehaviour
 {
     public InventoryManager inventoryManager;
     public Item[] itemsToPickup;
+    public Item itemToCraft;
+    public CraftingManager craftingManager;
 
     //PickupItem detects if an item has been added to the inventory
     public void PickupItem(int id){
@@ -30,11 +34,20 @@ public class DemoScript : MonoBehaviour
     //UseSelectedItem detects if an item has been used or not.
     public void UseSelectedItem(){
         Item recievedItem = inventoryManager.GetSelectedItem();
-        if (recievedItem != null) {
+        if (recievedItem != null) { 
             inventoryManager.RemoveItem(recievedItem);
             Debug.Log("Used " + recievedItem);
         }else{
             Debug.Log("No Item Used!");
+        }
+    }
+
+    public void CraftItem(){
+        bool result = craftingManager.CraftItem(itemToCraft, inventoryManager);
+        if(result == true){
+            Debug.Log("Crafted: " + itemToCraft);
+        }else{
+            Debug.Log("Failed crafting: " + itemToCraft);
         }
     }
 
