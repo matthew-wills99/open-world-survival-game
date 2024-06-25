@@ -8,6 +8,7 @@ public class TileIndex : MonoBehaviour
     Dictionary<int, Tile> tileIndex;
     List<int> grassTiles;
     List<int> grassWithFlowersTiles;
+    List<int> allGrassTiles;
 
     public Tile grass;
     public Tile grass2;
@@ -44,6 +45,7 @@ public class TileIndex : MonoBehaviour
     public Tile stone;
     public Tile sand;
     public Tile water;
+    public Tile terrainTile;
 
     void Awake()
     {
@@ -83,6 +85,7 @@ public class TileIndex : MonoBehaviour
             { 32, stone},
             { 33, sand},
             { 34, water},
+            { 35, terrainTile},
         };
 
         grassTiles = new List<int>{
@@ -90,6 +93,11 @@ public class TileIndex : MonoBehaviour
         };
 
         grassWithFlowersTiles = new List<int>{
+            17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
+        };
+
+        allGrassTiles = new List<int>{
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
             17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
         };
     }
@@ -102,6 +110,11 @@ public class TileIndex : MonoBehaviour
     public List<int> GetGrassWithFlowersTiles()
     {
         return grassWithFlowersTiles;
+    }
+
+    public List<int> GetAllGrassTiles()
+    {
+        return allGrassTiles;
     }
 
     public Tile GetTile(int index)

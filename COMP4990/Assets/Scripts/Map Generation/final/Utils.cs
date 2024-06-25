@@ -7,22 +7,22 @@ public class Utils : MonoBehaviour
 {
     public class Chunk
     {
-        public int x {get; set;}
-        public int y {get; set;}
-        public int[,] chunkTiles {get; set;}
+        public int X {get; set;}
+        public int Y {get; set;}
+        public int[,] ChunkTiles {get; set;}
 
         public Chunk(int x, int y, int chunkSize)
         {
-            this.x = x;
-            this.y = y;
-            chunkTiles = new int[chunkSize, chunkSize];
+            X = x;
+            Y = y;
+            ChunkTiles = new int[chunkSize, chunkSize];
 
             // Initialize chunkTiles to -1 (no tile has been placed here yet)
             for(int i = 0; i < chunkSize; i++)
             {
                 for(int j = 0; j < chunkSize; j++)
                 {
-                    chunkTiles[i, j] = -1;
+                    ChunkTiles[i, j] = -1;
                 }
             }
         }
@@ -30,48 +30,51 @@ public class Utils : MonoBehaviour
 
     public class Biome
     {
-        public BiomeEnum type {get; set;}
-        public int cx {get; set;}
-        public int cy {get; set;}
-        public int tx {get; set;}
-        public int ty {get; set;}
-        public int tileIndex {get; set;}
-        public int mincx;
-        public int maxcx;
-        public int mincy;
-        public int maxcy;
+        public BiomeEnum Type {get; set;}
+        public int Cx {get; set;}
+        public int Cy {get; set;}
+        public int Tx {get; set;}
+        public int Ty {get; set;}
+        public int TileIndex {get; set;}
 
         public Biome(BiomeEnum type, int cx, int cy, int tx, int ty, int tileIndex)
         {
-            this.type = type;
-            this.cx = cx;
-            this.cy = cy;
-            this.tx = tx;
-            this.ty = ty;
-            this.tileIndex = tileIndex;
+            Type = type;
+            Cx = cx;
+            Cy = cy;
+            Tx = tx;
+            Ty = ty;
+            TileIndex = tileIndex;
         }
-
-        public void setMinCX(int mincx) { this.mincx = mincx; }
-        public int getMinCX() { return mincx; }
-
-        public void setMaxCX(int maxcx) { this.maxcx = maxcx; }
-        public int getMaxCX() { return maxcx; }
-
-        public void setMinCY(int mincy) { this.mincy = mincy; }
-        public int getMinCY() { return mincy; }
-
-        public void setMaxCY(int maxcy) { this.maxcy = maxcy; }
-        public int getMaxCY() { return maxcy; }
-
 
         public string GetBiomeKey()
         {
-            return $"C({cx}, {cy} : T({tx}, {ty}))";
+            return $"C({Cx}, {Cy} : T({Tx}, {Ty}))";
         }
 
         public BiomeEnum GetBiomeType()
         {
-            return type;
+            return Type;
+        }
+    }
+
+    public class Structure
+    {
+        public Grid StructGrid {get; set;}
+        public int XRad {get; set;}
+        public int YUp {get; set;}
+        public int YDown {get; set;}
+        public int Cx {get; set;}
+        public int Cy {get; set;}
+        public int Tx {get; set;}
+        public int Ty {get; set;}
+
+        public Structure(Grid structGrid, int xRad, int yUp, int yDown)
+        {
+            StructGrid = structGrid;
+            XRad = xRad;
+            YUp = yUp;
+            YDown = yDown;
         }
     }
 
@@ -87,6 +90,19 @@ public class Utils : MonoBehaviour
         Small,
         Medium,
         Large
+    }
+
+    public enum BBTKey
+    {
+        Null,
+        BlendLeft,
+        BlendRight,
+        BlendUp,
+        BlendDown,
+        BlendUpLeft,
+        BlendUpRight,
+        BlendDownLeft,
+        BlendDownRight
     }
 
     // Return a chunk key from the x and y values of the desired chunk

@@ -747,6 +747,9 @@ MonoBehaviour:
   stone: {fileID: 11400000, guid: 009ff3373d29c894d83a867e67b89da9, type: 2}
   sand: {fileID: 11400000, guid: 5de73118023c9904f930f1947b8277ff, type: 2}
   water: {fileID: 11400000, guid: 69789f6bb8fc4ff48a3e4287d7a490e4, type: 2}
+  order3: {fileID: 11400000, guid: a2f33a04e7399a544acb34a88baf6fd8, type: 2}
+  order2: {fileID: 11400000, guid: e1741cbf0b6c76b498d888dcfaa5fb13, type: 2}
+  order1: {fileID: 11400000, guid: b77429ce766ff5c43b078c3d579b6bd0, type: 2}
 --- !u!114 &1679455021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,6 +762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d9b18030e915347bed1d46cf3a92d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  struct1: {fileID: 9050686457452802909, guid: a6e1a8f8024f47d458ef706552263586, type: 3}
+  struct2: {fileID: 1087004932862685426, guid: 0a6165c55f678d84d924d29c97063794, type: 3}
+  struct3: {fileID: 8652399170730423931, guid: 2f66919916a915d4caadca14309dca44, type: 3}
   tileIndex: {fileID: 1679455020}
   underGroundTilemap: {fileID: 431924443}
   groundTilemap: {fileID: 124315750}
@@ -771,7 +777,10 @@ MonoBehaviour:
   randomFillPercentCentre: 65
   biomeChance: 5
   distanceBetweenBiomes: 60
-  maxBiomeSize: 16
+  biomeSizeSmall: 16
+  biomeSizeMedium: 32
+  biomeSizeLarge: 64
+  maxBiomeSize: 32
   chunkSize: 16
   mapSizeInChunks: 8
 --- !u!4 &1679455022
