@@ -195,7 +195,7 @@ TextureImporter:
       213: -3816351941075284467
     second: TX Tileset Grass_63
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -212,10 +212,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -254,6 +256,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -265,6 +269,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -277,6 +282,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -1636,9 +1642,73 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      TX Tileset Grass_0: 70345852487738077
+      TX Tileset Grass_1: 4952578441559222020
+      TX Tileset Grass_10: -6564997684603518094
+      TX Tileset Grass_11: 5238185307832468605
+      TX Tileset Grass_12: -7594056395653883525
+      TX Tileset Grass_13: 8162263114011012270
+      TX Tileset Grass_14: 7561712526003054963
+      TX Tileset Grass_15: -3522435171489406371
+      TX Tileset Grass_16: 1817057696024275372
+      TX Tileset Grass_17: -8083514776058052712
+      TX Tileset Grass_18: 244558199782781944
+      TX Tileset Grass_19: 5707548804038339439
+      TX Tileset Grass_2: 819567534788210391
+      TX Tileset Grass_20: 3843873443501309306
+      TX Tileset Grass_21: 8673001142837481279
+      TX Tileset Grass_22: 3607393769129586174
+      TX Tileset Grass_23: 6013550869744628231
+      TX Tileset Grass_24: 2017310720865508394
+      TX Tileset Grass_25: -6630093498102899261
+      TX Tileset Grass_26: 5549340618880496229
+      TX Tileset Grass_27: 8343634341196504661
+      TX Tileset Grass_28: 1699179401519501599
+      TX Tileset Grass_29: 2856276960673676697
+      TX Tileset Grass_3: 2968666531249437998
+      TX Tileset Grass_30: 3039979764105007127
+      TX Tileset Grass_31: 5335619693202520630
+      TX Tileset Grass_32: 4695946958414257460
+      TX Tileset Grass_33: 2154657779057078652
+      TX Tileset Grass_34: 2429283944913501130
+      TX Tileset Grass_35: 8288805984404260493
+      TX Tileset Grass_36: -2603097979494311841
+      TX Tileset Grass_37: 2838858650464985700
+      TX Tileset Grass_38: -1334846850439493898
+      TX Tileset Grass_39: -3768162437487271990
+      TX Tileset Grass_4: -1890034545658032178
+      TX Tileset Grass_40: -3625356553253880661
+      TX Tileset Grass_41: 9003088772993399292
+      TX Tileset Grass_42: -3450837959310026543
+      TX Tileset Grass_43: 675755360828446528
+      TX Tileset Grass_44: 1882343685689576838
+      TX Tileset Grass_45: 3919787435611246027
+      TX Tileset Grass_46: 2027420330667105731
+      TX Tileset Grass_47: -2171115061578104564
+      TX Tileset Grass_48: -5725856851397658011
+      TX Tileset Grass_49: -5505025408298627620
+      TX Tileset Grass_5: 4134371707065033317
+      TX Tileset Grass_50: -6974150175585819612
+      TX Tileset Grass_51: -3416945889323609855
+      TX Tileset Grass_52: 4971240177624588335
+      TX Tileset Grass_53: -6740753946076691991
+      TX Tileset Grass_54: 6291380662078022523
+      TX Tileset Grass_55: 4451708441953564438
+      TX Tileset Grass_56: 9037491842546012273
+      TX Tileset Grass_57: -430858416286305304
+      TX Tileset Grass_58: -8871908192670443704
+      TX Tileset Grass_59: -7153907927486802097
+      TX Tileset Grass_6: 5569874652730682355
+      TX Tileset Grass_60: 3256317763021904785
+      TX Tileset Grass_61: -7891800970174105922
+      TX Tileset Grass_62: -5498543937027070284
+      TX Tileset Grass_63: -3816351941075284467
+      TX Tileset Grass_7: 5666956673604940968
+      TX Tileset Grass_8: 8846394527069700289
+      TX Tileset Grass_9: 8963900995307239896
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

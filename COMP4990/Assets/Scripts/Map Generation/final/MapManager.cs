@@ -738,10 +738,12 @@ public class MapManager : MonoBehaviour
         //StartCoroutine(SmoothMap());
         SmoothMap(-mapSizeInChunks / 2, -mapSizeInChunks / 2, mapSizeInChunks / 2, mapSizeInChunks / 2);
 
-        PlaceStructures();
+        PlaceStructures(); // KEEP TRACK OF WHAT CHUNK EACH STRUCTURE IS IN AND ONLY ITERATE THROUGH CHUNKS THAT ARE FAR ENOUGH AWAY FOR ANOTHER STRUCTURE
 
         PlaceBiomes();
-        SpreadBiomes();
+        SpreadBiomes(); // KEEP TRACK OF HIGHEST AND LOWEST WORLD COORDINATE THEN CONVERT IT BACK TO CHUNK COORDS
+                        // WHEN YOU DO THAT LOOP THROUGH ALL CHUNKS FROM HIGHEST, HIGHEST TO LOWEST, LOWEST X AND Y AND REPLACE ALL BIOME
+                        // TILES WITH PURPLE SO U KNOW IT WORKS
         SmoothBiomes();
 
         TileVariation();

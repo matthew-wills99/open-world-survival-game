@@ -186,7 +186,7 @@ TextureImporter:
       213: 82668095594395541
     second: TX Tileset Wall_60
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -203,10 +203,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -245,6 +247,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -256,6 +260,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -268,6 +273,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -1564,9 +1570,70 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      TX Tileset Wall_0: -1733087341866461178
+      TX Tileset Wall_1: 6957734447361721616
+      TX Tileset Wall_10: -1958078681036771403
+      TX Tileset Wall_11: -5825851515583889912
+      TX Tileset Wall_12: -2854082007545142024
+      TX Tileset Wall_13: 4358387668697120266
+      TX Tileset Wall_14: 8644265192155547954
+      TX Tileset Wall_15: 8167746577722451385
+      TX Tileset Wall_16: 6267359402253967389
+      TX Tileset Wall_17: -5862368307983668790
+      TX Tileset Wall_18: -7557792710288950061
+      TX Tileset Wall_19: -3533621776642288273
+      TX Tileset Wall_2: 6591716156378716260
+      TX Tileset Wall_20: 5131943681631753719
+      TX Tileset Wall_21: -9200303062221749812
+      TX Tileset Wall_22: -7514867007104079039
+      TX Tileset Wall_23: -1719517517078583244
+      TX Tileset Wall_24: 820063056870970940
+      TX Tileset Wall_25: 5187830002737632698
+      TX Tileset Wall_26: -1748857925179779632
+      TX Tileset Wall_27: -223724407701043756
+      TX Tileset Wall_28: 6024240781542652811
+      TX Tileset Wall_29: -4062723913573453471
+      TX Tileset Wall_3: 2165944517536112100
+      TX Tileset Wall_30: -1100644421833014722
+      TX Tileset Wall_31: 6948882330399756165
+      TX Tileset Wall_32: 1654491068232026977
+      TX Tileset Wall_33: 71651111216328506
+      TX Tileset Wall_34: 3059876108157426866
+      TX Tileset Wall_35: 3257046447098500560
+      TX Tileset Wall_36: -8931142361383566039
+      TX Tileset Wall_37: 123318900244443712
+      TX Tileset Wall_38: -5319171713050639053
+      TX Tileset Wall_39: 7181100487496553227
+      TX Tileset Wall_4: 6429608448122266744
+      TX Tileset Wall_40: -1200153011682927239
+      TX Tileset Wall_41: 3571814961652818408
+      TX Tileset Wall_42: -8685722029617680724
+      TX Tileset Wall_43: 3182049403657428220
+      TX Tileset Wall_44: -1581437454830469745
+      TX Tileset Wall_45: -2890203685123800140
+      TX Tileset Wall_46: 8951452758819862562
+      TX Tileset Wall_47: 29979056245120460
+      TX Tileset Wall_48: 7198509014609747941
+      TX Tileset Wall_49: 4125394504485599958
+      TX Tileset Wall_5: -8038740358467470550
+      TX Tileset Wall_50: 7290166185290812726
+      TX Tileset Wall_51: 7064818913605178064
+      TX Tileset Wall_52: -4244176198782082196
+      TX Tileset Wall_53: 8514753716081673071
+      TX Tileset Wall_54: 137054463248605966
+      TX Tileset Wall_55: 7930090600804098478
+      TX Tileset Wall_56: -6438523170378735759
+      TX Tileset Wall_57: 6348821644078579016
+      TX Tileset Wall_58: 6752677864546727224
+      TX Tileset Wall_59: -608112466465058828
+      TX Tileset Wall_6: -5334644376926737371
+      TX Tileset Wall_60: 82668095594395541
+      TX Tileset Wall_7: -5954229690154693420
+      TX Tileset Wall_8: -522149132528552129
+      TX Tileset Wall_9: 6981085378657702106
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
