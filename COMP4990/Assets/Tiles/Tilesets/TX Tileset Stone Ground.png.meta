@@ -153,7 +153,7 @@ TextureImporter:
       213: 8578801168731528464
     second: TX Tileset Stone Ground_49
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -170,10 +170,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -212,6 +214,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -223,6 +227,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -235,6 +240,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -1300,9 +1306,59 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      TX Tileset Stone Ground_0: -608112088230385668
+      TX Tileset Stone Ground_1: -2665429239257764832
+      TX Tileset Stone Ground_10: -1041093896840029208
+      TX Tileset Stone Ground_11: 6568034397154888011
+      TX Tileset Stone Ground_12: 6959985381921866387
+      TX Tileset Stone Ground_13: -1947251800687281021
+      TX Tileset Stone Ground_14: -6554345004045583074
+      TX Tileset Stone Ground_15: 831523167705512321
+      TX Tileset Stone Ground_16: 5593089320099440615
+      TX Tileset Stone Ground_17: -5142059347004132357
+      TX Tileset Stone Ground_18: 8620463307731998764
+      TX Tileset Stone Ground_19: -6662576993672872339
+      TX Tileset Stone Ground_2: -1553626865407236635
+      TX Tileset Stone Ground_20: 708718537716460968
+      TX Tileset Stone Ground_21: -4796697383677858171
+      TX Tileset Stone Ground_22: -4318769474323580151
+      TX Tileset Stone Ground_23: -3186186371248203559
+      TX Tileset Stone Ground_24: 1358563599654078994
+      TX Tileset Stone Ground_25: -4803063215073143783
+      TX Tileset Stone Ground_26: 5713200390745220404
+      TX Tileset Stone Ground_27: 9063950052467872392
+      TX Tileset Stone Ground_28: -2401565101523967915
+      TX Tileset Stone Ground_29: 1973294919871787256
+      TX Tileset Stone Ground_3: 5423452517592741857
+      TX Tileset Stone Ground_30: 7259822565601557970
+      TX Tileset Stone Ground_31: 3037696106996360144
+      TX Tileset Stone Ground_32: 8923911704264586177
+      TX Tileset Stone Ground_33: -5527160726117749407
+      TX Tileset Stone Ground_34: -4341294003847338739
+      TX Tileset Stone Ground_35: -7088376893082206848
+      TX Tileset Stone Ground_36: 8152979774735581152
+      TX Tileset Stone Ground_37: -8388938661070404502
+      TX Tileset Stone Ground_38: 1688761830191839360
+      TX Tileset Stone Ground_39: -2139554247170169856
+      TX Tileset Stone Ground_4: 4414530798859521799
+      TX Tileset Stone Ground_40: 6577084989456043178
+      TX Tileset Stone Ground_41: 6087639296203743499
+      TX Tileset Stone Ground_42: 1680953225627294004
+      TX Tileset Stone Ground_43: 1478991378406041674
+      TX Tileset Stone Ground_44: 9130579105535565097
+      TX Tileset Stone Ground_45: -5879208674613326607
+      TX Tileset Stone Ground_46: 5990776494604342866
+      TX Tileset Stone Ground_47: 4278011135433629975
+      TX Tileset Stone Ground_48: 3190421554904162107
+      TX Tileset Stone Ground_49: 8578801168731528464
+      TX Tileset Stone Ground_5: 6846899933297971422
+      TX Tileset Stone Ground_6: -4559516872588631525
+      TX Tileset Stone Ground_7: -1488254594966573123
+      TX Tileset Stone Ground_8: 7565636794378938106
+      TX Tileset Stone Ground_9: 8181497496074830314
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
