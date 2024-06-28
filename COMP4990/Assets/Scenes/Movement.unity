@@ -359,7 +359,7 @@ MonoBehaviour:
   pathUpCracked: {fileID: 11400000, guid: 8361c83a7f8ca5848bec51b4d1a0b2df, type: 2}
   pathDown: {fileID: 11400000, guid: 674f0d1c4a24cf54fbcdf59b80039a6c, type: 2}
   pathDownCracked: {fileID: 11400000, guid: 255d8280bbb4c80498fd805a805e6ba5, type: 2}
-  structTopLeft: {fileID: 11400000, guid: 9a98f0739afb4c84084271dc6fdb1014, type: 2}
+  structTopLeft: {fileID: 11400000, guid: eda5c4e77db6ee04ca7cd898b7ec4e0b, type: 2}
   structTopMiddle: {fileID: 11400000, guid: 7fd922edd0073bf49a034481d608b9b2, type: 2}
   structTopRight: {fileID: 11400000, guid: 3b4979e1c647fa347b42328fc6221499, type: 2}
   structMiddleLeft: {fileID: 11400000, guid: f391dfab94177aa45a8b1eab01429426, type: 2}
@@ -372,6 +372,10 @@ MonoBehaviour:
   structGrass2: {fileID: 11400000, guid: 8440cc2f670b97546b64c180cf9e7001, type: 2}
   structGrass3: {fileID: 11400000, guid: 46ebe8b53caf0e344ac87170ddc0a84b, type: 2}
   structGrass4: {fileID: 11400000, guid: 91a06bac831ba3444a651a6e8ea9b195, type: 2}
+  structTopLeftCorner: {fileID: 11400000, guid: c89d032181e849d43a47d1f6494379e1, type: 2}
+  structTopRightCorner: {fileID: 11400000, guid: 1a71541df1e50644e9382da03280dbaa, type: 2}
+  structBottomLeftCorner: {fileID: 11400000, guid: fe7ef5815f5d51d499a1090c6d5f49da, type: 2}
+  structbottomRightCorner: {fileID: 11400000, guid: 578d8644af507b5478ac5808402c6a1b, type: 2}
 --- !u!4 &208677424
 Transform:
   m_ObjectHideFlags: 0
@@ -681,15 +685,87 @@ Tilemap:
   m_Enabled: 1
   m_Tiles: {}
   m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
+  m_TileAssetArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileMatrixArray:
+  - m_RefCount: 0
+    m_Data:
+      e00: 1.084227e-19
+      e01: 1.2394428e+36
+      e02: 1.2393731e+36
+      e03: 1.2393731e+36
+      e10: 8.1e-43
+      e11: 2.58e-43
+      e12: 2.58e-43
+      e13: 2.58e-43
+      e20: -1.1402069e-17
+      e21: -2.776671e-29
+      e22: -7.7507668
+      e23: -2.776671e-29
+      e30: 4.5905e-41
+      e31: 8.11e-43
+      e32: 8.09e-43
+      e33: 8.11e-43
+  m_TileColorArray:
+  - m_RefCount: 0
+    m_Data: {r: -2.776565e-29, g: -2.776565e-29, b: -2.776565e-29, a: -2.776565e-29}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
+  m_Origin: {x: -13, y: -28, z: 0}
+  m_Size: {x: 19, y: 28, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -1010,7 +1086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c70c7c86f780d340bf5b3b7093c2b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldSeed: 510
+  worldSeed: 528
   groundTilemap: {fileID: 2012406743}
   buildingTilemap: {fileID: 2037547273}
   noiseGenerator: {fileID: 1701369561}
@@ -1030,7 +1106,7 @@ MonoBehaviour:
   tempTilemap: {fileID: 1062984283}
   structuresPerQuadrant: 2
   minimumDistanceBetweenStructures: 2
-  structureRadius: 10
+  structureRadius: 20
 --- !u!4 &2016540725
 Transform:
   m_ObjectHideFlags: 0
@@ -1463,8 +1539,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580adea2eed5ebd4b9662f22526928c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
   maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 0}
   aim: {fileID: 157800192}
   cameraController: {fileID: 2037019431}
 --- !u!1 &2076465297

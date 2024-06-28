@@ -8,7 +8,7 @@ using UnityEngine.Tilemaps;
 public class WaveFunction : MonoBehaviour
 {
     public MapController mapController;
-    public TileIndex tileIndex;
+    public OldTileIndex tileIndex;
     public StructureGenerator structureGenerator;
     System.Random random;
     int offset = 4;

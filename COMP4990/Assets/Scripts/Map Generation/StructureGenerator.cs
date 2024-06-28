@@ -63,69 +63,69 @@ public class StructureGenerator : MonoBehaviour
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 0, // tile number (as per TileIndex.GetStructureTileIndex())
                 new List<KeyValuePair<Direction, List<int>>>{ // List of directions, each with a list of valid neighbour tiles for that direction
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9, 21}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11, 21}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5, 21}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7, 21})
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 1, 2, 3, 8, 9, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 1, 2, 3, 10, 11, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 1, 2, 3, 4, 5, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 1, 2, 3, 6, 7, 21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 1,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9, 21}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11, 21}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5, 21}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7, 21})
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 1, 2, 3, 8, 9, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 1, 2, 3, 10, 11, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 1, 2, 3, 4, 5, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 1, 2, 3, 6, 7, 21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 2,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9, 21}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11, 21}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5, 21}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7, 21})
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 1, 2, 3, 8, 9, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 1, 2, 3, 10, 11, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 1, 2, 3, 4, 5, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 1, 2, 3, 6, 7, 21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 3,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9, 21}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11, 21}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5, 21}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7, 21})
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 1, 2, 3, 8, 9, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 1, 2, 3, 10, 11, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 1, 2, 3, 4, 5, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 1, 2, 3, 6, 7, 21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 4,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
                     new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 1, 2, 3, 21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 5,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
                     new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 1, 2, 3, 21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 6,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
                     new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
                 }
             ),
@@ -133,9 +133,9 @@ public class StructureGenerator : MonoBehaviour
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 7,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
                     new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
                 }
             ),
@@ -144,9 +144,9 @@ public class StructureGenerator : MonoBehaviour
                 8,
                 new List<KeyValuePair<Direction, List<int>>>{
                     new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 1, 2, 3, 21, 22, 23, 24})
                 }
             ),
 
@@ -154,29 +154,29 @@ public class StructureGenerator : MonoBehaviour
                 9,
                 new List<KeyValuePair<Direction, List<int>>>{
                     new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 1, 2, 3, 21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 10,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
                     new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 1, 2, 3, 21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 11,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
                     new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 1, 2, 3, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 1, 2, 3, 21, 22, 23, 24})
                 }
             ),
 
@@ -184,9 +184,9 @@ public class StructureGenerator : MonoBehaviour
                 12,
                 new List<KeyValuePair<Direction, List<int>>>{
                     new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{15, 18}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{15, 18, 25}),
                     new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{13, 14})
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{13, 14, 25})
                 }
             ),
 
@@ -195,8 +195,8 @@ public class StructureGenerator : MonoBehaviour
                 new List<KeyValuePair<Direction, List<int>>>{
                     new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9}),
                     new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{16, 19}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{13, 12}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{13, 14})
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{13, 12, 26}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{13, 14, 25})
                 }
             ),
 
@@ -204,8 +204,8 @@ public class StructureGenerator : MonoBehaviour
                 14,
                 new List<KeyValuePair<Direction, List<int>>>{
                     new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{0, 8, 9}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{17, 20}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{13, 12}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{17, 20, 26}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{13, 12, 26}),
                     new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7})
                 }
             ),
@@ -213,8 +213,8 @@ public class StructureGenerator : MonoBehaviour
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 15,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{15, 12}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{15, 18}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{15, 12, 27}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{15, 18, 25}),
                     new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5}),
                     new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{16, 17})
                 }
@@ -223,18 +223,18 @@ public class StructureGenerator : MonoBehaviour
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 16,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{16, 13}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{16, 19}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{16, 15}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{16, 17})
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{16, 13, 25, 26}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{16, 19, 27, 28}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{16, 15, 25, 27}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{16, 17, 26, 28})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 17,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{17, 14}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{17, 20}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{17, 14, 28}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{17, 20, 26}),
                     new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{16, 15}),
                     new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7})
                 }
@@ -243,10 +243,10 @@ public class StructureGenerator : MonoBehaviour
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 18,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{12, 15}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{12, 15, 27}),
                     new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11}),
                     new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{0, 4, 5}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{19, 20})
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{19, 20, 27})
                 }
             ),
 
@@ -255,17 +255,17 @@ public class StructureGenerator : MonoBehaviour
                 new List<KeyValuePair<Direction, List<int>>>{
                     new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{13, 16}),
                     new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{19, 18}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{19, 20})
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{19, 18, 28}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{19, 20, 27})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 20,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{14, 17}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{14, 17, 28}),
                     new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{0, 10, 11}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{18, 19}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{18, 19, 28}),
                     new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{0, 6, 7})
                 }
             ),
@@ -273,42 +273,82 @@ public class StructureGenerator : MonoBehaviour
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 21,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24, 21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 22,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24, 21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 23,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24, 21, 22, 23, 24})
                 }
             ),
 
             new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
                 24,
                 new List<KeyValuePair<Direction, List<int>>>{
-                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24}),
-                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24})
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{21, 22, 23, 24, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{21, 22, 23, 24, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{21, 22, 23, 24, 21, 22, 23, 24}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{21, 22, 23, 24, 21, 22, 23, 24})
                 }
             ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                25,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{12, 15}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{16, 27, 28}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{12, 13}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{16, 26, 28})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                26,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{14, 17}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{16, 27, 28}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{16, 25, 27}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{13, 14})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                27,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{16, 25, 26}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{15, 18}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{18, 19}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{16, 26, 28})
+                }
+            ),
+
+            new KeyValuePair<int, List<KeyValuePair<Direction, List<int>>>>(
+                28,
+                new List<KeyValuePair<Direction, List<int>>>{
+                    new KeyValuePair<Direction, List<int>>(Direction.Up, new List<int>{16, 25, 26}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Down, new List<int>{17, 20}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Left, new List<int>{16, 25, 27}),
+                    new KeyValuePair<Direction, List<int>>(Direction.Right, new List<int>{19, 20})
+                }
+            )
         };
     }
 

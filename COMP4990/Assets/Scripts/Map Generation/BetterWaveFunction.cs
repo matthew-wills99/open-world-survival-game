@@ -11,7 +11,7 @@ public class BetterWaveFunction : MonoBehaviour
 {
     public StructureGenerator structureGenerator;
     public MapController mapController;
-    public TileIndex tileIndex;
+    public OldTileIndex tileIndex;
     System.Random random;
     int offset;
 
@@ -42,7 +42,7 @@ public class BetterWaveFunction : MonoBehaviour
         debugLines.Add($"Generating structure in chunk: ({chunkX}, {chunkY}) of size: {size}");
 
         InitializeGrid();
-        WFC();
+        StartCoroutine(WFC());
 
         var sr = File.CreateText(fileName);
         foreach(var line in debugLines)
@@ -61,7 +61,7 @@ public class BetterWaveFunction : MonoBehaviour
                 Cell temp = new Cell();
                 temp.X = x;
                 temp.Y = y;
-                temp.PossibleStates = new List<int>(Enumerable.Range(0, 25));
+                temp.PossibleStates = new List<int>(Enumerable.Range(0, 29));
                 grid[x, y] = temp;
             }
         }
@@ -91,7 +91,7 @@ public class BetterWaveFunction : MonoBehaviour
         debugLines.Add("Done");
     }
 
-    void WFC()
+    /*void*/ IEnumerator WFC()
     {
         int i = 0;
         debugLines.Add("\n**********\nBEGIN WFC:\n**********\n");
@@ -139,6 +139,8 @@ public class BetterWaveFunction : MonoBehaviour
             mapController.tempTilemap.SetTile(new Vector3Int(x, y, 0), tileIndex.GetTileIndex()[state + 4]);
 
             grid[minEntropyCell.X, minEntropyCell.Y].Collapsed = true;
+
+            Debug.Log($"Cell ({minEntropyCell.X}, {minEntropyCell.Y}) collapsed, selected {state}");
             //Debug.Log($"min cell at ({minEntropyCell.X}, {minEntropyCell.Y}) with count {minEntropyCell.PossibleStates.Count}");
 
             //Debug.Log($"Min entropy cell found @ ({minEntropyCell.X}, {minEntropyCell.Y}), selected id: {state}");
@@ -159,7 +161,7 @@ public class BetterWaveFunction : MonoBehaviour
             }
             debugLines.Add("\n");
             i++;
-            //yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
         }
         debugLines.Add("\n**********\nEND WFC:\n**********\n");
     }
@@ -168,7 +170,7 @@ public class BetterWaveFunction : MonoBehaviour
     {
         int ox = gridSize / 2;
         int oy = gridSize / 2;
-        Debug.Log($"Distance between ({ox}, {oy}) and ({x}, {y}) is {(float)Math.Abs(Math.Sqrt((x - ox)*(x - ox)+ (y - oy)*(y - oy)))}");
+        //Debug.Log($"Distance between ({ox}, {oy}) and ({x}, {y}) is {(float)Math.Abs(Math.Sqrt((x - ox)*(x - ox)+ (y - oy)*(y - oy)))}");
         return (int)Math.Abs(Math.Sqrt((x - ox)*(x - ox) + (y - oy)*(y - oy)));
     }
 
@@ -184,6 +186,8 @@ public class BetterWaveFunction : MonoBehaviour
         // what the fuck is this
         var neighbours = structureGenerator.GetNeighbours();
         var n = neighbours[chosenState].Value;
+
+        string remaining = "";
 
         foreach(var i in n)
         {
@@ -214,10 +218,17 @@ public class BetterWaveFunction : MonoBehaviour
             if(nx >= 0 && nx < gridSize && ny >= 0 && ny < gridSize && grid[nx, ny] != null && !grid[nx, ny].Collapsed)
             {
                 grid[nx, ny].PossibleStates.RemoveAll(item => !i.Value.Contains(item));
+                foreach(var item in grid[nx, ny].PossibleStates)
+                {
+                    remaining += item.ToString() + " ";
+                }
+                Debug.Log($"Cell ({nx}, {ny}) PossibleStates updated, new: {remaining}");
+
                 if(grid[nx, ny].PossibleStates.Count == 1)
                 {
                     grid[nx, ny].Collapsed = true;
                     int state = grid[nx, ny].PossibleStates.First();
+                    Debug.Log($"Cell ({nx}, {ny}) collapsed, selected {state}");
                     switch(grid[nx, ny].PossibleStates.First())
                     {
                         case 0:
@@ -240,7 +251,7 @@ public class BetterWaveFunction : MonoBehaviour
                             break;
                     }
                     mapController.tempTilemap.SetTile(new Vector3Int(cx - gridSize + nx, cx - gridSize + ny, 0), tileIndex.GetTileIndex()[state + 4]);
-                    PropagateConstaints(nx, ny);
+                    //PropagateConstaints(nx, ny);
                 }
             }
         }
@@ -331,3 +342,5 @@ when selecting a tile, grab all collapsed neighbours and pick from that list
 */
 
 //MAKE A LIST OF ALL LOWEST ENTROPIES AND COLLAPSE THE ONE CLOSEST TO THE ORIGIN
+
+// UNTIL STRUCTURE GENERATION IS DONE IGNORE ALL NUMBERS NOT THAT OF A BUILDING
