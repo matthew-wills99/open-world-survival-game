@@ -752,6 +752,9 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
+
+        // need to fix structures so that they generate properly, or set the ground beneath them to be not water
+
         random = new System.Random(seed);
         underGroundChunks = new Dictionary<string, Chunk>();
         groundChunks = new Dictionary<string, Chunk>();
