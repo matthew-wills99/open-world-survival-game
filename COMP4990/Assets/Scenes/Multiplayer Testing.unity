@@ -815,19 +815,19 @@ MonoBehaviour:
   underGroundTilemap: {fileID: 1424487145}
   groundTilemap: {fileID: 573921757}
   aboveGroundTilemap: {fileID: 1113075915}
-  seed: 100
+  seed: 1234124
   mapSize: 1
   smoothingPasses: 7
   neighbourRequirement: 4
-  randomFillPercent: 45
+  randomFillPercent: 52
   randomFillPercentCentre: 65
   biomeChance: 5
-  distanceBetweenBiomes: 32
+  distanceBetweenBiomes: 60
   biomeSizeSmall: 16
   biomeSizeMedium: 32
   biomeSizeLarge: 64
   maxBiomeSize: 32
-  distanceBetweenStructures: 64
+  distanceBetweenStructures: 100
   chunkSize: 16
   mapSizeInChunks: 8
 --- !u!1660057539 &9223372036854775807
