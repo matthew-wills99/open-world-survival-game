@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using TreeEditor;
 using UnityEngine;
 //This script is only for testing the Inventory
 public class DemoScript : MonoBehaviour
