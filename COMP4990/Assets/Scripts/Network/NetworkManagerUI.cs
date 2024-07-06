@@ -11,7 +11,7 @@ public class NetworkManagerUI : MonoBehaviour
 
     [SerializeField] private Button clientBtn;
 
-    private void Awake(){
+    public void Awake(){
         serverBtn.onClick.AddListener(() => {
             NetworkManager.Singleton.StartServer();
         });
