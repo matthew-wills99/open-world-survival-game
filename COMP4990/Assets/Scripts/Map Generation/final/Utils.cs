@@ -47,7 +47,7 @@ public class Utils : MonoBehaviour
             TileIndex = tileIndex;
         }
 
-        public string GetBiomeKey()
+        public string GetBiomeKey() // what is this
         {
             return $"C({Cx}, {Cy} : T({Tx}, {Ty}))";
         }
@@ -55,6 +55,60 @@ public class Utils : MonoBehaviour
         public BiomeEnum GetBiomeType()
         {
             return Type;
+        }
+    }
+
+    public class Tree
+    {
+        public GameObject TreeObject {get; set;}
+        public int Cx {get; set;}
+        public int Cy {get; set;}
+        public int Tx {get; set;}
+        public int Ty {get; set;}
+
+        public Tree(GameObject treeObject, int cx, int cy, int tx, int ty)
+        {
+            TreeObject = treeObject;
+            Cx = cx;
+            Cy = cy;
+            Tx = tx;
+            Ty = ty;
+        }
+    }
+
+    public class Rock
+    {
+        public GameObject RockObject {get; set;}
+        public int Cx {get; set;}
+        public int Cy {get; set;}
+        public int Tx {get; set;}
+        public int Ty {get; set;}
+
+        public Rock(GameObject rockObject, int cx, int cy, int tx, int ty)
+        {
+            RockObject = rockObject;
+            Cx = cx;
+            Cy = cy;
+            Tx = tx;
+            Ty = ty;
+        }
+    }
+
+    public class Cactus
+    {
+        public GameObject CactusObject {get; set;}
+        public int Cx {get; set;}
+        public int Cy {get; set;}
+        public int Tx {get; set;}
+        public int Ty {get; set;}
+
+        public Cactus(GameObject cactusObject, int cx, int cy, int tx, int ty)
+        {
+            CactusObject = cactusObject;
+            Cx = cx;
+            Cy = cy;
+            Tx = tx;
+            Ty = ty;
         }
     }
 
@@ -103,6 +157,13 @@ public class Utils : MonoBehaviour
         BlendUpRight,
         BlendDownLeft,
         BlendDownRight
+    }
+
+    // environmental object key
+    public static string GetCoordinateKey(int cx, int cy, int tx, int ty)
+    {
+        // C(3, 1) : T(14, 9)
+        return $"C({cx}, {cy}) : T({tx}, {ty})";
     }
 
     // Return a chunk key from the x and y values of the desired chunk

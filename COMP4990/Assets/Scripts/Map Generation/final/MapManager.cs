@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Security.Cryptography;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static Utils;
+
+using Tree = Utils.Tree; // yea
 
 public class MapManager : MonoBehaviour
 {
@@ -22,6 +23,21 @@ public class MapManager : MonoBehaviour
     public Grid struct1;
     public Grid struct2;
     public Grid struct3;
+
+    public GameObject tree1;
+    public GameObject tree2;
+    public GameObject tree3;
+
+    public List<GameObject> trees;
+    
+    public GameObject bigRock;
+    public GameObject rock1;
+    public GameObject rock2;
+    public GameObject rock3;
+    public GameObject rock4;
+    public GameObject rock5;
+
+    public List<GameObject> rockSprites;
 
     public TileIndex tileIndex;
     
@@ -49,6 +65,15 @@ public class MapManager : MonoBehaviour
     public int randomFillPercentCentre = 65;
     [Range(0, 100)]
     public int biomeChance = 5;
+    [Range(0, 100)]
+    public int plainsTreeChance = 5;
+    [Range(0, 100)]
+    public int plainsRockChance = 5;
+    [Range(0, 100)]
+    public int desertCactusChance = 20;
+    [Range(0, 100)]
+    public int forestTreeChance = 20;
+
 
     // key is biome type, value is minimum distance in chunks from the origin that the biome can be placed
     Dictionary<BiomeEnum, int> biomeDistances;
@@ -74,10 +99,19 @@ public class MapManager : MonoBehaviour
     public int chunkSize = 16;
     public int mapSizeInChunks = 8;
 
-    // Key is Utils.GetChunkKey(chunkX, chunkY), value is Utils.Chunk
+    // Key is Utils.GetChunkKey(cx, cy), value is Utils.Chunk
     Dictionary<string, Chunk> underGroundChunks;
     Dictionary<string, Chunk> groundChunks;
     Dictionary<string, Chunk> aboveGroundChunks;
+
+    GameObject treeEmpty;
+    GameObject rockEmpty;
+    GameObject cactusEmpty;
+    // tree and rock dictionary is a good idea!!!!
+    // key is Utils.GetCoordinateKey(cx, cy, tx, ty), value is Utils.Tree
+    Dictionary<string, Tree> treeObjects;
+    Dictionary<string, Rock> rockObjects;
+    Dictionary<string, Cactus> cactusObjects;
 
     // Populate groundChunks with new chunks full of tiles set to -1
     void InitializeChunks()
@@ -572,7 +606,7 @@ public class MapManager : MonoBehaviour
         int ncy = cy;
         int ntx = tx;
         int nty = ty;
-        Debug.Log($"order; {order}");
+        //Debug.Log($"order; {order}");
         for(int x = ntx - structures[order].XRad - 1; x <= ntx + structures[order].XRad + 1; x++)
         {
             for(int y = nty - structures[order].YDown - 1; y <= nty + structures[order].YUp + 2; y++)
@@ -599,7 +633,7 @@ public class MapManager : MonoBehaviour
                 }
                 if(groundChunks.ContainsKey(GetChunkKey(ncx, ncy)))
                 {
-                    Debug.Log($"{x}, {y}");
+                    //Debug.Log($"{x}, {y}");
                     if(groundChunks[GetChunkKey(ncx, ncy)].ChunkTiles[x, y] != terrainTile)
                     {
                         return false;
@@ -705,7 +739,7 @@ public class MapManager : MonoBehaviour
                                     allStructures.Add(structures[order]);
                                     //placedStructures ++;
                                     swag = true;
-                                    Debug.Log("SWAG!!!!!");
+                                    //Debug.Log("SWAG!!!!!");
                                 }
                             }
                         }
@@ -720,6 +754,58 @@ public class MapManager : MonoBehaviour
         //Instantiate(struct1, new Vector3(v3i.x, v3i.y, v3i.z), Quaternion.identity);
     }
 
+    void PopulateEnvironment()
+    {
+        // maybe add environmental objects to tile index??
+        for(int cx = -mapSizeInChunks / 2; cx < mapSizeInChunks / 2; cx++)
+        {
+            for(int cy = -mapSizeInChunks / 2; cy < mapSizeInChunks / 2; cy++)
+            {
+                for(int tx = 0; tx < chunkSize; tx++)
+                {
+                    for(int ty = 0; ty < chunkSize; ty++)
+                    {
+                        if(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] != waterTile)
+                        {
+                            // plains biome needs rocks and trees
+                            if(tileIndex.GetAllGrassTiles().Contains(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty]))
+                            {
+                                if(random.Next(0, 100) < plainsRockChance)
+                                {
+                                    // rocks will be clusters.
+                                    Rock tempRock = new Rock(bigRock, cx, cy, tx, ty);
+                                    rockObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempRock);
+                                    Instantiate(tempRock.RockObject, ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, rockEmpty.transform);
+                                }
+                                // i think that rocks should always spawn over trees because rocks only spawn in plains
+                                else if(random.Next(0, 100) < plainsTreeChance)
+                                {
+                                    Instantiate(trees[random.Next(trees.Count)], ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, treeEmpty.transform);
+                                }
+                            }
+                            // desert biome needs cactus
+                            else if(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] == desertTile)
+                            {
+                                if(random.Next(0, 100) < desertCactusChance)
+                                {
+                                    Instantiate(trees[random.Next(trees.Count)], ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, cactusEmpty.transform);
+                                }
+                            }
+                            // forest biome needs trees
+                            else if(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] == forestTile)
+                            {
+                                if(random.Next(0, 100) < forestTreeChance)
+                                {
+                                    Instantiate(trees[random.Next(trees.Count)], ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, treeEmpty.transform);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     void GenerateMap()
     {
         // 1 Initialize map with chunks
@@ -748,12 +834,18 @@ public class MapManager : MonoBehaviour
 
         TileVariation();
         //TileSplatting();
+
+        PopulateEnvironment();
     }
 
     void Start()
     {
 
         // need to fix structures so that they generate properly, or set the ground beneath them to be not water
+
+        treeEmpty = new GameObject("trees");
+        rockEmpty = new GameObject("rocks");
+        cactusEmpty = new GameObject("cactus");
 
         random = new System.Random(seed);
         underGroundChunks = new Dictionary<string, Chunk>();
@@ -773,6 +865,24 @@ public class MapManager : MonoBehaviour
         desertBiomes = new List<Biome>();
         allBiomes = new List<Biome>();
         allStructures = new List<Structure>();
+
+        trees = new List<GameObject>() {
+            tree1,
+            tree2, // stupid
+            tree3
+        };
+
+        rockSprites = new List<GameObject>() {
+            rock1,
+            rock2,
+            rock3, // rename this garbage
+            rock4,
+            rock5,
+        };
+
+        treeObjects = new Dictionary<string, Tree>();
+        rockObjects = new Dictionary<string, Rock>();
+        cactusObjects = new Dictionary<string, Cactus>();
 
         centreChunks = new string[4]
         {
@@ -811,6 +921,7 @@ public class MapManager : MonoBehaviour
             case MapSize.Large:
                 mapSizeInChunks = 16;
                 biomeChance = 5;
+
                 biomeDistances = new Dictionary<BiomeEnum, int>{
                     {BiomeEnum.Forest, 1},
                     {BiomeEnum.Desert, 6}
@@ -844,4 +955,12 @@ loop through all bbt
 that tile will still be considered a tile of whatever it was before it underwent the splatting
 
 when you break a tile that is splatted, re run this entire algorithm again on the neighbouring tiles that could need to be updated
+*/
+
+/*
+trees can spawn in forest and plains
+    plains biome tree chance: 5%
+    forest biome tree chance: 35%
+desert biomes can spawn cactus
+plains biome can spawn rocks
 */
