@@ -13,7 +13,10 @@ public class PlayerHPTest : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        if(healthBar)
+        {
+            healthBar.SetMaxHealth(maxHealth);
+        }
     }
     void Update()
     {
@@ -25,7 +28,10 @@ public class PlayerHPTest : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        if(healthBar)
+        {
+            healthBar.SetHealth(currentHealth);
+        }
         if(currentHealth <= 0)
         {
             Debug.Log("player died lol");
