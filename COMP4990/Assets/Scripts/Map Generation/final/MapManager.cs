@@ -838,8 +838,10 @@ public class MapManager : MonoBehaviour
         PopulateEnvironment();
     }
 
-    void Start()
+    public void Startup(MapSize ws, int se)// for menu if not change to start()
     {
+        mapSize = ws;// for menu
+        seed = se;// for menu
 
         // need to fix structures so that they generate properly, or set the ground beneath them to be not water
 

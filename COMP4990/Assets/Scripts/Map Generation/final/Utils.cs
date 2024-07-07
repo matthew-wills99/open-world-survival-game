@@ -146,6 +146,16 @@ public class Utils : MonoBehaviour
         Large
     }
 
+    public enum MenuState
+    {
+        Main,
+        Options,
+        Play,
+        Quit,
+        NewGame,
+        LoadGame
+    }
+
     public enum BBTKey
     {
         Null,
