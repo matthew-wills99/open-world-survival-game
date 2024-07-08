@@ -283,7 +283,7 @@ public class MenuManager : MonoBehaviour
     {
         Debug.Log($"Generating {worldNameInput.text}, a {worldSize} world with seed {seedInput.text}");
         
-        mapManager.Startup(worldSize, int.Parse(seedInput.text));
+        mapManager.Startup(worldNameInput.text, worldSize, int.Parse(seedInput.text));
 
         menuCanvas.SetActive(false);
     }

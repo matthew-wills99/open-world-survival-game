@@ -12,12 +12,18 @@ using Tree = Utils.Tree; // yea
 
 public class MapManager : MonoBehaviour
 {
+
+    bool gameLoop = false;
     // the origin of the map is considered the centre 4 chunks
     // (0, 0)
     // (-1, 0)
     // (0, -1)
     // (-1, -1)
     string[] centreChunks;
+
+    public SaveWorldScript saveWorldScript;
+
+    string worldName;
 
     Dictionary<int, Structure> structures;
     public Grid struct1;
@@ -838,8 +844,10 @@ public class MapManager : MonoBehaviour
         PopulateEnvironment();
     }
 
-    public void Startup(MapSize ws, int se)// for menu if not change to start()
+    public void Startup(string wn, MapSize ws, int se)// for menu if not change to start()
     {
+        worldName = wn;
+
         mapSize = ws;// for menu
         seed = se;// for menu
 
@@ -935,8 +943,23 @@ public class MapManager : MonoBehaviour
                 break;
         }
         GenerateMap();
+
+        gameLoop = true;
+    }
+
+    void Update()
+    {
+        if(gameLoop)
+        {
+            if(Input.GetKeyDown(KeyCode.S))
+            {
+                Debug.Log("Attempting to save world...");
+                saveWorldScript.SaveWorld(worldName, seed, mapSize, new List<Vector3> {new Vector3(0, 0, 0)}, groundChunks, treeObjects, rockObjects, cactusObjects, allStructures);
+            }
+        }
     }
 }
+
 
 /*
 
