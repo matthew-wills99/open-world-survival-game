@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
@@ -12,7 +13,6 @@ using Tree = Utils.Tree; // yea
 
 public class MapManager : MonoBehaviour
 {
-
     bool gameLoop = false;
     // the origin of the map is considered the centre 4 chunks
     // (0, 0)
@@ -26,24 +26,6 @@ public class MapManager : MonoBehaviour
     string worldName;
 
     Dictionary<int, Structure> structures;
-    public Grid struct1;
-    public Grid struct2;
-    public Grid struct3;
-
-    public GameObject tree1;
-    public GameObject tree2;
-    public GameObject tree3;
-
-    public List<GameObject> trees;
-    
-    public GameObject bigRock;
-    public GameObject rock1;
-    public GameObject rock2;
-    public GameObject rock3;
-    public GameObject rock4;
-    public GameObject rock5;
-
-    public List<GameObject> rockSprites;
 
     public TileIndex tileIndex;
     
@@ -737,7 +719,7 @@ public class MapManager : MonoBehaviour
                                 }
                                 if(farEnough)
                                 {
-                                    Instantiate(structures[order].StructGrid, ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity);
+                                    Instantiate(tileIndex.GetStructure(order), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity);
                                     structures[order].Cx = cx;
                                     structures[order].Cy = cy;
                                     structures[order].Tx = tx;
@@ -778,15 +760,19 @@ public class MapManager : MonoBehaviour
                             {
                                 if(random.Next(0, 100) < plainsRockChance)
                                 {
-                                    // rocks will be clusters.
-                                    Rock tempRock = new Rock(bigRock, cx, cy, tx, ty);
+
+                                    // NEED TO INDEX EACH ROCK, TREE, CACTUS SPRITE AND STORE THAT INDEX IN Rock, Tree, Cactus OBJECT
+                                    Rock tempRock = new Rock(tileIndex.GetBigRock(), cx, cy, tx, ty);
                                     rockObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempRock);
-                                    Instantiate(tempRock.RockObject, ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, rockEmpty.transform);
+                                    Instantiate(tileIndex.GetObject(tempRock.Index), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, rockEmpty.transform);
+                                    // rocks will be clusters eventually
                                 }
                                 // i think that rocks should always spawn over trees because rocks only spawn in plains
                                 else if(random.Next(0, 100) < plainsTreeChance)
                                 {
-                                    Instantiate(trees[random.Next(trees.Count)], ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, treeEmpty.transform);
+                                    Tree tempTree = new Tree(tileIndex.GetAllTrees()[random.Next(tileIndex.GetAllTrees().Count)], cx, cy, tx, ty);
+                                    treeObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempTree);
+                                    Instantiate(tileIndex.GetObject(tempTree.Index), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, treeEmpty.transform);
                                 }
                             }
                             // desert biome needs cactus
@@ -794,7 +780,9 @@ public class MapManager : MonoBehaviour
                             {
                                 if(random.Next(0, 100) < desertCactusChance)
                                 {
-                                    Instantiate(trees[random.Next(trees.Count)], ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, cactusEmpty.transform);
+                                    Cactus tempCactus = new Cactus(tileIndex.GetAllCactus()[random.Next(tileIndex.GetAllCactus().Count)], cx, cy, tx, ty);
+                                    cactusObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempCactus);
+                                    Instantiate(tileIndex.GetObject(tileIndex.GetAllCactus()[random.Next(tileIndex.GetAllCactus().Count)]), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, cactusEmpty.transform);
                                 }
                             }
                             // forest biome needs trees
@@ -802,7 +790,9 @@ public class MapManager : MonoBehaviour
                             {
                                 if(random.Next(0, 100) < forestTreeChance)
                                 {
-                                    Instantiate(trees[random.Next(trees.Count)], ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, treeEmpty.transform);
+                                    Tree tempTree = new Tree(tileIndex.GetAllTrees()[random.Next(tileIndex.GetAllTrees().Count)], cx, cy, tx, ty);
+                                    treeObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempTree);
+                                    Instantiate(tileIndex.GetObject(tempTree.Index), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, treeEmpty.transform);
                                 }
                             }
                         }
@@ -866,29 +856,15 @@ public class MapManager : MonoBehaviour
         // lowest order is lowest area in tiles^2
         structures = new Dictionary<int, Structure>
         {
-            {2, new Structure(struct1, 3, 5, 0)},
-            {3, new Structure(struct2, 4, 2, 4)},
-            {1, new Structure(struct3, 3, 2, 1)}
+            {2, new Structure(0, 3, 5, 0)},
+            {3, new Structure(1, 4, 2, 4)},
+            {1, new Structure(2, 3, 2, 1)}
         };
 
         forestBiomes = new List<Biome>();
         desertBiomes = new List<Biome>();
         allBiomes = new List<Biome>();
         allStructures = new List<Structure>();
-
-        trees = new List<GameObject>() {
-            tree1,
-            tree2, // stupid
-            tree3
-        };
-
-        rockSprites = new List<GameObject>() {
-            rock1,
-            rock2,
-            rock3, // rename this garbage
-            rock4,
-            rock5,
-        };
 
         treeObjects = new Dictionary<string, Tree>();
         rockObjects = new Dictionary<string, Rock>();
@@ -949,12 +925,21 @@ public class MapManager : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            var worldPaths = saveWorldScript.GetAllWorlds();
+            foreach(var path in worldPaths)
+            {
+                Debug.Log(path);
+            }
+        }
+
         if(gameLoop)
         {
             if(Input.GetKeyDown(KeyCode.S))
             {
                 Debug.Log("Attempting to save world...");
-                saveWorldScript.SaveWorld(worldName, seed, mapSize, new List<Vector3> {new Vector3(0, 0, 0)}, groundChunks, treeObjects, rockObjects, cactusObjects, allStructures);
+                saveWorldScript.SaveWorld(worldName, seed, mapSize, 0, 0, aboveGroundChunks, groundChunks, underGroundChunks, treeObjects, rockObjects, cactusObjects, allStructures);
             }
         }
     }

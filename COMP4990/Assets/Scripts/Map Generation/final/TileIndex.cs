@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static Utils;
 
 public class TileIndex : MonoBehaviour
 {
@@ -9,6 +11,13 @@ public class TileIndex : MonoBehaviour
     List<int> grassTiles;
     List<int> grassWithFlowersTiles;
     List<int> allGrassTiles;
+
+    Dictionary<int, GameObject> objectIndex;
+    List<int> trees;
+    List<int> cacti;
+    List<int> rocks;
+
+    Dictionary<int, Grid> structIndex;
 
     public Tile grass;
     public Tile grass2;
@@ -47,46 +56,93 @@ public class TileIndex : MonoBehaviour
     public Tile water;
     public Tile terrainTile;
 
+    public GameObject tree1;
+    public GameObject tree2;
+    public GameObject tree3;
+
+    public GameObject cactus1;
+    public GameObject cactus2;
+    public GameObject cactus3;
+    
+    public GameObject bigRock;
+    public GameObject rock1;
+    public GameObject rock2;
+    public GameObject rock3;
+    public GameObject rock4;
+    public GameObject rock5;
+
+    public Grid struct1;
+    public Grid struct2;
+    public Grid struct3;
+
     void Awake()
     {
         tileIndex = new Dictionary<int, Tile>{
-            { 0, grass},
-            { 1, grass2},
-            { 2, grass3},
-            { 3, grass4},
-            { 4, grass5},
-            { 5, grass6},
-            { 6, grass7},
-            { 7, grass8},
-            { 8, grass9},
-            { 9, grass10},
-            { 10, grass11},
-            { 11, grass12},
-            { 12, grass13},
-            { 13, grass14},
-            { 14, grass15},
-            { 15, grass16},
-            { 16, grass17},
-            { 17, grassWithFlowers},
-            { 18, grassWithFlowers2},
-            { 19, grassWithFlowers3},
-            { 20, grassWithFlowers4},
-            { 21, grassWithFlowers5},
-            { 22, grassWithFlowers6},
-            { 23, grassWithFlowers7},
-            { 24, grassWithFlowers8},
-            { 25, grassWithFlowers9},
-            { 26, grassWithFlowers10},
-            { 27, grassWithFlowers11},
-            { 28, grassWithFlowers12},
-            { 29, grassWithFlowers13},
-            { 30, grassWithFlowers14},
-            { 31, grassWithFlowers15},
-            { 32, stone},
-            { 33, sand},
-            { 34, water},
-            { 35, terrainTile},
+            { 0, grass },
+            { 1, grass2 },
+            { 2, grass3 },
+            { 3, grass4 },
+            { 4, grass5 },
+            { 5, grass6 },
+            { 6, grass7 },
+            { 7, grass8 },
+            { 8, grass9 },
+            { 9, grass10 },
+            { 10, grass11 },
+            { 11, grass12 },
+            { 12, grass13 },
+            { 13, grass14 },
+            { 14, grass15 },
+            { 15, grass16 },
+            { 16, grass17 },
+            { 17, grassWithFlowers },
+            { 18, grassWithFlowers2 },
+            { 19, grassWithFlowers3 },
+            { 20, grassWithFlowers4 },
+            { 21, grassWithFlowers5 },
+            { 22, grassWithFlowers6 },
+            { 23, grassWithFlowers7 },
+            { 24, grassWithFlowers8 },
+            { 25, grassWithFlowers9 },
+            { 26, grassWithFlowers10 },
+            { 27, grassWithFlowers11 },
+            { 28, grassWithFlowers12 },
+            { 29, grassWithFlowers13 },
+            { 30, grassWithFlowers14 },
+            { 31, grassWithFlowers15 },
+            { 32, stone },
+            { 33, sand },
+            { 34, water },
+            { 35, terrainTile },
         };
+
+        objectIndex = new Dictionary<int, GameObject>{
+            { 0, tree1 },
+            { 1, tree2 },
+            { 2, tree3 },
+            { 3, bigRock },
+            { 4, rock1 },
+            { 5, rock2 },
+            { 6, rock3 },
+            { 7, rock4 },
+            { 8, rock5 },
+            { 9, cactus1 },
+            { 10, cactus2 },
+            { 11, cactus3 },
+        };
+
+        structIndex = new Dictionary<int, Grid>{
+            { 0, struct1 },
+            { 1, struct2 },
+            { 2, struct3 },
+        };
+
+        /*structures = new Dictionary<int, Structure>
+        {
+            {2, new Structure(0, 3, 5, 0)},
+            {3, new Structure(1, 4, 2, 4)},
+            {1, new Structure(2, 3, 2, 1)}
+        };*/
 
         grassTiles = new List<int>{
             0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
@@ -99,6 +155,18 @@ public class TileIndex : MonoBehaviour
         allGrassTiles = new List<int>{
             0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
             17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
+        };
+
+        trees = new List<int>{
+            0, 1, 2
+        };
+
+        cacti = new List<int>{
+            9, 10, 11
+        };
+
+        rocks = new List<int>{
+            4, 5, 6, 7, 8
         };
     }
 
@@ -121,4 +189,36 @@ public class TileIndex : MonoBehaviour
     {
         return tileIndex[index];
     }
+
+    public List<int> GetAllTrees()
+    {
+        return trees;
+    }
+    
+    public List<int> GetAllCactus()
+    {
+        return cacti;
+    }
+
+    public List<int> GetAllRocks()
+    {
+        return rocks;
+    }
+
+    public int GetBigRock()
+    {
+        return objectIndex.FirstOrDefault(idx => idx.Value.Equals(bigRock)).Key;
+    }
+
+    public GameObject GetObject(int index)
+    {
+        return objectIndex[index];
+    }
+
+    public Grid GetStructure(int index)
+    {
+        return structIndex[index];
+    }
+
+
 }

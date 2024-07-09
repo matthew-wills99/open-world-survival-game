@@ -60,15 +60,15 @@ public class Utils : MonoBehaviour
 
     public class Tree
     {
-        public GameObject TreeObject {get; set;}
+        public int Index {get; set;}
         public int Cx {get; set;}
         public int Cy {get; set;}
         public int Tx {get; set;}
         public int Ty {get; set;}
 
-        public Tree(GameObject treeObject, int cx, int cy, int tx, int ty)
+        public Tree(int index, int cx, int cy, int tx, int ty)
         {
-            TreeObject = treeObject;
+            Index = index;
             Cx = cx;
             Cy = cy;
             Tx = tx;
@@ -78,15 +78,15 @@ public class Utils : MonoBehaviour
 
     public class Rock
     {
-        public GameObject RockObject {get; set;}
+        public int Index {get; set;}
         public int Cx {get; set;}
         public int Cy {get; set;}
         public int Tx {get; set;}
         public int Ty {get; set;}
 
-        public Rock(GameObject rockObject, int cx, int cy, int tx, int ty)
+        public Rock(int index, int cx, int cy, int tx, int ty)
         {
-            RockObject = rockObject;
+            Index = index;
             Cx = cx;
             Cy = cy;
             Tx = tx;
@@ -96,15 +96,15 @@ public class Utils : MonoBehaviour
 
     public class Cactus
     {
-        public GameObject CactusObject {get; set;}
+        public int Index {get; set;}
         public int Cx {get; set;}
         public int Cy {get; set;}
         public int Tx {get; set;}
         public int Ty {get; set;}
 
-        public Cactus(GameObject cactusObject, int cx, int cy, int tx, int ty)
+        public Cactus(int index, int cx, int cy, int tx, int ty)
         {
-            CactusObject = cactusObject;
+            Index = index;
             Cx = cx;
             Cy = cy;
             Tx = tx;
@@ -114,7 +114,7 @@ public class Utils : MonoBehaviour
 
     public class Structure
     {
-        public Grid StructGrid {get; set;}
+        public int Index {get; set;}
         public int XRad {get; set;}
         public int YUp {get; set;}
         public int YDown {get; set;}
@@ -123,9 +123,9 @@ public class Utils : MonoBehaviour
         public int Tx {get; set;}
         public int Ty {get; set;}
 
-        public Structure(Grid structGrid, int xRad, int yUp, int yDown)
+        public Structure(int index, int xRad, int yUp, int yDown)
         {
-            StructGrid = structGrid;
+            Index = index;
             XRad = xRad;
             YUp = yUp;
             YDown = yDown;
@@ -153,7 +153,8 @@ public class Utils : MonoBehaviour
         Play,
         Quit,
         NewGame,
-        LoadGame
+        LoadGame,
+        ConfirmLoadGame
     }
 
     public enum BBTKey

@@ -22,24 +22,54 @@ MonoImporter:
   - grass16: {fileID: 11400000, guid: 85ba4d20b7c90a4449f58d34cdf36ec3, type: 2}
   - grass17: {fileID: 11400000, guid: 62a5cf873c2088444b996a1120821f54, type: 2}
   - grassWithFlowers: {fileID: 11400000, guid: e87a7c967a240944d81d7491351babb5, type: 2}
-  - grassWithFlowers2: {fileID: 11400000, guid: c48eec589d82b3a4da58831da322e85b, type: 2}
-  - grassWithFlowers3: {fileID: 11400000, guid: 0edf8cf77db7ef345aac3558069689b2, type: 2}
-  - grassWithFlowers4: {fileID: 11400000, guid: 46ebe8b53caf0e344ac87170ddc0a84b, type: 2}
-  - grassWithFlowers5: {fileID: 11400000, guid: 2ec2b17d715a3c2429ac9f2d4f7ab11a, type: 2}
-  - grassWithFlowers6: {fileID: 11400000, guid: ae561ca67376e224282395165f4535c3, type: 2}
-  - grassWithFlowers7: {fileID: 11400000, guid: 1a6adfead18143d41a8eb5df3eb87153, type: 2}
-  - grassWithFlowers8: {fileID: 11400000, guid: 3378de88719027f40911ffba1a7d1456, type: 2}
-  - grassWithFlowers9: {fileID: 11400000, guid: 4404b9935ec26a44f8934e5b47770290, type: 2}
-  - grassWithFlowers10: {fileID: 11400000, guid: 7d3ff1a98d7d76942abdab43be592246, type: 2}
-  - grassWithFlowers11: {fileID: 11400000, guid: 8380efbe6149e6f429bceff1b308649a, type: 2}
-  - grassWithFlowers12: {fileID: 11400000, guid: 868d6d77c60bc6d4aacacafa0447e917, type: 2}
-  - grassWithFlowers13: {fileID: 11400000, guid: 91a06bac831ba3444a651a6e8ea9b195, type: 2}
-  - grassWithFlowers14: {fileID: 11400000, guid: ef2ed3c2289b4864397bc50eeb377169, type: 2}
-  - grassWithFlowers15: {fileID: 11400000, guid: ecd747bef784ea74bbc92ed805b6a5b3, type: 2}
+  - grassWithFlowers2: {fileID: 11400000, guid: c48eec589d82b3a4da58831da322e85b,
+      type: 2}
+  - grassWithFlowers3: {fileID: 11400000, guid: 0edf8cf77db7ef345aac3558069689b2,
+      type: 2}
+  - grassWithFlowers4: {fileID: 11400000, guid: 46ebe8b53caf0e344ac87170ddc0a84b,
+      type: 2}
+  - grassWithFlowers5: {fileID: 11400000, guid: 2ec2b17d715a3c2429ac9f2d4f7ab11a,
+      type: 2}
+  - grassWithFlowers6: {fileID: 11400000, guid: ae561ca67376e224282395165f4535c3,
+      type: 2}
+  - grassWithFlowers7: {fileID: 11400000, guid: 1a6adfead18143d41a8eb5df3eb87153,
+      type: 2}
+  - grassWithFlowers8: {fileID: 11400000, guid: 3378de88719027f40911ffba1a7d1456,
+      type: 2}
+  - grassWithFlowers9: {fileID: 11400000, guid: 4404b9935ec26a44f8934e5b47770290,
+      type: 2}
+  - grassWithFlowers10: {fileID: 11400000, guid: 7d3ff1a98d7d76942abdab43be592246,
+      type: 2}
+  - grassWithFlowers11: {fileID: 11400000, guid: 8380efbe6149e6f429bceff1b308649a,
+      type: 2}
+  - grassWithFlowers12: {fileID: 11400000, guid: 868d6d77c60bc6d4aacacafa0447e917,
+      type: 2}
+  - grassWithFlowers13: {fileID: 11400000, guid: 91a06bac831ba3444a651a6e8ea9b195,
+      type: 2}
+  - grassWithFlowers14: {fileID: 11400000, guid: ef2ed3c2289b4864397bc50eeb377169,
+      type: 2}
+  - grassWithFlowers15: {fileID: 11400000, guid: ecd747bef784ea74bbc92ed805b6a5b3,
+      type: 2}
   - stone: {fileID: 11400000, guid: 009ff3373d29c894d83a867e67b89da9, type: 2}
   - sand: {fileID: 11400000, guid: 5de73118023c9904f930f1947b8277ff, type: 2}
   - water: {fileID: 11400000, guid: 69789f6bb8fc4ff48a3e4287d7a490e4, type: 2}
   - terrainTile: {fileID: 11400000, guid: 6f33b3e5f80362645a9df811c612a214, type: 2}
+  - tree1: {fileID: 2055102311959635369, guid: f681a54372d73d74785b9c9d4ac477e8, type: 3}
+  - tree2: {fileID: 2055102311959635369, guid: 7277dd75e907b27448ec1de08238d0bb, type: 3}
+  - tree3: {fileID: 2055102311959635369, guid: 9e7797bb065982d4497d030f065d6e2f, type: 3}
+  - cactus1: {fileID: 2577585254963922480, guid: ac719b1d0f58391469cc19fd947ca44c,
+      type: 3}
+  - cactus2: {fileID: 2577585254963922480, guid: 63ee4b6a40c55fd429759b807832ded1,
+      type: 3}
+  - cactus3: {fileID: 2577585254963922480, guid: f3cc2373308c11848977b28d974a9de0,
+      type: 3}
+  - bigRock: {fileID: 7947911505737750455, guid: f826bf48ad5bedc4ab6cabe6c4e498e8,
+      type: 3}
+  - rock1: {fileID: 7947911505737750455, guid: 713b33322b495794e92184973ece3034, type: 3}
+  - rock2: {fileID: 7947911505737750455, guid: ba7fef4c928d8c4459466bf93171730e, type: 3}
+  - rock3: {fileID: 7947911505737750455, guid: 4c4e80b50a323dc478f7c84e0b8fdad2, type: 3}
+  - rock4: {fileID: 7947911505737750455, guid: 139b2d65b3145ad45bc13b6d111199de, type: 3}
+  - rock5: {fileID: 7947911505737750455, guid: d5762f992ea3bd544bb8287f66e8f844, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

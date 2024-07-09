@@ -6,10 +6,15 @@ using UnityEngine.UI;
 using static Utils;
 using ExtrasClipperLib;
 using System;
+using UnityEngine.UIElements;
 
 public class MenuManager : MonoBehaviour
 {
     public MapManager mapManager;
+    public SaveWorldScript saveWorldScript;
+
+    public TMP_FontAsset font;
+    public int fontSize = 48;
 
     public GameObject menuCanvas;
 
@@ -18,6 +23,10 @@ public class MenuManager : MonoBehaviour
     public GameObject playMenu;
     public GameObject quitMenu;
     public GameObject newGameMenu;
+    public GameObject loadGameMenu;
+    public GameObject confirmLoadGameMenu;
+
+    public GameObject worldList;
 
     public GameObject cursor;
 
@@ -52,6 +61,22 @@ public class MenuManager : MonoBehaviour
     public TMP_InputField worldNameInput;
     public TextMeshProUGUI worldSizeSelection;
     public TMP_InputField seedInput;
+
+    // load game menu buttons
+    public TextMeshProUGUI worldText1;
+    public TextMeshProUGUI worldText2;
+    public TextMeshProUGUI worldText3;
+    public TextMeshProUGUI loadGameBackText;
+
+    public TextMeshProUGUI noWorldsText;
+    int selectedWorld;
+
+    // confirm load game menu buttons
+    public TextMeshProUGUI loadYesText;
+    public TextMeshProUGUI loadNoText;
+
+    public TextMeshProUGUI confirmWorldNameText;
+
     
     Dictionary<MenuState, GameObject> menuPages;
 
@@ -60,6 +85,8 @@ public class MenuManager : MonoBehaviour
     List<TextMeshProUGUI> optionsMenuSelections;
     List<TextMeshProUGUI> quitMenuSelections;
     List<TextMeshProUGUI> newGameMenuSelections;
+    List<TextMeshProUGUI> loadGameMenuSelections;
+    List<TextMeshProUGUI> confirmLoadGameMenuSelections;
 
     List<TextMeshProUGUI> selectedMenuSelections;
 
@@ -88,6 +115,8 @@ public class MenuManager : MonoBehaviour
             }
         }
         menuState = state;
+        SetCursor(0);
+        MoveCursor(0);
     }
 
     void SetCursor(int newPos)
@@ -118,6 +147,10 @@ public class MenuManager : MonoBehaviour
                 selectedMenuSelections = newGameMenuSelections;
                 break;
             case MenuState.LoadGame:
+                selectedMenuSelections = loadGameMenuSelections;
+                break;
+            case MenuState.ConfirmLoadGame:
+                selectedMenuSelections = confirmLoadGameMenuSelections;
                 break;
         }
         if(cursorPos + dir >= selectedMenuSelections.Count)
@@ -137,6 +170,36 @@ public class MenuManager : MonoBehaviour
         cursor.transform.position = new Vector3(selMenuPos.x - (prefWidth / 2) - cursorPlacementBuffer, selMenuPos.y, 0);
     }
 
+    void ToggleLoadGameScreen() // where did it go??
+    {
+        List<string> worlds = saveWorldScript.GetAllWorlds();
+        selectedWorld = 0;
+        switch(worlds.Count)
+        {
+            case 0:
+                noWorldsText.text = "NO WORLDS";
+                cursor.SetActive(false);
+                return;
+            case 1:
+                worldText1.text = worlds[0];
+                return;
+            case 2:
+                worldText1.text = worlds[0];
+                worldText2.text = worlds[1];
+                return;
+            case 3:
+                worldText1.text = worlds[0];
+                worldText2.text = worlds[1];
+                worldText3.text = worlds[2];
+                return;
+            default:
+                worldText1.text = worlds[0];
+                worldText2.text = worlds[1];
+                worldText3.text = worlds[2];
+                return;
+        }
+    }
+
     void UpdateMenu(string selection)
     {
         switch(menuState)
@@ -146,18 +209,12 @@ public class MenuManager : MonoBehaviour
                 {
                     case "PLAY":
                         SetMenuState(MenuState.Play);
-                        SetCursor(0);
-                        MoveCursor(0);
                         break;
                     case "OPTIONS":
                         SetMenuState(MenuState.Options);
-                        SetCursor(0);
-                        MoveCursor(0);
                         break;
                     case "QUIT":
                         SetMenuState(MenuState.Quit);
-                        SetCursor(0);
-                        MoveCursor(0);
                         break;
                 }
                 break;
@@ -166,16 +223,13 @@ public class MenuManager : MonoBehaviour
                 {
                     case "NEW GAME":
                         SetMenuState(MenuState.NewGame);
-                        SetCursor(0);
-                        MoveCursor(0);
                         break;
                     case "LOAD GAME":
-                        Debug.Log("load game");
+                        ToggleLoadGameScreen();
+                        SetMenuState(MenuState.LoadGame);
                         break;
                     case "BACK":
                         SetMenuState(MenuState.Main);
-                        SetCursor(0);
-                        MoveCursor(0);
                         break;
                 }
                 break;
@@ -184,8 +238,6 @@ public class MenuManager : MonoBehaviour
                 {
                     case "BACK":
                         SetMenuState(MenuState.Main);
-                        SetCursor(0);
-                        MoveCursor(0);
                         break;
                 }
                 break;
@@ -197,8 +249,6 @@ public class MenuManager : MonoBehaviour
                         break;
                     case "NO":
                         SetMenuState(MenuState.Main);
-                        SetCursor(0);
-                        MoveCursor(0);
                         break;
                 }
                 break;
@@ -219,8 +269,31 @@ public class MenuManager : MonoBehaviour
                         break;
                     case "BACK":
                         SetMenuState(MenuState.Play);
-                        SetCursor(0);
-                        MoveCursor(0);
+                        break;
+                }
+                break;
+            case MenuState.LoadGame:
+                switch(selection)
+                {
+                    case "BACK":
+                        SetMenuState(MenuState.Play);
+                        break;
+                    default:
+                        SetMenuState(MenuState.ConfirmLoadGame);
+                        confirmWorldNameText.text = saveWorldScript.GetAllWorlds()[selectedWorld];
+                        break;
+                }
+                break;
+
+            case MenuState.ConfirmLoadGame:
+                switch(selection)
+                {
+                    case "YES":
+                        Debug.Log("YES CONFIRM LOAD WORLD");
+                        break;
+                    case "NO":
+                        ToggleLoadGameScreen();
+                        SetMenuState(MenuState.LoadGame);
                         break;
                 }
                 break;
@@ -288,6 +361,149 @@ public class MenuManager : MonoBehaviour
         menuCanvas.SetActive(false);
     }
 
+    void CycleLoadWorlds(int p)
+    {
+        var allWorlds = saveWorldScript.GetAllWorlds();
+        if(p == -1)
+        {
+            // up from 0
+            if(cursorPos == 0)
+            {
+                MoveCursor(-1);
+                return;
+            }
+            // 3 or less worlds to display
+            if(allWorlds.Count <= 3)
+            {
+                // up from back button
+                if(cursorPos == loadGameMenuSelections.Count - 1)
+                {
+                    MoveCursor(-1);
+                    selectedWorld = allWorlds.Count - 1;
+                    return;
+                }
+                MoveCursor(-1);
+                selectedWorld -= 1;
+                return;
+            }
+            // more than 3 worlds to display
+            if(allWorlds.Count > 3)
+            {
+                // up from back button
+                if(cursorPos == loadGameMenuSelections.Count - 1)
+                {
+                    selectedWorld = allWorlds.Count - 1;
+                    worldText1.text = allWorlds[selectedWorld - 2];
+                    worldText2.text = allWorlds[selectedWorld - 1];
+                    worldText3.text = allWorlds[selectedWorld];
+                    MoveCursor(-1);
+                    return;
+                }
+                // 1 up neighbour left
+                if(selectedWorld == 1)
+                {
+                    MoveCursor(-1);
+                    selectedWorld -= 1;
+                    return;
+                }
+                // up from 3rd world
+                if(cursorPos == 2)
+                {
+                    MoveCursor(-1);
+                    selectedWorld -= 1;
+                    return;
+                }
+                // if cursor pos is in the middle
+                if(cursorPos == 1)
+                {
+                    // if there are more than 1 up neighbours
+                    if(selectedWorld > 1)
+                    {
+                        selectedWorld -= 1;
+                        worldText1.text = allWorlds[selectedWorld - 1];
+                        worldText2.text = allWorlds[selectedWorld];
+                        worldText3.text = allWorlds[selectedWorld + 1];
+                        return;
+                    }
+                    MoveCursor(-1);
+                    selectedWorld -= 1;
+                    return;
+                }
+            }
+
+        }
+        if(p == 1)
+        {
+            // down from last world (and not on back button)
+            if(selectedWorld == allWorlds.Count - 1 && cursorPos != loadGameMenuSelections.Count - 1)
+            {
+                MoveCursor(1);
+                return;
+            }
+            // 3 or less worlds to display
+            if(allWorlds.Count <= 3)
+            {
+                // down from back button
+                if(cursorPos == loadGameMenuSelections.Count - 1)
+                {
+                    MoveCursor(1);
+                    selectedWorld = 0;
+                    return;
+                }
+                MoveCursor(1);
+                selectedWorld += 1;
+                return;
+            }
+            // more than 3 worlds to dislay
+            if(allWorlds.Count > 3)
+            {
+                // down from back button
+                if(cursorPos == loadGameMenuSelections.Count - 1)
+                {
+                    selectedWorld = 0;
+                    worldText1.text = allWorlds[0];
+                    worldText2.text = allWorlds[1];
+                    worldText3.text = allWorlds[2];
+                    MoveCursor(1);
+                    return;
+                }
+                // 1 down neighbour left
+                if(selectedWorld == allWorlds.Count - 2)
+                {
+                    MoveCursor(1);
+                    selectedWorld += 1;
+                    return;
+                }
+                // down from 1st world
+                if(cursorPos == 0)
+                {
+                    MoveCursor(1);
+                    selectedWorld += 1;
+                    return;
+                }
+                // if cursor pos is in the middle
+                if(cursorPos == 1)
+                {
+                    // if there are more than 1 down neighbours
+                    if(selectedWorld < allWorlds.Count - 2)
+                    {
+                        selectedWorld += 1;
+                        worldText1.text = allWorlds[selectedWorld - 1];
+                        worldText2.text = allWorlds[selectedWorld];
+                        worldText3.text = allWorlds[selectedWorld + 1];
+                        return;
+                    }
+                    MoveCursor(1);
+                    selectedWorld += 1;
+                    return;
+                }
+            }
+        }
+    }
+
+    //+1 goes down 
+    //-1 goes up
+
     void Update()
     {
         if(!typingSeed && !typingWorldName)
@@ -295,12 +511,26 @@ public class MenuManager : MonoBehaviour
             // up
             if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                MoveCursor(-1); // moving up is like going backwards
+                if(menuState == MenuState.LoadGame)
+                {
+                    CycleLoadWorlds(-1);
+                }
+                else
+                {
+                    MoveCursor(-1); // moving up is like going backwards
+                }
             }
             // down
             if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
-                MoveCursor(1);
+                if(menuState == MenuState.LoadGame)
+                {
+                    CycleLoadWorlds(1);
+                }
+                else
+                {
+                    MoveCursor(1); // moving up is like going backwards
+                }
             }
         }
         // enter
@@ -321,21 +551,19 @@ public class MenuManager : MonoBehaviour
                 {
                 case MenuState.Main:
                     SetMenuState(MenuState.Quit);
-                    SetCursor(0);
-                    MoveCursor(0);
                     break;
                 case MenuState.Play:
                 case MenuState.Options:
                 case MenuState.Quit:
                     SetMenuState(MenuState.Main);
-                    SetCursor(0);
-                    MoveCursor(0);
                     break;
                 case MenuState.NewGame:
                 case MenuState.LoadGame:
                     SetMenuState(MenuState.Play);
-                    SetCursor(0);
-                    MoveCursor(0);
+                    break;
+                case MenuState.ConfirmLoadGame:
+                    ToggleLoadGameScreen();
+                    SetMenuState(MenuState.LoadGame);
                     break;
                 }
             }
@@ -350,7 +578,9 @@ public class MenuManager : MonoBehaviour
             {MenuState.Play, playMenu},
             {MenuState.Options, optionsMenu},
             {MenuState.Quit, quitMenu},
-            {MenuState.NewGame, newGameMenu}
+            {MenuState.NewGame, newGameMenu},
+            {MenuState.LoadGame, loadGameMenu},
+            {MenuState.ConfirmLoadGame, confirmLoadGameMenu}
         };
 
         mainMenuSelections = new List<TextMeshProUGUI>
@@ -385,6 +615,39 @@ public class MenuManager : MonoBehaviour
             seedText,
             createWorldText,
             newGameBackText
+        };
+
+        loadGameMenuSelections = new List<TextMeshProUGUI>();
+
+        selectedWorld = 0;
+
+        //worldTexts = new List<TextMeshProUGUI>();
+
+        switch(saveWorldScript.GetAllWorlds().Count)
+        {
+            case 0:
+                break;
+            case 1:
+                loadGameMenuSelections.Add(worldText1);
+                break;
+            case 2:
+                loadGameMenuSelections.Add(worldText1);
+                loadGameMenuSelections.Add(worldText2);
+                break;
+            default:
+                loadGameMenuSelections.Add(worldText1);
+                loadGameMenuSelections.Add(worldText2);
+                loadGameMenuSelections.Add(worldText3);
+                break;
+        }
+
+        loadGameMenuSelections.Add(loadGameBackText);
+
+    
+        confirmLoadGameMenuSelections = new List<TextMeshProUGUI>
+        {
+            loadYesText,
+            loadNoText
         };
 
         // initialize cursor position to first in list
