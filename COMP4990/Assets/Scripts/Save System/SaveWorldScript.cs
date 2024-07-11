@@ -9,9 +9,11 @@ using Tree = Utils.Tree;
 using System.IO;
 using System;
 using System.Linq;
+using UnityEngine.Tilemaps;
 
 public class SaveWorldScript : MonoBehaviour
 {
+    public MapManager mapManager;
     // need to store:
     // player position for all players
     // every chunk and every tile in chunk (including variant)
@@ -19,35 +21,20 @@ public class SaveWorldScript : MonoBehaviour
     // every structure position and type
     // every enemy within x distance from each player <-- do when have enemy
 
-    string extension = "json";
-    string directory = "Assets/Saved Worlds/";
-
-    public void SaveWorld(string worldName, int seed, MapSize worldSize, int playerX, int playerY, Dictionary<string, Chunk> aboveGroundChunks, Dictionary<string, Chunk> groundChunks, Dictionary<string, Chunk> underGroundChunks, Dictionary<string, Tree> trees, Dictionary<string, Rock> rocks, Dictionary<string, Cactus> cacti, List<Structure> structures)
+    readonly string extension = "json";
+    readonly string directory = "Assets/Saved Worlds/";
+    
+    public void SaveWorld(string worldName, WorldData worldData)
     {
-        var allObjects = new
-        {
-            Seed = seed,
-            WorldSize = worldSize,
-            PlayerX = playerX,
-            PlayerY = playerY,
-            AboveGroundChunks = aboveGroundChunks,
-            GroundChunks = groundChunks,
-            UnderGroundChunks = underGroundChunks,
-            Trees = trees,
-            Rocks = rocks,
-            Cacti = cacti,
-            Structures = structures
-        };
-
         var settings = new JsonSerializerSettings
         {
             Formatting = Formatting.Indented,
             Converters = new List<JsonConverter> { new SingleLineListConverter()}
         };
 
-        string json = JsonConvert.SerializeObject(allObjects, settings);
+        string json = JsonConvert.SerializeObject(worldData, settings);
         File.WriteAllTextAsync($"{directory}{worldName}.{extension}", json);
-        Debug.Log($"Saved world");
+        Debug.Log($"Saved world: {worldName}");
     }
 
     public class SingleLineListConverter : JsonConverter
@@ -111,5 +98,17 @@ public class SaveWorldScript : MonoBehaviour
             worlds.Add(Path.GetFileNameWithoutExtension(path));
         }
         return worlds;
+    }
+
+    public void LoadWorld(string worldName)
+    {
+        WorldData worldData = DeserializeWorld(worldName);
+        mapManager.LoadExistingWorld(worldName, worldData);
+    }
+
+    public WorldData DeserializeWorld(string worldName)
+    {
+        string json = File.ReadAllText($"{directory}{worldName}.{extension}");
+        return JsonConvert.DeserializeObject<WorldData>(json);
     }
 }

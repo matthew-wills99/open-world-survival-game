@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3403917614561904061}
   - component: {fileID: 8776316112366521068}
-  - component: {fileID: 2087341242329629250}
+  - component: {fileID: 8965660370064090327}
   m_Layer: 0
   m_Name: Map Manager
   m_TagString: Untagged
@@ -45,21 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d9b18030e915347bed1d46cf3a92d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  struct1: {fileID: 9050686457452802909, guid: a6e1a8f8024f47d458ef706552263586, type: 3}
-  struct2: {fileID: 1087004932862685426, guid: 0a6165c55f678d84d924d29c97063794, type: 3}
-  struct3: {fileID: 8652399170730423931, guid: 2f66919916a915d4caadca14309dca44, type: 3}
-  tree1: {fileID: 2055102311959635369, guid: f681a54372d73d74785b9c9d4ac477e8, type: 3}
-  tree2: {fileID: 2055102311959635369, guid: 7277dd75e907b27448ec1de08238d0bb, type: 3}
-  tree3: {fileID: 2055102311959635369, guid: 9e7797bb065982d4497d030f065d6e2f, type: 3}
-  trees: []
-  bigRock: {fileID: 7947911505737750455, guid: f826bf48ad5bedc4ab6cabe6c4e498e8, type: 3}
-  rock1: {fileID: 7947911505737750455, guid: 713b33322b495794e92184973ece3034, type: 3}
-  rock2: {fileID: 7947911505737750455, guid: ba7fef4c928d8c4459466bf93171730e, type: 3}
-  rock3: {fileID: 7947911505737750455, guid: 4c4e80b50a323dc478f7c84e0b8fdad2, type: 3}
-  rock4: {fileID: 7947911505737750455, guid: 139b2d65b3145ad45bc13b6d111199de, type: 3}
-  rock5: {fileID: 7947911505737750455, guid: d5762f992ea3bd544bb8287f66e8f844, type: 3}
-  rockSprites: []
-  tileIndex: {fileID: 2087341242329629250}
+  saveWorldScript: {fileID: 0}
+  tileIndex: {fileID: 0}
   underGroundTilemap: {fileID: 0}
   groundTilemap: {fileID: 0}
   aboveGroundTilemap: {fileID: 0}
@@ -82,7 +69,7 @@ MonoBehaviour:
   distanceBetweenStructures: 100
   chunkSize: 16
   mapSizeInChunks: 8
---- !u!114 &2087341242329629250
+--- !u!114 &8965660370064090327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,4 +116,19 @@ MonoBehaviour:
   stone: {fileID: 11400000, guid: 009ff3373d29c894d83a867e67b89da9, type: 2}
   sand: {fileID: 11400000, guid: 5de73118023c9904f930f1947b8277ff, type: 2}
   water: {fileID: 11400000, guid: 69789f6bb8fc4ff48a3e4287d7a490e4, type: 2}
-  terrainTile: {fileID: 11400000, guid: a2f33a04e7399a544acb34a88baf6fd8, type: 2}
+  terrainTile: {fileID: 11400000, guid: 6f33b3e5f80362645a9df811c612a214, type: 2}
+  tree1: {fileID: 2055102311959635369, guid: f681a54372d73d74785b9c9d4ac477e8, type: 3}
+  tree2: {fileID: 2055102311959635369, guid: 7277dd75e907b27448ec1de08238d0bb, type: 3}
+  tree3: {fileID: 2055102311959635369, guid: 9e7797bb065982d4497d030f065d6e2f, type: 3}
+  cactus1: {fileID: 2577585254963922480, guid: ac719b1d0f58391469cc19fd947ca44c, type: 3}
+  cactus2: {fileID: 2577585254963922480, guid: 63ee4b6a40c55fd429759b807832ded1, type: 3}
+  cactus3: {fileID: 2577585254963922480, guid: f3cc2373308c11848977b28d974a9de0, type: 3}
+  bigRock: {fileID: 7947911505737750455, guid: f826bf48ad5bedc4ab6cabe6c4e498e8, type: 3}
+  rock1: {fileID: 7947911505737750455, guid: 713b33322b495794e92184973ece3034, type: 3}
+  rock2: {fileID: 7947911505737750455, guid: ba7fef4c928d8c4459466bf93171730e, type: 3}
+  rock3: {fileID: 7947911505737750455, guid: 4c4e80b50a323dc478f7c84e0b8fdad2, type: 3}
+  rock4: {fileID: 7947911505737750455, guid: 139b2d65b3145ad45bc13b6d111199de, type: 3}
+  rock5: {fileID: 7947911505737750455, guid: d5762f992ea3bd544bb8287f66e8f844, type: 3}
+  struct1: {fileID: 9050686457452802909, guid: a6e1a8f8024f47d458ef706552263586, type: 3}
+  struct2: {fileID: 1087004932862685426, guid: 0a6165c55f678d84d924d29c97063794, type: 3}
+  struct3: {fileID: 8652399170730423931, guid: 2f66919916a915d4caadca14309dca44, type: 3}

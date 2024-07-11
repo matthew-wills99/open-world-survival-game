@@ -636,20 +636,20 @@ public class MapManager : MonoBehaviour
         return true;
     }
 
-    void PlaceStructures()
+    /*void PlaceStructures()
     {
         List<int> structuresToPlace = new List<int>();
         if(mapSize == MapSize.Small)
         {
+            structuresToPlace.Add(0);
             structuresToPlace.Add(1);
-            structuresToPlace.Add(2);
         }
         else
         {
+            structuresToPlace.Add(0);
             structuresToPlace.Add(1);
             structuresToPlace.Add(2);
-            structuresToPlace.Add(3);
-        }
+        }*/
         /*
         top left: (-mapSizeInChunks / 2, mapSizeInChunks / 2)
         top right: (mapSizeInChunks / 2, mapSizeInChunks / 2)
@@ -678,7 +678,7 @@ public class MapManager : MonoBehaviour
         //int placedStructures = 0;
         //int maxStructures = structuresToPlace.Count;
 
-        foreach(int order in structuresToPlace)
+        /*foreach(int order in structuresToPlace)
         {
             bool swag = false;
             for(int cx = -mapSizeInChunks / 2; cx < mapSizeInChunks / 2; cx++)
@@ -734,13 +734,13 @@ public class MapManager : MonoBehaviour
                     }
                 }
             }
-        } 
+        }
 
         //int cx = random.Next(-mapSizeInChunks / 2, mapSizeInChunks / 2);
         //int cy = random.Next(-mapSizeInChunks / 2, mapSizeInChunks / 2);
         //Vector3Int v3i = ChunkToWorldPos(cx, cy, chunkSize / 2, chunkSize / 2, chunkSize);
         //Instantiate(struct1, new Vector3(v3i.x, v3i.y, v3i.z), Quaternion.identity);
-    }
+    }*/
 
     void PopulateEnvironment()
     {
@@ -820,7 +820,7 @@ public class MapManager : MonoBehaviour
         //StartCoroutine(SmoothMap());
         SmoothMap(-mapSizeInChunks / 2, -mapSizeInChunks / 2, mapSizeInChunks / 2, mapSizeInChunks / 2);
 
-        PlaceStructures(); // KEEP TRACK OF WHAT CHUNK EACH STRUCTURE IS IN AND ONLY ITERATE THROUGH CHUNKS THAT ARE FAR ENOUGH AWAY FOR ANOTHER STRUCTURE
+        //PlaceStructures(); // KEEP TRACK OF WHAT CHUNK EACH STRUCTURE IS IN AND ONLY ITERATE THROUGH CHUNKS THAT ARE FAR ENOUGH AWAY FOR ANOTHER STRUCTURE
 
         PlaceBiomes();
         SpreadBiomes(); // KEEP TRACK OF HIGHEST AND LOWEST WORLD COORDINATE THEN CONVERT IT BACK TO CHUNK COORDS
@@ -834,7 +834,7 @@ public class MapManager : MonoBehaviour
         PopulateEnvironment();
     }
 
-    public void Startup(string wn, MapSize ws, int se)// for menu if not change to start()
+    public void GenerateNewWorld(string wn, MapSize ws, int se)// for menu if not change to start()
     {
         worldName = wn;
 
@@ -881,6 +881,7 @@ public class MapManager : MonoBehaviour
         switch(mapSize)
         {
             case MapSize.Small:
+                Debug.Log("small world");
                 mapSizeInChunks = 8;
                 biomeChance = 10;
                 biomeDistances = new Dictionary<BiomeEnum, int>{
@@ -893,6 +894,9 @@ public class MapManager : MonoBehaviour
                 };
                 break;
             case MapSize.Medium:
+                smoothingPasses += 2; // ADD OFFSET VARIABLE
+                randomFillPercent += 2;
+                Debug.Log("medium world");
                 mapSizeInChunks = 12;
                 biomeChance = 8;
                 biomeDistances = new Dictionary<BiomeEnum, int>{
@@ -905,6 +909,9 @@ public class MapManager : MonoBehaviour
                 };
                 break;
             case MapSize.Large:
+                smoothingPasses += 4;
+                randomFillPercent += 4;
+                Debug.Log("large world");
                 mapSizeInChunks = 16;
                 biomeChance = 5;
 
@@ -919,27 +926,97 @@ public class MapManager : MonoBehaviour
                 break;
         }
         GenerateMap();
+        
+        SaveWorld();
 
         gameLoop = true;
     }
 
-    void Update()
+    public void LoadExistingWorld(string wn, WorldData worldData)
     {
-        if(Input.GetKeyDown(KeyCode.G))
+        Debug.Log($"Loading existing world: {wn}...");
+        treeEmpty = new GameObject("trees");
+        rockEmpty = new GameObject("rocks");
+        cactusEmpty = new GameObject("cactus");
+
+        worldName = wn;
+        seed = worldData.Seed;
+        mapSize = worldData.WorldSize;
+        
+        Debug.Log($"Player position: ({worldData.PlayerX}, {worldData.PlayerY}");
+
+        underGroundChunks = worldData.UnderGroundChunks;
+        groundChunks = worldData.GroundChunks;
+        aboveGroundChunks = worldData.AboveGroundChunks;
+
+        treeObjects = worldData.Trees;
+        rockObjects = worldData.Rocks;
+        cactusObjects = worldData.Cacti;
+
+        foreach(Tree tree in treeObjects.Values)
         {
-            var worldPaths = saveWorldScript.GetAllWorlds();
-            foreach(var path in worldPaths)
-            {
-                Debug.Log(path);
-            }
+            Instantiate(tileIndex.GetObject(tree.Index), ChunkToWorldPos(tree.Cx, tree.Cy, tree.Tx, tree.Ty, chunkSize), quaternion.identity, treeEmpty.transform);
+        }
+        foreach(Rock rock in rockObjects.Values)
+        {
+            Instantiate(tileIndex.GetObject(rock.Index), ChunkToWorldPos(rock.Cx, rock.Cy, rock.Tx, rock.Ty, chunkSize), quaternion.identity, rockEmpty.transform);
+        }
+        foreach(Cactus cactus in cactusObjects.Values)
+        {
+            Instantiate(tileIndex.GetObject(cactus.Index), ChunkToWorldPos(cactus.Cx, cactus.Cy, cactus.Tx, cactus.Ty, chunkSize), quaternion.identity, cactusEmpty.transform);
         }
 
+        foreach(Chunk chunk in groundChunks.Values)
+        {
+            for(int x = 0; x < chunkSize; x++)
+            {
+                for(int y = 0; y < chunkSize; y++)
+                {
+                    groundTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, x, y, chunkSize), tileIndex.GetTile(chunk.ChunkTiles[x, y]));
+                }
+            }
+        }
+        foreach(Chunk chunk in aboveGroundChunks.Values)
+        {
+            for(int x = 0; x < chunkSize; x++)
+            {
+                for(int y = 0; y < chunkSize; y++)
+                {
+                    aboveGroundTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, x, y, chunkSize), tileIndex.GetTile(chunk.ChunkTiles[x, y]));
+                }
+            }
+        }
+        allStructures = worldData.Structures;
+        gameLoop = true;
+    }
+
+    void SaveWorld()
+    {
+        Debug.Log("Attempting to save world...");
+        WorldData worldData = new WorldData
+        {
+            Seed = seed,
+            WorldSize = mapSize,
+            PlayerX = 0,
+            PlayerY = 0,
+            AboveGroundChunks = aboveGroundChunks,
+            GroundChunks = groundChunks,
+            UnderGroundChunks = underGroundChunks,
+            Trees = treeObjects,
+            Rocks = rockObjects,
+            Cacti = cactusObjects,
+            Structures = allStructures
+        };
+        saveWorldScript.SaveWorld(worldName, worldData);
+    }
+
+    void Update()
+    {
         if(gameLoop)
         {
             if(Input.GetKeyDown(KeyCode.S))
             {
-                Debug.Log("Attempting to save world...");
-                saveWorldScript.SaveWorld(worldName, seed, mapSize, 0, 0, aboveGroundChunks, groundChunks, underGroundChunks, treeObjects, rockObjects, cactusObjects, allStructures);
+                SaveWorld();
             }
         }
     }

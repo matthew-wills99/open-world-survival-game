@@ -290,6 +290,8 @@ public class MenuManager : MonoBehaviour
                 {
                     case "YES":
                         Debug.Log("YES CONFIRM LOAD WORLD");
+                        saveWorldScript.LoadWorld(saveWorldScript.GetAllWorlds()[selectedWorld]);
+                        menuCanvas.SetActive(false);
                         break;
                     case "NO":
                         ToggleLoadGameScreen();
@@ -356,11 +358,12 @@ public class MenuManager : MonoBehaviour
     {
         Debug.Log($"Generating {worldNameInput.text}, a {worldSize} world with seed {seedInput.text}");
         
-        mapManager.Startup(worldNameInput.text, worldSize, int.Parse(seedInput.text));
+        mapManager.GenerateNewWorld(worldNameInput.text, worldSize, int.Parse(seedInput.text));
 
         menuCanvas.SetActive(false);
     }
 
+    // add bar to show how far down the list you are
     void CycleLoadWorlds(int p)
     {
         var allWorlds = saveWorldScript.GetAllWorlds();
@@ -430,7 +433,6 @@ public class MenuManager : MonoBehaviour
                     return;
                 }
             }
-
         }
         if(p == 1)
         {

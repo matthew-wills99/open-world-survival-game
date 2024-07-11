@@ -136,7 +136,7 @@ public class Utils : MonoBehaviour
     {
         Forest,
         Desert,
-        Plains
+        Ocean
     }
 
     public enum MapSize
@@ -168,6 +168,21 @@ public class Utils : MonoBehaviour
         BlendUpRight,
         BlendDownLeft,
         BlendDownRight
+    }
+
+    public class WorldData
+    {
+        public int Seed {get; set;}
+        public MapSize WorldSize {get; set;}
+        public int PlayerX {get; set;}
+        public int PlayerY {get; set;}
+        public Dictionary<string, Chunk> AboveGroundChunks {get; set;}
+        public Dictionary<string, Chunk> GroundChunks {get; set;}
+        public Dictionary<string, Chunk> UnderGroundChunks {get; set;}
+        public Dictionary<string, Tree> Trees {get; set;}
+        public Dictionary<string, Rock> Rocks {get; set;}
+        public Dictionary<string, Cactus> Cacti {get; set;}
+        public List<Structure> Structures {get; set;}
     }
 
     // environmental object key
