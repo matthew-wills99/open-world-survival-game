@@ -821,7 +821,7 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
-        waterController.Setup(waterTilemap, waterChunks.Values.ToList(), chunkSize);
+        waterController.Setup(waterTilemap, waterChunks, chunkSize, mapSizeInChunks);
     }
     
     void GenerateMap()

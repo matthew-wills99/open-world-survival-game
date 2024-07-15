@@ -9,6 +9,7 @@ using static Utils;
 
 public class TileIndex : MonoBehaviour
 {
+
     Dictionary<int, Tile> tileIndex;
     List<int> grassTiles;
     List<int> grassWithFlowersTiles;
@@ -61,6 +62,7 @@ public class TileIndex : MonoBehaviour
     public Tile sand;
     public Tile water;
     public Tile terrainTile;
+    public Tile deepWater;
 
     public AnimatedTile sfLeft;
     public AnimatedTile sfRight;
@@ -106,7 +108,8 @@ public class TileIndex : MonoBehaviour
     public AnimatorController ripple1Controller;
 
     void Awake()
-    {
+    {   
+
         tileIndex = new Dictionary<int, Tile>{
             { 0, grass },
             { 1, grass2 },
@@ -144,6 +147,7 @@ public class TileIndex : MonoBehaviour
             { 33, sand },
             { 34, water },
             { 35, terrainTile },
+            { 36, deepWater },
         };
 
         seafoamIndex = new Dictionary<int, AnimatedTile>{

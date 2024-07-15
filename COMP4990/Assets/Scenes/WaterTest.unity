@@ -1228,10 +1228,21 @@ PrefabInstance:
       objectReference: {fileID: 431924443}
     - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
+      propertyPath: deepWater
+      value: 
+      objectReference: {fileID: 11400000, guid: d6a60b6420c95864bb4ee2c8a30e44c2,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
       propertyPath: animatedWaterTile
       value: 
       objectReference: {fileID: 11400000, guid: 4a48071c37ccbbc4cac6daca937c6c47,
         type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: deepWaterDarkenFactor
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

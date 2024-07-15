@@ -10,9 +10,14 @@ public class WaterController : MonoBehaviour
 {
     public TileIndex tileIndex;
     bool gameLoop = false;
-    List<Tuple<int, int>> waterCoords;
+    List<string> waterCoords;
+    List<Tuple<int, int>> waterEventTiles;
+    Dictionary<string, Chunk> waterChunks;
+
+    int mapSizeInChunks;
 
     const int waterTile = 34;
+    const int deepWaterTile = 36;
 
     public AnimationClip bubbles1Clip;
     public AnimationClip bubbles2Clip;
@@ -26,10 +31,32 @@ public class WaterController : MonoBehaviour
 
     public float playbackSpeed = 0.5f;
 
-    public void Setup(Tilemap waterTilemap, List<Chunk> waterChunks, int chunkSize)
+    public void Setup(Tilemap waterTilemap, Dictionary<string, Chunk> waterChunks, int chunkSize, int mapSizeInChunks)
     {
-        waterCoords = new List<Tuple<int, int>>();
-        foreach(Chunk chunk in waterChunks)
+        this.mapSizeInChunks = mapSizeInChunks;
+        this.waterChunks = waterChunks;
+        SetSeafoam(waterTilemap, chunkSize);
+
+        SetDepth(waterTilemap, chunkSize, 2);
+
+        // TODO: make this work it is horrible
+        //SmoothDeepWater(waterTilemap, chunkSize);
+        gameLoop = true;
+    }
+
+    /// <summary>
+    /// Replaces water bordering terrain with the correct
+    /// seafoam tile.
+    /// </summary>
+    /// <param name="waterTilemap">Tilemap that water is stored in</param>
+    /// <param name="chunkSize">Length and width of a chunk in tiles</param>
+    void SetSeafoam(Tilemap waterTilemap, int chunkSize)
+    {
+        //TODO: add corners, seafoam should not be placed around the border of the map.
+
+        waterCoords = new List<string>();
+        waterEventTiles = new List<Tuple<int, int>>();
+        foreach(Chunk chunk in waterChunks.Values)
         {
             for(int tx = 0; tx < chunkSize; tx++)
             {
@@ -46,13 +73,182 @@ public class WaterController : MonoBehaviour
                         else
                         {
                             waterTilemap.SetTile(pos, tileIndex.GetTile(waterTile));
-                            waterCoords.Add(new Tuple<int, int>(pos.x, pos.y));
+                            waterCoords.Add(GetCoordinateKey(chunk.X, chunk.Y, tx, ty));
+                            waterEventTiles.Add(new Tuple<int, int>(pos.x, pos.y));
                         }
                     }
                 }
             }
         }
-        gameLoop = true;
+    }
+
+    /// <summary>
+    /// Replaces any water x tiles from terrain in all directions with deep water.
+    /// </summary>
+    /// <param name="waterTilemap">Tilemap that water is stored in</param>
+    /// <param name="waterChunks">List of chunks containing water</param>
+    /// <param name="chunkSize">Length and width of a chunk in tiles</param>
+    /// <param name="distanceFromShore">Distance in tiles from shore required for deep water</param>
+    void SetDepth(Tilemap waterTilemap, int chunkSize, int distanceFromShore=3)
+    {
+        foreach(Chunk chunk in waterChunks.Values)
+        {
+            for(int tx = 0; tx < chunkSize; tx++)
+            {
+                for(int ty = 0; ty < chunkSize; ty++)
+                {
+                    if(chunk.ChunkTiles[tx, ty] != -1)
+                    {
+                        if(IsDeepWater(chunk.X, chunk.Y, tx, ty, chunkSize, distanceFromShore))
+                        {
+                            waterTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, tx, ty, chunkSize), tileIndex.GetTile(deepWaterTile));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    bool IsDeepWater(int cx, int cy, int tx, int ty, int chunkSize, int distanceFromShore)
+    {
+        int ncx;
+        int ncy;
+        int ntx;
+        int nty;
+
+        for(int x = tx - distanceFromShore; x <= tx + distanceFromShore; x++)
+        {
+            for(int y = ty - distanceFromShore; y <= ty + distanceFromShore; y++)
+            {
+                // ignore the original tile
+                if(x != tx || y != ty)
+                {
+                    ncx = cx;
+                    ncy = cy;
+                    ntx = x;
+                    nty = y;
+                    // check if the neighbouring tile is in a different chunk
+                    if(x < 0 || x >= chunkSize || y < 0 || y >= chunkSize)
+                    {
+                        if(x < 0)
+                        {
+                            ncx--;
+                            ntx = chunkSize + x;
+                        }
+                        else if(x >= chunkSize)
+                        {
+                            ncx++;
+                            ntx = x - chunkSize;
+                        }
+                        if(y < 0)
+                        {
+                            ncy--;
+                            nty = chunkSize + y;
+                        }
+                        else if(y >= chunkSize)
+                        {
+                            ncy++;
+                            nty = y - chunkSize;
+                        }
+                    }
+                    if(waterChunks.ContainsKey(GetChunkKey(ncx, ncy)))
+                    {
+                        if(waterChunks[GetChunkKey(ncx, ncy)].ChunkTiles[ntx, nty] != waterTile || !waterCoords.Contains(GetCoordinateKey(ncx, ncy, ntx, nty)))
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    void SmoothDeepWater(Tilemap waterTilemap, int chunkSize)
+    {
+        foreach(Chunk chunk in waterChunks.Values)
+        {
+            int cx = chunk.X;
+            int cy = chunk.Y;
+            for(int x = 0; x < chunkSize; x++)
+            {
+                for(int y = 0; y < chunkSize; y++)
+                {
+                    int neighbourWaterTiles = GetSurroundingWater(cx, cy, x, y, chunkSize);
+
+                    if(neighbourWaterTiles > 4)
+                    {
+                        waterChunks[GetChunkKey(cx, cy)].ChunkTiles[x, y] = waterTile;
+                        waterTilemap.SetTile(ChunkToWorldPos(cx, cy, x, y, chunkSize), tileIndex.GetTile(waterTile));
+                    }
+                    else if(neighbourWaterTiles < 4)
+                    {
+                        waterChunks[GetChunkKey(cx, cy)].ChunkTiles[x, y] = deepWaterTile;
+                        waterTilemap.SetTile(ChunkToWorldPos(cx, cy, x, y, chunkSize), tileIndex.GetTile(deepWaterTile));
+                    }
+                }
+            }
+        }
+    }
+
+    int GetSurroundingWater(int cx, int cy, int tx, int ty, int chunkSize)
+    {
+        int tileCount = 0;
+        int ncx;
+        int ncy;
+        int ntx;
+        int nty;
+
+        for(int x = tx - 1; x <= tx + 1; x++)
+        {
+            for(int y = ty - 1; y <= ty + 1; y++)
+            {
+                // ignore the original tile
+                if(x != tx || y != ty)
+                {
+                    ncx = cx;
+                    ncy = cy;
+                    ntx = x;
+                    nty = y;
+                    // check if the neighbouring tile is in a different chunk
+                    if(x < 0 || x >= chunkSize || y < 0 || y >= chunkSize)
+                    {
+                        if(x < 0)
+                        {
+                            ncx--;
+                            ntx = chunkSize + x;
+                        }
+                        else if(x >= chunkSize)
+                        {
+                            ncx++;
+                            ntx = x - chunkSize;
+                        }
+                        if(y < 0)
+                        {
+                            ncy--;
+                            nty = chunkSize + y;
+                        }
+                        else if(y >= chunkSize)
+                        {
+                            ncy++;
+                            nty = y - chunkSize;
+                        }
+                    }
+                    if(waterChunks.ContainsKey(GetChunkKey(ncx, ncy)))
+                    {
+                        if(waterChunks[GetChunkKey(ncx, ncy)].ChunkTiles[ntx, nty] == waterTile)
+                        {
+                            tileCount++;
+                        }
+                    }
+                }
+            }
+        }
+        return tileCount;
     }
 
     float currentTime = 0f;
@@ -64,7 +260,7 @@ public class WaterController : MonoBehaviour
             if(Time.time - currentTime > cooldown)
             {
                 // get random water tile coordinates
-                Tuple<int, int> coords = waterCoords[UnityEngine.Random.Range(0, waterCoords.Count)];
+                Tuple<int, int> coords = waterEventTiles[UnityEngine.Random.Range(0, waterCoords.Count)];
                 int x = coords.Item1;
                 int y = coords.Item2;
 
