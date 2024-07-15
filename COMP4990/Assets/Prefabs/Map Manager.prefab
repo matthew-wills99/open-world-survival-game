@@ -45,11 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d9b18030e915347bed1d46cf3a92d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generateWorldOnStartup: 1
   saveWorldScript: {fileID: 0}
-  tileIndex: {fileID: 0}
+  tileIndex: {fileID: 8965660370064090327}
+  waterController: {fileID: 0}
   underGroundTilemap: {fileID: 0}
   groundTilemap: {fileID: 0}
-  aboveGroundTilemap: {fileID: 0}
+  waterTilemap: {fileID: 0}
   seed: 154
   mapSize: 0
   smoothingPasses: 7
@@ -115,8 +117,22 @@ MonoBehaviour:
   grassWithFlowers15: {fileID: 11400000, guid: ecd747bef784ea74bbc92ed805b6a5b3, type: 2}
   stone: {fileID: 11400000, guid: 009ff3373d29c894d83a867e67b89da9, type: 2}
   sand: {fileID: 11400000, guid: 5de73118023c9904f930f1947b8277ff, type: 2}
-  water: {fileID: 11400000, guid: 69789f6bb8fc4ff48a3e4287d7a490e4, type: 2}
+  water: {fileID: 11400000, guid: d6a60b6420c95864bb4ee2c8a30e44c2, type: 2}
   terrainTile: {fileID: 11400000, guid: 6f33b3e5f80362645a9df811c612a214, type: 2}
+  sfLeft: {fileID: 11400000, guid: b6cfc0cf1a2afb741b1a0a3f73bf4b3c, type: 2}
+  sfRight: {fileID: 11400000, guid: 12988d9d71d3e884687e97b1908b9047, type: 2}
+  sfTop: {fileID: 11400000, guid: 814aff94ff919d1438d66b4e8390470d, type: 2}
+  sfBottom: {fileID: 11400000, guid: 80219d7c043a9074bacfee03d1f56dbc, type: 2}
+  sfTopLeft: {fileID: 11400000, guid: 7cd6cd23194341c4798891c85708fb7b, type: 2}
+  sfTopRight: {fileID: 11400000, guid: 3bfb8c9ced903e44fa39768c3986a367, type: 2}
+  sfBottomLeft: {fileID: 11400000, guid: 4edcc2b96f26ba34cace00456931f1b9, type: 2}
+  sfBottomRight: {fileID: 11400000, guid: 4f50eb601c65137489445b78296602b0, type: 2}
+  sfOpenDown: {fileID: 11400000, guid: 36b324fcc5d838249907c7868404a072, type: 2}
+  sfOpenUp: {fileID: 11400000, guid: a0490f1471842874795f202a190d8bc5, type: 2}
+  sfOpenRight: {fileID: 11400000, guid: ea86f25e4e1134a4d9bcad0ed5bdbe41, type: 2}
+  sfOpenLeft: {fileID: 11400000, guid: 7cc8474391a587f43b2f4395336e0272, type: 2}
+  sfLeftAndRight: {fileID: 11400000, guid: fc810b8b9c23532419f8f6ebde5647d4, type: 2}
+  sfUpAndDown: {fileID: 11400000, guid: 3b9a552a0ea9f1949870bbb2844e9e9c, type: 2}
   tree1: {fileID: 2055102311959635369, guid: f681a54372d73d74785b9c9d4ac477e8, type: 3}
   tree2: {fileID: 2055102311959635369, guid: 7277dd75e907b27448ec1de08238d0bb, type: 3}
   tree3: {fileID: 2055102311959635369, guid: 9e7797bb065982d4497d030f065d6e2f, type: 3}
@@ -132,3 +148,9 @@ MonoBehaviour:
   struct1: {fileID: 9050686457452802909, guid: a6e1a8f8024f47d458ef706552263586, type: 3}
   struct2: {fileID: 1087004932862685426, guid: 0a6165c55f678d84d924d29c97063794, type: 3}
   struct3: {fileID: 8652399170730423931, guid: 2f66919916a915d4caadca14309dca44, type: 3}
+  bubble1Clip: {fileID: 7400000, guid: e5c611a5b584db546b33f4ca882321b5, type: 2}
+  bubble2Clip: {fileID: 7400000, guid: fd3d30efcd9eb404d9d50f28721f0c5a, type: 2}
+  ripple1Clip: {fileID: 7400000, guid: 6554cb8ac9a6b744b937c53f755b140d, type: 2}
+  bubble1Controller: {fileID: 9100000, guid: 11336536251975b41b02e41a654a7423, type: 2}
+  bubble2Controller: {fileID: 9100000, guid: 5e338d3fb3ad0054b8317c4429c7f4f0, type: 2}
+  ripple1Controller: {fileID: 9100000, guid: dc5a81e350a9c414faafdf6d86e66dba, type: 2}

@@ -342,6 +342,11 @@ PrefabInstance:
       propertyPath: underGroundTilemap
       value: 
       objectReference: {fileID: 1830122004}
+    - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: generateWorldOnStartup
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

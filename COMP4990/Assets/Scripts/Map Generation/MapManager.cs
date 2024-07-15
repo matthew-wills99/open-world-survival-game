@@ -13,6 +13,8 @@ using Tree = Utils.Tree; // yea
 
 public class MapManager : MonoBehaviour
 {
+    public bool generateWorldOnStartup = true;
+
     bool gameLoop = false;
     // the origin of the map is considered the centre 4 chunks
     // (0, 0)
@@ -28,11 +30,12 @@ public class MapManager : MonoBehaviour
     Dictionary<int, Structure> structures;
 
     public TileIndex tileIndex;
+    public WaterController waterController;
     
     // Tilemap layers
     public Tilemap underGroundTilemap;
     public Tilemap groundTilemap;
-    public Tilemap aboveGroundTilemap;
+    public Tilemap waterTilemap;
 
     const int terrainTile = 35;
     const int waterTile = 34;
@@ -90,7 +93,7 @@ public class MapManager : MonoBehaviour
     // Key is Utils.GetChunkKey(cx, cy), value is Utils.Chunk
     Dictionary<string, Chunk> underGroundChunks;
     Dictionary<string, Chunk> groundChunks;
-    Dictionary<string, Chunk> aboveGroundChunks;
+    Dictionary<string, Chunk> waterChunks;
 
     GameObject treeEmpty;
     GameObject rockEmpty;
@@ -109,10 +112,10 @@ public class MapManager : MonoBehaviour
         {
             for(int y = -mapSizeInChunks / 2; y < mapSizeInChunks / 2; y++)
             {
-                groundChunks.Add(GetChunkKey(x, y), new Chunk(x, y, chunkSize));
-                /*
-                Add underGroundChunks and aboveGroundChunks here?
-                */
+                string key = GetChunkKey(x, y);
+                groundChunks.Add(key, new Chunk(x, y, chunkSize));
+                underGroundChunks.Add(key, new Chunk(x, y, chunkSize));
+                waterChunks.Add(key, new Chunk(x, y, chunkSize));
             }
         }
     }
@@ -801,6 +804,25 @@ public class MapManager : MonoBehaviour
             }
         }
     }
+
+    void SetupChunkLayers()
+    {
+        foreach(Chunk chunk in groundChunks.Values)
+        {
+            for(int tx = 0; tx < chunkSize; tx++)
+            {
+                for(int ty = 0; ty < chunkSize; ty++)
+                {
+                    if(chunk.ChunkTiles[tx, ty] == waterTile)
+                    {
+                        waterTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, tx, ty, chunkSize), tileIndex.GetTile(waterTile));
+                        waterChunks[chunk.GetKey()].ChunkTiles[tx, ty] = waterTile;
+                    }
+                }
+            }
+        }
+        waterController.Setup(waterTilemap, waterChunks.Values.ToList(), chunkSize);
+    }
     
     void GenerateMap()
     {
@@ -832,6 +854,15 @@ public class MapManager : MonoBehaviour
         //TileSplatting();
 
         PopulateEnvironment();
+        SetupChunkLayers();
+    }
+
+    void Start()
+    {
+        if(generateWorldOnStartup)
+        {
+            GenerateNewWorld("new world", mapSize, seed);
+        }
     }
 
     public void GenerateNewWorld(string wn, MapSize ws, int se)// for menu if not change to start()
@@ -850,7 +881,7 @@ public class MapManager : MonoBehaviour
         random = new System.Random(seed);
         underGroundChunks = new Dictionary<string, Chunk>();
         groundChunks = new Dictionary<string, Chunk>();
-        aboveGroundChunks = new Dictionary<string, Chunk>();
+        waterChunks = new Dictionary<string, Chunk>();
 
         //order:  grid, x radius from window not including window, blocks up, blocks down, tile
         // lowest order is lowest area in tiles^2
@@ -947,7 +978,7 @@ public class MapManager : MonoBehaviour
 
         underGroundChunks = worldData.UnderGroundChunks;
         groundChunks = worldData.GroundChunks;
-        aboveGroundChunks = worldData.AboveGroundChunks;
+        waterChunks = worldData.AboveGroundChunks;
 
         treeObjects = worldData.Trees;
         rockObjects = worldData.Rocks;
@@ -976,13 +1007,13 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
-        foreach(Chunk chunk in aboveGroundChunks.Values)
+        foreach(Chunk chunk in waterChunks.Values)
         {
             for(int x = 0; x < chunkSize; x++)
             {
                 for(int y = 0; y < chunkSize; y++)
                 {
-                    aboveGroundTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, x, y, chunkSize), tileIndex.GetTile(chunk.ChunkTiles[x, y]));
+                    waterTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, x, y, chunkSize), tileIndex.GetTile(chunk.ChunkTiles[x, y]));
                 }
             }
         }
@@ -999,7 +1030,7 @@ public class MapManager : MonoBehaviour
             WorldSize = mapSize,
             PlayerX = 0,
             PlayerY = 0,
-            AboveGroundChunks = aboveGroundChunks,
+            AboveGroundChunks = waterChunks,
             GroundChunks = groundChunks,
             UnderGroundChunks = underGroundChunks,
             Trees = treeObjects,
@@ -1014,6 +1045,7 @@ public class MapManager : MonoBehaviour
     {
         if(gameLoop)
         {
+            //UpdateWaterTilemapAnimations();
             if(Input.GetKeyDown(KeyCode.S))
             {
                 SaveWorld();

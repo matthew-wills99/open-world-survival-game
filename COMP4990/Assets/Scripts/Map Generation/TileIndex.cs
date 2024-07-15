@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static Utils;
@@ -12,12 +14,16 @@ public class TileIndex : MonoBehaviour
     List<int> grassWithFlowersTiles;
     List<int> allGrassTiles;
 
+    Dictionary<int, AnimatedTile> seafoamIndex;
+
     Dictionary<int, GameObject> objectIndex;
     List<int> trees;
     List<int> cacti;
     List<int> rocks;
 
     Dictionary<int, Grid> structIndex;
+
+    Dictionary<int, Tuple<AnimationClip, AnimatorController>> waterEventIndex;
 
     public Tile grass;
     public Tile grass2;
@@ -56,6 +62,21 @@ public class TileIndex : MonoBehaviour
     public Tile water;
     public Tile terrainTile;
 
+    public AnimatedTile sfLeft;
+    public AnimatedTile sfRight;
+    public AnimatedTile sfTop;
+    public AnimatedTile sfBottom;
+    public AnimatedTile sfTopLeft;
+    public AnimatedTile sfTopRight;
+    public AnimatedTile sfBottomLeft;
+    public AnimatedTile sfBottomRight;
+    public AnimatedTile sfOpenDown;
+    public AnimatedTile sfOpenUp;
+    public AnimatedTile sfOpenRight;
+    public AnimatedTile sfOpenLeft;
+    public AnimatedTile sfLeftAndRight;
+    public AnimatedTile sfUpAndDown;
+
     public GameObject tree1;
     public GameObject tree2;
     public GameObject tree3;
@@ -74,6 +95,15 @@ public class TileIndex : MonoBehaviour
     public Grid struct1;
     public Grid struct2;
     public Grid struct3;
+
+    // water event
+    public AnimationClip bubble1Clip;
+    public AnimationClip bubble2Clip;
+    public AnimationClip ripple1Clip;
+
+    public AnimatorController bubble1Controller;
+    public AnimatorController bubble2Controller;
+    public AnimatorController ripple1Controller;
 
     void Awake()
     {
@@ -116,6 +146,23 @@ public class TileIndex : MonoBehaviour
             { 35, terrainTile },
         };
 
+        seafoamIndex = new Dictionary<int, AnimatedTile>{
+            { 0, sfLeft },
+            { 1, sfRight },
+            { 2, sfTop },
+            { 3, sfBottom },
+            { 4, sfTopLeft },
+            { 5, sfTopRight },
+            { 6, sfBottomLeft },
+            { 7, sfBottomRight },
+            { 8, sfOpenDown },
+            { 9, sfOpenUp },
+            { 10, sfOpenRight },
+            { 11, sfOpenLeft },
+            { 12, sfLeftAndRight },
+            { 13, sfUpAndDown },
+        };
+
         objectIndex = new Dictionary<int, GameObject>{
             { 0, tree1 },
             { 1, tree2 },
@@ -143,6 +190,14 @@ public class TileIndex : MonoBehaviour
             {3, new Structure(1, 4, 2, 4)},
             {1, new Structure(2, 3, 2, 1)}
         };*/
+
+        waterEventIndex = new Dictionary<int, Tuple<AnimationClip, AnimatorController>>
+        {
+            { 0, new Tuple<AnimationClip, AnimatorController>(bubble1Clip, bubble1Controller) },
+            { 1, new Tuple<AnimationClip, AnimatorController>(bubble2Clip, bubble2Controller) },
+            { 2, new Tuple<AnimationClip, AnimatorController>(ripple1Clip, ripple1Controller) },
+
+        };
 
         grassTiles = new List<int>{
             0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
@@ -190,6 +245,11 @@ public class TileIndex : MonoBehaviour
         return tileIndex[index];
     }
 
+    public AnimatedTile GetSeafoam(int index)
+    {
+        return seafoamIndex[index];
+    }
+
     public List<int> GetAllTrees()
     {
         return trees;
@@ -220,5 +280,13 @@ public class TileIndex : MonoBehaviour
         return structIndex[index];
     }
 
+    public Tuple<AnimationClip, AnimatorController> GetWaterEvent(int index)
+    {
+        return waterEventIndex[index];
+    }
 
+    public int GetWaterEventCount()
+    {
+        return waterEventIndex.Keys.Count;
+    }
 }
