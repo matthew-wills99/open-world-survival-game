@@ -11,6 +11,11 @@ TagManager:
   - 
   - Water
   - UI
+  - underground
+  - ground
+  - aboveground
+  - water events
+  - structures
   - 
   - 
   - 
@@ -20,14 +25,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Layer 1
+  - Layer 2
+  - Layer 3
   - 
   - 
   - 
@@ -41,15 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Ground
-    uniqueID: 3291254097
+  - name: terrain
+    uniqueID: 4250941897
     locked: 0
-  - name: Structures
-    uniqueID: 999642173
+  - name: water
+    uniqueID: 2425651459
     locked: 0
-  - name: Mobs
-    uniqueID: 3618956813
+  - name: water events
+    uniqueID: 2185564841
     locked: 0
-  - name: Player
-    uniqueID: 3378338833
+  - name: environment objects
+    uniqueID: 2960932015
+    locked: 0
+  - name: structures
+    uniqueID: 3945349825
     locked: 0

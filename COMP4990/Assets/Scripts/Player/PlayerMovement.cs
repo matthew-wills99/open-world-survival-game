@@ -16,7 +16,7 @@ public class PlayerMovement : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!IsOwner) return;
+        //if(!IsOwner) return; 
         ProcessInput();
         Animate();
         

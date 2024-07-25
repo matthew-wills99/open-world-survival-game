@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController: MonoBehaviour
 {
     //What we want to follow?
+    public int zOffset = -13;
     public Transform target;
     public Vector3 offset;
     void FixedUpdate() {
@@ -17,6 +18,6 @@ public class CameraController: MonoBehaviour
 
     public Vector3 GetOffset()
     {
-        return new Vector3(offset.x, offset.y, 0);
+        return new Vector3(offset.x, offset.y, zOffset);
     }
 }

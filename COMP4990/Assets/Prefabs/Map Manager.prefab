@@ -1,0 +1,156 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3849762307603932400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3403917614561904061}
+  - component: {fileID: 8776316112366521068}
+  - component: {fileID: 8965660370064090327}
+  m_Layer: 0
+  m_Name: Map Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3403917614561904061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3849762307603932400}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8776316112366521068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3849762307603932400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d9b18030e915347bed1d46cf3a92d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generateWorldOnStartup: 1
+  saveWorldScript: {fileID: 0}
+  tileIndex: {fileID: 8965660370064090327}
+  waterController: {fileID: 0}
+  underGroundTilemap: {fileID: 0}
+  groundTilemap: {fileID: 0}
+  waterTilemap: {fileID: 0}
+  seed: 154
+  mapSize: 0
+  smoothingPasses: 7
+  neighbourRequirement: 4
+  randomFillPercent: 52
+  randomFillPercentCentre: 65
+  biomeChance: 5
+  plainsTreeChance: 2
+  plainsRockChance: 1
+  desertCactusChance: 10
+  forestTreeChance: 20
+  distanceBetweenBiomes: 60
+  biomeSizeSmall: 16
+  biomeSizeMedium: 32
+  biomeSizeLarge: 64
+  maxBiomeSize: 32
+  distanceBetweenStructures: 100
+  chunkSize: 16
+  mapSizeInChunks: 8
+--- !u!114 &8965660370064090327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3849762307603932400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce72bf64654c37408722bf876061939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grass: {fileID: 11400000, guid: 432ccbaf3be62ba44b8cb89b4776bfc6, type: 2}
+  grass2: {fileID: 11400000, guid: df3d1b77044c4a64b85785e7ed5c37e8, type: 2}
+  grass3: {fileID: 11400000, guid: 2da3ac28fec66884385649d3ca85fbd9, type: 2}
+  grass4: {fileID: 11400000, guid: 8440cc2f670b97546b64c180cf9e7001, type: 2}
+  grass5: {fileID: 11400000, guid: afdbe2e62b93f4543a0bd9edbfa37e98, type: 2}
+  grass6: {fileID: 11400000, guid: 504d84fd3f924c0438324f93245dcd06, type: 2}
+  grass7: {fileID: 11400000, guid: 6f24c1b01c3a11942b067b2606cb3e00, type: 2}
+  grass8: {fileID: 11400000, guid: 7e74270a11bfd12419ff959dc7da1cde, type: 2}
+  grass9: {fileID: 11400000, guid: 00c23300669946d48a7e81bb50125592, type: 2}
+  grass10: {fileID: 11400000, guid: 451df997497eabb48aec766e6bb5fc5f, type: 2}
+  grass11: {fileID: 11400000, guid: 04665577c3f92ff42848ac0c2e0a1a75, type: 2}
+  grass12: {fileID: 11400000, guid: 4fbdd1975a9706f45bc0d8b2a34cab39, type: 2}
+  grass13: {fileID: 11400000, guid: bd78a05577f19b84ab0c0470a4385bf5, type: 2}
+  grass14: {fileID: 11400000, guid: 2cbb30821076acb4294ab9a20e92583a, type: 2}
+  grass15: {fileID: 11400000, guid: 7f1bc78602751914d8ab7f81ee4db985, type: 2}
+  grass16: {fileID: 11400000, guid: 85ba4d20b7c90a4449f58d34cdf36ec3, type: 2}
+  grass17: {fileID: 11400000, guid: 62a5cf873c2088444b996a1120821f54, type: 2}
+  grassWithFlowers: {fileID: 11400000, guid: e87a7c967a240944d81d7491351babb5, type: 2}
+  grassWithFlowers2: {fileID: 11400000, guid: c48eec589d82b3a4da58831da322e85b, type: 2}
+  grassWithFlowers3: {fileID: 11400000, guid: 0edf8cf77db7ef345aac3558069689b2, type: 2}
+  grassWithFlowers4: {fileID: 11400000, guid: 46ebe8b53caf0e344ac87170ddc0a84b, type: 2}
+  grassWithFlowers5: {fileID: 11400000, guid: 2ec2b17d715a3c2429ac9f2d4f7ab11a, type: 2}
+  grassWithFlowers6: {fileID: 11400000, guid: ae561ca67376e224282395165f4535c3, type: 2}
+  grassWithFlowers7: {fileID: 11400000, guid: 1a6adfead18143d41a8eb5df3eb87153, type: 2}
+  grassWithFlowers8: {fileID: 11400000, guid: 3378de88719027f40911ffba1a7d1456, type: 2}
+  grassWithFlowers9: {fileID: 11400000, guid: 4404b9935ec26a44f8934e5b47770290, type: 2}
+  grassWithFlowers10: {fileID: 11400000, guid: 7d3ff1a98d7d76942abdab43be592246, type: 2}
+  grassWithFlowers11: {fileID: 11400000, guid: 8380efbe6149e6f429bceff1b308649a, type: 2}
+  grassWithFlowers12: {fileID: 11400000, guid: 868d6d77c60bc6d4aacacafa0447e917, type: 2}
+  grassWithFlowers13: {fileID: 11400000, guid: 91a06bac831ba3444a651a6e8ea9b195, type: 2}
+  grassWithFlowers14: {fileID: 11400000, guid: ef2ed3c2289b4864397bc50eeb377169, type: 2}
+  grassWithFlowers15: {fileID: 11400000, guid: ecd747bef784ea74bbc92ed805b6a5b3, type: 2}
+  stone: {fileID: 11400000, guid: 009ff3373d29c894d83a867e67b89da9, type: 2}
+  sand: {fileID: 11400000, guid: 5de73118023c9904f930f1947b8277ff, type: 2}
+  water: {fileID: 11400000, guid: d6a60b6420c95864bb4ee2c8a30e44c2, type: 2}
+  terrainTile: {fileID: 11400000, guid: 6f33b3e5f80362645a9df811c612a214, type: 2}
+  sfLeft: {fileID: 11400000, guid: b6cfc0cf1a2afb741b1a0a3f73bf4b3c, type: 2}
+  sfRight: {fileID: 11400000, guid: 12988d9d71d3e884687e97b1908b9047, type: 2}
+  sfTop: {fileID: 11400000, guid: 814aff94ff919d1438d66b4e8390470d, type: 2}
+  sfBottom: {fileID: 11400000, guid: 80219d7c043a9074bacfee03d1f56dbc, type: 2}
+  sfTopLeft: {fileID: 11400000, guid: 7cd6cd23194341c4798891c85708fb7b, type: 2}
+  sfTopRight: {fileID: 11400000, guid: 3bfb8c9ced903e44fa39768c3986a367, type: 2}
+  sfBottomLeft: {fileID: 11400000, guid: 4edcc2b96f26ba34cace00456931f1b9, type: 2}
+  sfBottomRight: {fileID: 11400000, guid: 4f50eb601c65137489445b78296602b0, type: 2}
+  sfOpenDown: {fileID: 11400000, guid: 36b324fcc5d838249907c7868404a072, type: 2}
+  sfOpenUp: {fileID: 11400000, guid: a0490f1471842874795f202a190d8bc5, type: 2}
+  sfOpenRight: {fileID: 11400000, guid: ea86f25e4e1134a4d9bcad0ed5bdbe41, type: 2}
+  sfOpenLeft: {fileID: 11400000, guid: 7cc8474391a587f43b2f4395336e0272, type: 2}
+  sfLeftAndRight: {fileID: 11400000, guid: fc810b8b9c23532419f8f6ebde5647d4, type: 2}
+  sfUpAndDown: {fileID: 11400000, guid: 3b9a552a0ea9f1949870bbb2844e9e9c, type: 2}
+  tree1: {fileID: 2055102311959635369, guid: f681a54372d73d74785b9c9d4ac477e8, type: 3}
+  tree2: {fileID: 2055102311959635369, guid: 7277dd75e907b27448ec1de08238d0bb, type: 3}
+  tree3: {fileID: 2055102311959635369, guid: 9e7797bb065982d4497d030f065d6e2f, type: 3}
+  cactus1: {fileID: 2577585254963922480, guid: ac719b1d0f58391469cc19fd947ca44c, type: 3}
+  cactus2: {fileID: 2577585254963922480, guid: 63ee4b6a40c55fd429759b807832ded1, type: 3}
+  cactus3: {fileID: 2577585254963922480, guid: f3cc2373308c11848977b28d974a9de0, type: 3}
+  bigRock: {fileID: 7947911505737750455, guid: f826bf48ad5bedc4ab6cabe6c4e498e8, type: 3}
+  rock1: {fileID: 7947911505737750455, guid: 713b33322b495794e92184973ece3034, type: 3}
+  rock2: {fileID: 7947911505737750455, guid: ba7fef4c928d8c4459466bf93171730e, type: 3}
+  rock3: {fileID: 7947911505737750455, guid: 4c4e80b50a323dc478f7c84e0b8fdad2, type: 3}
+  rock4: {fileID: 7947911505737750455, guid: 139b2d65b3145ad45bc13b6d111199de, type: 3}
+  rock5: {fileID: 7947911505737750455, guid: d5762f992ea3bd544bb8287f66e8f844, type: 3}
+  struct1: {fileID: 9050686457452802909, guid: a6e1a8f8024f47d458ef706552263586, type: 3}
+  struct2: {fileID: 1087004932862685426, guid: 0a6165c55f678d84d924d29c97063794, type: 3}
+  struct3: {fileID: 8652399170730423931, guid: 2f66919916a915d4caadca14309dca44, type: 3}
+  bubble1Clip: {fileID: 7400000, guid: e5c611a5b584db546b33f4ca882321b5, type: 2}
+  bubble2Clip: {fileID: 7400000, guid: fd3d30efcd9eb404d9d50f28721f0c5a, type: 2}
+  ripple1Clip: {fileID: 7400000, guid: 6554cb8ac9a6b744b937c53f755b140d, type: 2}
+  bubble1Controller: {fileID: 9100000, guid: 11336536251975b41b02e41a654a7423, type: 2}
+  bubble2Controller: {fileID: 9100000, guid: 5e338d3fb3ad0054b8317c4429c7f4f0, type: 2}
+  ripple1Controller: {fileID: 9100000, guid: dc5a81e350a9c414faafdf6d86e66dba, type: 2}
