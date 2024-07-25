@@ -42,6 +42,8 @@ public class MapManager : MonoBehaviour
     const int forestTile = 32;
     const int desertTile = 33;
 
+    const int tileSize = 32;
+
     // Map seed
     public int seed = 100;
     System.Random random;
@@ -84,8 +86,6 @@ public class MapManager : MonoBehaviour
     public int maxBiomeSize = 32;
 
     public int distanceBetweenStructures = 64;
-
-    //int tileSize = 32;
 
     public int chunkSize = 16;
     public int mapSizeInChunks = 8;
@@ -775,7 +775,8 @@ public class MapManager : MonoBehaviour
                                 {
                                     Tree tempTree = new Tree(tileIndex.GetAllTrees()[random.Next(tileIndex.GetAllTrees().Count)], cx, cy, tx, ty);
                                     treeObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempTree);
-                                    Instantiate(tileIndex.GetObject(tempTree.Index), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, treeEmpty.transform);
+                                    var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
+                                    Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(worldPos.x + 0.4f, worldPos.y + 0.4f, worldPos.z), quaternion.identity, treeEmpty.transform);
                                 }
                             }
                             // desert biome needs cactus
@@ -795,7 +796,8 @@ public class MapManager : MonoBehaviour
                                 {
                                     Tree tempTree = new Tree(tileIndex.GetAllTrees()[random.Next(tileIndex.GetAllTrees().Count)], cx, cy, tx, ty);
                                     treeObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempTree);
-                                    Instantiate(tileIndex.GetObject(tempTree.Index), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, treeEmpty.transform);
+                                    var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
+                                    Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(worldPos.x + 0.4f, worldPos.y + 0.4f, worldPos.z), quaternion.identity, treeEmpty.transform);
                                 }
                             }
                         }

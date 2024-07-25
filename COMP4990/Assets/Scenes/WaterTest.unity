@@ -1009,6 +1009,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff90ab9e6cce8542abf1201f939b254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deepWaterSmoothingPasses: 2
+  waterThreshold: 4
   tileIndex: {fileID: 851897713}
   bubbles1Clip: {fileID: 7400000, guid: e5c611a5b584db546b33f4ca882321b5, type: 2}
   bubbles2Clip: {fileID: 7400000, guid: fd3d30efcd9eb404d9d50f28721f0c5a, type: 2}
@@ -1230,7 +1232,43 @@ PrefabInstance:
         type: 3}
       propertyPath: deepWater
       value: 
-      objectReference: {fileID: 11400000, guid: d6a60b6420c95864bb4ee2c8a30e44c2,
+      objectReference: {fileID: 11400000, guid: 1690cc7f2efcf3f4bbcf68fff660010e,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcUpLeft
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b3ef5899fcf6c6478c25f88e94eb021,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcUpRight
+      value: 
+      objectReference: {fileID: 11400000, guid: 8489522eae9096a489c21ddcddca392a,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcDownLeft
+      value: 
+      objectReference: {fileID: 11400000, guid: 180a1d119d09dd04688cabc8255efb78,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcDownRight
+      value: 
+      objectReference: {fileID: 11400000, guid: 79f27d7ce8af91f4294bccc816072992,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcAllCorners
+      value: 
+      objectReference: {fileID: 11400000, guid: a9a60abb59238b44a99c6da0a85c5aae,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcUpLeftUpRight
+      value: 
+      objectReference: {fileID: 11400000, guid: fd358ab2ec82fd24180e3902e95571ca,
         type: 2}
     - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
@@ -1240,9 +1278,141 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
+      propertyPath: sfcUpLeftDownLeft
+      value: 
+      objectReference: {fileID: 11400000, guid: dc1c14f47e3088e4ea851e368717643a,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcUpLeftDownRight
+      value: 
+      objectReference: {fileID: 11400000, guid: a47c35a818218434c8e3f2598de36f78,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcUpRightDownLeft
+      value: 
+      objectReference: {fileID: 11400000, guid: ff6c722b1b165a041927a79fa5fcb38b,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcUpRightDownRight
+      value: 
+      objectReference: {fileID: 11400000, guid: 442414f1356fe1b49a27d49d21224cbd,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwDownLeftWaterUp
+      value: 
+      objectReference: {fileID: 11400000, guid: d6c6c4c699308004fb897d3acfed4ebc,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwUpLeftWaterDown
+      value: 
+      objectReference: {fileID: 11400000, guid: 0134a14ced1984042b68a4e9d3b6d858,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcDownLeftDownRight
+      value: 
+      objectReference: {fileID: 11400000, guid: c2e9ad07a63324c48a22487a13465d82,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwDownRightWaterUp
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f464bce7d645c848b39223595647ce7,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwUpLeftWaterRight
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c9f28495613a174695b31c6db8428ab,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwUpRightWaterDown
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a23af0ca6357de4784a819c1b8c606b,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwUpRightWaterLeft
+      value: 
+      objectReference: {fileID: 11400000, guid: ebb93129457240e41acd8ae3ca1fe495,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
       propertyPath: deepWaterDarkenFactor
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwDownLeftWaterRight
+      value: 
+      objectReference: {fileID: 11400000, guid: b257689148283204cb2fadb157666b8b,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwDownRightWaterLeft
+      value: 
+      objectReference: {fileID: 11400000, guid: 3d6530f42df655d499dc4f9d8aa974b6,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcUpLeftUpRightDownLeft
+      value: 
+      objectReference: {fileID: 11400000, guid: fe448ede74c6ce34f9e91cc1147bfc0e,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwDownLeftWaterRightUp
+      value: 
+      objectReference: {fileID: 11400000, guid: 548222b6b192b4a4abb481a1d4a9af89,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwDownRightWaterLeftUp
+      value: 
+      objectReference: {fileID: 11400000, guid: 88106b0b9b118fa4e8f3f703740fec20,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwUpLeftWaterRightDown
+      value: 
+      objectReference: {fileID: 11400000, guid: c6e1f32d0a237bf4db0268332d4371fb,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwUpRightWaterLeftDown
+      value: 
+      objectReference: {fileID: 11400000, guid: cea2189a4f4ae944d8718f616908878e,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcUpLeftUpRightDownRight
+      value: 
+      objectReference: {fileID: 11400000, guid: 74321cf21635aaf4fb47f2adc6b9a033,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcwUpRightWaterRightDown
+      value: 
+      objectReference: {fileID: 11400000, guid: c6e1f32d0a237bf4db0268332d4371fb,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcUpLeftDownLeftDownRight
+      value: 
+      objectReference: {fileID: 11400000, guid: b2a084e82ec8b7b44a1077096784d82a,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: sfcUpRightDownLeftDownRight
+      value: 
+      objectReference: {fileID: 11400000, guid: 7a6649dceb011d546b568b5e513fd2f0,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

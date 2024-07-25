@@ -8,13 +8,18 @@ using static Utils;
 
 public class WaterController : MonoBehaviour
 {
+    public int deepWaterSmoothingPasses = 1;
+    public int waterThreshold = 4;
+
+    int mapSizeInChunks;
+
     public TileIndex tileIndex;
     bool gameLoop = false;
     List<string> waterCoords;
     List<Tuple<int, int>> waterEventTiles;
     Dictionary<string, Chunk> waterChunks;
 
-    int mapSizeInChunks;
+    int chunkSize;
 
     const int waterTile = 34;
     const int deepWaterTile = 36;
@@ -35,13 +40,22 @@ public class WaterController : MonoBehaviour
     {
         this.mapSizeInChunks = mapSizeInChunks;
         this.waterChunks = waterChunks;
+        this.chunkSize = chunkSize;
         SetSeafoam(waterTilemap, chunkSize);
 
         SetDepth(waterTilemap, chunkSize, 2);
 
         // TODO: make this work it is horrible
-        //SmoothDeepWater(waterTilemap, chunkSize);
+        for(int i = 0; i < deepWaterSmoothingPasses; i++)
+        {
+            SmoothDeepWater(waterTilemap, chunkSize);
+        }
         gameLoop = true;
+
+        //CleanUpEdges(waterTilemap, chunkSize);
+
+        Debug.Log($"yea: {HasTile(waterTilemap, ChunkToWorldPos(mapSizeInChunks/2, mapSizeInChunks/2, 16, 16, chunkSize))}");
+        Debug.Log($"yea: {waterTilemap.GetTile(ChunkToWorldPos(0,0, 0,0, chunkSize))}");
     }
 
     /// <summary>
@@ -56,14 +70,22 @@ public class WaterController : MonoBehaviour
 
         waterCoords = new List<string>();
         waterEventTiles = new List<Tuple<int, int>>();
+        int border = mapSizeInChunks / 2;
         foreach(Chunk chunk in waterChunks.Values)
         {
+            int cx = chunk.X;
+            int cy = chunk.Y;
             for(int tx = 0; tx < chunkSize; tx++)
             {
                 for(int ty = 0; ty < chunkSize; ty++)
                 {
                     if(chunk.ChunkTiles[tx, ty] != -1)
                     {
+
+                        if(tx == 0 || tx == chunkSize - 1 || ty == 0 || ty == chunkSize - 1)
+                        {
+                            Debug.Log($"Placing seafoam: C({cx}, {cy}) : T({tx}, {ty})");
+                        }
                         Vector3Int pos = ChunkToWorldPos(chunk.X, chunk.Y, tx, ty, chunkSize);
                         int sfIndex = GetSeafoamIndex(waterTilemap, pos);
                         if(sfIndex != -1)
@@ -89,7 +111,7 @@ public class WaterController : MonoBehaviour
     /// <param name="waterChunks">List of chunks containing water</param>
     /// <param name="chunkSize">Length and width of a chunk in tiles</param>
     /// <param name="distanceFromShore">Distance in tiles from shore required for deep water</param>
-    void SetDepth(Tilemap waterTilemap, int chunkSize, int distanceFromShore=3)
+    void SetDepth(Tilemap waterTilemap, int chunkSize, int distanceFromShore=2)
     {
         foreach(Chunk chunk in waterChunks.Values)
         {
@@ -101,6 +123,7 @@ public class WaterController : MonoBehaviour
                     {
                         if(IsDeepWater(chunk.X, chunk.Y, tx, ty, chunkSize, distanceFromShore))
                         {
+                            waterChunks[GetChunkKey(chunk.X, chunk.Y)].ChunkTiles[tx, ty] = deepWaterTile;
                             waterTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, tx, ty, chunkSize), tileIndex.GetTile(deepWaterTile));
                         }
                     }
@@ -153,14 +176,17 @@ public class WaterController : MonoBehaviour
                     }
                     if(waterChunks.ContainsKey(GetChunkKey(ncx, ncy)))
                     {
-                        if(waterChunks[GetChunkKey(ncx, ncy)].ChunkTiles[ntx, nty] != waterTile || !waterCoords.Contains(GetCoordinateKey(ncx, ncy, ntx, nty)))
+                        if(waterChunks[GetChunkKey(ncx, ncy)].ChunkTiles[ntx, nty] != deepWaterTile)
                         {
-                            return false;
+                            if(waterChunks[GetChunkKey(ncx, ncy)].ChunkTiles[ntx, nty] != waterTile)
+                            {
+                                return false;
+                            }
                         }
                     }
                     else
                     {
-                        return false;
+                        //return false;
                     }
                 }
             }
@@ -178,17 +204,45 @@ public class WaterController : MonoBehaviour
             {
                 for(int y = 0; y < chunkSize; y++)
                 {
-                    int neighbourWaterTiles = GetSurroundingWater(cx, cy, x, y, chunkSize);
+                    if(chunk.ChunkTiles[x, y] == deepWaterTile)
+                    {
+                        int neighbourWaterTiles = GetSurroundingWater(cx, cy, x, y, chunkSize);
 
-                    if(neighbourWaterTiles > 4)
-                    {
-                        waterChunks[GetChunkKey(cx, cy)].ChunkTiles[x, y] = waterTile;
-                        waterTilemap.SetTile(ChunkToWorldPos(cx, cy, x, y, chunkSize), tileIndex.GetTile(waterTile));
+                        if(neighbourWaterTiles > waterThreshold)
+                        {
+                            waterChunks[GetChunkKey(cx, cy)].ChunkTiles[x, y] = waterTile;
+                            waterTilemap.SetTile(ChunkToWorldPos(cx, cy, x, y, chunkSize), tileIndex.GetTile(waterTile));
+                        }
                     }
-                    else if(neighbourWaterTiles < 4)
+                }
+            }
+        }
+    }
+
+    void CleanUpEdges(Tilemap waterTilemap, int chunkSize)
+    {
+        int border = mapSizeInChunks / 2;
+        foreach(Chunk chunk in waterChunks.Values)
+        {
+            int cx = chunk.X;
+            int cy = chunk.Y;
+            // if the chunk is a border chunk
+            if(cx == -border || cx == border-1 || cy == -border || cy == border-1)
+            {
+                for(int tx = 0; tx < chunkSize; tx++)
+                {
+                    for(int ty = 0; ty < chunkSize; ty++)
                     {
-                        waterChunks[GetChunkKey(cx, cy)].ChunkTiles[x, y] = deepWaterTile;
-                        waterTilemap.SetTile(ChunkToWorldPos(cx, cy, x, y, chunkSize), tileIndex.GetTile(deepWaterTile));
+                        // if the tile is a border tile
+                        if(cx == -border && tx == 0 || cx == border-1 && tx == chunkSize-1 || cy == -border && ty == 0 || cy == border-1 && ty == chunkSize-1)
+                        {
+                            Vector3Int pos = ChunkToWorldPos(chunk.X, chunk.Y, tx, ty, chunkSize);
+                            int sfIndex = GetSeafoamIndex(waterTilemap, pos);
+                            if(sfIndex != -1)
+                            {
+                                waterTilemap.SetTile(pos, tileIndex.GetSeafoam(sfIndex));
+                            }
+                        }
                     }
                 }
             }
@@ -197,7 +251,7 @@ public class WaterController : MonoBehaviour
 
     int GetSurroundingWater(int cx, int cy, int tx, int ty, int chunkSize)
     {
-        int tileCount = 0;
+        int waterCount = 0;
         int ncx;
         int ncy;
         int ntx;
@@ -240,15 +294,15 @@ public class WaterController : MonoBehaviour
                     }
                     if(waterChunks.ContainsKey(GetChunkKey(ncx, ncy)))
                     {
-                        if(waterChunks[GetChunkKey(ncx, ncy)].ChunkTiles[ntx, nty] == waterTile)
+                        if(waterChunks[GetChunkKey(ncx, ncy)].ChunkTiles[ntx, nty] != deepWaterTile)
                         {
-                            tileCount++;
+                            waterCount++;
                         }
                     }
                 }
             }
         }
-        return tileCount;
+        return waterCount;
     }
 
     float currentTime = 0f;
@@ -312,10 +366,89 @@ public class WaterController : MonoBehaviour
 
     private int GetSeafoamIndex(ITilemap tilemap, Vector3Int position)
     {
+        (int cx, int cy, int tx, int ty) yea = WorldToChunkPos(position.x, position.y, chunkSize);
+        int cx = yea.cx;
+        int cy = yea.cy;
+        int tx = yea.tx;
+        int ty = yea.ty;
+
+        int border = mapSizeInChunks / 2;
+
         bool waterLeft = HasTile(tilemap, position + Vector3Int.left);
         bool waterRight = HasTile(tilemap, position + Vector3Int.right);
         bool waterUp = HasTile(tilemap, position + Vector3Int.up);
         bool waterDown = HasTile(tilemap, position + Vector3Int.down);
+ 
+        bool waterUpLeft = HasTile(tilemap, position + Vector3Int.up + Vector3Int.left);
+        bool waterUpRight = HasTile(tilemap, position + Vector3Int.up + Vector3Int.right);
+        bool waterDownLeft = HasTile(tilemap, position + Vector3Int.down + Vector3Int.left);
+        bool waterDownRight = HasTile(tilemap, position + Vector3Int.down + Vector3Int.right);
+
+        bool upLeftCorner = !waterUpLeft && waterLeft && waterUp;
+        bool upRightCorner = !waterUpRight && waterRight && waterUp;
+        bool downLeftCorner = !waterDownLeft && waterLeft && waterDown;
+        bool downRightCorner = !waterDownRight && waterRight && waterDown;
+
+        //Debug.Log($"{cx}, {cy}");
+
+        // left border
+        if(cx == -border && tx == 0)
+        {
+            if(!waterRight)
+            {
+                Debug.Log("13");
+                return 1;
+            }
+            return -1;
+        }
+        // right border
+        else if(cx == border-1 && tx == chunkSize-1)
+        {
+            if(!waterLeft)
+            {
+                Debug.Log("13");
+                return 0;
+            }
+            return -1;
+        }
+        // bottom border
+        else if(cy == -border && ty == 0)
+        {
+            if(!waterUp)
+            {
+                Debug.Log("13");
+                return 2;
+            }
+            return -1;
+        }
+        // top border
+        else if(cy == border-1 && ty == chunkSize-1)
+        {
+            if(!waterDown)
+            {
+                Debug.Log("13");
+                return 3;
+            }
+            return -1;
+        }
+
+        // corners of block and corners of sfc:
+        if (upLeftCorner && !waterRight && !waterDown) return 29;
+        if (upLeftCorner && !waterRight) return 30;
+        if (upLeftCorner && !waterDown) return 31;
+
+        if (upRightCorner && !waterLeft && !waterDown) return 32;
+        if (upRightCorner && !waterLeft) return 33;
+        if (upRightCorner && !waterDown) return 34;
+
+        if (downLeftCorner && !waterRight && !waterUp) return 35;
+        if (downLeftCorner && !waterRight) return 36;
+        if (downLeftCorner && !waterUp) return 37;
+
+        if (downRightCorner && !waterLeft && !waterUp) return 38;
+        if (downRightCorner && !waterLeft) return 39;
+        if (downRightCorner && !waterUp) return 40;
+        // not done yet
 
         if (!waterLeft && waterRight && waterUp && waterDown) return 0; // Seafoam on left edge
         if (!waterRight && waterLeft && waterUp && waterDown) return 1; // Seafoam on right edge
@@ -338,6 +471,24 @@ public class WaterController : MonoBehaviour
         if (!waterLeft && !waterRight && waterUp && waterDown) return 12; // seafoam left and right
         if (waterLeft && waterRight && !waterUp && !waterDown) return 13; // seafoam up and down
 
+        // corners of sf
+
+        if (!upLeftCorner && !upRightCorner && !downLeftCorner && downRightCorner) return 14; /* Only downRightCorner is true */ 
+        if (!upLeftCorner && !upRightCorner && downLeftCorner && !downRightCorner) return 15; /* Only downLeftCorner is true */ 
+        if (!upLeftCorner && !upRightCorner && downLeftCorner && downRightCorner) return 16; /* Only downLeftCorner and downRightCorner are true */ 
+        if (!upLeftCorner && upRightCorner && !downLeftCorner && !downRightCorner) return 17; /* Only upRightCorner is true */ 
+        if (!upLeftCorner && upRightCorner && !downLeftCorner && downRightCorner) return 18; /* Only upRightCorner and downRightCorner are true */ 
+        if (!upLeftCorner && upRightCorner && downLeftCorner && !downRightCorner) return 19; /* Only upRightCorner and downLeftCorner are true */ 
+        if (!upLeftCorner && upRightCorner && downLeftCorner && downRightCorner) return 20; /* Only upRightCorner, downLeftCorner, and downRightCorner are true */ 
+        if (upLeftCorner && !upRightCorner && !downLeftCorner && !downRightCorner) return 21; /* Only upLeftCorner is true */ 
+        if (upLeftCorner && !upRightCorner && !downLeftCorner && downRightCorner) return 22; /* Only upLeftCorner and downRightCorner are true */ 
+        if (upLeftCorner && !upRightCorner && downLeftCorner && !downRightCorner) return 23; /* Only upLeftCorner and downLeftCorner are true */ 
+        if (upLeftCorner && !upRightCorner && downLeftCorner && downRightCorner) return 24; /* Only upLeftCorner, downLeftCorner, and downRightCorner are true */ 
+        if (upLeftCorner && upRightCorner && !downLeftCorner && !downRightCorner) return 25;/* Only upLeftCorner and upRightCorner are true */ 
+        if (upLeftCorner && upRightCorner && !downLeftCorner && downRightCorner) return 26; /* Only upLeftCorner, upRightCorner, and downRightCorner are true */ 
+        if (upLeftCorner && upRightCorner && downLeftCorner && !downRightCorner) return 27; /* Only upLeftCorner, upRightCorner, and downLeftCorner are true */ 
+        if (upLeftCorner && upRightCorner && downLeftCorner && downRightCorner) return 28; /* All corners are true */ 
+
         return -1; // No seafoam needed
     }
 
@@ -349,5 +500,27 @@ public class WaterController : MonoBehaviour
     private bool HasTile(ITilemap tilemap, Vector3Int position)
     {
         return tilemap.GetTile(position) != null;
+    }
+
+    private bool IsWorldPositionOutOfBounds(int cx, int cy, int tx, int ty, int chunkSize)
+    {
+        // Calculate the half size of the map in chunks
+        int halfMapSizeInChunks = mapSizeInChunks / 2;
+
+        // Check if chunk coordinates are out of bounds
+        if (cx < -halfMapSizeInChunks || cx > halfMapSizeInChunks ||
+            cy < -halfMapSizeInChunks || cy > halfMapSizeInChunks)
+        {
+            return true; // Chunk coordinates are out of bounds
+        }
+
+        // Check if tile coordinates are out of bounds
+        if (tx < 0 || tx >= chunkSize || ty < 0 || ty >= chunkSize)
+        {
+            return true; // Tile coordinates are out of bounds
+        }
+
+        // Both chunk and tile coordinates are within bounds
+        return false;
     }
 }

@@ -79,6 +79,36 @@ public class TileIndex : MonoBehaviour
     public AnimatedTile sfLeftAndRight;
     public AnimatedTile sfUpAndDown;
 
+    public AnimatedTile sfcDownRight;
+    public AnimatedTile sfcDownLeft;
+    public AnimatedTile sfcDownLeftDownRight;
+    public AnimatedTile sfcUpRight;
+    public AnimatedTile sfcUpRightDownRight;
+    public AnimatedTile sfcUpRightDownLeft;
+    public AnimatedTile sfcUpRightDownLeftDownRight;
+    public AnimatedTile sfcUpLeft;
+    public AnimatedTile sfcUpLeftDownRight;
+    public AnimatedTile sfcUpLeftDownLeft;
+    public AnimatedTile sfcUpLeftDownLeftDownRight;
+    public AnimatedTile sfcUpLeftUpRight;
+    public AnimatedTile sfcUpLeftUpRightDownRight;
+    public AnimatedTile sfcUpLeftUpRightDownLeft;
+    public AnimatedTile sfcAllCorners;
+
+    public AnimatedTile sfcwUpLeftWaterRightDown;
+    public AnimatedTile sfcwUpLeftWaterRight;
+    public AnimatedTile sfcwUpLeftWaterDown;
+    public AnimatedTile sfcwUpRightWaterLeftDown;
+    public AnimatedTile sfcwUpRightWaterLeft;
+    public AnimatedTile sfcwUpRightWaterDown;
+    public AnimatedTile sfcwDownLeftWaterRightUp;
+    public AnimatedTile sfcwDownLeftWaterRight;
+    public AnimatedTile sfcwDownLeftWaterUp;
+    public AnimatedTile sfcwDownRightWaterLeftUp;
+    public AnimatedTile sfcwDownRightWaterLeft;
+    public AnimatedTile sfcwDownRightWaterUp;
+
+
     public GameObject tree1;
     public GameObject tree2;
     public GameObject tree3;
@@ -165,6 +195,35 @@ public class TileIndex : MonoBehaviour
             { 11, sfOpenLeft },
             { 12, sfLeftAndRight },
             { 13, sfUpAndDown },
+
+            { 14, sfcDownRight },
+            { 15, sfcDownLeft },
+            { 16, sfcDownLeftDownRight },
+            { 17, sfcUpRight },
+            { 18, sfcUpRightDownRight },
+            { 19, sfcUpRightDownLeft },
+            { 20, sfcUpRightDownLeftDownRight },
+            { 21, sfcUpLeft },
+            { 22, sfcUpLeftDownRight },
+            { 23, sfcUpLeftDownLeft },
+            { 24, sfcUpLeftDownLeftDownRight },
+            { 25, sfcUpLeftUpRight },
+            { 26, sfcUpLeftUpRightDownRight },
+            { 27, sfcUpLeftUpRightDownLeft },
+            { 28, sfcAllCorners },
+
+            { 29, sfcwUpLeftWaterRightDown },
+            { 30, sfcwUpLeftWaterRight },
+            { 31, sfcwUpLeftWaterDown },
+            { 32, sfcwUpRightWaterLeftDown },
+            { 33, sfcwUpRightWaterLeft },
+            { 34, sfcwUpRightWaterDown },
+            { 35, sfcwDownLeftWaterRightUp },
+            { 36, sfcwDownLeftWaterRight },
+            { 37, sfcwDownLeftWaterUp },
+            { 38, sfcwDownRightWaterLeftUp },
+            { 39, sfcwDownRightWaterLeft },
+            { 40, sfcwDownRightWaterUp },
         };
 
         objectIndex = new Dictionary<int, GameObject>{
