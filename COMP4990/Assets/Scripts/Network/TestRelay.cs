@@ -15,11 +15,7 @@ using UnityEngine.UI;
 
 public class TestRelay : MonoBehaviour
 {
-    [SerializeField] private Button hostBtn;
 
-    [SerializeField] private Button clientBtn;
-
-    public string join;
     private async void Start(){
        
         await UnityServices.InitializeAsync();
@@ -29,28 +25,12 @@ public class TestRelay : MonoBehaviour
         };
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
     } 
-
-        public void Awake(){
-        hostBtn.onClick.AddListener(() => {
-            CreateRelay();
-        });
-        clientBtn.onClick.AddListener(() => {
-            
-            JoinRelay(join);
-        });
-    }
-
-    public void ReadStringInput(String s){
-        join = s;
-        Debug.Log(join);
-    }
-
+    
     public async void CreateRelay(){
         try {
             Allocation allocation = await RelayService.Instance.CreateAllocationAsync(3);
 
             string joinCode =  await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
-            join = joinCode;
             Debug.Log(joinCode);
             RelayServerData relayServerData = new RelayServerData(allocation, "dtls");
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
