@@ -15,6 +15,8 @@ public class MapManager : MonoBehaviour
 {
     public bool generateWorldOnStartup = true;
 
+    public SortingOrder playerSortingOrder;
+
     bool gameLoop = false;
     // the origin of the map is considered the centre 4 chunks
     // (0, 0)
@@ -1052,6 +1054,8 @@ public class MapManager : MonoBehaviour
             {
                 SaveWorld();
             }
+
+            playerSortingOrder.UpdateSortingOrder();
         }
     }
 }
