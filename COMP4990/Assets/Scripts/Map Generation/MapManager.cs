@@ -1052,7 +1052,7 @@ public class MapManager : MonoBehaviour
             //UpdateWaterTilemapAnimations();
             if(Input.GetKeyDown(KeyCode.S))
             {
-                SaveWorld();
+                //SaveWorld();
             }
 
             playerSortingOrder.UpdateSortingOrder();

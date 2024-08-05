@@ -10,6 +10,9 @@ using static Utils;
 public class TileIndex : MonoBehaviour
 {
 
+    public Tile cursorTile;
+    public Tile houseTile;
+
     Dictionary<int, Tile> tileIndex;
     List<int> grassTiles;
     List<int> grassWithFlowersTiles;
@@ -351,5 +354,17 @@ public class TileIndex : MonoBehaviour
     public int GetWaterEventCount()
     {
         return waterEventIndex.Keys.Count;
+    }
+
+    // testing
+
+    public Tile GetCursorTile()
+    {
+        return cursorTile;
+    }
+
+    public Tile GetHouseTile()
+    {
+        return houseTile;
     }
 }

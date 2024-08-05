@@ -53,6 +53,9 @@ TagManager:
   - name: above ground
     uniqueID: 2960932015
     locked: 0
+  - name: interactive
+    uniqueID: 1969182241
+    locked: 0
   - name: structures
     uniqueID: 3945349825
     locked: 0
