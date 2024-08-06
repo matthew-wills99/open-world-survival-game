@@ -767,9 +767,10 @@ public class MapManager : MonoBehaviour
                                 {
 
                                     // NEED TO INDEX EACH ROCK, TREE, CACTUS SPRITE AND STORE THAT INDEX IN Rock, Tree, Cactus OBJECT
-                                    Rock tempRock = new Rock(tileIndex.GetBigRock(), cx, cy, tx, ty);
+                                    Rock tempRock = new Rock(tileIndex.GetAllBigRocks()[random.Next(tileIndex.GetAllBigRocks().Count)], cx, cy, tx, ty);
                                     rockObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempRock);
-                                    Instantiate(tileIndex.GetObject(tempRock.Index), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, rockEmpty.transform);
+                                    var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
+                                    Instantiate(tileIndex.GetObject(tempRock.Index), new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, worldPos.z), quaternion.identity, rockEmpty.transform);
                                     // rocks will be clusters eventually
                                 }
                                 // i think that rocks should always spawn over trees because rocks only spawn in plains
@@ -1057,6 +1058,24 @@ public class MapManager : MonoBehaviour
 
             playerSortingOrder.UpdateSortingOrder();
         }
+    }
+
+    public bool TileHasObject(int x, int y)
+    {
+        (int cx, int cy, int tx, int ty) = WorldToChunkPos(x, y, chunkSize);
+        if(treeObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
+        {
+            return true;
+        }
+        if(cactusObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
+        {
+            return true;
+        }
+        if(rockObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
+        {
+            return true;
+        }
+        return false;
     }
 }
 

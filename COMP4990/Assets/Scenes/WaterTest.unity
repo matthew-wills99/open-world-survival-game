@@ -547,11 +547,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d65d3ca702f30f4d9326903bf475868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapManager: {fileID: 851897714}
   cameraController: {fileID: 1027555364}
+  player: {fileID: 2131824138}
   mainCamera: {fileID: 1027555362}
+  buildRange: 5
   tileIndex: {fileID: 851897713}
   grid: {fileID: 191401060}
   interactiveMap: {fileID: 155998437}
+  waterTilemap: {fileID: 1069843930}
   groundTilemap: {fileID: 124315750}
   aboveGroundTilemap: {fileID: 1605328854}
 --- !u!4 &644724220
@@ -1423,6 +1427,42 @@ PrefabInstance:
       propertyPath: underGroundTilemap
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: bigRock1
+      value: 
+      objectReference: {fileID: 4204857458261859867, guid: 305f3a748ca02ca4887f36ef962baf18,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: bigRock2
+      value: 
+      objectReference: {fileID: 7350879774276986921, guid: 294ebfefe95aa0b4fa5271f2fb65cc1a,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: bigRock3
+      value: 
+      objectReference: {fileID: 302815291152724144, guid: dfeab46564af370499d119cb8c6c92a3,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: bigRock4
+      value: 
+      objectReference: {fileID: 5603519085078610063, guid: 3996bf8cca9ed4049a2d33b19bcab831,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: bigRock5
+      value: 
+      objectReference: {fileID: 8575570752428748066, guid: 057143fb86fc9dc4a9390cf7ec893502,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: bigRock6
+      value: 
+      objectReference: {fileID: 9073557670464266223, guid: af5b86467c81d2f4496c53fc4eb53b25,
+        type: 3}
     - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
       propertyPath: deepWater
