@@ -10,6 +10,9 @@ using static Utils;
 public class TileIndex : MonoBehaviour
 {
 
+    public Tile cursorTile;
+    public Tile houseTile;
+
     Dictionary<int, Tile> tileIndex;
     List<int> grassTiles;
     List<int> grassWithFlowersTiles;
@@ -20,7 +23,7 @@ public class TileIndex : MonoBehaviour
     Dictionary<int, GameObject> objectIndex;
     List<int> trees;
     List<int> cacti;
-    List<int> rocks;
+    List<int> bigRocks;
 
     Dictionary<int, Grid> structIndex;
 
@@ -117,12 +120,12 @@ public class TileIndex : MonoBehaviour
     public GameObject cactus2;
     public GameObject cactus3;
     
-    public GameObject bigRock;
-    public GameObject rock1;
-    public GameObject rock2;
-    public GameObject rock3;
-    public GameObject rock4;
-    public GameObject rock5;
+    public GameObject bigRock1;
+    public GameObject bigRock2;
+    public GameObject bigRock3;
+    public GameObject bigRock4;
+    public GameObject bigRock5;
+    public GameObject bigRock6;
 
     public Grid struct1;
     public Grid struct2;
@@ -230,12 +233,12 @@ public class TileIndex : MonoBehaviour
             { 0, tree1 },
             { 1, tree2 },
             { 2, tree3 },
-            { 3, bigRock },
-            { 4, rock1 },
-            { 5, rock2 },
-            { 6, rock3 },
-            { 7, rock4 },
-            { 8, rock5 },
+            { 3, bigRock1 },
+            { 4, bigRock2 },
+            { 5, bigRock3 },
+            { 6, bigRock4 },
+            { 7, bigRock5 },
+            { 8, bigRock6 },
             { 9, cactus1 },
             { 10, cactus2 },
             { 11, cactus3 },
@@ -283,7 +286,7 @@ public class TileIndex : MonoBehaviour
             9, 10, 11
         };
 
-        rocks = new List<int>{
+        bigRocks = new List<int>{
             3, 4, 5, 6, 7, 8
         };
     }
@@ -323,14 +326,14 @@ public class TileIndex : MonoBehaviour
         return cacti;
     }
 
-    public List<int> GetAllRocks()
+    public List<int> GetAllBigRocks()
     {
-        return rocks;
+        return bigRocks;
     }
 
     public int GetBigRock()
     {
-        return objectIndex.FirstOrDefault(idx => idx.Value.Equals(bigRock)).Key;
+        return objectIndex.FirstOrDefault(idx => idx.Value.Equals(bigRock1)).Key;
     }
 
     public GameObject GetObject(int index)
@@ -351,5 +354,17 @@ public class TileIndex : MonoBehaviour
     public int GetWaterEventCount()
     {
         return waterEventIndex.Keys.Count;
+    }
+
+    // testing
+
+    public Tile GetCursorTile()
+    {
+        return cursorTile;
+    }
+
+    public Tile GetHouseTile()
+    {
+        return houseTile;
     }
 }

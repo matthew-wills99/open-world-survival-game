@@ -15,6 +15,8 @@ public class MapManager : MonoBehaviour
 {
     public bool generateWorldOnStartup = true;
 
+    public SortingOrder playerSortingOrder;
+
     bool gameLoop = false;
     // the origin of the map is considered the centre 4 chunks
     // (0, 0)
@@ -765,9 +767,11 @@ public class MapManager : MonoBehaviour
                                 {
 
                                     // NEED TO INDEX EACH ROCK, TREE, CACTUS SPRITE AND STORE THAT INDEX IN Rock, Tree, Cactus OBJECT
-                                    Rock tempRock = new Rock(tileIndex.GetBigRock(), cx, cy, tx, ty);
+                                    Rock tempRock = new Rock(tileIndex.GetAllBigRocks()[random.Next(tileIndex.GetAllBigRocks().Count)], cx, cy, tx, ty);
                                     rockObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempRock);
-                                    Instantiate(tileIndex.GetObject(tempRock.Index), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, rockEmpty.transform);
+                                    var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
+                                    GameObject instance = Instantiate(tileIndex.GetObject(tempRock.Index), new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, worldPos.z), quaternion.identity, rockEmpty.transform);
+                                    instance.gameObject.tag = "Selectable";
                                     // rocks will be clusters eventually
                                 }
                                 // i think that rocks should always spawn over trees because rocks only spawn in plains
@@ -776,7 +780,8 @@ public class MapManager : MonoBehaviour
                                     Tree tempTree = new Tree(tileIndex.GetAllTrees()[random.Next(tileIndex.GetAllTrees().Count)], cx, cy, tx, ty);
                                     treeObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempTree);
                                     var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
-                                    Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(worldPos.x + 0.4f, worldPos.y + 0.4f, worldPos.z), quaternion.identity, treeEmpty.transform);
+                                    GameObject instance = Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(worldPos.x + 0.4f, worldPos.y + 0.4f, worldPos.z), quaternion.identity, treeEmpty.transform);
+                                    instance.gameObject.tag = "Selectable";
                                 }
                             }
                             // desert biome needs cactus
@@ -786,7 +791,8 @@ public class MapManager : MonoBehaviour
                                 {
                                     Cactus tempCactus = new Cactus(tileIndex.GetAllCactus()[random.Next(tileIndex.GetAllCactus().Count)], cx, cy, tx, ty);
                                     cactusObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempCactus);
-                                    Instantiate(tileIndex.GetObject(tileIndex.GetAllCactus()[random.Next(tileIndex.GetAllCactus().Count)]), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, cactusEmpty.transform);
+                                    GameObject instance = Instantiate(tileIndex.GetObject(tileIndex.GetAllCactus()[random.Next(tileIndex.GetAllCactus().Count)]), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, cactusEmpty.transform);
+                                    instance.gameObject.tag = "Selectable";
                                 }
                             }
                             // forest biome needs trees
@@ -797,7 +803,8 @@ public class MapManager : MonoBehaviour
                                     Tree tempTree = new Tree(tileIndex.GetAllTrees()[random.Next(tileIndex.GetAllTrees().Count)], cx, cy, tx, ty);
                                     treeObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempTree);
                                     var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
-                                    Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(worldPos.x + 0.4f, worldPos.y + 0.4f, worldPos.z), quaternion.identity, treeEmpty.transform);
+                                    GameObject instance = Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(worldPos.x + 0.4f, worldPos.y + 0.4f, worldPos.z), quaternion.identity, treeEmpty.transform);
+                                    instance.gameObject.tag = "Selectable";
                                 }
                             }
                         }
@@ -1050,9 +1057,29 @@ public class MapManager : MonoBehaviour
             //UpdateWaterTilemapAnimations();
             if(Input.GetKeyDown(KeyCode.S))
             {
-                SaveWorld();
+                //SaveWorld();
             }
+
+            playerSortingOrder.UpdateSortingOrder();
         }
+    }
+
+    public bool TileHasObject(int x, int y)
+    {
+        (int cx, int cy, int tx, int ty) = WorldToChunkPos(x, y, chunkSize);
+        if(treeObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
+        {
+            return true;
+        }
+        if(cactusObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
+        {
+            return true;
+        }
+        if(rockObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
+        {
+            return true;
+        }
+        return false;
     }
 }
 

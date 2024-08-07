@@ -54,8 +54,8 @@ public class WaterController : MonoBehaviour
 
         //CleanUpEdges(waterTilemap, chunkSize);
 
-        Debug.Log($"yea: {HasTile(waterTilemap, ChunkToWorldPos(mapSizeInChunks/2, mapSizeInChunks/2, 16, 16, chunkSize))}");
-        Debug.Log($"yea: {waterTilemap.GetTile(ChunkToWorldPos(0,0, 0,0, chunkSize))}");
+        //Debug.Log($"yea: {HasTile(waterTilemap, ChunkToWorldPos(mapSizeInChunks/2, mapSizeInChunks/2, 16, 16, chunkSize))}");
+        //Debug.Log($"yea: {waterTilemap.GetTile(ChunkToWorldPos(0,0, 0,0, chunkSize))}");
     }
 
     /// <summary>
@@ -84,7 +84,7 @@ public class WaterController : MonoBehaviour
 
                         if(tx == 0 || tx == chunkSize - 1 || ty == 0 || ty == chunkSize - 1)
                         {
-                            Debug.Log($"Placing seafoam: C({cx}, {cy}) : T({tx}, {ty})");
+                            //Debug.Log($"Placing seafoam: C({cx}, {cy}) : T({tx}, {ty})");
                         }
                         Vector3Int pos = ChunkToWorldPos(chunk.X, chunk.Y, tx, ty, chunkSize);
                         int sfIndex = GetSeafoamIndex(waterTilemap, pos);
@@ -396,7 +396,6 @@ public class WaterController : MonoBehaviour
         {
             if(!waterRight)
             {
-                Debug.Log("13");
                 return 1;
             }
             return -1;
@@ -406,7 +405,6 @@ public class WaterController : MonoBehaviour
         {
             if(!waterLeft)
             {
-                Debug.Log("13");
                 return 0;
             }
             return -1;
@@ -416,7 +414,6 @@ public class WaterController : MonoBehaviour
         {
             if(!waterUp)
             {
-                Debug.Log("13");
                 return 2;
             }
             return -1;
@@ -426,7 +423,6 @@ public class WaterController : MonoBehaviour
         {
             if(!waterDown)
             {
-                Debug.Log("13");
                 return 3;
             }
             return -1;
