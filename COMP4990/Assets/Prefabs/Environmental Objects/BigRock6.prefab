@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4305390849679221828}
   - component: {fileID: 6174697939038613042}
   - component: {fileID: 5925376439762160926}
+  - component: {fileID: 5856549185171314921}
+  - component: {fileID: 2385130403769805380}
   m_Layer: 20
   m_Name: BigRock6
   m_TagString: Untagged
@@ -131,13 +133,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.28125, y: 0.484375}
-      - {x: -0.46875, y: 0.359375}
-      - {x: -0.46875, y: -0.359375}
-      - {x: -0.28125, y: -0.484375}
-      - {x: 0.3125, y: -0.484375}
-      - {x: 0.46875, y: -0.265625}
-      - {x: 0.46875, y: 0.484375}
+    - - {x: 0.12947321, y: 0.13293457}
+      - {x: -0.32293606, y: 0.0951004}
+      - {x: -0.4667549, y: -0.0013027191}
+      - {x: -0.4482174, y: -0.27320147}
+      - {x: -0.3777752, y: -0.36831045}
+      - {x: -0.2837572, y: -0.47535086}
+      - {x: 0.23377371, y: -0.48744345}
+      - {x: 0.40382385, y: -0.25147963}
+      - {x: 0.46564198, y: 0.055758476}
   m_UseDelaunayMesh: 0
 --- !u!114 &6174697939038613042
 MonoBehaviour:
@@ -163,3 +167,74 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &5856549185171314921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9073557670464266223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b9a60de0cf60604b8a5d8e680edbd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!60 &2385130403769805380
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9073557670464266223}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.9375, y: 0.96875}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.37824297, y: 0.40890026}
+      - {x: 0.26062584, y: 0.49359798}
+      - {x: 0.10819626, y: 0.499815}
+      - {x: -0.035345078, y: 0.37118912}
+      - {x: -0.33088207, y: 0.36255264}
+      - {x: -0.46787548, y: 0.17377901}
+      - {x: -0.47838783, y: -0.16289997}
+      - {x: -0.3841467, y: -0.34670544}
+      - {x: -0.17682457, y: -0.3330679}
+      - {x: -0.02072525, y: -0.49471855}
+      - {x: 0.22260857, y: -0.50253916}
+      - {x: 0.35215998, y: -0.32269955}
+      - {x: 0.47396946, y: -0.0909276}
+      - {x: 0.42025423, y: 0.15696096}
+  m_UseDelaunayMesh: 0
