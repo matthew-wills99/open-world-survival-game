@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -16,6 +17,8 @@ public class MapManager : MonoBehaviour
     public bool generateWorldOnStartup = true;
 
     public SortingOrder playerSortingOrder;
+
+    public RegenRocks regenRocks;
 
     bool gameLoop = false;
     // the origin of the map is considered the centre 4 chunks
@@ -35,9 +38,9 @@ public class MapManager : MonoBehaviour
     public WaterController waterController;
     
     // Tilemap layers
-    public Tilemap underGroundTilemap;
     public Tilemap groundTilemap;
     public Tilemap waterTilemap;
+    public Tilemap aboveGroundTilemap;
 
     const int terrainTile = 35;
     const int waterTile = 34;
@@ -54,19 +57,21 @@ public class MapManager : MonoBehaviour
     public int smoothingPasses = 7;
     public int neighbourRequirement = 4;
 
+    const int environmentObjectPlacementDenominator = 10000; // 10,000 = 100 / 10000 = 1%
+
     [Range(0, 100)]
     public int randomFillPercent = 45;
     [Range(0, 100)]
     public int randomFillPercentCentre = 65;
     [Range(0, 100)]
     public int biomeChance = 5;
-    [Range(0, 100)]
+    [Range(0, environmentObjectPlacementDenominator)]
     public int plainsTreeChance = 5;
-    [Range(0, 100)]
+    [Range(0, environmentObjectPlacementDenominator)]
     public int plainsRockChance = 5;
-    [Range(0, 100)]
+    [Range(0, environmentObjectPlacementDenominator)]
     public int desertCactusChance = 20;
-    [Range(0, 100)]
+    [Range(0, environmentObjectPlacementDenominator)]
     public int forestTreeChance = 20;
 
 
@@ -93,8 +98,8 @@ public class MapManager : MonoBehaviour
     public int mapSizeInChunks = 8;
 
     // Key is Utils.GetChunkKey(cx, cy), value is Utils.Chunk
-    Dictionary<string, Chunk> underGroundChunks;
     Dictionary<string, Chunk> groundChunks;
+    Dictionary<string, Chunk> aboveGroundChunks;
     Dictionary<string, Chunk> waterChunks;
 
     GameObject treeEmpty;
@@ -103,6 +108,7 @@ public class MapManager : MonoBehaviour
     // tree and rock dictionary is a good idea!!!!
     // key is Utils.GetCoordinateKey(cx, cy, tx, ty), value is Utils.Tree
     Dictionary<string, Tree> treeObjects;
+    List<RockCluster> rockClusters;
     Dictionary<string, Rock> rockObjects;
     Dictionary<string, Cactus> cactusObjects;
 
@@ -116,8 +122,8 @@ public class MapManager : MonoBehaviour
             {
                 string key = GetChunkKey(x, y);
                 groundChunks.Add(key, new Chunk(x, y, chunkSize));
-                underGroundChunks.Add(key, new Chunk(x, y, chunkSize));
                 waterChunks.Add(key, new Chunk(x, y, chunkSize));
+                aboveGroundChunks.Add(key, new Chunk(x, y, chunkSize));
             }
         }
     }
@@ -520,74 +526,6 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    /*int CheckNeighbour(int cx, int cy, int tx, int ty)
-    {
-        if(tx < 0 && cx > -mapSizeInChunks / 2)
-        {
-            cx -= 1;
-            tx = chunkSize + tx;
-        }
-        if(tx >= chunkSize && cx < mapSizeInChunks / 2)
-        {
-            cx += 1;
-            tx = tx - chunkSize;
-        }
-        if(ty < 0 && cy > -mapSizeInChunks / 2)
-        {
-            cy -= 1;
-            ty = chunkSize + ty;
-        }
-        if(ty >= chunkSize && cy < mapSizeInChunks / 2)
-        {
-            cy += 1;
-            ty = ty - chunkSize;
-        }
-
-        return groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty];
-    }*/
-
-    /*BBTKey GetBBT(int cx, int cy, int tx, int ty)
-    {
-        List<int> allGrass = tileIndex.GetAllGrassTiles();
-        int left = CheckNeighbour(cx, cy, tx - 1, ty); // left
-        int right = CheckNeighbour(cx, cy, tx + 1, ty); // right
-        int up = CheckNeighbour(cx, cy, tx, ty + 1); // up 
-        int down = CheckNeighbour(cx, cy, tx, ty - 1); // down
-        if(allGrass.Contains(up) && allGrass.Contains(left)) // up left only
-        {
-            return BBTKey.BlendUpLeft;
-        }
-        if(allGrass.Contains(up) && allGrass.Contains(right)) // up right only
-        {
-            return BBTKey.BlendUpRight;
-        }
-        if(allGrass.Contains(down) && allGrass.Contains(left)) // down left only
-        {
-            return BBTKey.BlendDownLeft;
-        }
-        if(allGrass.Contains(down) && allGrass.Contains(right)) // down right only
-        {
-            return BBTKey.BlendDownRight;
-        }
-        if(allGrass.Contains(left))
-        {
-            return BBTKey.BlendLeft;
-        }
-        if(allGrass.Contains(right))
-        {
-            return BBTKey.BlendRight;
-        }
-        if(allGrass.Contains(up))
-        {
-            return BBTKey.BlendUp;
-        }
-        if(allGrass.Contains(down))
-        {
-            return BBTKey.BlendDown;
-        }
-        return BBTKey.Null;
-    }*/
-
     bool IsValidStructureOrigin(int cx, int cy, int tx, int ty, int order)
     {
         if(centreChunks.Contains(GetChunkKey(cx, cy)))
@@ -641,112 +579,6 @@ public class MapManager : MonoBehaviour
         return true;
     }
 
-    /*void PlaceStructures()
-    {
-        List<int> structuresToPlace = new List<int>();
-        if(mapSize == MapSize.Small)
-        {
-            structuresToPlace.Add(0);
-            structuresToPlace.Add(1);
-        }
-        else
-        {
-            structuresToPlace.Add(0);
-            structuresToPlace.Add(1);
-            structuresToPlace.Add(2);
-        }*/
-        /*
-        top left: (-mapSizeInChunks / 2, mapSizeInChunks / 2)
-        top right: (mapSizeInChunks / 2, mapSizeInChunks / 2)
-        bottom left: (-mapSizeInChunks / 2, -mapSizeInChunks / 2)
-        bottom right (mapSizeInChunks / 2, -mapSizeInChunks / 2)
-        */
-
-        // structures should be x distance from each other
-        /*
-        bool farEnough = true;
-        foreach(var b in allBiomes)
-        {
-            if(GetDistance(b.Cx * chunkSize + b.Tx, b.Cy * chunkSize + b.Ty, cx * chunkSize + gPos.Item1, cy * chunkSize + gPos.Item2) < distanceBetweenBiomes)
-            {
-                farEnough = false;
-                break;
-            }
-        }
-        if(farEnough)
-        {
-            maxDistance = minDistance;
-            furthestTerrain = gPos;
-        }
-        */
-
-        //int placedStructures = 0;
-        //int maxStructures = structuresToPlace.Count;
-
-        /*foreach(int order in structuresToPlace)
-        {
-            bool swag = false;
-            for(int cx = -mapSizeInChunks / 2; cx < mapSizeInChunks / 2; cx++)
-            {
-                if(swag)
-                {
-                    break;
-                }
-                for(int cy = -mapSizeInChunks / 2; cy < mapSizeInChunks / 2; cy++)
-                {
-                    if(swag)
-                    {
-                        break;
-                    }
-                    for(int tx = 0; tx < chunkSize; tx++)
-                    {
-                        if(swag)
-                        {
-                            break;
-                        }
-                        for(int ty = 0; ty < chunkSize; ty++)
-                        {
-                            if(swag)
-                            {
-                                break;
-                            }
-                            if(IsValidStructureOrigin(cx, cy, tx, ty, 1))
-                            {
-                                bool farEnough = true;
-                                foreach(var s in allStructures)
-                                {
-                                    Vector3Int sPos = ChunkToWorldPos(s.Cx, s.Cy, s.Tx, s.Ty, chunkSize);
-                                    Vector3Int currPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
-                                    if(GetDistance(currPos.x, currPos.y, sPos.x, sPos.y) < distanceBetweenStructures)
-                                    {
-                                        farEnough = false;
-                                    }
-                                }
-                                if(farEnough)
-                                {
-                                    Instantiate(tileIndex.GetStructure(order), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity);
-                                    structures[order].Cx = cx;
-                                    structures[order].Cy = cy;
-                                    structures[order].Tx = tx;
-                                    structures[order].Ty = ty;
-                                    allStructures.Add(structures[order]);
-                                    //placedStructures ++;
-                                    swag = true;
-                                    //Debug.Log("SWAG!!!!!");
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        //int cx = random.Next(-mapSizeInChunks / 2, mapSizeInChunks / 2);
-        //int cy = random.Next(-mapSizeInChunks / 2, mapSizeInChunks / 2);
-        //Vector3Int v3i = ChunkToWorldPos(cx, cy, chunkSize / 2, chunkSize / 2, chunkSize);
-        //Instantiate(struct1, new Vector3(v3i.x, v3i.y, v3i.z), Quaternion.identity);
-    }*/
-
     void PopulateEnvironment()
     {
         // maybe add environmental objects to tile index??
@@ -763,48 +595,49 @@ public class MapManager : MonoBehaviour
                             // plains biome needs rocks and trees
                             if(tileIndex.GetAllGrassTiles().Contains(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty]))
                             {
-                                if(random.Next(0, 100) < plainsRockChance)
+                                if(random.Next(0, environmentObjectPlacementDenominator) < plainsRockChance)
                                 {
 
-                                    // NEED TO INDEX EACH ROCK, TREE, CACTUS SPRITE AND STORE THAT INDEX IN Rock, Tree, Cactus OBJECT
-                                    Rock tempRock = new Rock(tileIndex.GetAllBigRocks()[random.Next(tileIndex.GetAllBigRocks().Count)], cx, cy, tx, ty);
-                                    rockObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempRock);
-                                    var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
-                                    GameObject instance = Instantiate(tileIndex.GetObject(tempRock.Index), new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, worldPos.z), quaternion.identity, rockEmpty.transform);
-                                    instance.gameObject.tag = "Selectable";
-                                    // rocks will be clusters eventually
+                                    if(!TileHasObject(cx, cy, tx, ty))
+                                    {
+                                        PlaceRockCluster(cx, cy, tx, ty);
+                                    }
                                 }
                                 // i think that rocks should always spawn over trees because rocks only spawn in plains
-                                else if(random.Next(0, 100) < plainsTreeChance)
+                                else if(random.Next(0, environmentObjectPlacementDenominator) < plainsTreeChance)
                                 {
                                     Tree tempTree = new Tree(tileIndex.GetAllTrees()[random.Next(tileIndex.GetAllTrees().Count)], cx, cy, tx, ty);
                                     treeObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempTree);
                                     var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
-                                    GameObject instance = Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(worldPos.x + 0.4f, worldPos.y + 0.4f, worldPos.z), quaternion.identity, treeEmpty.transform);
-                                    instance.gameObject.tag = "Selectable";
+                                    GameObject instance = Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, worldPos.z), quaternion.identity, treeEmpty.transform);
+                                    instance.tag = "Selectable";
+                                    instance.GetComponent<TreeObj>().SetCoords(cx, cy, tx, ty);
                                 }
                             }
                             // desert biome needs cactus
                             else if(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] == desertTile)
                             {
-                                if(random.Next(0, 100) < desertCactusChance)
+                                if(random.Next(0, environmentObjectPlacementDenominator) < desertCactusChance)
                                 {
                                     Cactus tempCactus = new Cactus(tileIndex.GetAllCactus()[random.Next(tileIndex.GetAllCactus().Count)], cx, cy, tx, ty);
                                     cactusObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempCactus);
-                                    GameObject instance = Instantiate(tileIndex.GetObject(tileIndex.GetAllCactus()[random.Next(tileIndex.GetAllCactus().Count)]), ChunkToWorldPos(cx, cy, tx, ty, chunkSize), quaternion.identity, cactusEmpty.transform);
-                                    instance.gameObject.tag = "Selectable";
+                                    var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
+                                    GameObject instance = Instantiate(tileIndex.GetObject(tileIndex.GetAllCactus()[random.Next(tileIndex.GetAllCactus().Count)]), new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, worldPos.z), quaternion.identity, cactusEmpty.transform);
+                                    instance.tag = "Selectable";
+                                    instance.GetComponent<CactusObj>().SetCoords(cx, cy, tx, ty);
                                 }
                             }
                             // forest biome needs trees
                             else if(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] == forestTile)
                             {
-                                if(random.Next(0, 100) < forestTreeChance)
+                                if(random.Next(0, environmentObjectPlacementDenominator) < forestTreeChance)
                                 {
                                     Tree tempTree = new Tree(tileIndex.GetAllTrees()[random.Next(tileIndex.GetAllTrees().Count)], cx, cy, tx, ty);
                                     treeObjects.Add(GetCoordinateKey(cx, cy, tx, ty), tempTree);
                                     var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
-                                    GameObject instance = Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(worldPos.x + 0.4f, worldPos.y + 0.4f, worldPos.z), quaternion.identity, treeEmpty.transform);
-                                    instance.gameObject.tag = "Selectable";
+                                    GameObject instance = Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, worldPos.z), quaternion.identity, treeEmpty.transform);
+                                    instance.tag = "Selectable";
+                                    instance.GetComponent<TreeObj>().SetCoords(cx, cy, tx, ty);
                                 }
                             }
                         }
@@ -812,6 +645,107 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public bool TileHasWater(int cx, int cy, int tx, int ty)
+    {
+        // check if water could exist
+        if(waterChunks.ContainsKey(GetChunkKey(cx, cy))) 
+        {
+            //Debug.Log($"Water exists in chunk: {waterChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty]}");
+            // check if there is water on that tile
+            if(tileIndex.GetAllGrassTiles().Contains(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty]))
+            {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public void PlaceRockCluster(int cx, int cy, int tx, int ty)
+    {
+        //Debug.Log("--------------Rock cluster START---------------");
+        // take this spot, pick random spots around it in a 1 tile radius and place 2 more rocks
+        // do not place a rock if there is something in the way, check for water, trees, other rocks, 
+        // and above ground tiles
+        List<(int x, int y)> options = new List<(int, int)>{
+            (-1, -1),
+            (-1, 0),
+            (-1, 1),
+            (0, -1),
+            (0, 1),
+            (1, -1),
+            (1, 0),
+            (1, 1)
+        };
+
+        RockCluster cluster = new RockCluster();
+
+        // select a type of rock to place
+        int rockType = tileIndex.GetAllBigRocks()[random.Next(tileIndex.GetAllBigRocks().Count)];
+
+        // place the main rock
+        Rock mainRock = new Rock(rockType, cx, cy, tx, ty, cluster);
+        rockObjects.Add(GetCoordinateKey(cx, cy, tx, ty), mainRock);
+        var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
+        GameObject instance = Instantiate(tileIndex.GetObject(mainRock.Index), new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, worldPos.z), quaternion.identity, rockEmpty.transform);
+        instance.GetComponent<RockObj>().SetCoords(cx, cy, tx, ty);
+        instance.tag = "Selectable";
+
+        int rocksPlaced = 0;
+        int maxRocks = random.Next(0, 3); // random rocks 0 extra, 1 extra, 2 extra
+        (int x, int y) currentTile;
+        // convert to world so we can add x and y without checking for chunk overflow
+        Vector3Int worldCoords = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
+        Vector3Int newCoords = worldCoords;
+        (int cx, int cy, int tx, int ty) newTile;
+        
+        // as long as we have options to put it
+        while(options.Count > 0)
+        {
+            //Debug.Log($"Options count: {options.Count}");
+            newCoords = worldCoords;
+            currentTile = options[random.Next(options.Count)];
+            int dx = currentTile.x;
+            int dy = currentTile.y;
+            newCoords.x += dx;
+            newCoords.y += dy;
+            newTile = WorldToChunkPos(newCoords.x, newCoords.y, chunkSize);
+            // check that we wont be placing too many rocks
+            if(rocksPlaced <= maxRocks)
+            {
+                if(!TileHasObject(newTile.cx, newTile.cy, newTile.tx, newTile.ty))
+                {
+                    if(groundChunks[GetChunkKey(newTile.cx, newTile.cy)].ChunkTiles[newTile.tx, newTile.ty] != -1)
+                    {
+                        //Debug.Log("\tNo Water");
+                        // if there is no above ground tile in the way
+                        if(!TileHasWater(newTile.cx, newTile.cy, newTile.tx, newTile.ty))
+                        {
+                            // place a rock here yippee
+                            //Debug.Log("Placed");
+                            Rock tempRock = new Rock(rockType, newTile.cx, newTile.cy, newTile.tx, newTile.ty, cluster);
+                            rockObjects.Add(GetCoordinateKey(newTile.cx, newTile.cy, newTile.tx, newTile.ty), tempRock);
+                            worldPos = ChunkToWorldPos(newTile.cx, newTile.cy, newTile.tx, newTile.ty, chunkSize);
+                            instance = Instantiate(tileIndex.GetObject(mainRock.Index), new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, worldPos.z), quaternion.identity, rockEmpty.transform);
+                            instance.GetComponent<RockObj>().SetCoords(newTile.cx, newTile.cy, newTile.tx, newTile.ty);
+                            instance.tag = "Selectable";
+                            rocksPlaced += 1;
+                            //Debug.Log($"Added child to cluster {cluster.children}");
+                        }
+                    }
+                }
+                // regardless of if a rock was placed here or not, we checked it, so it gets removed from the list of options
+                options.Remove(currentTile);
+            }
+            else
+            {
+                return; // placed max amount of rocks
+            }
+        }
+        //Debug.Log("--------------Rock cluster END-------------------");
+        return; // ran out of possible locations for rocks
     }
 
     void SetupChunkLayers()
@@ -888,9 +822,9 @@ public class MapManager : MonoBehaviour
         cactusEmpty = new GameObject("cactus");
 
         random = new System.Random(seed);
-        underGroundChunks = new Dictionary<string, Chunk>();
         groundChunks = new Dictionary<string, Chunk>();
         waterChunks = new Dictionary<string, Chunk>();
+        aboveGroundChunks = new Dictionary<string, Chunk>();
 
         //order:  grid, x radius from window not including window, blocks up, blocks down, tile
         // lowest order is lowest area in tiles^2
@@ -985,9 +919,9 @@ public class MapManager : MonoBehaviour
         
         Debug.Log($"Player position: ({worldData.PlayerX}, {worldData.PlayerY}");
 
-        underGroundChunks = worldData.UnderGroundChunks;
         groundChunks = worldData.GroundChunks;
-        waterChunks = worldData.AboveGroundChunks;
+        aboveGroundChunks = worldData.AboveGroundChunks;
+        waterChunks = worldData.WaterChunks;
 
         treeObjects = worldData.Trees;
         rockObjects = worldData.Rocks;
@@ -1026,6 +960,17 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
+        foreach(Chunk chunk in aboveGroundChunks.Values)
+        {
+            for(int x = 0; x < chunkSize; x++)
+            {
+                for(int y = 0; y < chunkSize; y++)
+                {
+                    aboveGroundTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, x, y, chunkSize), tileIndex.GetTile(chunk.ChunkTiles[x, y]));
+                }
+            }
+        }
+
         allStructures = worldData.Structures;
         gameLoop = true;
     }
@@ -1039,15 +984,26 @@ public class MapManager : MonoBehaviour
             WorldSize = mapSize,
             PlayerX = 0,
             PlayerY = 0,
-            AboveGroundChunks = waterChunks,
+            WaterChunks = waterChunks,
             GroundChunks = groundChunks,
-            UnderGroundChunks = underGroundChunks,
+            AboveGroundChunks = aboveGroundChunks,
             Trees = treeObjects,
             Rocks = rockObjects,
             Cacti = cactusObjects,
             Structures = allStructures
         };
         saveWorldScript.SaveWorld(worldName, worldData);
+    }
+
+    public void SetAboveGroundTile(Vector3Int mousePos, int tileIndex)
+    {
+        (int cx, int cy, int tx, int ty) c = WorldToChunkPos(mousePos.x, mousePos.y, chunkSize);
+        aboveGroundChunks[GetChunkKey(c.cx, c.cy)].ChunkTiles[c.tx, c.ty] = tileIndex;
+    }
+
+    public void SetWaterChunks(Dictionary<string, Chunk> wc)
+    {
+        waterChunks = wc;
     }
 
     void Update()
@@ -1081,34 +1037,65 @@ public class MapManager : MonoBehaviour
         }
         return false;
     }
+
+    public bool TileHasObject(int cx, int cy, int tx, int ty)
+    {
+        if(treeObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
+        {
+            return true;
+        }
+        if(cactusObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
+        {
+            return true;
+        }
+        if(rockObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool TileHasPlacedTile(int x, int y)
+    {
+        (int cx, int cy, int tx, int ty) = WorldToChunkPos(x, y, chunkSize);
+        if(aboveGroundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] != -1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public (int cx, int cy, int tx, int ty) GetRandomPoint()
+    {
+        int cx = UnityEngine.Random.Range(-mapSizeInChunks / 2, mapSizeInChunks / 2);
+        int cy = UnityEngine.Random.Range(-mapSizeInChunks / 2, mapSizeInChunks / 2);
+        int tx = UnityEngine.Random.Range(0, chunkSize);
+        int ty = UnityEngine.Random.Range(0, chunkSize);
+        return (cx, cy, tx, ty);
+    }
+
+    public void DestroyObj(int cx, int cy, int tx, int ty)
+    {
+        if(rockObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
+        {
+            rockObjects[GetCoordinateKey(cx, cy, tx, ty)].DestroyRock();
+            if(rockObjects[GetCoordinateKey(cx, cy, tx, ty)].ParentCluster.children <= 0)
+            {
+                //Debug.Log("Clustered destroyed");
+                regenRocks.RockClusterDestroyed();
+            }
+            //Debug.Log("Rock");
+            rockObjects.Remove(GetCoordinateKey(cx, cy, tx, ty));
+        }
+        else if(treeObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
+        {
+            //Debug.Log("Tree");
+            treeObjects.Remove(GetCoordinateKey(cx, cy, tx, ty));
+        }
+        else if(cactusObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
+        {
+            //Debug.Log("Cact");
+            cactusObjects.Remove(GetCoordinateKey(cx, cy, tx, ty));
+        }
+    }
 }
-
-
-/*
-
-// if 
-find all biome-bordering tiles (make sure to exclude water tiles (probably could just have an array of biome bordering tile indexes))
-// maybe make bbt object with x, y, and nx, ny from the function thingy
-if bbt (biome-bordering tiles) > 0
-store all bbt in an array
-loop through all bbt
-    > switch(bbt dirs)
-    case: direction direction
-        feed into splatting algorithm
-
-// splatting algo
-    loop through the pixels in the area of pixels that are within requirements to be splatted
-    // based on going outwards from the column / row of pixels nearest the border with a biome tile  ...
-    // ... from outward there is 90% chance a pixel stays original colour, then 80, then 70, then 60 then 50 then 40 then 30 then 20 then 10 u know
-that tile will still be considered a tile of whatever it was before it underwent the splatting
-
-when you break a tile that is splatted, re run this entire algorithm again on the neighbouring tiles that could need to be updated
-*/
-
-/*
-trees can spawn in forest and plains
-    plains biome tree chance: 5%
-    forest biome tree chance: 35%
-desert biomes can spawn cactus
-plains biome can spawn rocks
-*/

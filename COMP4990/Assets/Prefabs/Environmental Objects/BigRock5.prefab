@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8835579432016156042}
   - component: {fileID: 4195787108657631345}
   - component: {fileID: -2178663687965188426}
+  - component: {fileID: 2384685954369340438}
   m_Layer: 20
   m_Name: BigRock5
   m_TagString: Untagged
@@ -239,3 +240,15 @@ PolygonCollider2D:
       - {x: 0.45278168, y: -0.07928181}
       - {x: 0.44633532, y: 0.37405014}
   m_UseDelaunayMesh: 0
+--- !u!114 &2384685954369340438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8575570752428748066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 860f20e34fa17da449f3c141db005d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

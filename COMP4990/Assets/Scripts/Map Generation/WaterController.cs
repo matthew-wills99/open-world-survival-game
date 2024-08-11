@@ -10,6 +10,8 @@ public class WaterController : MonoBehaviour
 {
     public int deepWaterSmoothingPasses = 1;
     public int waterThreshold = 4;
+    
+    public MapManager mapManager;
 
     int mapSizeInChunks;
 
@@ -36,10 +38,10 @@ public class WaterController : MonoBehaviour
 
     public float playbackSpeed = 0.5f;
 
-    public void Setup(Tilemap waterTilemap, Dictionary<string, Chunk> waterChunks, int chunkSize, int mapSizeInChunks)
+    public void Setup(Tilemap waterTilemap, Dictionary<string, Chunk> wc, int chunkSize, int mapSizeInChunks)
     {
         this.mapSizeInChunks = mapSizeInChunks;
-        this.waterChunks = waterChunks;
+        waterChunks = wc;
         this.chunkSize = chunkSize;
         SetSeafoam(waterTilemap, chunkSize);
 
@@ -50,6 +52,8 @@ public class WaterController : MonoBehaviour
         {
             SmoothDeepWater(waterTilemap, chunkSize);
         }
+
+        mapManager.SetWaterChunks(waterChunks);
         gameLoop = true;
 
         //CleanUpEdges(waterTilemap, chunkSize);

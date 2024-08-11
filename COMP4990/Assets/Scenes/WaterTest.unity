@@ -386,6 +386,58 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &190924426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 190924428}
+  - component: {fileID: 190924427}
+  m_Layer: 0
+  m_Name: World Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &190924427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190924426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee1fda59e352d646b954e483b3c912b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapManager: {fileID: 851897714}
+  rockClusterCap: 100
+  player: {fileID: 2131824138}
+  clusterDestroyDelay: 5
+  regenClustersDelay: 20
+  distanceBetweenClusterAndPlayer: 20
+  distanceBetweenOtherClusters: 15
+  distanceFromPlayerPlacedTiles: 4
+--- !u!4 &190924428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190924426}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &191401058
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +620,51 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &848270436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 848270438}
+  - component: {fileID: 848270437}
+  m_Layer: 0
+  m_Name: MiningManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &848270437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848270436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3028824f1764c4f9eff28c8780525a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapManager: {fileID: 851897714}
+--- !u!4 &848270438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848270436}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.140557, y: -0.22367108, z: -0.10276862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1188,6 +1285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deepWaterSmoothingPasses: 2
   waterThreshold: 4
+  mapManager: {fileID: 851897714}
   tileIndex: {fileID: 851897713}
   bubbles1Clip: {fileID: 7400000, guid: e5c611a5b584db546b33f4ca882321b5, type: 2}
   bubbles2Clip: {fileID: 7400000, guid: fd3d30efcd9eb404d9d50f28721f0c5a, type: 2}
@@ -1394,6 +1492,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
+      propertyPath: mapSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: regenRocks
+      value: 
+      objectReference: {fileID: 190924427}
+    - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
       propertyPath: waterTilemap
       value: 
       objectReference: {fileID: 1069843930}
@@ -1414,9 +1522,29 @@ PrefabInstance:
       objectReference: {fileID: 1750641756}
     - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
+      propertyPath: forestTreeChance
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: plainsRockChance
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: plainsTreeChance
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
       propertyPath: aboveGroundTilemap
       value: 
       objectReference: {fileID: 1069843930}
+    - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: desertCactusChance
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
       propertyPath: playerSortingOrder
@@ -1427,6 +1555,30 @@ PrefabInstance:
       propertyPath: underGroundTilemap
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: cactus1
+      value: 
+      objectReference: {fileID: 2234031327567662094, guid: 733cfdddba6e48b43a4f5047615b5be6,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: cactus2
+      value: 
+      objectReference: {fileID: 2234031327567662094, guid: 50fda07196159e14da2aa316bfe18878,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: cactus3
+      value: 
+      objectReference: {fileID: 2234031327567662094, guid: fdbf325880a3cd7438ccab9947379110,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: cactus4
+      value: 
+      objectReference: {fileID: 2234031327567662094, guid: c8502e3991f38454b87dab0f2ae0a90d,
+        type: 3}
     - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
       propertyPath: bigRock1
@@ -1505,6 +1657,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 79f27d7ce8af91f4294bccc816072992,
         type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: smallCactus1
+      value: 
+      objectReference: {fileID: 2234031327567662094, guid: d23f28087f5440b4bba54c69b38332bc,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: smallCactus2
+      value: 
+      objectReference: {fileID: 2234031327567662094, guid: db444c28b6167ed469cc3268abb82373,
+        type: 3}
     - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
       propertyPath: sfcAllCorners
@@ -1678,3 +1842,5 @@ SceneRoots:
   - {fileID: 1750641757}
   - {fileID: 417836747}
   - {fileID: 644724220}
+  - {fileID: 848270438}
+  - {fileID: 190924428}

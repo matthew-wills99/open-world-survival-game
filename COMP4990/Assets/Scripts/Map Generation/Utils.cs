@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 /// <summary>
@@ -145,6 +146,26 @@ public class Utils : MonoBehaviour
         }
     }
 
+    public class RockCluster
+    {
+        public int children {get; set;}
+
+        public RockCluster()
+        {
+            children = 0;
+        }
+
+        public void addChild()
+        {
+            children++;
+        }
+
+        public void removeChild()
+        {
+            children--;
+        }
+    }
+
     /// <summary>
     /// Stores the position and object index of a rock.
     /// </summary>
@@ -155,6 +176,7 @@ public class Utils : MonoBehaviour
         public int Cy {get; set;}
         public int Tx {get; set;}
         public int Ty {get; set;}
+        public RockCluster ParentCluster {get; set;}
 
         /// <summary>
         /// Create a new rock object with the given parameters.
@@ -164,13 +186,29 @@ public class Utils : MonoBehaviour
         /// <param name="cy">Chunk Y</param>
         /// <param name="tx">Tile X</param>
         /// <param name="ty">Tile Y</param>
-        public Rock(int index, int cx, int cy, int tx, int ty)
+        public Rock(int index, int cx, int cy, int tx, int ty, RockCluster parentCluster)
         {
             Index = index;
             Cx = cx;
             Cy = cy;
             Tx = tx;
             Ty = ty;
+            ParentCluster = parentCluster;
+            ParentCluster.addChild();
+        }
+
+        public void DestroyRock()
+        {
+            ParentCluster.removeChild();
+        }
+
+        public bool ClusterDestroyed()
+        {
+            if(ParentCluster.children <= 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 
@@ -299,7 +337,7 @@ public class Utils : MonoBehaviour
         public int PlayerY {get; set;}
         public Dictionary<string, Chunk> AboveGroundChunks {get; set;}
         public Dictionary<string, Chunk> GroundChunks {get; set;}
-        public Dictionary<string, Chunk> UnderGroundChunks {get; set;}
+        public Dictionary<string, Chunk> WaterChunks {get; set;}
         public Dictionary<string, Tree> Trees {get; set;}
         public Dictionary<string, Rock> Rocks {get; set;}
         public Dictionary<string, Cactus> Cacti {get; set;}

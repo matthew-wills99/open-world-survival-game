@@ -7,11 +7,9 @@ using UnityEngine.EventSystems;
 
 public class MiningSystem : MonoBehaviour
 {
-    public Material highlightMaterial;
-
-    private Material originalMaterial;
     private Transform highlight;
-    private RaycastHit raycastHit;
+    private Transform currentlySelectedObject;
+    public MapManager mapManager;
 
     private bool miningMode = false;
 
@@ -30,7 +28,7 @@ public class MiningSystem : MonoBehaviour
                     highlight = null;
                 }
             }
-            Debug.Log($"Mining mode set to: {miningMode}");
+            //Debug.Log($"Mining mode set to: {miningMode}");
         }
 
         if(miningMode)
@@ -45,6 +43,15 @@ public class MiningSystem : MonoBehaviour
         {
             highlight.GetComponent<Hover>().EndHover();
             highlight = null;
+        }
+        else
+        {
+            // hasnt been hovering for more than 1 frame
+            // want to keep track of which gameobject is being hovered, on mb1 delete it
+            if(currentlySelectedObject != null)
+            {
+                currentlySelectedObject = null;
+            }
         }
 
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(GetMousePosition());
@@ -93,6 +100,7 @@ public class MiningSystem : MonoBehaviour
                         // start hover on tree
                         highlight = hit.transform.parent.transform;
                         hit.transform.parent.gameObject.GetComponent<Hover>().StartHover();
+                        currentlySelectedObject = hit.transform.parent;
                     }
                 }
                 // not a tree
@@ -100,7 +108,44 @@ public class MiningSystem : MonoBehaviour
                 {
                     highlight = hit.transform;
                     hit.transform.gameObject.GetComponent<Hover>().StartHover();
+                    currentlySelectedObject = hit.transform;
                 }
+            }
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(currentlySelectedObject != null)
+            {
+                //Debug.Log($"Clicking {currentlySelectedObject.name}");
+                if(currentlySelectedObject.GetComponent<RockObj>())
+                {
+                    (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<RockObj>().GetCoordinates();
+                    mapManager.DestroyObj(c.cx, c.cy, c.tx, c.ty);
+                    currentlySelectedObject.GetComponent<RockObj>().Destroy();
+                    //Debug.Log($"Destroyed {currentlySelectedObject.name}");
+
+                }
+                else if(currentlySelectedObject.GetComponent<TreeObj>())
+                {
+                    (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<TreeObj>().GetCoordinates();
+                    mapManager.DestroyObj(c.cx, c.cy, c.tx, c.ty);
+                    currentlySelectedObject.GetComponent<TreeObj>().Destroy();
+
+                }
+                else if(currentlySelectedObject.GetComponent<CactusObj>())
+                {
+                    (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<CactusObj>().GetCoordinates();
+                    mapManager.DestroyObj(c.cx, c.cy, c.tx, c.ty);
+                    currentlySelectedObject.GetComponent<CactusObj>().Destroy();
+
+                }
+                // else if tree obj
+                // else if cactus obj
+            }
+            else
+            {
+                //Debug.Log("Nothing to click...");
             }
         }
     }

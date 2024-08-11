@@ -9,6 +9,7 @@ using static Utils;
 
 public class TileIndex : MonoBehaviour
 {
+    // -1 IS EMPTY TILE
 
     public Tile cursorTile;
     public Tile houseTile;
@@ -17,6 +18,7 @@ public class TileIndex : MonoBehaviour
     List<int> grassTiles;
     List<int> grassWithFlowersTiles;
     List<int> allGrassTiles;
+    List<int> allWaterTiles;
 
     Dictionary<int, AnimatedTile> seafoamIndex;
 
@@ -119,6 +121,9 @@ public class TileIndex : MonoBehaviour
     public GameObject cactus1;
     public GameObject cactus2;
     public GameObject cactus3;
+    public GameObject cactus4;
+    public GameObject smallCactus1;
+    public GameObject smallCactus2;
     
     public GameObject bigRock1;
     public GameObject bigRock2;
@@ -242,6 +247,9 @@ public class TileIndex : MonoBehaviour
             { 9, cactus1 },
             { 10, cactus2 },
             { 11, cactus3 },
+            { 12, cactus4 },
+            { 13, smallCactus1 },
+            { 14, smallCactus2 },
         };
 
         structIndex = new Dictionary<int, Grid>{
@@ -278,12 +286,16 @@ public class TileIndex : MonoBehaviour
             17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
         };
 
+        allWaterTiles = new List<int>{
+            34, 36
+        };
+
         trees = new List<int>{
             0, 1, 2
         };
 
         cacti = new List<int>{
-            9, 10, 11
+            9, 10, 11, 12, 13, 14
         };
 
         bigRocks = new List<int>{
@@ -304,6 +316,11 @@ public class TileIndex : MonoBehaviour
     public List<int> GetAllGrassTiles()
     {
         return allGrassTiles;
+    }
+
+    public List<int> GetAllWaterTiles()
+    {
+        return allWaterTiles;
     }
 
     public Tile GetTile(int index)
