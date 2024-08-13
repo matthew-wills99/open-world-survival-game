@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography.X509Certificates;
@@ -13,8 +14,15 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
     public List<Item> startItems;
     public int maxStackedItems = 73;
+    public int maxInventorySize = 29;
     public GameObject InventoryItemPrefab;
     public List<InventorySlot> inventorySlots;
+   
+
+    [Header("UI")]
+    public GameObject inventoryPanel;
+    public KeyCode toggleInvnetoryKey = KeyCode.E;
+    private bool isInventoryOpen = false;
     int selectedSlot = -1;
 
     private void Awake(){
@@ -26,10 +34,24 @@ public class InventoryManager : MonoBehaviour
         foreach (var item in startItems){
             AddItem(item);
         }
+        inventoryPanel.SetActive(isInventoryOpen);
     }
 
     //Changing which slot the user selects
     private void Update(){
+        if (Input.GetKeyDown(toggleInvnetoryKey)){
+            ToggleInventory();
+        }
+        //Check for slot selection input (1-8 on keyboard)
+        toolbarSelection();
+    }
+
+    public void ToggleInventory(){
+        isInventoryOpen = !isInventoryOpen;
+        inventoryPanel.SetActive(isInventoryOpen);
+    }
+
+    private void toolbarSelection(){
         if(Input.inputString != null){
             bool isNumber = int.TryParse(Input.inputString, out int number);
             if (isNumber && number > 0 && number < 8){
@@ -37,7 +59,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
-
     //Making sure we highlight the correct slot
     void ChangeSelectedSlot(int newValue){
         if(selectedSlot >= 0){
@@ -48,6 +69,11 @@ public class InventoryManager : MonoBehaviour
     }
     //When "picking up" items this will search for the closets empty slot
     public bool AddItem(Item item){
+        //Check if inventory is full
+        if(inventorySlots.Count >= maxInventorySize) {
+            Debug.LogWarning("Inventory full, cannot add item");
+            return false;
+        }
         //This for loop is if a stackable item is in the inventory it will add the item to that stack
         for(int i = 0; i < inventorySlots.Count; i++){
             InventorySlot slot = inventorySlots[i];
