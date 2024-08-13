@@ -25,6 +25,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     //Displaying the correct stack count
     public void RefreshCount(){
         countText.text = count.ToString();
+        countText.raycastTarget = false;
         bool textActive = count > 1;
         countText.gameObject.SetActive(textActive);
     }
@@ -47,7 +48,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     //Raycast true so we can place it on the right item slot
     public void OnEndDrag(PointerEventData eventData){
-        Debug.Log("End Drag");
+        Debug.Log($"End Drag : {transform.name}");
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
     }

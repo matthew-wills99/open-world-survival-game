@@ -99,7 +99,10 @@ public class InventoryManager : MonoBehaviour
     public void AddItem(Item item, int count){
         for(int c = 0; c < count; c++)
         {
-            AddItem(item);
+            if(!AddItem(item))
+            {
+                return;
+            }
         }
     }
 

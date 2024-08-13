@@ -22,6 +22,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         if(transform.childCount == 0){
+            Debug.Log($"On drop {transform.name}");
             GameObject dropped = eventData.pointerDrag;
             InventoryItem drag = dropped.GetComponent<InventoryItem>();
             drag.parentAfterDrag = transform;
