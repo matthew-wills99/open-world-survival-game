@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88b7d5827be3ae041bc7b0d414bc4723, type: 3}
-  m_Name: Wodden Axe
+  m_Name: Wood
   m_EditorClassIdentifier: 
   index: 1
-  itemName: Wooden Axe
+  itemName: Wood
   tile: {fileID: 0}
-  type: 1
-  actionType: 0
+  type: 2
+  actionType: 2
   range: {x: 5, y: 4}
-  stackable: 0
-  image: {fileID: 21300000, guid: 48c1062662210754da7d50d0437cd0bc, type: 3}
+  stackable: 1
+  image: {fileID: -125276827, guid: 5a524b1b7c2f47a4f86431093fa68ec2, type: 3}
