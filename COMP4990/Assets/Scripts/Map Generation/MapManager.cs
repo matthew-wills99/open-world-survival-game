@@ -16,6 +16,19 @@ public class MapManager : MonoBehaviour
 {
     public bool generateWorldOnStartup = true;
 
+    // out of 100 rock chances
+    [Range(0, 100)]
+    public int stoneChance;
+    [Range(0, 100)]
+    public int copperOreChance;
+    [Range(0, 100)]
+    public int ironOreChance;
+    [Range(0, 100)]
+    public int goldOreChance;
+    
+    // NEEDS TO EQUAL
+    //public int numOreChances = 4;
+
     public SortingOrder playerSortingOrder;
 
     public RegenRocks regenRocks;
@@ -624,7 +637,7 @@ public class MapManager : MonoBehaviour
                                     var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
                                     GameObject instance = Instantiate(tileIndex.GetObject(tileIndex.GetAllCactus()[random.Next(tileIndex.GetAllCactus().Count)]), new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, worldPos.z), quaternion.identity, cactusEmpty.transform);
                                     instance.tag = "Selectable";
-                                    instance.GetComponent<CactusObj>().SetCoords(cx, cy, tx, ty);
+                                    instance.GetComponent<TCactusObj>().SetCoords(cx, cy, tx, ty);
                                 }
                             }
                             // forest biome needs trees
@@ -665,6 +678,17 @@ public class MapManager : MonoBehaviour
 
     public void PlaceRockCluster(int cx, int cy, int tx, int ty)
     {
+        /* need to pick a random type of rock from the types we have
+        Stone
+        Copper Ore
+        Iron Ore
+        Gold Ore
+
+        these should also be weighted
+        create a weight number for each option
+        
+        */
+
         //Debug.Log("--------------Rock cluster START---------------");
         // take this spot, pick random spots around it in a 1 tile radius and place 2 more rocks
         // do not place a rock if there is something in the way, check for water, trees, other rocks, 
@@ -683,10 +707,31 @@ public class MapManager : MonoBehaviour
         RockCluster cluster = new RockCluster();
 
         // select a type of rock to place
-        int rockType = tileIndex.GetAllBigRocks()[random.Next(tileIndex.GetAllBigRocks().Count)];
+        int rockType = random.Next(0, 100);
+        int oreType;
+        if(rockType < stoneChance)
+        {
+            oreType = tileIndex.GetStoneObjIndex();
+        }
+        else if(rockType < copperOreChance)
+        {
+            oreType = tileIndex.GetCopperOreObjIndex();
+        }
+        else if(rockType < ironOreChance)
+        {
+            oreType = tileIndex.GetIronOreObjIndex();
+        }
+        else if(rockType < goldOreChance)
+        {
+            oreType = tileIndex.GetGoldOreObjIndex();
+        }
+        else
+        {
+            oreType = 7;
+        }
 
         // place the main rock
-        Rock mainRock = new Rock(rockType, cx, cy, tx, ty, cluster);
+        Rock mainRock = new Rock(oreType, cx, cy, tx, ty, cluster);
         rockObjects.Add(GetCoordinateKey(cx, cy, tx, ty), mainRock);
         var worldPos = ChunkToWorldPos(cx, cy, tx, ty, chunkSize);
         GameObject instance = Instantiate(tileIndex.GetObject(mainRock.Index), new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, worldPos.z), quaternion.identity, rockEmpty.transform);
@@ -725,7 +770,7 @@ public class MapManager : MonoBehaviour
                         {
                             // place a rock here yippee
                             //Debug.Log("Placed");
-                            Rock tempRock = new Rock(rockType, newTile.cx, newTile.cy, newTile.tx, newTile.ty, cluster);
+                            Rock tempRock = new Rock(oreType, newTile.cx, newTile.cy, newTile.tx, newTile.ty, cluster);
                             rockObjects.Add(GetCoordinateKey(newTile.cx, newTile.cy, newTile.tx, newTile.ty), tempRock);
                             worldPos = ChunkToWorldPos(newTile.cx, newTile.cy, newTile.tx, newTile.ty, chunkSize);
                             instance = Instantiate(tileIndex.GetObject(mainRock.Index), new Vector3(worldPos.x + 0.5f, worldPos.y + 0.5f, worldPos.z), quaternion.identity, rockEmpty.transform);

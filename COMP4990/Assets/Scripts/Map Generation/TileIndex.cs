@@ -114,21 +114,21 @@ public class TileIndex : MonoBehaviour
     public AnimatedTile sfcwDownRightWaterUp;
 
 
-    public GameObject tree1;
-    public GameObject tree2;
-    public GameObject tree3;
+    public GameObject objTree1;
+    public GameObject objTree2;
+    public GameObject objTree3;
 
-    public GameObject cactus1;
-    public GameObject cactus2;
-    public GameObject cactus3;
-    public GameObject cactus4;
-    public GameObject smallCactus1;
-    public GameObject smallCactus2;
+    public GameObject objCactus1;
+    public GameObject objCactus2;
+    public GameObject objCactus3;
+    public GameObject objCactus4;
+    public GameObject objSmallCactus1;
+    public GameObject objSmallCactus2;
     
-    public GameObject bigRock1;
-    public GameObject bigRock2;
-    public GameObject bigRock3;
-    public GameObject bigRock4;
+    public GameObject objStone;
+    public GameObject objIronOre;
+    public GameObject objGoldOre;
+    public GameObject objCopperOre;
     public GameObject bigRock5;
     public GameObject bigRock6;
 
@@ -235,21 +235,21 @@ public class TileIndex : MonoBehaviour
         };
 
         objectIndex = new Dictionary<int, GameObject>{
-            { 0, tree1 },
-            { 1, tree2 },
-            { 2, tree3 },
-            { 3, bigRock1 },
-            { 4, bigRock2 },
-            { 5, bigRock3 },
-            { 6, bigRock4 },
+            { 0, objTree1 },
+            { 1, objTree2 },
+            { 2, objTree3 },
+            { 3, objStone },
+            { 4, objCopperOre },
+            { 5, objIronOre },
+            { 6, objGoldOre },
             { 7, bigRock5 },
             { 8, bigRock6 },
-            { 9, cactus1 },
-            { 10, cactus2 },
-            { 11, cactus3 },
-            { 12, cactus4 },
-            { 13, smallCactus1 },
-            { 14, smallCactus2 },
+            { 9, objCactus1 },
+            { 10, objCactus2 },
+            { 11, objCactus3 },
+            { 12, objCactus4 },
+            { 13, objSmallCactus1 },
+            { 14, objSmallCactus2 },
         };
 
         structIndex = new Dictionary<int, Grid>{
@@ -257,13 +257,6 @@ public class TileIndex : MonoBehaviour
             { 1, struct2 },
             { 2, struct3 },
         };
-
-        /*structures = new Dictionary<int, Structure>
-        {
-            {2, new Structure(0, 3, 5, 0)},
-            {3, new Structure(1, 4, 2, 4)},
-            {1, new Structure(2, 3, 2, 1)}
-        };*/
 
         waterEventIndex = new Dictionary<int, Tuple<AnimationClip, AnimatorController>>
         {
@@ -348,11 +341,6 @@ public class TileIndex : MonoBehaviour
         return bigRocks;
     }
 
-    public int GetBigRock()
-    {
-        return objectIndex.FirstOrDefault(idx => idx.Value.Equals(bigRock1)).Key;
-    }
-
     public GameObject GetObject(int index)
     {
         return objectIndex[index];
@@ -373,8 +361,6 @@ public class TileIndex : MonoBehaviour
         return waterEventIndex.Keys.Count;
     }
 
-    // testing
-
     public Tile GetCursorTile()
     {
         return cursorTile;
@@ -383,5 +369,41 @@ public class TileIndex : MonoBehaviour
     public Tile GetHouseTile()
     {
         return houseTile;
+    }
+
+    public GameObject GetStoneObj()
+    {
+        return objStone;
+    }
+    public int GetStoneObjIndex()
+    {
+        return 3;
+    }
+
+    public GameObject GetCopperOreObj()
+    {
+        return objCopperOre;
+    }
+    public int GetCopperOreObjIndex()
+    {
+        return 4;
+    }
+
+    public GameObject GetIronOreObj()
+    {
+        return objIronOre;
+    }
+    public int GetIronOreObjIndex()
+    {
+        return 5;
+    }
+
+    public GameObject GetGoldOreObj()
+    {
+        return objGoldOre;
+    }
+    public int GetGoldOreObjIndex()
+    {
+        return 6;
     }
 }

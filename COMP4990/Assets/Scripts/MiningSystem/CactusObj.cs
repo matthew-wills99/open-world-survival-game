@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CactusObj : MonoBehaviour
+public class TCactusObj : MonoBehaviour
 {
     private int cx;
     private int cy;

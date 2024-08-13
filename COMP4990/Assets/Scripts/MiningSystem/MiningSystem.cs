@@ -1,9 +1,13 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.EventSystems;
+using static Tools;
+
+
 
 public class MiningSystem : MonoBehaviour
 {
@@ -12,6 +16,17 @@ public class MiningSystem : MonoBehaviour
     public MapManager mapManager;
 
     private bool miningMode = false;
+
+    private ToolObj pickaxe;
+    private ToolObj axe;
+
+    //private ToolObj equippedTool;
+
+    void Awake()
+    {
+        pickaxe = ScriptableObject.CreateInstance<PickaxeObj>();
+        axe = ScriptableObject.CreateInstance<AxeObj>();
+    }
 
     void Update()
     {
@@ -120,28 +135,43 @@ public class MiningSystem : MonoBehaviour
                 //Debug.Log($"Clicking {currentlySelectedObject.name}");
                 if(currentlySelectedObject.GetComponent<RockObj>())
                 {
-                    (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<RockObj>().GetCoordinates();
-                    mapManager.DestroyObj(c.cx, c.cy, c.tx, c.ty);
-                    currentlySelectedObject.GetComponent<RockObj>().Destroy();
-                    //Debug.Log($"Destroyed {currentlySelectedObject.name}");
-
+                    if(currentlySelectedObject.GetComponent<ResourceObj>())
+                    {
+                        currentlySelectedObject.GetComponent<ResourceObj>().Hit(pickaxe);
+                        if(currentlySelectedObject.GetComponent<ResourceObj>().health <= 0)
+                        {
+                            (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<RockObj>().GetCoordinates();
+                            mapManager.DestroyObj(c.cx, c.cy, c.tx, c.ty);
+                            currentlySelectedObject.GetComponent<RockObj>().Destroy();
+                        }
+                    }
                 }
                 else if(currentlySelectedObject.GetComponent<TreeObj>())
                 {
-                    (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<TreeObj>().GetCoordinates();
-                    mapManager.DestroyObj(c.cx, c.cy, c.tx, c.ty);
-                    currentlySelectedObject.GetComponent<TreeObj>().Destroy();
-
+                    if(currentlySelectedObject.GetComponent<ResourceObj>())
+                    {
+                        currentlySelectedObject.GetComponent<ResourceObj>().Hit(axe);
+                        if(currentlySelectedObject.GetComponent<ResourceObj>().health <= 0)
+                        {
+                            (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<TreeObj>().GetCoordinates();
+                            mapManager.DestroyObj(c.cx, c.cy, c.tx, c.ty);
+                            currentlySelectedObject.GetComponent<TreeObj>().Destroy();
+                        }
+                    }
                 }
-                else if(currentlySelectedObject.GetComponent<CactusObj>())
+                else if(currentlySelectedObject.GetComponent<TCactusObj>())
                 {
-                    (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<CactusObj>().GetCoordinates();
-                    mapManager.DestroyObj(c.cx, c.cy, c.tx, c.ty);
-                    currentlySelectedObject.GetComponent<CactusObj>().Destroy();
-
+                    if(currentlySelectedObject.GetComponent<ResourceObj>())
+                    {
+                        currentlySelectedObject.GetComponent<ResourceObj>().Hit(axe);
+                        if(currentlySelectedObject.GetComponent<ResourceObj>().health <= 0)
+                        {
+                            (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<TCactusObj>().GetCoordinates();
+                            mapManager.DestroyObj(c.cx, c.cy, c.tx, c.ty);
+                            currentlySelectedObject.GetComponent<TCactusObj>().Destroy();
+                        }
+                    }
                 }
-                // else if tree obj
-                // else if cactus obj
             }
             else
             {

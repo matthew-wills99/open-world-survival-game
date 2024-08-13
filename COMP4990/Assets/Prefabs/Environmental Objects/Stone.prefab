@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 4195787108657631345}
   - component: {fileID: -2178663687965188426}
   - component: {fileID: 2384685954369340438}
+  - component: {fileID: 3900713322973168539}
   m_Layer: 20
-  m_Name: BigRock5
+  m_Name: Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,3 +253,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860f20e34fa17da449f3c141db005d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3900713322973168539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8575570752428748066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb7be245599ba949a87efd4e8b3ce3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  resourcesPerHit: 1
+  toolType: 0
+  resource: 0
+  resourceIndex: 4

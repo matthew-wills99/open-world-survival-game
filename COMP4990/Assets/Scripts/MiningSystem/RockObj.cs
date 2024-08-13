@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using static Utils;
+
 public class RockObj : MonoBehaviour
 {
     private int cx;
@@ -26,5 +28,10 @@ public class RockObj : MonoBehaviour
     {
         Destroy(gameObject);
         //Debug.Log("destroy");
+    }
+
+    public void Hit(ETool tool)
+    {
+
     }
 }

@@ -1502,14 +1502,34 @@ PrefabInstance:
       objectReference: {fileID: 190924427}
     - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
+      propertyPath: stoneChance
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
       propertyPath: waterTilemap
       value: 
       objectReference: {fileID: 1069843930}
     - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
+      propertyPath: goldOreChance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
       propertyPath: groundTilemap
       value: 
       objectReference: {fileID: 124315750}
+    - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: ironOreChance
+      value: 89
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: copperOreChance
+      value: 49
+      objectReference: {fileID: 0}
     - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
       propertyPath: saveWorldScript
@@ -1554,6 +1574,11 @@ PrefabInstance:
         type: 3}
       propertyPath: underGroundTilemap
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776316112366521068, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: generateWorldOnStartup
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
@@ -1617,6 +1642,30 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
+      propertyPath: objStone
+      value: 
+      objectReference: {fileID: 8575570752428748066, guid: 057143fb86fc9dc4a9390cf7ec893502,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: objTree1
+      value: 
+      objectReference: {fileID: 2055102311959635369, guid: f681a54372d73d74785b9c9d4ac477e8,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: objTree2
+      value: 
+      objectReference: {fileID: 2055102311959635369, guid: 7277dd75e907b27448ec1de08238d0bb,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: objTree3
+      value: 
+      objectReference: {fileID: 2055102311959635369, guid: 9e7797bb065982d4497d030f065d6e2f,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
       propertyPath: deepWater
       value: 
       objectReference: {fileID: 11400000, guid: 1690cc7f2efcf3f4bbcf68fff660010e,
@@ -1641,6 +1690,42 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
+      propertyPath: objCactus1
+      value: 
+      objectReference: {fileID: 2234031327567662094, guid: 733cfdddba6e48b43a4f5047615b5be6,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: objCactus2
+      value: 
+      objectReference: {fileID: 2234031327567662094, guid: 50fda07196159e14da2aa316bfe18878,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: objCactus3
+      value: 
+      objectReference: {fileID: 2234031327567662094, guid: fdbf325880a3cd7438ccab9947379110,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: objCactus4
+      value: 
+      objectReference: {fileID: 2234031327567662094, guid: c8502e3991f38454b87dab0f2ae0a90d,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: objGoldOre
+      value: 
+      objectReference: {fileID: 9073557670464266223, guid: af5b86467c81d2f4496c53fc4eb53b25,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: objIronOre
+      value: 
+      objectReference: {fileID: 4204857458261859867, guid: 305f3a748ca02ca4887f36ef962baf18,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
       propertyPath: sfcUpRight
       value: 
       objectReference: {fileID: 11400000, guid: 8489522eae9096a489c21ddcddca392a,
@@ -1651,6 +1736,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 180a1d119d09dd04688cabc8255efb78,
         type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: objCopperOre
+      value: 
+      objectReference: {fileID: 7350879774276986921, guid: 294ebfefe95aa0b4fa5271f2fb65cc1a,
+        type: 3}
     - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
       propertyPath: sfcDownRight
@@ -1675,6 +1766,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a9a60abb59238b44a99c6da0a85c5aae,
         type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: objSmallCactus1
+      value: 
+      objectReference: {fileID: 2234031327567662094, guid: d23f28087f5440b4bba54c69b38332bc,
+        type: 3}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
+      propertyPath: objSmallCactus2
+      value: 
+      objectReference: {fileID: 2234031327567662094, guid: db444c28b6167ed469cc3268abb82373,
+        type: 3}
     - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
       propertyPath: sfcUpLeftUpRight

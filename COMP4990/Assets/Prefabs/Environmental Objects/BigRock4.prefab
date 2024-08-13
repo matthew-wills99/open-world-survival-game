@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 636428699505021575}
   - component: {fileID: 1246971024485847719}
   - component: {fileID: -6172823274619924430}
+  - component: {fileID: -5294080033685553365}
   m_Layer: 20
   m_Name: BigRock4
   m_TagString: Untagged
@@ -253,3 +254,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860f20e34fa17da449f3c141db005d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5294080033685553365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5603519085078610063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb7be245599ba949a87efd4e8b3ce3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  resourcesPerHit: 0
+  toolType: 0
+  resource: 0
+  resourceIndex: 0

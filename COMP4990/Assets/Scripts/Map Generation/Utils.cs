@@ -310,6 +310,22 @@ public class Utils : MonoBehaviour
         ConfirmLoadGame
     }
 
+    public enum ETool
+    {
+        Pickaxe,
+        Axe
+    }
+
+    public enum EResource
+    {
+        Stone,
+        IronOre,
+        CopperOre,
+        GoldOre,
+        Wood,
+        Cactus
+    }
+
     /// <summary>
     /// not used. will remove later.
     /// </summary>
