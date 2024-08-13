@@ -10,6 +10,8 @@ public class Item : ScriptableObject
 {
     public int index;
     public string itemName;
+    public bool isTool; // tools are things that gather resources
+    public ToolObj toolObj;
 
     [Header("Only gameplay")]
     public TileBase tile;

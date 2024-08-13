@@ -148,7 +148,7 @@ MonoBehaviour:
   health: 5
   resourcesPerHit: 1
   toolType: 1
-  resource: 4
+  drop: {fileID: 11400000, guid: 63381a471c92dc041a3b98c199406512, type: 2}
   resourceIndex: 6
 --- !u!1 &2055102312182832482
 GameObject:

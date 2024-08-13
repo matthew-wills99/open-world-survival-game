@@ -9,14 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88b7d5827be3ae041bc7b0d414bc4723, type: 3}
-  m_Name: Chopping Tool
+  m_Script: {fileID: 11500000, guid: a3a0497f3ac920e48bb234a916236120, type: 3}
+  m_Name: StonePickaxe
   m_EditorClassIdentifier: 
-  index: 0
-  itemName: 
-  tile: {fileID: 0}
-  type: 1
-  actionType: 0
-  range: {x: 5, y: 4}
-  stackable: 0
-  image: {fileID: 1574724094, guid: 5a524b1b7c2f47a4f86431093fa68ec2, type: 3}
+  damageMultiplier: 1
+  resourceMultiplier: 1
+  toolType: 0
+  spriteIndex: 0

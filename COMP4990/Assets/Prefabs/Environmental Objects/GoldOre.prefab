@@ -267,5 +267,5 @@ MonoBehaviour:
   health: 5
   resourcesPerHit: 1
   toolType: 0
-  resource: 3
+  drop: {fileID: 11400000, guid: 02fb243903d92fa449f51384a475a9bc, type: 2}
   resourceIndex: 3

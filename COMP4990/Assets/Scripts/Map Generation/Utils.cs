@@ -316,16 +316,6 @@ public class Utils : MonoBehaviour
         Axe
     }
 
-    public enum EResource
-    {
-        Stone,
-        IronOre,
-        CopperOre,
-        GoldOre,
-        Wood,
-        Cactus
-    }
-
     /// <summary>
     /// not used. will remove later.
     /// </summary>

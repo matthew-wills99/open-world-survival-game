@@ -19,15 +19,15 @@ public class ResourceObj : MonoBehaviour
     public float health;
     public float resourcesPerHit;
     public ETool toolType;
-    public EResource resource;
+    public Item drop;
     public int resourceIndex;
     
-    public ResourceObj(float health, float resourcesPerHit, ETool toolType, EResource resource, int resourceIndex)
+    public ResourceObj(float health, float resourcesPerHit, ETool toolType, Item drop, int resourceIndex)
     {
         this.health = health;
         this.resourcesPerHit = resourcesPerHit;
         this.toolType = toolType;
-        this.resource = resource;
+        this.drop = drop;
         this.resourceIndex = resourceIndex;
     }
 
@@ -37,7 +37,7 @@ public class ResourceObj : MonoBehaviour
         {
             health -= toolObj.Hit();
             int yield = Mathf.RoundToInt(1 * toolObj.resourceMultiplier);
-            Debug.Log($"Hit: {resource}, got: {yield}, remaining health: {health}");
+            Debug.Log($"Hit: {drop}, got: {yield}, remaining health: {health}");
             return yield;
         }
         return 0;

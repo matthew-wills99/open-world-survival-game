@@ -14,6 +14,7 @@ using static Utils;
 ///     a tool type
 ///     a sprite index found in TileIndex
 /// </summary>
+[CreateAssetMenu(menuName = "Scriptable object/ToolObj")]
 public class ToolObj : ScriptableObject
 {
     public float damageMultiplier;

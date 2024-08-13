@@ -13,7 +13,7 @@ public class Harvestable : MonoBehaviour
    private Color objectColour;
    private Color cooldownColour = Color.black;
 
-    void start(){
+    void Start(){
         objectRenderer = GetComponent<SpriteRenderer>();
         if(objectRenderer != null){
             objectColour = objectRenderer.material.color;

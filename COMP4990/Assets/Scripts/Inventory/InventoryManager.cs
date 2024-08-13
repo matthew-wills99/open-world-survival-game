@@ -16,7 +16,10 @@ public class InventoryManager : MonoBehaviour
     public int maxStackedItems = 73;
     public int maxInventorySize = 29;
     public GameObject InventoryItemPrefab;
-    public List<InventorySlot> inventorySlots;
+    private List<InventorySlot> inventorySlots;
+
+    public Transform inventoryContainer;
+    public Transform toolbarContainer;
    
 
     [Header("UI")]
@@ -25,11 +28,37 @@ public class InventoryManager : MonoBehaviour
     private bool isInventoryOpen = false;
     int selectedSlot = -1;
 
+    private void GetInventorySlots()
+    {
+        int children = 0;
+        inventorySlots = new List<InventorySlot>();
+        foreach(Transform child in toolbarContainer.transform)
+        {
+            Debug.Log($"{children++}");
+            if(child.GetComponent<InventorySlot>())
+            {
+                Debug.Log("I");
+                inventorySlots.Add(child.GetComponent<InventorySlot>());
+            }
+        }
+
+        foreach(Transform child in inventoryContainer.transform)
+        {
+            Debug.Log($"{children++}");
+            if(child.GetComponent<InventorySlot>())
+            {
+                Debug.Log("I");
+                inventorySlots.Add(child.GetComponent<InventorySlot>());
+            }
+        }
+    }
+
     private void Awake(){
         instance = this;
     }
     //Making sure the slot selected at the start is the first slot, then adds starting items.
     private void Start(){
+        GetInventorySlots();
         ChangeSelectedSlot(0);
         foreach (var item in startItems){
             AddItem(item);
@@ -67,6 +96,13 @@ public class InventoryManager : MonoBehaviour
         inventorySlots[newValue].Select();
         selectedSlot = newValue;
     }
+    public void AddItem(Item item, int count){
+        for(int c = 0; c < count; c++)
+        {
+            AddItem(item);
+        }
+    }
+
     //When "picking up" items this will search for the closets empty slot
     public bool AddItem(Item item){
         //Check if inventory is full

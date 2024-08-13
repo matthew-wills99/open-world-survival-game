@@ -14,8 +14,11 @@ public class MiningSystem : MonoBehaviour
     private Transform highlight;
     private Transform currentlySelectedObject;
     public MapManager mapManager;
+    public InventoryManager inventoryManager;
 
     private bool miningMode = false;
+
+    Item selectedItem;
 
     private ToolObj pickaxe;
     private ToolObj axe;
@@ -130,6 +133,22 @@ public class MiningSystem : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
+            int yield = 0;
+            selectedItem = inventoryManager.GetSelectedItem();
+            if(selectedItem == null)
+            {
+                Debug.Log("No item");
+                return;
+            }
+            else if(selectedItem.toolObj == null)
+            {
+                Debug.Log("No tool");
+                return;
+            }
+            else
+            {
+                Debug.Log($"{selectedItem.toolObj.name}");
+            }
             if(currentlySelectedObject != null)
             {
                 //Debug.Log($"Clicking {currentlySelectedObject.name}");
@@ -137,7 +156,12 @@ public class MiningSystem : MonoBehaviour
                 {
                     if(currentlySelectedObject.GetComponent<ResourceObj>())
                     {
-                        currentlySelectedObject.GetComponent<ResourceObj>().Hit(pickaxe);
+                        yield = currentlySelectedObject.GetComponent<ResourceObj>().Hit(selectedItem.toolObj);
+                        if(yield <= 0)
+                        {
+                            return;
+                        }
+                        inventoryManager.AddItem(currentlySelectedObject.GetComponent<ResourceObj>().drop, yield);
                         if(currentlySelectedObject.GetComponent<ResourceObj>().health <= 0)
                         {
                             (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<RockObj>().GetCoordinates();
@@ -150,7 +174,12 @@ public class MiningSystem : MonoBehaviour
                 {
                     if(currentlySelectedObject.GetComponent<ResourceObj>())
                     {
-                        currentlySelectedObject.GetComponent<ResourceObj>().Hit(axe);
+                        yield = currentlySelectedObject.GetComponent<ResourceObj>().Hit(selectedItem.toolObj);
+                        if(yield <= 0)
+                        {
+                            return;
+                        }
+                        inventoryManager.AddItem(currentlySelectedObject.GetComponent<ResourceObj>().drop, yield);
                         if(currentlySelectedObject.GetComponent<ResourceObj>().health <= 0)
                         {
                             (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<TreeObj>().GetCoordinates();
@@ -163,7 +192,12 @@ public class MiningSystem : MonoBehaviour
                 {
                     if(currentlySelectedObject.GetComponent<ResourceObj>())
                     {
-                        currentlySelectedObject.GetComponent<ResourceObj>().Hit(axe);
+                        yield = currentlySelectedObject.GetComponent<ResourceObj>().Hit(selectedItem.toolObj);
+                        if(yield <= 0)
+                        {
+                            return;
+                        }
+                        inventoryManager.AddItem(currentlySelectedObject.GetComponent<ResourceObj>().drop, yield);
                         if(currentlySelectedObject.GetComponent<ResourceObj>().health <= 0)
                         {
                             (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<TCactusObj>().GetCoordinates();
@@ -187,4 +221,27 @@ public class MiningSystem : MonoBehaviour
         mousePos.z = 10; // camera offset
         return mousePos;
     }
+}
+
+// GET inventory.SeletedItem() and determine if it is a pick or an axe
+
+public class Harvestabl : MonoBehaviour
+{
+   public Item.ActionType RequiredAction;
+   public Item itemToAdd;
+   public float cooldownTime = 5.0f;
+
+    void OnMouseDown(){
+
+        Item selectedItem = InventoryManager.instance?.GetSelectedItem();
+        if (selectedItem != null && selectedItem.actionType == RequiredAction)
+        {
+            Debug.Log("Item" + gameObject);
+            InventoryManager.instance.AddItem(itemToAdd);
+        }else{
+            Debug.Log("You need a " + RequiredAction.ToString());
+        }
+
+    }
+
 }

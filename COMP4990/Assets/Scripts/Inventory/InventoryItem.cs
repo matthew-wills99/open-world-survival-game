@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 //This script is for items and stacking items, and dragging items
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-   
-
     [Header("UI")]
     public Image image;
-    public Text countText;
+    public TMP_Text countText;
     [HideInInspector] public Transform parentAfterDrag; //Dragging item movement
     [HideInInspector] public int count = 1; 
     [HideInInspector] public Item item; //Whats the item homes?
