@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 7
   itemName: Stone
+  isTool: 0
+  toolObj: {fileID: 0}
   tile: {fileID: 0}
   type: 2
   actionType: 2
   range: {x: 5, y: 4}
   stackable: 1
-  image: {fileID: -554980745, guid: 4112254f277d3eb45bed50e85ef7a75e, type: 3}
+  image: {fileID: 32195133, guid: 4112254f277d3eb45bed50e85ef7a75e, type: 3}

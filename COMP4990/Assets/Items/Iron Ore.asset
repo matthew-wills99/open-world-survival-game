@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 12
   itemName: Iron Ore
+  isTool: 0
+  toolObj: {fileID: 0}
   tile: {fileID: 0}
   type: 2
   actionType: 2
   range: {x: 5, y: 4}
   stackable: 1
-  image: {fileID: 1941896741, guid: 5a524b1b7c2f47a4f86431093fa68ec2, type: 3}
+  image: {fileID: -554980745, guid: 4112254f277d3eb45bed50e85ef7a75e, type: 3}
