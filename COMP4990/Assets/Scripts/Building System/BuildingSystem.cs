@@ -18,7 +18,7 @@ public class BuildingSystem : MonoBehaviour
     public Grid grid;
     [SerializeField] private Tilemap interactiveMap = null; // map where cursor will be drawn
     [SerializeField] private Tilemap waterTilemap = null;
-    [SerializeField] private Tilemap groundTilemap = null;
+    //[SerializeField] private Tilemap groundTilemap = null;
     [SerializeField] private Tilemap aboveGroundTilemap = null;
 
     private Vector3Int previousMousePos = new Vector3Int();

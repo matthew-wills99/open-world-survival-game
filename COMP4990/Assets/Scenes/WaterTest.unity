@@ -2360,6 +2360,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
         type: 3}
+      propertyPath: stone
+      value: 
+      objectReference: {fileID: 11400000, guid: 6cb4d4ebe9cbc6d49864f712001d782f,
+        type: 2}
+    - target: {fileID: 8965660370064090327, guid: ab706ca6659014e498f48e10c15cfb47,
+        type: 3}
       propertyPath: cactus1
       value: 
       objectReference: {fileID: 2234031327567662094, guid: 733cfdddba6e48b43a4f5047615b5be6,

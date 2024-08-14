@@ -148,7 +148,19 @@ MonoBehaviour:
   health: 5
   resourcesPerHit: 1
   toolType: 1
-  drop: {fileID: 11400000, guid: 63381a471c92dc041a3b98c199406512, type: 2}
+  drops:
+  - item: {fileID: 11400000, guid: 63381a471c92dc041a3b98c199406512, type: 2}
+    quantity: 1
+    dropChance: 100
+  - item: {fileID: 11400000, guid: 743530d96c0c03e458d5c1de391ba6b8, type: 2}
+    quantity: 2
+    dropChance: 33
+  - item: {fileID: 11400000, guid: c9d7b0c388239c5489c52d8ceab241b2, type: 2}
+    quantity: 1
+    dropChance: 16
+  - item: {fileID: 11400000, guid: c4495252d96f767448ba0bd7a75afb6d, type: 2}
+    quantity: 1
+    dropChance: 16
   resourceIndex: 6
 --- !u!1 &2055102312182832482
 GameObject:

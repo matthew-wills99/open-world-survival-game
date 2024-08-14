@@ -133,7 +133,6 @@ public class MiningSystem : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            int yield = 0;
             selectedItem = inventoryManager.GetSelectedItem();
             if(selectedItem == null)
             {
@@ -156,12 +155,15 @@ public class MiningSystem : MonoBehaviour
                 {
                     if(currentlySelectedObject.GetComponent<ResourceObj>())
                     {
-                        yield = currentlySelectedObject.GetComponent<ResourceObj>().Hit(selectedItem.toolObj);
-                        if(yield <= 0)
+                        List<ItemDrop> drops = currentlySelectedObject.GetComponent<ResourceObj>().Hit(selectedItem.toolObj);
+                        if(drops == null)
                         {
                             return;
                         }
-                        inventoryManager.AddItem(currentlySelectedObject.GetComponent<ResourceObj>().drop, yield);
+                        foreach(ItemDrop drop in drops)
+                        {
+                            inventoryManager.AddItem(drop.item, drop.quantity);
+                        }
                         if(currentlySelectedObject.GetComponent<ResourceObj>().health <= 0)
                         {
                             (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<RockObj>().GetCoordinates();
@@ -174,12 +176,15 @@ public class MiningSystem : MonoBehaviour
                 {
                     if(currentlySelectedObject.GetComponent<ResourceObj>())
                     {
-                        yield = currentlySelectedObject.GetComponent<ResourceObj>().Hit(selectedItem.toolObj);
-                        if(yield <= 0)
+                        List<ItemDrop> drops = currentlySelectedObject.GetComponent<ResourceObj>().Hit(selectedItem.toolObj);
+                        if(drops == null)
                         {
                             return;
                         }
-                        inventoryManager.AddItem(currentlySelectedObject.GetComponent<ResourceObj>().drop, yield);
+                        foreach(ItemDrop drop in drops)
+                        {
+                            inventoryManager.AddItem(drop.item, drop.quantity);
+                        }
                         if(currentlySelectedObject.GetComponent<ResourceObj>().health <= 0)
                         {
                             (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<TreeObj>().GetCoordinates();
@@ -192,12 +197,15 @@ public class MiningSystem : MonoBehaviour
                 {
                     if(currentlySelectedObject.GetComponent<ResourceObj>())
                     {
-                        yield = currentlySelectedObject.GetComponent<ResourceObj>().Hit(selectedItem.toolObj);
-                        if(yield <= 0)
+                        List<ItemDrop> drops = currentlySelectedObject.GetComponent<ResourceObj>().Hit(selectedItem.toolObj);
+                        if(drops == null)
                         {
                             return;
                         }
-                        inventoryManager.AddItem(currentlySelectedObject.GetComponent<ResourceObj>().drop, yield);
+                        foreach(ItemDrop drop in drops)
+                        {
+                            inventoryManager.AddItem(drop.item, drop.quantity);
+                        }
                         if(currentlySelectedObject.GetComponent<ResourceObj>().health <= 0)
                         {
                             (int cx, int cy, int tx, int ty) c = currentlySelectedObject.GetComponent<TCactusObj>().GetCoordinates();

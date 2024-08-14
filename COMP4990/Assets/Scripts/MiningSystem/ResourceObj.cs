@@ -19,27 +19,38 @@ public class ResourceObj : MonoBehaviour
     public float health;
     public float resourcesPerHit;
     public ETool toolType;
-    public Item drop;
+    public List<ItemDrop> drops;
     public int resourceIndex;
     
-    public ResourceObj(float health, float resourcesPerHit, ETool toolType, Item drop, int resourceIndex)
+    public ResourceObj(float health, float resourcesPerHit, ETool toolType, List<ItemDrop> drops, int resourceIndex)
     {
         this.health = health;
         this.resourcesPerHit = resourcesPerHit;
         this.toolType = toolType;
-        this.drop = drop;
+        this.drops = drops;
         this.resourceIndex = resourceIndex;
     }
 
-    public int Hit(ToolObj toolObj)
+    public List<ItemDrop> Hit(ToolObj toolObj)
     {
+        List<ItemDrop> collectedDrops = new List<ItemDrop>();
         if(toolObj.toolType == toolType)
         {
             health -= toolObj.Hit();
-            int yield = Mathf.RoundToInt(1 * toolObj.resourceMultiplier);
-            Debug.Log($"Hit: {drop}, got: {yield}, remaining health: {health}");
-            return yield;
+            foreach(var drop in drops)
+            {
+                if(Random.Range(0, 100) < drop.dropChance)
+                {
+                    int yield = Mathf.RoundToInt(1 * toolObj.resourceMultiplier);
+                    collectedDrops.Add(new ItemDrop(drop.item, yield, drop.dropChance));
+                    Debug.Log($"Hit: {drop.item}, got: {yield}, remaining health: {health}");
+                }
+            }
         }
-        return 0;
+        else
+        {
+            return null;
+        }
+        return collectedDrops;
     }
 }
