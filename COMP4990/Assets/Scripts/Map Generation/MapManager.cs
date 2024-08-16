@@ -57,8 +57,12 @@ public class MapManager : MonoBehaviour
 
     const int terrainTile = 35;
     const int waterTile = 34;
-    const int forestTile = 32;
+    const int forestTile = -1;
     const int desertTile = 33;
+
+    const int plainsBiome = -1;
+    const int forestBiome = 1;
+    const int desertBiome = 2;
 
     const int tileSize = 32;
 
@@ -114,10 +118,12 @@ public class MapManager : MonoBehaviour
     Dictionary<string, Chunk> groundChunks;
     Dictionary<string, Chunk> aboveGroundChunks;
     Dictionary<string, Chunk> waterChunks;
+    Dictionary<string, Chunk> biomeChunks;
 
     GameObject treeEmpty;
     GameObject rockEmpty;
     GameObject cactusEmpty;
+    GameObject saplingEmpty;
     // tree and rock dictionary is a good idea!!!!
     // key is Utils.GetCoordinateKey(cx, cy, tx, ty), value is Utils.Tree
     Dictionary<string, Tree> treeObjects;
@@ -137,6 +143,7 @@ public class MapManager : MonoBehaviour
                 groundChunks.Add(key, new Chunk(x, y, chunkSize));
                 waterChunks.Add(key, new Chunk(x, y, chunkSize));
                 aboveGroundChunks.Add(key, new Chunk(x, y, chunkSize));
+                biomeChunks.Add(key, new Chunk(x, y, chunkSize));
             }
         }
     }
@@ -313,57 +320,62 @@ public class MapManager : MonoBehaviour
 
     // this function fucking sucks
     // TODO: make good
+    // made better 15.8.24
     void PlaceBiomes()
     {
         foreach(var b in biomeDistances)
         {
             BiomeEnum biome = b.Key;
-            bool swag = false;
-            int distance = b.Value;
             int maximumAmount = biomeAmounts[biome];
             int biomesPlaced = 0;
+
+            List<(int cx, int cy)> possibleChunks = new List<(int, int)>();
             for(int cx = -mapSizeInChunks / 2; cx < mapSizeInChunks / 2; cx++)
             {
-                if(swag)
-                {
-                    break;
-                }
                 for(int cy = -mapSizeInChunks / 2; cy < mapSizeInChunks / 2; cy++)
                 {
-                    if(biomesPlaced >= maximumAmount)
+                    possibleChunks.Add((cx, cy)); // initialize a list of all chunk coordinates in the map
+                }
+            }
+
+            while(biomesPlaced < maximumAmount)
+            {
+                int randomIndex = random.Next(0, possibleChunks.Count);
+                int cx = possibleChunks[randomIndex].cx;
+                int cy = possibleChunks[randomIndex].cy;
+                if(FindValidBiomeLocation(cx, cy) != null) // if this chunk has at least 1 tile where a biome can spawn i think
+                {
+                    // we have randomly selected a chunk from the list, and that chunk is able to spawn a biome
+                    int tx = FindValidBiomeLocation(cx, cy).Item1;
+                    int ty = FindValidBiomeLocation(cx, cy).Item2;
+                    Biome placedBiome = null;
+                    switch(biome)
                     {
-                        swag = true;
-                        break;
+                        case BiomeEnum.Forest:
+                            placedBiome = new Biome(BiomeEnum.Forest, cx, cy, tx, ty, forestTile, forestBiome);
+                            forestBiomes.Add(placedBiome);
+                            groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = forestTile;
+                            biomeChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = forestBiome;
+                            //groundTilemap.SetTile(ChunkToWorldPos(cx, cy, tx, ty, chunkSize), tileIndex.GetTile(forestTile));
+                            break;
+                        case BiomeEnum.Desert:
+                            placedBiome = new Biome(BiomeEnum.Desert, cx, cy, tx, ty, desertTile, desertBiome);
+                            desertBiomes.Add(placedBiome);
+                            groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = desertTile;
+                            biomeChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = desertBiome;
+                            groundTilemap.SetTile(ChunkToWorldPos(cx, cy, tx, ty, chunkSize), tileIndex.GetTile(desertTile));
+                            break;
                     }
-                    if(FindValidBiomeLocation(cx, cy) != null)
+                    if(placedBiome != null)
                     {
-                        //25% chance for a biome to spawn in a chunk
-                        if(random.Next(0, 100) < 25)
-                        {
-                            int tx;
-                            int ty;
-                            switch(biome)
-                            {
-                                case BiomeEnum.Forest:
-                                    tx = FindValidBiomeLocation(cx, cy).Item1;
-                                    ty = FindValidBiomeLocation(cx, cy).Item2;
-                                    forestBiomes.Add(new Biome(BiomeEnum.Forest, cx, cy, tx, ty, forestTile));
-                                    allBiomes.Add(new Biome(BiomeEnum.Forest, cx, cy, tx, ty, forestTile));
-                                    groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = forestTile;
-                                    groundTilemap.SetTile(ChunkToWorldPos(cx, cy, tx, ty, chunkSize), tileIndex.GetTile(forestTile));
-                                    break;
-                                case BiomeEnum.Desert:
-                                    tx = FindValidBiomeLocation(cx, cy).Item1;
-                                    ty = FindValidBiomeLocation(cx, cy).Item2;
-                                    desertBiomes.Add(new Biome(BiomeEnum.Desert, cx, cy, tx, ty, desertTile));
-                                    allBiomes.Add(new Biome(BiomeEnum.Desert, cx, cy, tx, ty, desertTile));
-                                    groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = desertTile;
-                                    groundTilemap.SetTile(ChunkToWorldPos(cx, cy, tx, ty, chunkSize), tileIndex.GetTile(desertTile));
-                                    break;
-                            }
-                            biomesPlaced++;
-                        }
+                        allBiomes.Add(placedBiome);
                     }
+                    biomesPlaced++;
+                }
+                else
+                {
+                    // we have picked a random chunk, but this chunk sucks.
+                    possibleChunks.Remove(possibleChunks[randomIndex]);
                 }
             }
         }
@@ -382,7 +394,7 @@ public class MapManager : MonoBehaviour
             Vector3Int biomeWorldPos = ChunkToWorldPos(biome.Cx, biome.Cy, biome.Tx, biome.Ty, chunkSize);
 
             /************************************
-                This function uses world pos
+                This function uses world pos for some fucking reason
             ************************************/
 
             // queue the starting tile
@@ -419,10 +431,21 @@ public class MapManager : MonoBehaviour
                             {
                                 if(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] == terrainTile)
                                 {
-                                    groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = biome.TileIndex;
-                                    groundTilemap.SetTile(new Vector3Int(nextTile.Item1, nextTile.Item2, 0), tileIndex.GetTile(biome.TileIndex));
-                                    visited.Add(nextTile);
-                                    queue.Enqueue(Tuple.Create(nx, ny, dist + 1));
+                                    if(biome.TileIndex == -1)
+                                    {
+                                        biomeChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = biome.BiomeIndex;
+                                        visited.Add(nextTile);
+                                        queue.Enqueue(Tuple.Create(nx, ny, dist + 1));
+                                    }
+                                    else
+                                    {
+                                        groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = biome.TileIndex;
+                                        biomeChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = biome.BiomeIndex;
+                                        groundTilemap.SetTile(new Vector3Int(nextTile.Item1, nextTile.Item2, 0), tileIndex.GetTile(biome.TileIndex));
+                                        visited.Add(nextTile);
+                                        queue.Enqueue(Tuple.Create(nx, ny, dist + 1));
+                                    }
+                                    
                                 }
                             }
                         }
@@ -431,7 +454,7 @@ public class MapManager : MonoBehaviour
             }
         }
     }
-
+    // this function literally just checks for a full chunk of water i think 8.15.24
     // return x and y of a valid tile in the chunk
     Tuple<int, int> FindValidBiomeLocation(int cx, int cy)
     {
@@ -453,6 +476,7 @@ public class MapManager : MonoBehaviour
             }
         }
 
+        // idk wtf this is
         Tuple<int, int> furthestTerrain = null;
         int maxDistance = -1;
 
@@ -496,13 +520,17 @@ public class MapManager : MonoBehaviour
 
         foreach(Biome biome in allBiomes)
         {
-            SmoothMap(
-                -mapSizeInChunks / 2,
-                -mapSizeInChunks / 2,
-                mapSizeInChunks / 2,
-                mapSizeInChunks / 2,
-                biome.TileIndex
-            );
+            if(biome.TileIndex != -1) // biome tile index is -1 if that biome does not have a tile
+            {
+                SmoothMap(
+                    -mapSizeInChunks / 2,
+                    -mapSizeInChunks / 2,
+                    mapSizeInChunks / 2,
+                    mapSizeInChunks / 2,
+                    biome.TileIndex
+                );
+            }
+            
         }
     }
 
@@ -606,7 +634,7 @@ public class MapManager : MonoBehaviour
                         if(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] != waterTile)
                         {
                             // plains biome needs rocks and trees
-                            if(tileIndex.GetAllGrassTiles().Contains(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty]))
+                            if(biomeChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] == plainsBiome)
                             {
                                 if(random.Next(0, environmentObjectPlacementDenominator) < plainsRockChance)
                                 {
@@ -628,7 +656,7 @@ public class MapManager : MonoBehaviour
                                 }
                             }
                             // desert biome needs cactus
-                            else if(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] == desertTile)
+                            else if(biomeChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] == desertBiome)
                             {
                                 if(random.Next(0, environmentObjectPlacementDenominator) < desertCactusChance)
                                 {
@@ -641,7 +669,7 @@ public class MapManager : MonoBehaviour
                                 }
                             }
                             // forest biome needs trees
-                            else if(groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] == forestTile)
+                            else if(biomeChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] == forestBiome)
                             {
                                 if(random.Next(0, environmentObjectPlacementDenominator) < forestTreeChance)
                                 {
@@ -865,11 +893,13 @@ public class MapManager : MonoBehaviour
         treeEmpty = new GameObject("trees");
         rockEmpty = new GameObject("rocks");
         cactusEmpty = new GameObject("cactus");
+        saplingEmpty = new GameObject("saplings");
 
         random = new System.Random(seed);
         groundChunks = new Dictionary<string, Chunk>();
         waterChunks = new Dictionary<string, Chunk>();
         aboveGroundChunks = new Dictionary<string, Chunk>();
+        biomeChunks = new Dictionary<string, Chunk>();
 
         //order:  grid, x radius from window not including window, blocks up, blocks down, tile
         // lowest order is lowest area in tiles^2
@@ -957,6 +987,8 @@ public class MapManager : MonoBehaviour
         treeEmpty = new GameObject("trees");
         rockEmpty = new GameObject("rocks");
         cactusEmpty = new GameObject("cactus");
+        saplingEmpty = new GameObject("saplings");
+
 
         worldName = wn;
         seed = worldData.Seed;
@@ -1119,6 +1151,15 @@ public class MapManager : MonoBehaviour
         return (cx, cy, tx, ty);
     }
 
+    public void PlaceSapling(GameObject sapling, Vector3 pos)
+    {
+        Vector3Int intPos = new Vector3Int((int)pos.x, (int)pos.y, (int)pos.z);
+        SetAboveGroundTile(intPos, 1); // temporary number
+        pos.x += 0.5f;
+        pos.y += 0.5f;
+        Instantiate(sapling, pos, quaternion.identity, saplingEmpty.transform);
+    }
+
     public void DestroyObj(int cx, int cy, int tx, int ty)
     {
         if(rockObjects.ContainsKey(GetCoordinateKey(cx, cy, tx, ty)))
@@ -1142,5 +1183,33 @@ public class MapManager : MonoBehaviour
             //Debug.Log("Cact");
             cactusObjects.Remove(GetCoordinateKey(cx, cy, tx, ty));
         }
+    }
+
+    public void PlaceTree(Vector3 pos)
+    {
+        (int cx, int cy, int tx, int ty) c = WorldToChunkPos((int)pos.x, (int)pos.y, chunkSize);
+        if(treeObjects.ContainsKey(GetCoordinateKey(c.cx, c.cy, c.tx, c.ty)))
+        {
+            return;
+        }
+        Tree tempTree = new Tree(tileIndex.GetAllTrees()[random.Next(tileIndex.GetAllTrees().Count)], c.cx, c.cy, c.tx, c.ty);
+        treeObjects.Add(GetCoordinateKey(c.cx, c.cy, c.tx, c.ty), tempTree);
+        GameObject instance = Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(pos.x, pos.y + 0.5f, pos.z), quaternion.identity, treeEmpty.transform);
+        instance.tag = "Selectable";
+        instance.GetComponent<TreeObj>().SetCoords(c.cx, c.cy, c.tx, c.ty);
+    }
+
+    public void PlaceCactus(Vector3 pos)
+    {
+        (int cx, int cy, int tx, int ty) c = WorldToChunkPos((int)pos.x, (int)pos.y, chunkSize);
+        if(cactusObjects.ContainsKey(GetCoordinateKey(c.cx, c.cy, c.tx, c.ty)))
+        {
+            return;
+        }
+        Cactus tempCactus = new Cactus(tileIndex.GetAllCactus()[random.Next(tileIndex.GetAllCactus().Count)], c.cx, c.cy, c.tx, c.ty);
+        cactusObjects.Add(GetCoordinateKey(c.cx, c.cy, c.tx, c.ty), tempCactus);
+        GameObject instance = Instantiate(tileIndex.GetObject(tempCactus.Index), new Vector3(pos.x, pos.y + 0.5f, pos.z), quaternion.identity, cactusEmpty.transform);
+        instance.tag = "Selectable";
+        instance.GetComponent<TCactusObj>().SetCoords(c.cx, c.cy, c.tx, c.ty);
     }
 }

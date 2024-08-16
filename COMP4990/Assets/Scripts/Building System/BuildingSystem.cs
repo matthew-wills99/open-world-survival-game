@@ -8,6 +8,7 @@ public class BuildingSystem : MonoBehaviour
     public MapManager mapManager;
     public CameraController cameraController;
     public Transform player;
+    public InventoryManager inventoryManager;
 
     public Camera mainCamera;
     
@@ -23,6 +24,9 @@ public class BuildingSystem : MonoBehaviour
 
     private Vector3Int previousMousePos = new Vector3Int();
     private Vector3Int mousePos;
+
+    public float placeCooldown = 0.1f;
+    private float lastPlaceTime = 0f;
 
     void Update()
     {
@@ -70,35 +74,87 @@ public class BuildingSystem : MonoBehaviour
         if(Input.GetMouseButton(1)) {
             Destroy();
         }
+
+        // cooldown
+        //if(Time.time - Time.deltaTime > placingResetTime && isPlacing)
+        //{
+        //    isPlacing = false;
+        //}
     }
 
-    void Place()
+    bool PlaceOffCooldown()
     {
+        Debug.Log($"{Time.time} >= {lastPlaceTime} + {placeCooldown} = {lastPlaceTime + placeCooldown}");
+        if(Time.time >= lastPlaceTime + placeCooldown)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    bool CanPlaceHere()
+    {
+        if(inventoryManager.GetSelectedItem() == null)
+        {
+            return false;
+        }
+        // item in hand, but is not an object
+        if(!inventoryManager.GetSelectedItem().isObj)
+        {
+            return false;
+        }
         // tile has a tree or rock on it
         if(mapManager.TileHasObject(mousePos.x, mousePos.y))
         {
             //Debug.Log("Object");
-            return;
+            return false;
         }
        // distance to target too far
         if(Utils.GetDistance(mousePos.x, mousePos.y, (int)player.transform.position.x, (int)player.transform.position.y) > buildRange)
         {
             //Debug.Log("Too Far");
-            return;
+            return false;
         }
         // trying to place in water (will add bridges)
         if(waterTilemap.GetTile(mousePos) != null)
         {
             //Debug.Log("Water");
-            return;
+            return false;
         }
         // make sure no other tile already exists
         if(aboveGroundTilemap.GetTile(mousePos) == null)
         {
-            mapManager.SetAboveGroundTile(mousePos, 1); // temporary number
-            aboveGroundTilemap.SetTile(mousePos, tileIndex.GetHouseTile());
+            return true;
+        }
+        return false;
+    }
+
+    void Place()
+    {
+        if(!PlaceOffCooldown())
+        {
+            Debug.Log("place on cooldown");
             return;
         }
+        if(!CanPlaceHere())
+        {
+            return;
+        }
+        if(inventoryManager.GetSelectedItem().obj.GetComponent<Sapling>())
+        {
+            mapManager.PlaceSapling(inventoryManager.GetSelectedItem().obj, mousePos);
+            inventoryManager.RemoveItem(inventoryManager.GetSelectedItem());
+            lastPlaceTime = Time.time;
+            return;
+        }
+
+        mapManager.SetAboveGroundTile(mousePos, 1); // temporary number
+        aboveGroundTilemap.SetTile(mousePos, tileIndex.GetHouseTile());
+        lastPlaceTime = Time.time;
+        return;
     }
 
     void Destroy()

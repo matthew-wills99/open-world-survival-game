@@ -13,6 +13,9 @@ public class Item : ScriptableObject
     public bool isTool; // tools are things that gather resources
     public ToolObj toolObj;
 
+    public bool isObj; // obj like sapling crafting table 
+    public GameObject obj;
+
     [Header("Only gameplay")]
     public TileBase tile;
     public ItemType type;

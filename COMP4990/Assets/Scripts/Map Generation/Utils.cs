@@ -76,6 +76,7 @@ public class Utils : MonoBehaviour
         public int Tx {get; set;}
         public int Ty {get; set;}
         public int TileIndex {get; set;}
+        public int BiomeIndex {get; set;}
 
         /// <summary>
         /// Creates a new biome object with the given parameters.
@@ -86,7 +87,8 @@ public class Utils : MonoBehaviour
         /// <param name="tx">Tile X</param>
         /// <param name="ty">Tile Y</param>
         /// <param name="tileIndex">Index of the tile used to paint the biome, see <see cref="global::TileIndex"/></param>
-        public Biome(BiomeEnum type, int cx, int cy, int tx, int ty, int tileIndex)
+        /// <param name="biomeIndex">Each biome has a unique index</param>
+        public Biome(BiomeEnum type, int cx, int cy, int tx, int ty, int tileIndex, int biomeIndex)
         {
             Type = type;
             Cx = cx;
@@ -94,6 +96,7 @@ public class Utils : MonoBehaviour
             Tx = tx;
             Ty = ty;
             TileIndex = tileIndex;
+            BiomeIndex = biomeIndex;
         }
 
         /// <summary>
@@ -314,6 +317,12 @@ public class Utils : MonoBehaviour
     {
         Pickaxe,
         Axe
+    }
+
+    public enum ESapling
+    {
+        Tree,
+        Cactus
     }
 
     /// <summary>
