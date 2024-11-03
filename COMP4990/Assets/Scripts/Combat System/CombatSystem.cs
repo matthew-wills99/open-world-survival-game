@@ -8,6 +8,8 @@ public class CombatSystem : MonoBehaviour
 
     public GameObject ironLongswordPfb;
 
+    public GameObject ironShortswordPfb;
+
     void Update()
     {
         if(Input.GetButtonDown("Fire1"))
@@ -16,6 +18,11 @@ public class CombatSystem : MonoBehaviour
             Attack();
         }
 
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            weaponManager.SetWeaponObject(ironShortswordPfb);
+            Debug.Log("Shortsword yipeee");
+        }
         if(Input.GetKeyDown(KeyCode.Y))
         {
             weaponManager.SetWeaponObject(ironLongswordPfb);
@@ -49,5 +56,13 @@ public class CombatSystem : MonoBehaviour
     swingrotation rot z = -71.7
     swingrotation pos x = -0.5
     
+    stab animation:
+    LEFT:
+    position (-0.7, -0.5, 0)
+    rotation (0, 0, 90)
+
+    RIGHT:
+    position (0.7, -0.5, 0)
+    rotation (0, 0 -90)
     */
 }

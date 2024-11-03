@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Utils;
 
 /*
 Weapon attack types:
@@ -16,7 +17,6 @@ public class WeaponManager : MonoBehaviour
     public GameObject gfx;
     private Transform gfxTransform;
 
-    public float attackCooldown = 0.5f; // Time between attacks
     private float nextAttackTime = 0f;
 
     [SerializeField] private Animator anim;
@@ -49,22 +49,41 @@ public class WeaponManager : MonoBehaviour
 
     public void Attack()
     {
+        Weapon weapon = weaponObj.GetComponent<Weapon>();
         if(Time.time < nextAttackTime)
         {
             return;
         }
-        nextAttackTime = Time.time + attackCooldown;
+        nextAttackTime = Time.time + weapon.attackCooldown; // cooldown of the weapon specifically
 
-        weaponObj.GetComponent<TrailRenderer>().Clear();
+        weaponObj.GetComponent<TrailRenderer>().Clear(); // reset trail renderer of weapon
+
+        EAttackType attackType = weapon.GetAttackType();
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if(mousePos.x < transform.position.x)
         {
-            anim.SetTrigger("SwingLeft");
+            // attack to left of player
+            if(attackType == EAttackType.Swing)
+            {
+                anim.SetTrigger("SwingLeft");
+            }
+            else if(attackType == EAttackType.Stab)
+            {
+                anim.SetTrigger("StabLeft");
+            }
         }
         else
         {
-            anim.SetTrigger("SwingRight");
+            // attack to right of player
+            if(attackType == EAttackType.Swing)
+            {
+                anim.SetTrigger("SwingRight");
+            }
+            else if(attackType == EAttackType.Stab)
+            {
+                anim.SetTrigger("StabRight");
+            }
         }
     }
 
