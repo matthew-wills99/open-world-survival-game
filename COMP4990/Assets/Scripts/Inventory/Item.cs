@@ -16,6 +16,9 @@ public class Item : ScriptableObject
     public bool isObj; // obj like sapling crafting table 
     public GameObject obj;
 
+    public bool isWeapon; // weapon
+    public GameObject weapon;
+
     [Header("Only gameplay")]
     public TileBase tile;
     public ItemType type;
@@ -28,10 +31,20 @@ public class Item : ScriptableObject
     [Header("Both")]
     public Sprite image;
 
+    /*public Weapon GetWeapon()
+    {
+        if(isWeapon)
+        {
+            return weapon.GetComponent<Weapon>();
+        }
+        return null;
+    }*/
+
     public enum ItemType{
         BuildingBlock,
         Tool,
-        Crafting
+        Crafting,
+        Weapon
     }
 
     public enum ActionType {

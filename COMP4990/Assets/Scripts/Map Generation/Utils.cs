@@ -279,6 +279,13 @@ public class Utils : MonoBehaviour
         }
     }
 
+    // something going on here fr
+    public enum EAttackType
+    {
+        Swing,
+        Stab
+    }
+
     /// <summary>
     /// Biome enum.
     /// </summary>
@@ -317,6 +324,13 @@ public class Utils : MonoBehaviour
     {
         Pickaxe,
         Axe
+    }
+
+    public enum EDamageType
+    {
+        Melee,
+        Ranged,
+        Magic
     }
 
     public enum ESapling

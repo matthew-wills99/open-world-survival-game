@@ -150,6 +150,10 @@ public class BuildingSystem : MonoBehaviour
             lastPlaceTime = Time.time;
             return;
         }
+        //if(inventoryManager.GetSelectedItem().obj.GetComponent<Weapon>())
+        //{
+//
+        //}
 
         mapManager.SetAboveGroundTile(mousePos, 1); // temporary number
         aboveGroundTilemap.SetTile(mousePos, tileIndex.GetHouseTile());
