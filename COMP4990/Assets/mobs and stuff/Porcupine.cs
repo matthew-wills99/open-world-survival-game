@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
@@ -66,6 +67,15 @@ public class Porcupine : Animal
 
     private EState previousState = EState.Idle;
 
+    // shooting mfs
+    [SerializeField]
+    private float shootingRange = 5f; // distance the porcupine will start shooting from when mad
+    [SerializeField]
+    private GameObject projectilePfb;
+    [SerializeField]
+    private float shootCooldown = 2f; // time between shots
+    private float shootTimer = 0f;
+
     void Start()
     {
         // health
@@ -102,6 +112,36 @@ public class Porcupine : Animal
     void Update()
     {
         Move();
+
+        if(isMad)
+        {
+            TryShoot();
+        }
+    }
+
+    private void TryShoot()
+    {
+        Debug.Log("we trying");
+        shootTimer += Time.deltaTime;
+
+        if(Vector2.Distance(transform.position, target.position) <= shootingRange && shootTimer >= shootCooldown)
+        {
+            Shoot(target);
+            shootTimer = 0f;
+        }
+    }
+
+    private void Shoot(Transform target)
+    {
+        Debug.Log("Shooting");
+        GameObject proj = Instantiate(projectilePfb, transform.position, Quaternion.identity);
+        Vector2 shootDir = (target.position - transform.position).normalized;
+
+        Rigidbody2D rb = proj.GetComponent<Rigidbody2D>();
+        rb.velocity = shootDir * 10f;
+
+        // when porcupine shoots the boredom timer resets and it maintains agro
+        currentTimeUntilBored = timeUntilBored;
     }
 
     /*
