@@ -8,6 +8,13 @@ using UnityEngine;
 public class Porcupine : Animal
 {
 
+    /*
+    Porcupines should spawn in groups
+    group size: 3 - 5 porcupines
+
+    when a porcupine is hit, all porcupines within range are agro to target
+    */
+
     private enum EState
     {
         Idle,
@@ -75,6 +82,10 @@ public class Porcupine : Animal
     [SerializeField]
     private float shootCooldown = 2f; // time between shots
     private float shootTimer = 0f;
+
+    // group agro
+    [SerializeField]
+    private float alertRadius = 10f; // radius in which other porcupines gain agro when one is hit
 
     void Start()
     {
@@ -164,6 +175,7 @@ public class Porcupine : Animal
         }
         // when the porcupine is hit, the chase timer gets reset and it continues to chase
         currentTimeUntilBored = timeUntilBored;
+        Alert();
     }
 
     private void TakeDamage(float damage)
@@ -344,6 +356,26 @@ public class Porcupine : Animal
         else // More vertical movement
         {
             return direction.y < 0 ? EState.Down : EState.Up;
+        }
+    }
+
+
+    // this could be in the Animal class and applied to every animal
+    // alert nearby porcupines and make them mad at the target
+    private void Alert()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, alertRadius);
+        foreach(var collider in colliders)
+        {
+            Porcupine porcupine = collider.GetComponent<Porcupine>();
+            // only apply to porcupines that are not this one, and are not already mad
+            if(porcupine != null && porcupine != this && !porcupine.isMad)
+            {
+                porcupine.SetMad(true);
+                porcupine.target = target;
+                porcupine.currentTimeUntilBored = porcupine.timeUntilBored;
+                Debug.Log("a new porcupine is mad");
+            }
         }
     }
 }
