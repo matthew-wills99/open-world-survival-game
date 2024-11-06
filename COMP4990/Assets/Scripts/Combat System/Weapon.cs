@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour
         if(other.CompareTag("Enemy"))
         {
             Debug.Log("Hit enemy");
-            other.GetComponent<TEnemy>().TakeDamage(damage);
+            other.GetComponent<Animal>().Hit(damage, transform.parent.transform);
         }
     }
 }
