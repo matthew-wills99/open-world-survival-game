@@ -60,7 +60,7 @@ public class WeaponManager : MonoBehaviour
 
         EAttackType attackType = weapon.GetAttackType();
 
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(GetMousePosition());
         if(mousePos.x < transform.position.x)
         {
             // attack to left of player
@@ -90,5 +90,13 @@ public class WeaponManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Sigma");
+    }
+
+    Vector3 GetMousePosition()
+    {
+        
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 10; // camera offset
+        return mousePos;
     }
 }

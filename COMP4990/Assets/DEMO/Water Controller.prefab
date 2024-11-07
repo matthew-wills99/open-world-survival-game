@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2598481669523814280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3424302433584150104}
+  - component: {fileID: 8382737604117493402}
+  m_Layer: 0
+  m_Name: Water Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3424302433584150104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2598481669523814280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8382737604117493402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2598481669523814280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff90ab9e6cce8542abf1201f939b254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deepWaterSmoothingPasses: 2
+  waterThreshold: 4
+  mapManager: {fileID: 0}
+  tileIndex: {fileID: 0}
+  bubbles1Clip: {fileID: 7400000, guid: e5c611a5b584db546b33f4ca882321b5, type: 2}
+  bubbles2Clip: {fileID: 7400000, guid: fd3d30efcd9eb404d9d50f28721f0c5a, type: 2}
+  ripplesClip: {fileID: 7400000, guid: 6554cb8ac9a6b744b937c53f755b140d, type: 2}
+  bubbles1Controller: {fileID: 9100000, guid: 11336536251975b41b02e41a654a7423, type: 2}
+  bubbles2Controller: {fileID: 9100000, guid: 5e338d3fb3ad0054b8317c4429c7f4f0, type: 2}
+  ripplesController: {fileID: 9100000, guid: dc5a81e350a9c414faafdf6d86e66dba, type: 2}
+  waterEventsParent: {fileID: 0}
+  playbackSpeed: 0.5

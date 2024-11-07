@@ -31,15 +31,6 @@ public class Item : ScriptableObject
     [Header("Both")]
     public Sprite image;
 
-    /*public Weapon GetWeapon()
-    {
-        if(isWeapon)
-        {
-            return weapon.GetComponent<Weapon>();
-        }
-        return null;
-    }*/
-
     public enum ItemType{
         BuildingBlock,
         Tool,

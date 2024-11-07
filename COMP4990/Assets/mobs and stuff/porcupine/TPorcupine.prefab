@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2413419458776680017}
   - component: {fileID: 3241289420537265023}
   - component: {fileID: 5610922851930460145}
+  - component: {fileID: 885636574649312253}
+  - component: {fileID: 7186296913960340979}
   m_Layer: 12
   m_Name: TPorcupine
   m_TagString: Enemy
@@ -188,3 +190,27 @@ PolygonCollider2D:
       - {x: 0.25548005, y: -0.17254138}
       - {x: 0.16452718, y: 0.15405476}
   m_UseDelaunayMesh: 0
+--- !u!114 &885636574649312253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865156196868840920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9529377a85db78a46b876e067ed61c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!210 &7186296913960340979
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865156196868840920}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0

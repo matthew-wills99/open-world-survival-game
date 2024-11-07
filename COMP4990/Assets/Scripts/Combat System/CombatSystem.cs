@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Tools;
 
 public class CombatSystem : MonoBehaviour
 {
-    public WeaponManager weaponManager; // should rename the script low key
+    public WeaponManager weaponManager; // should rename the script low key]
+    public InventoryManager inventoryManager;
+    private Item selectedItem;
 
     public GameObject ironLongswordPfb;
 
@@ -12,31 +15,21 @@ public class CombatSystem : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Attack");
             Attack();
-        }
-
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            weaponManager.SetWeaponObject(ironShortswordPfb);
-            Debug.Log("Shortsword yipeee");
-        }
-        if(Input.GetKeyDown(KeyCode.Y))
-        {
-            weaponManager.SetWeaponObject(ironLongswordPfb);
-            Debug.Log("Set weapon to iron longsword");
-        }
-        if(Input.GetKeyDown(KeyCode.U))
-        {
-            weaponManager.DestroyWeapon();
-            Debug.Log("Destroyed weapon");
         }
     }
 
     void Attack()
     {
+        Debug.Log("Attacked");
+        selectedItem = inventoryManager.GetSelectedItem();
+        if(!selectedItem.isWeapon)
+        {
+            return;
+        }
+        weaponManager.SetWeaponObject(selectedItem.weapon);
         weaponManager.Attack();
     }
 

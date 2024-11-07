@@ -24,7 +24,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject inventoryPanel;
-    public KeyCode toggleInvnetoryKey = KeyCode.E;
+    public KeyCode toggleInventoryKey = KeyCode.E;
     private bool isInventoryOpen = false;
     int selectedSlot = -1;
 
@@ -68,7 +68,7 @@ public class InventoryManager : MonoBehaviour
 
     //Changing which slot the user selects
     private void Update(){
-        if (Input.GetKeyDown(toggleInvnetoryKey)){
+        if (Input.GetKeyDown(toggleInventoryKey)){
             ToggleInventory();
         }
         //Check for slot selection input (1-8 on keyboard)
