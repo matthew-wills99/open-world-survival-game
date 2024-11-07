@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3983542204135512512}
   - component: {fileID: 4253062705218349053}
   - component: {fileID: -773360737522369931}
+  - component: {fileID: 8276777283591139314}
+  - component: {fileID: 8465582314817532003}
   m_Layer: 0
   m_Name: Quill
   m_TagString: Untagged
@@ -185,3 +187,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTravelTime: 3
+--- !u!210 &8276777283591139314
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5607606640627458955}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+--- !u!114 &8465582314817532003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5607606640627458955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9529377a85db78a46b876e067ed61c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

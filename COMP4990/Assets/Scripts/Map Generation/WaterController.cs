@@ -8,6 +8,10 @@ using static Utils;
 
 public class WaterController : MonoBehaviour
 {
+    public CompositeCollider2D compositeCollider;
+
+    public Tilemap seafoamTilemap;
+
     public int deepWaterSmoothingPasses = 1;
     public int waterThreshold = 4;
     
@@ -60,6 +64,8 @@ public class WaterController : MonoBehaviour
 
         //Debug.Log($"yea: {HasTile(waterTilemap, ChunkToWorldPos(mapSizeInChunks/2, mapSizeInChunks/2, 16, 16, chunkSize))}");
         //Debug.Log($"yea: {waterTilemap.GetTile(ChunkToWorldPos(0,0, 0,0, chunkSize))}");
+
+        compositeCollider.GenerateGeometry();
     }
 
     /// <summary>
@@ -94,7 +100,7 @@ public class WaterController : MonoBehaviour
                         int sfIndex = GetSeafoamIndex(waterTilemap, pos);
                         if(sfIndex != -1)
                         {
-                            waterTilemap.SetTile(pos, tileIndex.GetSeafoam(sfIndex));
+                            seafoamTilemap.SetTile(pos, tileIndex.GetSeafoam(sfIndex));
                         }
                         else
                         {
@@ -317,6 +323,7 @@ public class WaterController : MonoBehaviour
         {
             if(Time.time - currentTime > cooldown)
             {
+                
                 // get random water tile coordinates
                 Tuple<int, int> coords = waterEventTiles[UnityEngine.Random.Range(0, waterCoords.Count)];
                 int x = coords.Item1;
@@ -349,6 +356,8 @@ public class WaterController : MonoBehaviour
                 animator.speed = playbackSpeed;
 
                 waterEventObject.AddComponent<AutoDestroy>().animationClip = selectedAnimation.Item1;
+
+                
 
                 currentTime = Time.time;
             }
