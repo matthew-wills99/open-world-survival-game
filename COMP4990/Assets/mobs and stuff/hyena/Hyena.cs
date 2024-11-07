@@ -47,6 +47,10 @@ public class Hyena : Animal
     [SerializeField]
     private float agroRange = 5f; // range that hyenas will be mad from
     private bool isChasing = false;
+    private float attackRange = 1f;
+    private bool isAttacking = false;
+    [SerializeField]
+    private float attackCooldown = 1f;
 
     void Start()
     {
@@ -107,7 +111,7 @@ public class Hyena : Animal
     {
         FindClosestPlayer();
         
-        if(isChasing)
+        if(isChasing && !isAttacking)
         {
             ChaseTarget();
         }
@@ -153,13 +157,7 @@ public class Hyena : Animal
 
     private void ChaseTarget()
     {
-        if(currentTimeUntilBored <= 0)
-        {
-            isChasing = false;
-            anim.SetTrigger("setIdle");
-            return;
-        }
-        if(target == null)
+        if(currentTimeUntilBored <= 0 || target == null)
         {
             isChasing = false;
             anim.SetTrigger("setIdle");
@@ -167,18 +165,35 @@ public class Hyena : Animal
         }
 
         currentTimeUntilBored -= Time.deltaTime;
+
+        float distanceToTarget = Vector2.Distance(transform.position, target.position);
         
-        Vector2 direction = (target.position - transform.position).normalized;
-        if(direction.x < 0)
+        if(distanceToTarget <= attackRange && !isAttacking)
         {
-            spriteRenderer.flipX = false;
+            StartCoroutine(Attack());
         }
-        else
+        else if(distanceToTarget > attackRange)
         {
-            spriteRenderer.flipX = true;
+            isAttacking = false;
+
+            Vector2 direction = (target.position - transform.position).normalized;
+            spriteRenderer.flipX = direction.x < 0 ? false : true;
+
+            transform.position += (Vector3)direction * moveSpeed * madMoveSpeedMultiplier * Time.deltaTime;
+        }
+    }
+
+    private IEnumerator Attack()
+    {
+        isAttacking = true;
+
+        while(Vector2.Distance(transform.position, target.position) <= attackRange)
+        {
+            anim.SetTrigger("attack");
+            yield return new WaitForSeconds(attackCooldown);
         }
 
-        transform.position += (Vector3)direction * moveSpeed * madMoveSpeedMultiplier * Time.deltaTime;
+        isAttacking = false;
     }
 
     private IEnumerator CheckWanderState()

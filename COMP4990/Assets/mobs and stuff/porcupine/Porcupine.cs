@@ -78,6 +78,9 @@ public class Porcupine : Animal
     [SerializeField]
     private float shootingRange = 5f; // distance the porcupine will start shooting from when mad
     [SerializeField]
+    private float shootingMoveBuffer = 2f;
+    private bool shooting = false;
+    [SerializeField]
     private GameObject projectilePfb;
     [SerializeField]
     private float shootCooldown = 2f; // time between shots
@@ -135,7 +138,7 @@ public class Porcupine : Animal
         Debug.Log("we trying");
         shootTimer += Time.deltaTime;
 
-        if(Vector2.Distance(transform.position, target.position) <= shootingRange && shootTimer >= shootCooldown)
+        if(shootTimer >= shootCooldown)
         {
             Shoot(target);
             shootTimer = 0f;
@@ -248,23 +251,56 @@ public class Porcupine : Animal
 
         if(isMad)
         {
+            if(target == null)
+            {
+                SetMad(false);
+                return;
+            }
             // not bored yet
             if(currentTimeUntilBored > 0)
             {
                 currentTimeUntilBored -= Time.deltaTime;
 
-                Vector2 newDirection = (target.position - transform.position).normalized;
-                EState newState = GetClosestDirection(newDirection);
+                float distanceToTarget = Vector2.Distance(transform.position, target.position);
 
-                Debug.Log($"newState: {newState}, previousState: {previousState}");
-
-                if(newState != previousState)
+                // red circle
+                if(distanceToTarget <= shootingRange)
                 {
-                    GetAnimationWhileMad(newState);
-                    previousState = newState;
+                    if(!shooting)
+                    {
+                        shooting = true;
+                        anim.SetBool("isShooting", true);
+                        anim.SetTrigger("setIdle");
+                    }
+                    TryShoot();
                 }
+                // orange circle
+                else if(distanceToTarget <= shootingRange + shootingMoveBuffer && shooting)
+                {
+                    TryShoot();
+                }
+                else
+                {
+                    Vector2 newDirection = (target.position - transform.position).normalized;
+                    if(shooting)
+                    {
+                        shooting = false;
+                        EState newDir = GetClosestDirection(newDirection);
+                        anim.SetBool("isShooting", false);
+                        GetAnimationWhileMad(newDir);
+                    }
+                    EState newState = GetClosestDirection(newDirection);
 
-                transform.position += (Vector3)newDirection * (moveSpeed * madMoveSpeedMultiplier) * Time.deltaTime;
+                    Debug.Log($"newState: {newState}, previousState: {previousState}");
+
+                    if(newState != previousState)
+                    {
+                        GetAnimationWhileMad(newState);
+                        previousState = newState;
+                    }
+
+                    transform.position += (Vector3)newDirection * (moveSpeed * madMoveSpeedMultiplier) * Time.deltaTime;
+                }
             }
             // bored
             else
@@ -379,3 +415,4 @@ public class Porcupine : Animal
         }
     }
 }
+
