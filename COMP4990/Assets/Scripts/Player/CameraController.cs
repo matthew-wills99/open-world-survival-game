@@ -8,12 +8,20 @@ public class CameraController: MonoBehaviour
     public int zOffset = -13;
     public Transform target;
     public Vector3 offset;
+    
+    public Vector2 minBounds;
+    public Vector2 maxBounds;
+
     void FixedUpdate() {
         Vector3 desiredPosition = target.position + offset;
+
+
+        float clampedX = Mathf.Clamp(desiredPosition.x, minBounds.x, maxBounds.x);
+        float clampedY = Mathf.Clamp(desiredPosition.y, minBounds.y, maxBounds.y);
+
+        transform.position = new Vector3(clampedX, clampedY, desiredPosition.z);
         
-        transform.position = desiredPosition;
-        
-        transform.LookAt(target);
+        //transform.LookAt(target);
     }
 
     public Vector3 GetOffset()

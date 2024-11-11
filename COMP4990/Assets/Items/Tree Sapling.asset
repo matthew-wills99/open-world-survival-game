@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Tree Sapling
   isTool: 0
   toolObj: {fileID: 0}
-  isObj: 1
+  isPlaceable: 1
   obj: {fileID: 2055102311959635369, guid: 631dd576addd5bd4f82059e1cd6dafe0, type: 3}
   isWeapon: 0
   weapon: {fileID: 0}

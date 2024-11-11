@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -19,13 +18,13 @@ public class Sapling : MonoBehaviour
     public void Awake()
     {
         mapManager = FindObjectOfType<MapManager>();
-        timeOfFullGrowth = Time.time + UnityEngine.Random.Range(4, 10);
+        timeOfFullGrowth = Time.time + Random.Range(4, 10);
         StartCoroutine(CheckGrowthTime());
     }
 
     private IEnumerator CheckGrowthTime()
     {
-        while(UnityEngine.Time.time < timeOfFullGrowth)
+        while(Time.time < timeOfFullGrowth)
         {
             yield return null;
         }
@@ -33,5 +32,7 @@ public class Sapling : MonoBehaviour
         if(saplingType == ESapling.Tree) mapManager.PlaceTree(transform.position);
         else if(saplingType == ESapling.Cactus) mapManager.PlaceCactus(transform.position);
         Destroy(gameObject);
+        Vector3Int intPos = new Vector3Int((int)transform.position.x, (int)transform.position.y, (int)transform.position.z);
+        mapManager.SetAboveGroundTile(intPos, -1);
     }
 }

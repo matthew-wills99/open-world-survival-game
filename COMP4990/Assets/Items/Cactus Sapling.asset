@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Cactus Sapling
   isTool: 0
   toolObj: {fileID: 0}
-  isObj: 1
+  isPlaceable: 1
   obj: {fileID: 2055102311959635369, guid: 75656a18bcaf6f042b6d2dafd8730702, type: 3}
   isWeapon: 0
   weapon: {fileID: 0}

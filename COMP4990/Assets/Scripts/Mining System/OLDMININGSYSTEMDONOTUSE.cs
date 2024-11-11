@@ -230,26 +230,3 @@ public class MiningSystem : MonoBehaviour
         return mousePos;
     }
 }
-
-// GET inventory.SeletedItem() and determine if it is a pick or an axe
-
-public class Harvestabl : MonoBehaviour
-{
-   public Item.ActionType RequiredAction;
-   public Item itemToAdd;
-   public float cooldownTime = 5.0f;
-
-    void OnMouseDown(){
-
-        Item selectedItem = InventoryManager.instance?.GetSelectedItem();
-        if (selectedItem != null && selectedItem.actionType == RequiredAction)
-        {
-            Debug.Log("Item" + gameObject);
-            InventoryManager.instance.AddItem(itemToAdd);
-        }else{
-            Debug.Log("You need a " + RequiredAction.ToString());
-        }
-
-    }
-
-}

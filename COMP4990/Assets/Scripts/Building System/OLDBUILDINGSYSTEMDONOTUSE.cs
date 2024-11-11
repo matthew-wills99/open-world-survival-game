@@ -19,7 +19,6 @@ public class BuildingSystem : MonoBehaviour
     public Grid grid;
     [SerializeField] private Tilemap interactiveMap = null; // map where cursor will be drawn
     [SerializeField] private Tilemap waterTilemap = null;
-    //[SerializeField] private Tilemap groundTilemap = null;
     [SerializeField] private Tilemap aboveGroundTilemap = null;
 
     private Vector3Int previousMousePos = new Vector3Int();
@@ -97,15 +96,6 @@ public class BuildingSystem : MonoBehaviour
 
     bool CanPlaceHere()
     {
-        if(inventoryManager.GetSelectedItem() == null)
-        {
-            return false;
-        }
-        // item in hand, but is not an object
-        if(!inventoryManager.GetSelectedItem().isObj)
-        {
-            return false;
-        }
         // tile has a tree or rock on it
         if(mapManager.TileHasObject(mousePos.x, mousePos.y))
         {
@@ -150,10 +140,6 @@ public class BuildingSystem : MonoBehaviour
             lastPlaceTime = Time.time;
             return;
         }
-        //if(inventoryManager.GetSelectedItem().obj.GetComponent<Weapon>())
-        //{
-//
-        //}
 
         mapManager.SetAboveGroundTile(mousePos, 1); // temporary number
         aboveGroundTilemap.SetTile(mousePos, tileIndex.GetHouseTile());

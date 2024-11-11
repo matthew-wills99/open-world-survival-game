@@ -40,6 +40,7 @@ public class TPorcupine : Animal
 {
     private Animator anim;
     private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
 
     // Movement -------------------------------------------------------------------------------------------------
 
@@ -147,6 +148,7 @@ public class TPorcupine : Animal
     {
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
 
         currentHealth = maxHealth;
         originalColour = spriteRenderer.color;
@@ -230,7 +232,9 @@ public class TPorcupine : Animal
 
         while(elapsedTime < moveTime)
         {
-            transform.position += (Vector3)directionToVector[dir] * moveSpeed * Time.deltaTime;
+            
+            //transform.position += (Vector3)directionToVector[dir] * moveSpeed * Time.deltaTime;
+            rb.MovePosition(rb.position + directionToVector[dir] * moveSpeed * Time.fixedDeltaTime);
             elapsedTime += Time.deltaTime;
 
             yield return null;
@@ -325,7 +329,8 @@ public class TPorcupine : Animal
                     anim.SetTrigger(animDirectionTriggers[GetClosestDirection(directionToTarget)]);
                 }
                 
-                transform.position += (Vector3)directionToTarget * (moveSpeed * madMoveSpeedMultiplier) * Time.deltaTime;
+                //transform.position += (Vector3)directionToTarget * (moveSpeed * madMoveSpeedMultiplier) * Time.deltaTime;
+                rb.MovePosition(rb.position + directionToTarget * (moveSpeed * madMoveSpeedMultiplier) * Time.fixedDeltaTime);
             }
 
             yield return null;

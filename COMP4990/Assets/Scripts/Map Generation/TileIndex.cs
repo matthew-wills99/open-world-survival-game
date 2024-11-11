@@ -145,10 +145,15 @@ public class TileIndex : MonoBehaviour
     public AnimatorController bubble2Controller;
     public AnimatorController ripple1Controller;
 
+    // building blocks ---------------------------------------------------------------------
+
+    public Tile woodenWall; // 101
+
     void Awake()
     {   
 
-        tileIndex = new Dictionary<int, Tile>{
+        tileIndex = new Dictionary<int, Tile>
+        {
             { 0, grass },
             { 1, grass2 },
             { 2, grass3 },
@@ -186,9 +191,11 @@ public class TileIndex : MonoBehaviour
             { 34, water },
             { 35, terrainTile },
             { 36, deepWater },
+            { 101, woodenWall}
         };
 
-        seafoamIndex = new Dictionary<int, AnimatedTile>{
+        seafoamIndex = new Dictionary<int, AnimatedTile>
+        {
             { 0, sfLeft },
             { 1, sfRight },
             { 2, sfTop },
@@ -234,7 +241,8 @@ public class TileIndex : MonoBehaviour
             { 40, sfcwDownRightWaterUp },
         };
 
-        objectIndex = new Dictionary<int, GameObject>{
+        objectIndex = new Dictionary<int, GameObject>
+        {
             { 0, objTree1 },
             { 1, objTree2 },
             { 2, objTree3 },
@@ -266,32 +274,39 @@ public class TileIndex : MonoBehaviour
 
         };
 
-        grassTiles = new List<int>{
+        grassTiles = new List<int>
+        {
             0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
         };
 
-        grassWithFlowersTiles = new List<int>{
+        grassWithFlowersTiles = new List<int>
+        {
             17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
         };
 
-        allGrassTiles = new List<int>{
+        allGrassTiles = new List<int>
+        {
             0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
             17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
         };
 
-        allWaterTiles = new List<int>{
+        allWaterTiles = new List<int>
+        {
             34, 36
         };
 
-        trees = new List<int>{
+        trees = new List<int>
+        {
             0, 1, 2
         };
 
-        cacti = new List<int>{
+        cacti = new List<int>
+        {
             9, 10, 11, 12, 13, 14
         };
 
-        bigRocks = new List<int>{
+        bigRocks = new List<int>
+        {
             3, 4, 5, 6, 7, 8
         };
     }

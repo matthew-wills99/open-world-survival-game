@@ -49,6 +49,9 @@ TagManager:
   - name: water
     uniqueID: 2425651459
     locked: 0
+  - name: seafoam
+    uniqueID: 3642251813
+    locked: 0
   - name: water events
     uniqueID: 2185564841
     locked: 0

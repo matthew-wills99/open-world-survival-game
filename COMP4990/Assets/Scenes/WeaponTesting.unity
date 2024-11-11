@@ -122,6 +122,210 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &32528706
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1808472
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.2360218
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.070855215
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865156196868840920, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_Name
+      value: TPorcupine (9)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f63c8f74dab5daa4f86985ec7328983d, type: 3}
+--- !u!1001 &37106749
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.631021
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.38984936
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.070855215
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865156196868840920, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_Name
+      value: TPorcupine (10)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f63c8f74dab5daa4f86985ec7328983d, type: 3}
+--- !u!1001 &92756279
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.80097747
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.1510434
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.070855215
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865156196868840920, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_Name
+      value: TPorcupine (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f63c8f74dab5daa4f86985ec7328983d, type: 3}
 --- !u!1001 &126224930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -657,6 +861,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1085353058
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1140442
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.7947605
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.070855215
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865156196868840920, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_Name
+      value: TPorcupine (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f63c8f74dab5daa4f86985ec7328983d, type: 3}
 --- !u!1 &1100817705
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponManager: {fileID: 313752459}
+  inventoryManager: {fileID: 0}
   ironLongswordPfb: {fileID: 8738553668635846876, guid: dfa1e90989fb6bd44bed5d9c6a200a72,
     type: 3}
   ironShortswordPfb: {fileID: 8738553668635846876, guid: b4d11f2f519c95246ab6044ad15dab30,
@@ -774,6 +1047,142 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f63c8f74dab5daa4f86985ec7328983d, type: 3}
+--- !u!1001 &1276946393
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.9386764
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.52345556
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.070855215
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865156196868840920, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_Name
+      value: TPorcupine (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f63c8f74dab5daa4f86985ec7328983d, type: 3}
+--- !u!1001 &1355064133
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.48922968
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.9016769
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.070855215
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865156196868840920, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_Name
+      value: TPorcupine (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f63c8f74dab5daa4f86985ec7328983d, type: 3}
 --- !u!1 &1793308776 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7300359821700183328, guid: 91449be96449aa24fb50fc59ef8745d4,
@@ -786,6 +1195,142 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 503660624}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1890321132
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.780756
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.7300036
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.070855215
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865156196868840920, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_Name
+      value: TPorcupine (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f63c8f74dab5daa4f86985ec7328983d, type: 3}
+--- !u!1001 &1939177365
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.9205008
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.8838313
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.070855215
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850953427489674606, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865156196868840920, guid: f63c8f74dab5daa4f86985ec7328983d,
+        type: 3}
+      propertyPath: m_Name
+      value: TPorcupine (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f63c8f74dab5daa4f86985ec7328983d, type: 3}
 --- !u!1001 &1966594090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -869,3 +1414,11 @@ SceneRoots:
   - {fileID: 182103801}
   - {fileID: 1271133633}
   - {fileID: 126224930}
+  - {fileID: 1276946393}
+  - {fileID: 92756279}
+  - {fileID: 1890321132}
+  - {fileID: 1939177365}
+  - {fileID: 1085353058}
+  - {fileID: 1355064133}
+  - {fileID: 32528706}
+  - {fileID: 37106749}

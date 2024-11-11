@@ -1194,7 +1194,7 @@ public class MapManager : MonoBehaviour
         }
         Tree tempTree = new Tree(tileIndex.GetAllTrees()[random.Next(tileIndex.GetAllTrees().Count)], c.cx, c.cy, c.tx, c.ty);
         treeObjects.Add(GetCoordinateKey(c.cx, c.cy, c.tx, c.ty), tempTree);
-        GameObject instance = Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(pos.x, pos.y + 0.5f, pos.z), quaternion.identity, treeEmpty.transform);
+        GameObject instance = Instantiate(tileIndex.GetObject(tempTree.Index), new Vector3(pos.x, pos.y, pos.z), quaternion.identity, treeEmpty.transform);
         instance.tag = "Selectable";
         instance.GetComponent<TreeObj>().SetCoords(c.cx, c.cy, c.tx, c.ty);
     }

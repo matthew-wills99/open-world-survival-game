@@ -13,8 +13,10 @@ public class Item : ScriptableObject
     public bool isTool; // tools are things that gather resources
     public ToolObj toolObj;
 
-    public bool isObj; // obj like sapling crafting table 
+    public bool isPlaceable; // placeable obj like sapling crafting table 
     public GameObject obj;
+    
+    public bool isTile; // placeable tile not obj
 
     public bool isWeapon; // weapon
     public GameObject weapon;
