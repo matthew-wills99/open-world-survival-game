@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7d5827be3ae041bc7b0d414bc4723, type: 3}
   m_Name: Cactus Sapling
   m_EditorClassIdentifier: 
-  index: 1
+  index: 34
   itemName: Cactus Sapling
   isTool: 0
   toolObj: {fileID: 0}
   isObj: 1
   obj: {fileID: 2055102311959635369, guid: 75656a18bcaf6f042b6d2dafd8730702, type: 3}
+  isWeapon: 0
+  weapon: {fileID: 0}
   tile: {fileID: 0}
   type: 0
   actionType: 2

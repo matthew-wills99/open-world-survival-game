@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7d5827be3ae041bc7b0d414bc4723, type: 3}
   m_Name: Gold Nugget
   m_EditorClassIdentifier: 
-  index: 14
+  index: 15
   itemName: Gold Nugget
+  isTool: 0
+  toolObj: {fileID: 0}
+  isObj: 0
+  obj: {fileID: 0}
+  isWeapon: 0
+  weapon: {fileID: 0}
   tile: {fileID: 0}
   type: 2
   actionType: 2

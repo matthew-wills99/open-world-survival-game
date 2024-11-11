@@ -24,37 +24,37 @@ public class InventoryManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject inventoryPanel;
-    public KeyCode toggleInventoryKey = KeyCode.E;
+    public KeyCode toggleInvnetoryKey = KeyCode.E;
     private bool isInventoryOpen = false;
     int selectedSlot = -1;
 
-    private void GetInventorySlots()
-    {
-        int children = 0;
-        inventorySlots = new List<InventorySlot>();
-        foreach(Transform child in toolbarContainer.transform)
-        {
-            Debug.Log($"{children++}");
-            if(child.GetComponent<InventorySlot>())
-            {
-                Debug.Log("I");
-                inventorySlots.Add(child.GetComponent<InventorySlot>());
-            }
-        }
+private void GetInventorySlots()
+{
+    inventorySlots = new List<InventorySlot>();
 
-        foreach(Transform child in inventoryContainer.transform)
+    // Populate toolbar slots
+    foreach (Transform child in toolbarContainer)
+    {
+        InventorySlot slot = child.GetComponent<InventorySlot>();
+        if (slot != null)
         {
-            Debug.Log($"{children++}");
-            if(child.GetComponent<InventorySlot>())
-            {
-                Debug.Log("I");
-                inventorySlots.Add(child.GetComponent<InventorySlot>());
-            }
+            inventorySlots.Add(slot);
         }
     }
 
+    // Populate main inventory slots
+    foreach (Transform child in inventoryContainer)
+    {
+        InventorySlot slot = child.GetComponent<InventorySlot>();
+        if (slot != null)
+        {
+            inventorySlots.Add(slot);
+        }
+    }
+}
     private void Awake(){
         instance = this;
+        GetInventorySlots();
     }
     //Making sure the slot selected at the start is the first slot, then adds starting items.
     private void Start(){
@@ -68,7 +68,7 @@ public class InventoryManager : MonoBehaviour
 
     //Changing which slot the user selects
     private void Update(){
-        if (Input.GetKeyDown(toggleInventoryKey)){
+        if (Input.GetKeyDown(toggleInvnetoryKey)){
             ToggleInventory();
         }
         //Check for slot selection input (1-8 on keyboard)
@@ -159,17 +159,21 @@ public class InventoryManager : MonoBehaviour
     }
 
     public bool HasItem (Item item, int count){
+        Debug.Log("Checking for item: " + item.itemName);
+        Debug.Log("Inventory Slots Count: " + inventorySlots.Count);
         int itemCount = 0;
         for(int i = 0; i < inventorySlots.Count; i++){
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if(itemInSlot != null && itemInSlot.item == item){
+                Debug.Log("Found item in slot");
                 itemCount += itemInSlot.count;
                 if(itemCount > count){
                     return true;
                 }
             }
         }
+        Debug.LogWarning("Item not found: " + item.itemName);
         return false;
     }
 
@@ -234,7 +238,3 @@ public class InventoryManager : MonoBehaviour
     }     
 
 }
-
-    
-
-

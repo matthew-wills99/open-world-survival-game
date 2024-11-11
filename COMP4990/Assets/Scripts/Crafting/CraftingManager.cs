@@ -1,29 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CraftingManager : MonoBehaviour
 {
-    public List<CraftingReceipes> recipes;
+    public static CraftingManager instance;
+    public List<CraftingReceipes> receipes;
+
+    private void Awake(){
+        instance = this;
+        LoadAllCraftingReceipes();
+    }
+
+    private void LoadAllCraftingReceipes()
+    {
+        // Assuming you have a folder named "Resources/Crafting Recipe" in the Assets folder
+        CraftingReceipes[] loadedReceipes = Resources.LoadAll<CraftingReceipes>("Crafting Recipe");
+        if(loadedReceipes.Length > 0){
+            receipes.AddRange(loadedReceipes);
+            Debug.Log($"Loaded {loadedReceipes.Length} crafting receipes");
+        }else{
+            Debug.LogWarning("No crafting receipese found in rsources");
+        }
+    }
     public bool CraftItem(Item resultItem, InventoryManager inventory){
-        CraftingReceipes recipe = recipes.Find(r => r.resultItem == resultItem);
-        if (recipe == null){
+        CraftingReceipes receipe = receipes.Find(r => r.resultItem == resultItem);
+        if (receipe == null){
             Debug.Log("Recipe not found.");
             return false;
         } 
 
-        foreach (var ingredient in recipe.ingredients){
+        if(hasAllMaterials(receipe)){
+            foreach (var ingredient in receipe.ingredients){
+                inventory.RemoveItemForCrafting(ingredient.item, ingredient.count);
+            }
+
+            inventory.AddItem(resultItem);
+                return true;
+        }
+        return false;
+    }
+
+    public bool hasAllMaterials(CraftingReceipes receipe){
+
+        if (InventoryManager.instance == null)
+        {
+            Debug.LogError("InventoryManager is null in hasAllMaterials!");
+            return false;
+        }
+        foreach (var ingredient in receipe.ingredients){
            
-            if(!inventory.HasItem(ingredient.item, ingredient.count-1)){
+            if(!InventoryManager.instance.HasItem(ingredient.item, ingredient.count)){
                 return false;
             }
         }
-        
-        foreach (var ingredient in recipe.ingredients){
-            inventory.RemoveItemForCrafting(ingredient.item, ingredient.count);
+        return true;
+    }
+
+    public List<CraftingReceipes> GetAvailableRecipes()
+    {
+        List<CraftingReceipes> availableReceipes = new List<CraftingReceipes>();
+
+        foreach (var recipe in receipes)
+        {
+            if (hasAllMaterials(recipe))
+            {
+                availableReceipes.Add(recipe);
+            }
         }
 
-        inventory.AddItem(resultItem);
-        return true;
+        return availableReceipes;
     }
 }
