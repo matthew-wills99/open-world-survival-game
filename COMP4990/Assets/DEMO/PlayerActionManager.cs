@@ -59,6 +59,8 @@ public class PlayerActionManager : MonoBehaviour
 
     // ----------------------------------------------------------------------------------------------------------------
 
+    int test = 0;
+
     void Update()
     {
         // keep track of the currently selected item
@@ -261,6 +263,8 @@ public class PlayerActionManager : MonoBehaviour
             interactiveMap.SetTile(previouslyHoveredTile, null);
             interactiveMap.SetTile(currentlyHoveredTile, tileIndex.GetCursorTile());
             previouslyHoveredTile = currentlyHoveredTile;
+            //Debug.Log($"CHT{test}: {currentlyHoveredTile.ToString()}");
+            //test++;
         }
 
         if(!isCurrentlyHoveringATile)
@@ -321,13 +325,16 @@ public class PlayerActionManager : MonoBehaviour
             else
             {
                 // maybe it will work
+                // it did not work
+                Debug.Log($"{test} Placing item: {currentlyHoveredTile} ttwp: {ConvertTileToWorldPos(currentlyHoveredTile)}");
                 Instantiate(selectedItem.obj, ConvertTileToWorldPos(currentlyHoveredTile), Quaternion.identity);
                 inventoryManager.RemoveItem(selectedItem);
+                test++;
             }
         }
         else if(selectedItem.isTile)
         {
-            // THIS CONDITION WILL NEVER BE SATISFIED
+            // THIS CONDITION WILL NEVER BE SATISFIED I THINK
             //Debug.Log("hello");
             aboveGroundTilemap.SetTile(currentlyHoveredTile, selectedItem.tile);
             inventoryManager.RemoveItem(selectedItem);

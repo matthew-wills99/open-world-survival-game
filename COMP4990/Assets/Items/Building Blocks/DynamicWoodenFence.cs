@@ -60,7 +60,8 @@ public class DynamicWoodenFence : Placeable
             new Vector2(-0.187f, -0.501f),
         };
 
-        pos = new Vector3Int((int)transform.position.x, (int)transform.position.y, (int)transform.position.z);
+        pos = new Vector3Int(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y), Mathf.FloorToInt(transform.position.z));
+        Debug.Log($"placed a fence: {pos.x}, {pos.y}, {pos.z}");
 
         PolygonCollider2D[] colliders = GetComponents<PolygonCollider2D>();
         foreach(PolygonCollider2D col in colliders)
@@ -99,7 +100,7 @@ public class DynamicWoodenFence : Placeable
     
     public override void UpdateBlock(bool fromNeighbour)
     {
-        Debug.Log($"Updating block: {pos}");
+        //Debug.Log($"Updating block: {pos}");
         UpdateFenceSprite();
         // ask me how i figured out i needed this
         if(!fromNeighbour)
