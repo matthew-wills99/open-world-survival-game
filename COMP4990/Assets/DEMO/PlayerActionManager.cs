@@ -307,10 +307,10 @@ public class PlayerActionManager : MonoBehaviour
     {
         if(!CanPlaceHere())
         {
-            Debug.Log("Here");
+            //Debug.Log("Here");
             return;
         }
-        Debug.Log("Placing.");
+        //Debug.Log("Placing.");
         if(selectedItem.isPlaceable)
         {
             if(selectedItem.obj.GetComponent<Sapling>())
@@ -328,7 +328,7 @@ public class PlayerActionManager : MonoBehaviour
         else if(selectedItem.isTile)
         {
             // THIS CONDITION WILL NEVER BE SATISFIED
-            Debug.Log("hello");
+            //Debug.Log("hello");
             aboveGroundTilemap.SetTile(currentlyHoveredTile, selectedItem.tile);
             inventoryManager.RemoveItem(selectedItem);
             /*
@@ -369,7 +369,7 @@ public class PlayerActionManager : MonoBehaviour
 
     bool PlaceOffCooldown()
     {
-        Debug.Log($"{Time.time} >= {lastPlaceTime} + {placeCooldown} = {lastPlaceTime + placeCooldown}");
+        //Debug.Log($"{Time.time} >= {lastPlaceTime} + {placeCooldown} = {lastPlaceTime + placeCooldown}");
         if(Time.time >= lastPlaceTime + placeCooldown)
         {
             return true;

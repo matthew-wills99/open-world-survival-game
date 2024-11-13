@@ -147,7 +147,7 @@ public class TileIndex : MonoBehaviour
 
     // building blocks ---------------------------------------------------------------------
 
-    public Tile woodenWall; // 101
+    public Tile woodenFence; // 101
 
     void Awake()
     {   
@@ -191,7 +191,7 @@ public class TileIndex : MonoBehaviour
             { 34, water },
             { 35, terrainTile },
             { 36, deepWater },
-            { 101, woodenWall}
+            { 101, woodenFence}
         };
 
         seafoamIndex = new Dictionary<int, AnimatedTile>

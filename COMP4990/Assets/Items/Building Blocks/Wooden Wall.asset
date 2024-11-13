@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Wooden Wall
   m_EditorClassIdentifier: 
   index: 101
-  itemName: WoodWall
+  itemName: WoodFence
   isTool: 0
   toolObj: {fileID: 0}
   isPlaceable: 1
-  obj: {fileID: 3973737607753206758, guid: 8d9e294f1cc6efa4d86a23b3fc6a6b58, type: 3}
+  obj: {fileID: 7040296693887309728, guid: 24af465bcc3b59e409692e4f854dc255, type: 3}
   isTile: 0
   isWeapon: 0
   weapon: {fileID: 0}
@@ -26,4 +26,4 @@ MonoBehaviour:
   actionType: 2
   range: {x: 0, y: 0}
   stackable: 1
-  image: {fileID: 21300000, guid: bbe882caa08cdc941a6449eb41e413ad, type: 3}
+  image: {fileID: 1943668106, guid: c6787262f0107904fb5cd01324b6a945, type: 3}
