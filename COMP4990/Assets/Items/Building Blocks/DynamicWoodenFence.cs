@@ -60,8 +60,9 @@ public class DynamicWoodenFence : Placeable
             new Vector2(-0.187f, -0.501f),
         };
 
+        // I LOVE FLOOR TO INT I LOVE FLOOR TO INT I LOVE FLOOR TO INT I LOVE FLOOR TO INT I LOVE FLOOR TO INT I LOVE FLOOR TO INT
         pos = new Vector3Int(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y), Mathf.FloorToInt(transform.position.z));
-        Debug.Log($"placed a fence: {pos.x}, {pos.y}, {pos.z}");
+        //Debug.Log($"placed a fence: {pos.x}, {pos.y}, {pos.z}");
 
         PolygonCollider2D[] colliders = GetComponents<PolygonCollider2D>();
         foreach(PolygonCollider2D col in colliders)
