@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Utils;
 
-public class DynamicWoodenFence : Placeable
+public class DynamicFence : Placeable
 {
-
-
-    public DynamicWoodenFence()
+    public DynamicFence()
     {
         id = 101; // wooden fence
     }

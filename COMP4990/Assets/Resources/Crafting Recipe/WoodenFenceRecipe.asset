@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed61ed416944574409e7d5854f5edc4a, type: 3}
   m_Name: WoodenFenceRecipe
   m_EditorClassIdentifier: 
-  resultItem: {fileID: 11400000, guid: 99d431ef2e9b4ec4fa8d067c12f270e8, type: 2}
+  resultItem: {fileID: 11400000, guid: a32417d145299e74a8d116015f0182c6, type: 2}
   ingredients:
   - item: {fileID: 11400000, guid: 63381a471c92dc041a3b98c199406512, type: 2}
     count: 6

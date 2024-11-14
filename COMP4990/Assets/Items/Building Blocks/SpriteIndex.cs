@@ -5,4 +5,5 @@ using UnityEngine;
 public class SpriteIndex : MonoBehaviour
 {
     public Sprite[] fenceSprites;
+    public Sprite[] gateSprites;
 }

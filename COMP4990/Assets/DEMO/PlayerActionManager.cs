@@ -326,7 +326,8 @@ public class PlayerActionManager : MonoBehaviour
             {
                 // maybe it will work
                 // it did not work
-                Debug.Log($"{test} Placing item: {currentlyHoveredTile} ttwp: {ConvertTileToWorldPos(currentlyHoveredTile)}");
+                // IT DID WORK the bug was elsewhere
+                //Debug.Log($"{test} Placing item: {currentlyHoveredTile} ttwp: {ConvertTileToWorldPos(currentlyHoveredTile)}");
                 Instantiate(selectedItem.obj, ConvertTileToWorldPos(currentlyHoveredTile), Quaternion.identity);
                 inventoryManager.RemoveItem(selectedItem);
                 test++;
