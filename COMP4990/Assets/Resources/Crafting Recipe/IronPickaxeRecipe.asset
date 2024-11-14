@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed61ed416944574409e7d5854f5edc4a, type: 3}
-  m_Name: New Crafting Receipes
+  m_Name: IronPickaxeRecipe
   m_EditorClassIdentifier: 
-  resultItem: {fileID: 0}
+  resultItem: {fileID: 11400000, guid: 932f041629e7097488d2f00aa8e818d1, type: 2}
   ingredients:
-  - item: {fileID: 11400000, guid: 670289d1833ddb34d88898b1341d73be, type: 2}
-    count: 5
-  - item: {fileID: 11400000, guid: f778cb7973fcd16419da36ef10d1d35e, type: 2}
-    count: 7
-  - item: {fileID: 11400000, guid: 63381a471c92dc041a3b98c199406512, type: 2}
-    count: 3
+  - item: {fileID: 11400000, guid: 743530d96c0c03e458d5c1de391ba6b8, type: 2}
+    count: 4
+  - item: {fileID: 11400000, guid: 0e14f4edab7071142902df9769bb7de8, type: 2}
+    count: 6
+  - item: {fileID: 11400000, guid: be34d2f1d976f0a48abcc3fb87f16f3a, type: 2}
+    count: 4

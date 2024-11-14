@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88b7d5827be3ae041bc7b0d414bc4723, type: 3}
-  m_Name: Stone
+  m_Name: RawCactus
   m_EditorClassIdentifier: 
-  index: 6
-  itemName: Stone
+  index: 8
+  itemName: Raw Cactus
   isTool: 0
   toolObj: {fileID: 0}
   isObj: 0
@@ -25,4 +25,4 @@ MonoBehaviour:
   actionType: 2
   range: {x: 5, y: 4}
   stackable: 1
-  image: {fileID: -210401077, guid: 4112254f277d3eb45bed50e85ef7a75e, type: 3}
+  image: {fileID: 1530127641, guid: 10266e1840ced0b49b5de5c5fc34676c, type: 3}
