@@ -1,0 +1,703 @@
+fileFormatVersion: 2
+guid: fca8d3f0f324ac847922434f1517be2c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 15}
+        - {x: -11, y: 15}
+        - {x: -12, y: 11}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23f5bea6df6935443bb51c0b8f23e009
+      internalID: 1186475296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12, y: 15}
+        - {x: -12, y: -13}
+        - {x: -11, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -14}
+        - {x: 16, y: 12}
+        - {x: 10, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7569c02652bb60549b3f2e1d5c460c3f
+      internalID: -1681913146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 15}
+        - {x: -16, y: 7}
+        - {x: -16, y: -14}
+        - {x: -11, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -14}
+        - {x: 16, y: 7}
+        - {x: 9, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09577e5487be7d144aaf6e9a458c443d
+      internalID: 1995927016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: -14}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 12}
+        - {x: 11, y: 15}
+        - {x: -9, y: 15}
+        - {x: -16, y: 9}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aaa66a140515cc44af620a05053dda9
+      internalID: 1599270242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 15}
+        - {x: -11, y: 15}
+        - {x: -12, y: 11}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97016070b5123dc43a409a6d69db8286
+      internalID: -1563036777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12, y: 15}
+        - {x: -12, y: -13}
+        - {x: -11, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -14}
+        - {x: 16, y: 12}
+        - {x: 10, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc71b25048a65fa44ac7d8c065231f1e
+      internalID: 2137165087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 15}
+        - {x: -16, y: 7}
+        - {x: -16, y: -14}
+        - {x: -11, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -14}
+        - {x: 16, y: 7}
+        - {x: 9, y: 15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3df935a5670c06f41ab8142311335b65
+      internalID: -1987611795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: -14}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 12}
+        - {x: 11, y: 15}
+        - {x: -9, y: 15}
+        - {x: -16, y: 9}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 572f21bc221f7904a991c78467d37069
+      internalID: 857085375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -6, y: 16}
+        - {x: -12, y: 10}
+        - {x: -12, y: -13}
+        - {x: -11, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 11}
+        - {x: 7, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c3003090ca4d554cb3a563b2a9a683b
+      internalID: -2112941670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -11, y: 16}
+        - {x: -12, y: 10}
+        - {x: -12, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -14}
+        - {x: 16, y: 7}
+        - {x: 6, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 168928d76612f354d9af8d68eea94072
+      internalID: -428752252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -13, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -14}
+        - {x: -11, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -14}
+        - {x: 16, y: 12}
+        - {x: 7, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7e44d28ab8bb114faef91abe869fb8d
+      internalID: -165712250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -13, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -14}
+        - {x: -14, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 15}
+        - {x: 10, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e96b2d5341afaae4b90ca25a739074a1
+      internalID: 1653503498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -6, y: 16}
+        - {x: -12, y: 10}
+        - {x: -12, y: -13}
+        - {x: -11, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 11}
+        - {x: 7, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffd011e352d990f45abb73cae842932a
+      internalID: 572135089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -11, y: 16}
+        - {x: -12, y: 10}
+        - {x: -12, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -14}
+        - {x: 16, y: 7}
+        - {x: 6, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d94c9645b842d24bb570d0d8b1d14a0
+      internalID: -722072580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -13, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -14}
+        - {x: -11, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -14}
+        - {x: 16, y: 12}
+        - {x: 7, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a3fa8378bc06242856e67f815333ee
+      internalID: -968382097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -13, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -14}
+        - {x: -14, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 15}
+        - {x: 10, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71e72de9f390cea4ea3199283618f733
+      internalID: -815808959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 10}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 11}
+        - {x: -14, y: 11}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f44a62023b0a2048b4e320f65612180
+      internalID: -750694011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_19
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -14, y: 11}
+        - {x: -16, y: 9}
+        - {x: -16, y: -16}
+        - {x: -8, y: -16}
+        - {x: -4, y: -10}
+        - {x: -4, y: 10}
+        - {x: -6, y: 11}
+      - - {x: 4, y: 11}
+        - {x: 4, y: -11}
+        - {x: 10, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 11}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d73ad63da9421d40b2fe8cd808bf27f
+      internalID: -1028441243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_20
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 110
+        width: 32
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -5, y: 34}
+        - {x: -5, y: -21}
+        - {x: 5, y: -21}
+        - {x: 5, y: 34}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 784b3f70a64edd345aa7871da7046513
+      internalID: 271413762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32x32FencesWithGatesFinal_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 110
+        width: 32
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -10, y: -7}
+        - {x: -10, y: -22}
+        - {x: 4, y: -22}
+        - {x: 5, y: -21}
+        - {x: 5, y: -11}
+        - {x: 4, y: -7}
+      - - {x: -6, y: 34}
+        - {x: -10, y: 29}
+        - {x: -10, y: 7}
+        - {x: 4, y: 7}
+        - {x: 5, y: 11}
+        - {x: 5, y: 34}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5699e32b948b32d40b6b6392fb346421
+      internalID: -1904373849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      32x32FencesWithGatesFinal_0: 1186475296
+      32x32FencesWithGatesFinal_1: -1681913146
+      32x32FencesWithGatesFinal_10: -165712250
+      32x32FencesWithGatesFinal_11: 1653503498
+      32x32FencesWithGatesFinal_12: 572135089
+      32x32FencesWithGatesFinal_13: -722072580
+      32x32FencesWithGatesFinal_14: -968382097
+      32x32FencesWithGatesFinal_15: -815808959
+      32x32FencesWithGatesFinal_16: -750694011
+      32x32FencesWithGatesFinal_17: 1123276732
+      32x32FencesWithGatesFinal_18: 1023146472
+      32x32FencesWithGatesFinal_19: -1028441243
+      32x32FencesWithGatesFinal_2: 1995927016
+      32x32FencesWithGatesFinal_20: 271413762
+      32x32FencesWithGatesFinal_21: -1904373849
+      32x32FencesWithGatesFinal_22: 1719853952
+      32x32FencesWithGatesFinal_23: 1019491843
+      32x32FencesWithGatesFinal_3: 1599270242
+      32x32FencesWithGatesFinal_4: -1563036777
+      32x32FencesWithGatesFinal_5: 2137165087
+      32x32FencesWithGatesFinal_6: -1987611795
+      32x32FencesWithGatesFinal_7: 857085375
+      32x32FencesWithGatesFinal_8: -2112941670
+      32x32FencesWithGatesFinal_9: -428752252
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

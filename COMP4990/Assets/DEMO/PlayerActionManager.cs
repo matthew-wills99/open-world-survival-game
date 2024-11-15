@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -124,7 +125,7 @@ public class PlayerActionManager : MonoBehaviour
         {
             if(h.collider != null && h.collider.CompareTag("Selectable"))
             {
-
+                // is a tree
                 if(h.transform.name == "Upper" || h.transform.name == "Lower")
                 {
                     float order = h.collider.transform.parent.GetComponent<SortingGroup>().sortingOrder;
@@ -134,6 +135,7 @@ public class PlayerActionManager : MonoBehaviour
                         hit = h;
                     }
                 }
+                // is a not tree
                 else
                 {
                     float order = h.collider.GetComponent<SortingGroup>().sortingOrder;
@@ -239,6 +241,15 @@ public class PlayerActionManager : MonoBehaviour
                             mapManager.DestroyObj(c.cx, c.cy, c.tx, c.ty);
                             currentlySelectedObject.GetComponent<TCactusObj>().Destroy();
                         }
+                    }
+                }
+                else if(currentlySelectedObject.GetComponent<Placeable>())
+                {
+                    Placeable block = currentlySelectedObject.GetComponent<Placeable>();
+                    if(block.useableTools.Contains(selectedItem.toolObj.toolType))
+                    {
+                        // if we got it, then now we can call the break function i think
+                        block.Destroy();
                     }
                 }
             }

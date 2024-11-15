@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 5191539340348048115}
   - component: {fileID: 3022815592038666068}
   - component: {fileID: 6355226618799875039}
+  - component: {fileID: 7237158582005480423}
   m_Layer: 0
   m_Name: DynamicWoodenGate
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 459718477, guid: 1132c4c4610909145a11fdeb29be44c7, type: 3}
+  m_Sprite: {fileID: -750694011, guid: fca8d3f0f324ac847922434f1517be2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,6 +104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeableParent: {fileID: 0}
   id: 102
+  isGate: 1
+  isHorizontal: 1
+  isOpen: 0
 --- !u!60 &5204300801183506497
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -149,9 +153,9 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -0.5, y: 0.3125}
       - {x: -0.5, y: -0.5}
+      - {x: 0.086257815, y: -0.50888824}
       - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.34375}
-      - {x: -0.4375, y: 0.34375}
+      - {x: 0.5024945, y: 0.31381556}
   m_UseDelaunayMesh: 0
 --- !u!60 &5191539340348048115
 PolygonCollider2D:
@@ -197,11 +201,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.4996292, y: -0.32085022}
-      - {x: -0.50154877, y: -0.32097232}
-      - {x: -0.50079215, y: -0.47219536}
-      - {x: 0.49830323, y: -0.47323474}
-      - {x: 0.49830323, y: -0.47637272}
+    - - {x: -0.5, y: -0.3096771}
+      - {x: -0.50592554, y: -0.47629797}
+      - {x: 0.5059255, y: -0.47333533}
+      - {x: 0.511851, y: -0.31694275}
   m_UseDelaunayMesh: 0
 --- !u!210 &3022815592038666068
 SortingGroup:
@@ -225,5 +228,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9529377a85db78a46b876e067ed61c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7237158582005480423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415204951388822898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b9a60de0cf60604b8a5d8e680edbd1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

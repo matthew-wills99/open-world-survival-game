@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed61ed416944574409e7d5854f5edc4a, type: 3}
-  m_Name: WoodenDoorRecipe
+  m_Name: WoodenGateRecipe
   m_EditorClassIdentifier: 
-  resultItem: {fileID: 11400000, guid: 951c1291a6691bd42822e026958a9a96, type: 2}
+  resultItem: {fileID: 11400000, guid: 3fb2b8d18140a8243857c37c37054ed1, type: 2}
   ingredients:
   - item: {fileID: 11400000, guid: 63381a471c92dc041a3b98c199406512, type: 2}
     count: 12

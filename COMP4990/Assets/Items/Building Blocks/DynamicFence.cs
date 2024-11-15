@@ -8,10 +8,14 @@ public class DynamicFence : Placeable
     public DynamicFence()
     {
         id = 101; // wooden fence
+        useableTools = new ETool[]
+        {
+            ETool.Axe
+        };
     }
 
     MapManager mapManager;
-    UpdateableBlocks updateableBlocks;
+    public UpdateableBlocks updateableBlocks;
     SpriteRenderer spriteRenderer;
     SpriteIndex spriteIndex;
     Vector3Int pos;
@@ -30,8 +34,20 @@ public class DynamicFence : Placeable
     
     List<Vector3Int> neighbours;
 
+    List<int> fenceIds;
+    List<int> gateIds;
+
     void Start()
     {
+        fenceIds = new List<int>()
+        {
+            101
+        };
+        gateIds = new List<int>()
+        {
+            102
+        };
+
         pointsWhenNotTop = new Vector2[]
         {
             new Vector2(0.189f, -0.497f),
@@ -100,7 +116,7 @@ public class DynamicFence : Placeable
     public override void UpdateBlock(bool fromNeighbour)
     {
         //Debug.Log($"Updating block: {pos}");
-        UpdateFenceSprite();
+        UpdateSprite();
         // ask me how i figured out i needed this
         if(!fromNeighbour)
         {
@@ -124,12 +140,12 @@ public class DynamicFence : Placeable
         };
     }
 
-    private void UpdateFenceSprite()
+    private void UpdateSprite()
     {
-        bool hasFenceUp = IsFenceAt(up);
-        bool hasFenceDown = IsFenceAt(down);
-        bool hasFenceLeft = IsFenceAt(left);
-        bool hasFenceRight = IsFenceAt(right);
+        bool hasFenceUp = IsFenceAt(up, false);
+        bool hasFenceDown = IsFenceAt(down, false);
+        bool hasFenceLeft = IsFenceAt(left, true);
+        bool hasFenceRight = IsFenceAt(right, true);
 
         int index = 0;
         if (hasFenceDown) index |= 0b1000;   // 8 (Down)
@@ -146,10 +162,21 @@ public class DynamicFence : Placeable
         }
     }
 
-    private bool IsFenceAt(Vector3Int position)
+    private bool IsFenceAt(Vector3Int position, bool horizontal=false)
     {
         Placeable block = updateableBlocks.GetBlock(position);
-        return block != null && block.id == id;
+        // stupid
+        if(block == null)
+        {
+            return false;
+        }
+
+        if(horizontal && gateIds.Contains(block.id) && block.isHorizontal)
+        {
+            return true;
+        }
+
+        return fenceIds.Contains(block.id);
     }
 
     private void UpdateColliders()
@@ -172,5 +199,13 @@ public class DynamicFence : Placeable
         {
             nonTriggerCollider.points = pointsWhenTop;
         }
+    }
+
+    public override void Destroy()
+    {
+        updateableBlocks.RemoveBlock(pos);
+        mapManager.SetAboveGroundTile(pos, -1);
+        UpdateSurroundingBlocks();
+        Destroy(gameObject);
     }
 }

@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88b7d5827be3ae041bc7b0d414bc4723, type: 3}
-  m_Name: Wooden Wall
+  m_Name: Wooden Gate
   m_EditorClassIdentifier: 
-  index: 101
-  itemName: WoodFence
+  index: 102
+  itemName: WoodGate
   isTool: 0
   toolObj: {fileID: 0}
   isPlaceable: 1
-  obj: {fileID: 7040296693887309728, guid: 24af465bcc3b59e409692e4f854dc255, type: 3}
+  obj: {fileID: 1415204951388822898, guid: 44fc7dafb9bbfd54f820e53cdde95afd, type: 3}
   isTile: 0
   isWeapon: 0
   weapon: {fileID: 0}
-  tile: {fileID: 11400000, guid: f7e15b8dc53db0843a83e377ec83740d, type: 2}
+  tile: {fileID: 0}
   type: 0
   actionType: 2
-  range: {x: 0, y: 0}
+  range: {x: 5, y: 4}
   stackable: 1
-  image: {fileID: 441306834, guid: 1132c4c4610909145a11fdeb29be44c7, type: 3}
+  image: {fileID: -750694011, guid: fca8d3f0f324ac847922434f1517be2c, type: 3}

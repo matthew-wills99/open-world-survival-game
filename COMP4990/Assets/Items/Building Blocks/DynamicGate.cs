@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using static Utils;
+
 public class DynamicGate : Placeable
 {
 
@@ -28,6 +30,12 @@ public class DynamicGate : Placeable
     public DynamicGate()
     {
         id = 102; // wooden gate
+        isOpen = false;
+        isHorizontal = true;
+        useableTools = new ETool[]
+        {
+            ETool.Axe
+        };
     }
 
     MapManager mapManager;
@@ -45,30 +53,85 @@ public class DynamicGate : Placeable
     Vector3Int left;
     Vector3Int right;
 
-    Vector2[] pointsWhenHorizontalClosed;
-    Vector2[] pointsWhenHorizontalOpen;
+    Vector2[] horizontalClosed;
+    Vector2[][] horizontalOpen;
 
-    Vector2[] pointsWhenVerticalClosed;
-    Vector2[] pointsWhenVerticalOpen;
+    Vector2[] verticalClosed;
+    Vector2[][] verticalOpen;
     
     List<Vector3Int> neighbours;
 
-    // true when horizontal
-    public bool isHorizontal = true;
-
-    // true when open
-    public bool isOpen = false;
+    List<int> fenceIds;
 
     void Start()
     {
-        pointsWhenHorizontalClosed = new Vector2[]
+        fenceIds = new List<int>()
         {
+            101
+        };
 
+        // horizontal closed:
+        horizontalClosed = new Vector2[]{
+            new Vector2(0.504f, -0.343f),
+            new Vector2(-0.502f, -0.338f),
+            new Vector2(-0.501f, -0.472f),
+            new Vector2(0.498f, -0.473f)
+        };
+
+        // horizontal open:
+        horizontalOpen = new Vector2[][]{
+            // Element 0
+            new Vector2[]{
+                new Vector2(-0.304f, -0.340f),
+                new Vector2(-0.502f, -0.338f),
+                new Vector2(-0.501f, -0.472f),
+                new Vector2(-0.300f, -0.476f)
+            },
+            // Element 1
+            new Vector2[]{
+                new Vector2(0.500f, -0.346f),
+                new Vector2(0.312f, -0.348f),
+                new Vector2(0.301f, -0.473f),
+                new Vector2(0.506f, -0.473f)
+            }
+        };
+
+        // vertical open:
+        verticalOpen = new Vector2[][]{
+            // Element 0
+            new Vector2[]{
+                new Vector2(-0.101f, 0.556f),
+                new Vector2(-0.101f, 0.538f),
+                new Vector2(-0.103f, 0.316f),
+                new Vector2(0.108f, 0.320f)
+            },
+            // Element 1
+            new Vector2[]{
+                new Vector2(-0.101f, -0.564f),
+                new Vector2(0.099f, -0.506f),
+                new Vector2(0.100f, -0.607f),
+                new Vector2(-0.099f, -0.613f)
+            }
+        };
+
+        // vertical closed:
+        verticalClosed = new Vector2[]{
+            new Vector2(0.103f, 0.570f),
+            new Vector2(-0.103f, 0.574f),
+            new Vector2(-0.100f, 0.344f),
+            new Vector2(-0.037f, 0.277f),
+            new Vector2(-0.033f, -0.301f),
+            new Vector2(-0.099f, -0.371f),
+            new Vector2(-0.104f, -1.209f),
+            new Vector2(0.099f, -1.208f),
+            new Vector2(0.098f, -0.373f),
+            new Vector2(0.036f, -0.301f),
+            new Vector2(0.041f, 0.276f),
+            new Vector2(0.103f, 0.346f)
         };
 
         // I LOVE FLOOR TO INT I LOVE FLOOR TO INT I LOVE FLOOR TO INT I LOVE FLOOR TO INT I LOVE FLOOR TO INT I LOVE FLOOR TO INT
         pos = new Vector3Int(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y), Mathf.FloorToInt(transform.position.z));
-        //Debug.Log($"placed a fence: {pos.x}, {pos.y}, {pos.z}");
 
         PolygonCollider2D[] colliders = GetComponents<PolygonCollider2D>();
         foreach(PolygonCollider2D col in colliders)
@@ -95,29 +158,51 @@ public class DynamicGate : Placeable
 
     public override void UpdateBlock(bool fromNeighbour)
     {
+        bool hasFenceUp = IsFenceAt(up);
+        bool hasFenceDown = IsFenceAt(down);
 
+        if(hasFenceUp && hasFenceDown && isHorizontal)
+        {
+            // we vertical now
+            Debug.Log("Fence up and down");
+            isHorizontal = false;
+            UpdateSprite();
+            UpdateSurroundingBlocks();
+        }
+        else if(!hasFenceUp || !hasFenceDown && !isHorizontal)
+        {
+            isHorizontal = true;
+            UpdateSprite();
+            UpdateSurroundingBlocks();
+        }
+
+        if(!fromNeighbour)
+        {
+            UpdateSprite();
+            UpdateSurroundingBlocks();
+        }
+    }
+
+    private void UpdateSprite()
+    {
+        Debug.Log("Fence maxing");
+        int index = 0;
+        if (isOpen) index |= 0b0010;  // 2 (Open)
+        if (isHorizontal) index |= 0b0001; // 1 (Horizontal)
+        spriteRenderer.sprite = spriteIndex.gateSprites[index];
+        UpdateColliders();
     }
 
     public void Interact()
     {
         isOpen = !isOpen;
-
-        int index = 0;
-        if (isOpen) index |= 0b0010;  // 2 (Open)
-        if (isHorizontal) index |= 0b0001; // 1 (Horizontal)
-
-        // open horizontal = 3
-        // open vertical = 2
-        // closed horizontal = 1
-        // closed vertical = 0
-
-        spriteRenderer.sprite = spriteIndex.gateSprites[index];
+        UpdateSprite();
     }
 
     private bool IsFenceAt(Vector3Int position)
     {
         Placeable block = updateableBlocks.GetBlock(position);
-        return block != null && block.id == id;
+        return block != null && fenceIds.Contains(block.id);
     }
 
     private void InitializeNeighbours()
@@ -134,5 +219,78 @@ public class DynamicGate : Placeable
             left,
             right
         };
+    }
+
+    private void UpdateSurroundingBlocks()
+    {
+        foreach(Vector3Int n in neighbours)
+        {
+            Placeable block = updateableBlocks.GetBlock(n);
+            if(block != null)
+            {
+                block.UpdateBlock(true);
+            }
+        }
+    }
+
+    private void UpdateColliders()
+    {
+        // remake the trigger collider, this collider outlines the sprite so that it can be hovered over
+        if(triggerCollider != null)
+        {
+            Destroy(triggerCollider);
+        }
+        triggerCollider = gameObject.AddComponent<PolygonCollider2D>();
+        triggerCollider.isTrigger = true;
+
+        // open and horizontal
+        if(isOpen && isHorizontal)
+        {
+            Debug.Log("Now open and horizontal");
+            nonTriggerCollider.pathCount = 2;
+            nonTriggerCollider.SetPath(0, horizontalOpen[0]);
+            nonTriggerCollider.SetPath(1, horizontalOpen[1]);
+            nonTriggerCollider.enabled = false;
+            nonTriggerCollider.enabled = true;
+        }
+
+        // closed and horizontal
+        else if(!isOpen && isHorizontal)
+        {
+            Debug.Log("Now closed and horizontal");
+            nonTriggerCollider.pathCount = 1;
+            nonTriggerCollider.points = horizontalClosed;
+            nonTriggerCollider.enabled = false;
+            nonTriggerCollider.enabled = true;
+        }
+
+        // open and vertical
+        else if(isOpen && !isHorizontal)
+        {
+            Debug.Log("Now open and vertical");
+            nonTriggerCollider.pathCount = 2;
+            nonTriggerCollider.SetPath(0, verticalOpen[0]);
+            nonTriggerCollider.SetPath(1, verticalOpen[1]);
+            nonTriggerCollider.enabled = false;
+            nonTriggerCollider.enabled = true;
+        }
+
+        // closed and vertical
+        else if(!isOpen && !isHorizontal)
+        {
+            Debug.Log("Now closed and vertical");
+            nonTriggerCollider.pathCount = 1;
+            nonTriggerCollider.points = verticalClosed;
+            nonTriggerCollider.enabled = false;
+            nonTriggerCollider.enabled = true;
+        }
+    }
+
+    public override void Destroy()
+    {
+        updateableBlocks.RemoveBlock(pos);
+        mapManager.SetAboveGroundTile(pos, -1);
+        UpdateSurroundingBlocks();
+        Destroy(gameObject);
     }
 }

@@ -7,7 +7,12 @@ public abstract class Placeable : MonoBehaviour
 {
     public GameObject placeableParent;
     public int id;
+    public bool isGate;
+    public bool isHorizontal;
+    public bool isOpen;
+    public ETool[] useableTools;
     public abstract void UpdateBlock(bool fromNeighbour); // called every time a surrounding block is changed.
+    public abstract void Destroy();
 
     void Awake()
     {
