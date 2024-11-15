@@ -82,16 +82,16 @@ public class DynamicGate : Placeable
         horizontalOpen = new Vector2[][]{
             // Element 0
             new Vector2[]{
-                new Vector2(-0.304f, -0.340f),
+                new Vector2(-0.604f, -0.340f),
                 new Vector2(-0.502f, -0.338f),
                 new Vector2(-0.501f, -0.472f),
-                new Vector2(-0.300f, -0.476f)
+                new Vector2(-0.600f, -0.476f)
             },
             // Element 1
             new Vector2[]{
                 new Vector2(0.500f, -0.346f),
-                new Vector2(0.312f, -0.348f),
-                new Vector2(0.301f, -0.473f),
+                new Vector2(0.612f, -0.348f),
+                new Vector2(0.601f, -0.473f),
                 new Vector2(0.506f, -0.473f)
             }
         };
@@ -156,6 +156,7 @@ public class DynamicGate : Placeable
         UpdateBlock(false);
     }
 
+
     public override void UpdateBlock(bool fromNeighbour)
     {
         bool hasFenceUp = IsFenceAt(up);
@@ -193,7 +194,7 @@ public class DynamicGate : Placeable
         UpdateColliders();
     }
 
-    public void Interact()
+    public override void Interact()
     {
         isOpen = !isOpen;
         UpdateSprite();

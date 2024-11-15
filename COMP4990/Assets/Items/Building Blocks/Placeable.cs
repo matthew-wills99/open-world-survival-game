@@ -13,6 +13,7 @@ public abstract class Placeable : MonoBehaviour
     public ETool[] useableTools;
     public abstract void UpdateBlock(bool fromNeighbour); // called every time a surrounding block is changed.
     public abstract void Destroy();
+    public abstract void Interact();
 
     void Awake()
     {

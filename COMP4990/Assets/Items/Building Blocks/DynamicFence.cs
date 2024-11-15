@@ -112,7 +112,12 @@ public class DynamicFence : Placeable
             }
         }
     }
-    
+
+    public override void Interact()
+    {
+        return;
+    }
+
     public override void UpdateBlock(bool fromNeighbour)
     {
         //Debug.Log($"Updating block: {pos}");

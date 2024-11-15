@@ -81,6 +81,8 @@ public class PlayerActionManager : MonoBehaviour
             currentlySelectedObject = null;
         }
 
+        Interact();
+
         if(!selectedItem)
         {
             if(isCurrentlyHoveringATile)
@@ -252,6 +254,45 @@ public class PlayerActionManager : MonoBehaviour
                         block.Destroy();
                     }
                 }
+            }
+        }
+    }
+
+    private void Interact()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(GetMousePosition());
+        RaycastHit2D[] hits = Physics2D.RaycastAll(mousePosition, Vector2.zero);
+        // closest
+        RaycastHit2D hit = new RaycastHit2D();
+        float highestOrder = -Mathf.Infinity;
+
+        foreach(RaycastHit2D h in hits)
+        {
+            if(h.collider != null && h.collider.gameObject.GetComponent<Placeable>() != null)
+            {
+                
+                float order = h.collider.GetComponent<SortingGroup>().sortingOrder;
+                if(order > highestOrder)
+                {
+                    highestOrder = order;
+                    hit = h;
+                }
+            }
+        }
+
+        if (hit.collider != null)
+        {
+
+            highlight = hit.transform;
+            hit.transform.gameObject.GetComponent<Hover>().StartHover();
+            currentlySelectedObject = hit.transform;
+        }
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            if(currentlySelectedObject != null && currentlySelectedObject.GetComponent<Placeable>() != null)
+            {
+                currentlySelectedObject.GetComponent<Placeable>().Interact();
             }
         }
     }
