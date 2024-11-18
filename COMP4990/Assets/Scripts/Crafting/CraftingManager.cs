@@ -42,16 +42,12 @@ public class CraftingManager : MonoBehaviour
         return false;
     }
 
-    public bool hasAllMaterials(CraftingReceipes receipe){
-
-        if (InventoryManager.instance == null)
+    public bool hasAllMaterials(CraftingReceipes recipe)
+    {
+        foreach (var ingredient in recipe.ingredients)
         {
-            Debug.LogError("InventoryManager is null in hasAllMaterials!");
-            return false;
-        }
-        foreach (var ingredient in receipe.ingredients){
-           
-            if(!InventoryManager.instance.HasItem(ingredient.item, ingredient.count)){
+            if (!InventoryManager.instance.HasItem(ingredient.item, ingredient.count))
+            {
                 return false;
             }
         }

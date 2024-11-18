@@ -8,7 +8,19 @@ public class CraftingBarUI : MonoBehaviour
     public GameObject craftableItemPrefab;
     private InventoryManager inventoryManager;
     private CraftingManager craftingManager;
-
+    public static CraftingBarUI instance;
+    void Awake()
+    {
+        // Singleton pattern implementation
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         inventoryManager = InventoryManager.instance;
@@ -16,44 +28,65 @@ public class CraftingBarUI : MonoBehaviour
         UpdateCraftingBar();
     }
 
- public void UpdateCraftingBar()
-{
-    Debug.Log("Updating Crafting Bar...");
-
-    // Clear existing items in the crafting bar
-    foreach (Transform child in content)
+    public void UpdateCraftingBar()
     {
-        Destroy(child.gameObject);
-    }
+        Debug.Log("Updating Crafting Bar...");
 
-    // Get the full list of crafting recipes (do not filter by materials)
-    List<CraftingReceipes> allRecipes = craftingManager.receipes;
-    Debug.Log($"Displaying {allRecipes.Count} crafting recipes in the bar.");
-
-    foreach (var recipe in allRecipes)
-    {
-        // Instantiate a UI element for each recipe
-        GameObject itemUI = Instantiate(craftableItemPrefab, content);
-        Image itemIcon = itemUI.GetComponent<Image>();
-        Button craftButton = itemUI.GetComponent<Button>();
-
-        // Set the icon of the craftable item
-        if (itemIcon != null)
+        // Clear existing items in the crafting bar
+        foreach (Transform child in content)
         {
-            itemIcon.sprite = recipe.resultItem.image;
-        }
-        else
-        {
-            Debug.LogWarning("ItemIcon component is missing on the CraftableItemUI prefab.");
+            Destroy(child.gameObject);
         }
 
-        // Set up the button click action to attempt crafting
-        craftButton.onClick.RemoveAllListeners();
-        craftButton.onClick.AddListener(() => CraftItem(recipe));
+        // Get the full list of crafting recipes
+        List<CraftingReceipes> allRecipes = craftingManager.receipes;
+        List<CraftingReceipes> craftableRecipes = new List<CraftingReceipes>();
 
-        Debug.Log($"Added craftable item to bar: {recipe.resultItem.itemName}");
+        // Check which recipes the player can craft
+        foreach (var recipe in allRecipes)
+        {
+            if (craftingManager.hasAllMaterials(recipe))
+            {
+                craftableRecipes.Add(recipe);
+            }
+        }
+
+        // If there are no craftable recipes, hide the crafting bar
+        if (craftableRecipes.Count == 0)
+        {
+            Debug.Log("No craftable recipes. Hiding crafting bar.");
+            gameObject.SetActive(false);
+            return;
+        }
+
+        // Show the crafting bar and display only craftable recipes
+        gameObject.SetActive(true);
+        Debug.Log($"Displaying {craftableRecipes.Count} craftable recipes.");
+
+        foreach (var recipe in craftableRecipes)
+        {
+            // Instantiate a UI element for each craftable recipe
+            GameObject itemUI = Instantiate(craftableItemPrefab, content);
+            Image itemIcon = itemUI.GetComponent<Image>();
+            Button craftButton = itemUI.GetComponent<Button>();
+
+            // Set the icon of the craftable item
+            if (itemIcon != null)
+            {
+                itemIcon.sprite = recipe.resultItem.image;
+            }
+            else
+            {
+                Debug.LogWarning("ItemIcon component is missing on the CraftableItemUI prefab.");
+            }
+
+            // Set up the button click action to attempt crafting
+            craftButton.onClick.RemoveAllListeners();
+            craftButton.onClick.AddListener(() => CraftItem(recipe));
+
+            Debug.Log($"Added craftable item to bar: {recipe.resultItem.itemName}");
+        }
     }
-}
 
     private void CraftItem(CraftingReceipes recipe)
     {

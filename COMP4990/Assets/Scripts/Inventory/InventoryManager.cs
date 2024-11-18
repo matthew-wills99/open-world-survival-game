@@ -28,30 +28,30 @@ public class InventoryManager : MonoBehaviour
     private bool isInventoryOpen = false;
     int selectedSlot = -1;
 
-private void GetInventorySlots()
-{
-    inventorySlots = new List<InventorySlot>();
-
-    // Populate toolbar slots
-    foreach (Transform child in toolbarContainer)
+    private void GetInventorySlots()
     {
-        InventorySlot slot = child.GetComponent<InventorySlot>();
-        if (slot != null)
+        inventorySlots = new List<InventorySlot>();
+
+        // Populate toolbar slots
+        foreach (Transform child in toolbarContainer)
         {
-            inventorySlots.Add(slot);
+            InventorySlot slot = child.GetComponent<InventorySlot>();
+            if (slot != null)
+            {
+                inventorySlots.Add(slot);
+            }
+        }
+
+        // Populate main inventory slots
+        foreach (Transform child in inventoryContainer)
+        {
+            InventorySlot slot = child.GetComponent<InventorySlot>();
+            if (slot != null)
+            {
+                inventorySlots.Add(slot);
+            }
         }
     }
-
-    // Populate main inventory slots
-    foreach (Transform child in inventoryContainer)
-    {
-        InventorySlot slot = child.GetComponent<InventorySlot>();
-        if (slot != null)
-        {
-            inventorySlots.Add(slot);
-        }
-    }
-}
     private void Awake(){
         instance = this;
         GetInventorySlots();
@@ -64,6 +64,9 @@ private void GetInventorySlots()
             AddItem(item);
         }
         inventoryPanel.SetActive(isInventoryOpen);
+
+        CraftingBarUI.instance.UpdateCraftingBar();
+
     }
 
     //Changing which slot the user selects
@@ -123,6 +126,7 @@ private void GetInventorySlots()
                 itemInSlot.item.stackable){
                 itemInSlot.count++;
                 itemInSlot.RefreshCount();
+                CraftingBarUI.instance.UpdateCraftingBar();
                 return true;
             }
         }
@@ -132,17 +136,22 @@ private void GetInventorySlots()
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if(itemInSlot == null){
                 SpawnNewItem(item, slot);
+                CraftingBarUI.instance.UpdateCraftingBar();
                 return true;
             }
         }
+        CraftingBarUI.instance.UpdateCraftingBar();
         return false;
     }
 
     //once the slot found from above this will add the item to the slot
     void SpawnNewItem(Item item, InventorySlot slot){
+        CraftingBarUI.instance.UpdateCraftingBar();
         GameObject newItemGo = Instantiate(InventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item);
+        
+
     }
 
     //This checks if the item that is currently being used by the player is being used.
@@ -191,11 +200,13 @@ private void GetInventorySlots()
                 {
                     itemInSlot.count--;
                     itemInSlot.RefreshCount();
+                    CraftingBarUI.instance.UpdateCraftingBar();
                     return true;
                 }
                 else
                 {
                     Destroy(itemInSlot.gameObject);
+                    CraftingBarUI.instance.UpdateCraftingBar();
                     return true;
                 }
             
@@ -223,12 +234,16 @@ private void GetInventorySlots()
                     }else{
                         itemInSlot.RefreshCount();
                     }
+                    CraftingBarUI.instance.UpdateCraftingBar();
+
                     return true;
                 }
                 else
                 {
                     count -= itemInSlot.count;
                     Destroy(itemInSlot.gameObject);
+                    CraftingBarUI.instance.UpdateCraftingBar();
+
                     return true;
                 }
             

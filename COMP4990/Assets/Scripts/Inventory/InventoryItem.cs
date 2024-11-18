@@ -19,6 +19,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void InitialiseItem(Item newItem){
         item = newItem;
         image.sprite = newItem.image;
+        CraftingBarUI.instance.UpdateCraftingBar();
         RefreshCount();
     }
 
