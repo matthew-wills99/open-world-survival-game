@@ -16,8 +16,9 @@ MonoBehaviour:
   itemName: Workbench
   isTool: 0
   toolObj: {fileID: 0}
-  isObj: 0
-  obj: {fileID: 0}
+  isPlaceable: 1
+  obj: {fileID: 1703519036924841499, guid: 4f0c899e2e85e74468b28dec9b86196a, type: 3}
+  isTile: 0
   isWeapon: 0
   weapon: {fileID: 0}
   tile: {fileID: 0}
@@ -25,4 +26,4 @@ MonoBehaviour:
   actionType: 2
   range: {x: 5, y: 4}
   stackable: 0
-  image: {fileID: 323381373, guid: 5a524b1b7c2f47a4f86431093fa68ec2, type: 3}
+  image: {fileID: 1675093597, guid: 843f07c0e27e8844191b600d63496552, type: 3}

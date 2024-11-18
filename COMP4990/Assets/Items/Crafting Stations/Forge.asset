@@ -16,8 +16,9 @@ MonoBehaviour:
   itemName: Forge
   isTool: 0
   toolObj: {fileID: 0}
-  isObj: 0
-  obj: {fileID: 0}
+  isPlaceable: 1
+  obj: {fileID: 1703519036924841499, guid: 820ed1cc80b19f94e9adc8fbf94ebabb, type: 3}
+  isTile: 0
   isWeapon: 0
   weapon: {fileID: 0}
   tile: {fileID: 0}
@@ -25,4 +26,4 @@ MonoBehaviour:
   actionType: 2
   range: {x: 5, y: 4}
   stackable: 0
-  image: {fileID: -1620053501, guid: 5a524b1b7c2f47a4f86431093fa68ec2, type: 3}
+  image: {fileID: -586190573, guid: 843f07c0e27e8844191b600d63496552, type: 3}
