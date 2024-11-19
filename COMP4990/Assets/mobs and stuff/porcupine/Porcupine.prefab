@@ -11,8 +11,11 @@ GameObject:
   - component: {fileID: 1493562953058920493}
   - component: {fileID: 4970160337395912126}
   - component: {fileID: 3376483407432252403}
-  - component: {fileID: 107258238323631776}
+  - component: {fileID: -8085746574032279454}
   - component: {fileID: 6432692435504323336}
+  - component: {fileID: -3261888082407549191}
+  - component: {fileID: -7708936352270407830}
+  - component: {fileID: -684656605487836181}
   m_Layer: 12
   m_Name: Porcupine
   m_TagString: Enemy
@@ -108,7 +111,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &107258238323631776
+--- !u!114 &-8085746574032279454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,23 +120,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 4622607977223005610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e76521f8865688b448ecc5a5181e0c27, type: 3}
+  m_Script: {fileID: 11500000, guid: 28618e98e78af3144992fe5a5e7d7b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
   hitColour: {r: 1, g: 0, b: 0, a: 1}
   hitDuration: 0.2
-  chanceToSwitch: 0.2
-  chanceIncreasePerSecond: 0.01
-  checkTime: 1
+  chanceForSecondaryMovement: 0.25
   moveSpeed: 1
-  timeUntilBored: 30
+  shootingRange: 6
+  shootingRangeBuffer: 1.5
+  shootCooldown: 3
+  timeUntilBored: 5
   madMoveSpeedMultiplier: 1.2
-  shootingRange: 5
+  alertRadius: 10
   projectilePfb: {fileID: 5607606640627458955, guid: 7f61e88a4c4dd544583b117d97bb52d2,
     type: 3}
-  shootCooldown: 2
-  alertRadius: 10
 --- !u!60 &6432692435504323336
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -189,4 +191,83 @@ PolygonCollider2D:
       - {x: 0.47465277, y: -0.21038581}
       - {x: 0.37095994, y: -0.10555585}
       - {x: 0.18317574, y: -0.004481526}
+  m_UseDelaunayMesh: 0
+--- !u!210 &-3261888082407549191
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4622607977223005610}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+--- !u!114 &-7708936352270407830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4622607977223005610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9529377a85db78a46b876e067ed61c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!60 &-684656605487836181
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4622607977223005610}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.0625, y: 0.34375}
+      - {x: -0.15625, y: 0.34375}
+      - {x: -0.375, y: 0.21875}
+      - {x: -0.5, y: -0.03125}
+      - {x: -0.5, y: -0.40625}
+      - {x: -0.46875, y: -0.5}
+      - {x: 0.375, y: -0.5}
+      - {x: 0.5, y: -0.40625}
+      - {x: 0.5, y: -0.15625}
+      - {x: 0.25, y: 0.28125}
   m_UseDelaunayMesh: 0

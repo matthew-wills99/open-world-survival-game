@@ -715,7 +715,7 @@ PrefabInstance:
         type: 3}
       propertyPath: startItems.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: a32417d145299e74a8d116015f0182c6,
+      objectReference: {fileID: 11400000, guid: 257415c9833db5245b94a0084386f498,
         type: 2}
     - target: {fileID: 778032783405759020, guid: b8481f757254aa9438adbd6ec8a6284d,
         type: 3}
@@ -2329,6 +2329,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce72bf64654c37408722bf876061939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1826678900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1826678902}
+  - component: {fileID: 1826678901}
+  m_Layer: 0
+  m_Name: PorcupineSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1826678901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826678900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b4e408119962b4997155b6aaf91674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  packs: 3
+  porcupinesPerPack: 5
+  spawnAreaRadius: 15
+  porcupinePfb: {fileID: 4865156196868840920, guid: f63c8f74dab5daa4f86985ec7328983d,
+    type: 3}
+  mapManager: {fileID: 1650368007}
+  waterTilemap: {fileID: 871574526}
+  aboveGroundTilemap: {fileID: 871574525}
+--- !u!4 &1826678902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826678900}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 584.63605, y: 314.82053, z: -0.92031956}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1930642768 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3556767083302712231, guid: 554dd9c52ff072f40af8c2ca992d00cd,
@@ -2613,3 +2665,4 @@ SceneRoots:
   - {fileID: 1350936335}
   - {fileID: 1089891533}
   - {fileID: 1010298943}
+  - {fileID: 1826678902}

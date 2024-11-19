@@ -162,6 +162,8 @@ public class TPorcupine : Animal
         {
             BecomeMad();
         }
+
+        gameObject.GetComponent<SortingOrder>().UpdateSortingOrder();
     }
 
     private IEnumerator Wander()
