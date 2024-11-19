@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 //This script is for items and stacking items, and dragging items
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("UI")]
     public Image image;
@@ -13,7 +13,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public Transform parentAfterDrag; //Dragging item movement
     [HideInInspector] public int count = 1; 
     [HideInInspector] public Item item; //Whats the item homes?
-   
+
+    private bool isPointerOverItem;
+
     //Item Sprites are loaded in to the correct type
     //The stack count is refreshed
     public void InitialiseItem(Item newItem){
@@ -54,4 +56,30 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         image.raycastTarget = true;
     }
     
+    // hi yusuf
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(TooltipManager.Instance != null)
+        {
+            TooltipManager.Instance.ShowTooltip(item.itemName);
+            isPointerOverItem = true;
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(TooltipManager.Instance != null)
+        {
+            TooltipManager.Instance.HideTooltip();
+            isPointerOverItem = false;
+        }
+    }
+
+    void Update()
+    {
+        if(isPointerOverItem && TooltipManager.Instance != null)
+        {
+            TooltipManager.Instance.UpdatePosition();
+        }
+    }
 }

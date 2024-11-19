@@ -1,25 +1,28 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CraftingItemUI : MonoBehaviour
+public class CraftingItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Image itemIcon;
     public Button craftButton;
-    private CraftingReceipes receipe;
+    private CraftingReceipes recipe;
     private InventoryManager inventoryManager;
     private CraftingManager craftingManager;
 
-    public void Setup(CraftingReceipes newReceipe, InventoryManager manager)
+    bool isPointerOverItem;
+
+    public void Setup(CraftingReceipes newRecipe, InventoryManager manager)
     {
-        receipe = newReceipe;
+        recipe = newRecipe;
         inventoryManager = manager;
         craftingManager = CraftingManager.instance;
 
         // Set the item icon
-        itemIcon.sprite = receipe.resultItem.image;
+        itemIcon.sprite = recipe.resultItem.image;
 
         // Check if the player has the required materials
-        bool hasMaterials = craftingManager.hasAllMaterials(receipe);
+        bool hasMaterials = craftingManager.hasAllMaterials(recipe);
 
         // Update the UI state based on material availability
         UpdateUIState(hasMaterials);
@@ -31,12 +34,12 @@ public class CraftingItemUI : MonoBehaviour
 
     private void TryCraftItem()
     {
-        if (craftingManager.hasAllMaterials(receipe))
+        if (craftingManager.hasAllMaterials(recipe))
         {
-            bool crafted = craftingManager.CraftItem(receipe.resultItem, inventoryManager);
+            bool crafted = craftingManager.CraftItem(recipe.resultItem, inventoryManager);
             if (crafted)
             {
-                Debug.Log("Crafted: " + receipe.resultItem.itemName);
+                Debug.Log("Crafted: " + recipe.resultItem.itemName);
             }
             else
             {
@@ -45,11 +48,11 @@ public class CraftingItemUI : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough materials: " + receipe.resultItem.itemName);
+            Debug.Log("Not enough materials: " + recipe.resultItem.itemName);
         }
 
         // Refresh the UI state after attempting to craft
-        bool hasMaterials = craftingManager.hasAllMaterials(receipe);
+        bool hasMaterials = craftingManager.hasAllMaterials(recipe);
         UpdateUIState(hasMaterials);
     }
 
@@ -64,5 +67,31 @@ public class CraftingItemUI : MonoBehaviour
 
         // Disable the button if the player lacks materials
         craftButton.interactable = hasMaterials;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(TooltipManager.Instance != null)
+        {
+            TooltipManager.Instance.ShowTooltip("yes");
+            isPointerOverItem = true;
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(TooltipManager.Instance != null)
+        {
+            TooltipManager.Instance.HideTooltip();
+            isPointerOverItem = false;
+        }
+    }
+
+    void Update()
+    {
+        if(isPointerOverItem && TooltipManager.Instance != null)
+        {
+            TooltipManager.Instance.UpdatePosition();
+        }
     }
 }

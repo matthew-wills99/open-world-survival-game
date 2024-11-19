@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Selectable
   - Enemy
+  - tooltip
   layers:
   - Default
   - TransparentFX
