@@ -307,6 +307,18 @@ public class Utils : MonoBehaviour
         }
     }
 
+    public class CInventoryItem
+    {
+        public int Idx;
+        public int Count;
+
+        public CInventoryItem(int idx, int count)
+        {
+            Idx = idx;
+            Count = count;
+        }
+    }
+
     // something going on here fr
     public enum EAttackType
     {
@@ -406,6 +418,7 @@ public class Utils : MonoBehaviour
         public float DayNightStateTimer {get; set;}
         public float DayNightAlpha {get; set;}
         public List<PlaceableBlock> PlaceableBlocks {get; set;}
+        public List<CInventoryItem> InventoryItems {get; set;}
     }
 
     /// <summary>

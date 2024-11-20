@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 3900713322973168539}
   m_Layer: 20
   m_Name: Stone
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -231,7 +231,7 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.3055477, y: 0.49426794}
-      - {x: 0.056632042, y: 0.49119043}
+      - {x: 0.054226875, y: 0.4887848}
       - {x: -0.10721302, y: 0.3229227}
       - {x: -0.41856384, y: 0.01911211}
       - {x: -0.4392357, y: -0.27454185}

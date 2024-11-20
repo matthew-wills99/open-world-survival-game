@@ -12,7 +12,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public TMP_Text countText;
     [HideInInspector] public Transform parentAfterDrag; //Dragging item movement
     [HideInInspector] public int count = 1; 
-    [HideInInspector] public Item item; //Whats the item homes?
+    public Item item; //Whats the item homes?
 
     private bool isPointerOverItem;
 

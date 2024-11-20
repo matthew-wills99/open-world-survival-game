@@ -45,4 +45,14 @@ public class Item : ScriptableObject
         Mine,
         None
     }
+
+    public void SaveSettings()
+    {
+
+    }
+
+    public void LoadSettings()
+    {
+
+    }
 }

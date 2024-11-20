@@ -53,7 +53,7 @@ public class PorcupinePack: MonoBehaviour
             GameObject p = Instantiate(porcupinePfb, origin, Quaternion.identity);
             p.transform.parent = parent.transform;
             porcupines.Add(p);
-            Debug.Log("Add to the list");
+            //Debug.Log("Add to the list");
         }
     }
 

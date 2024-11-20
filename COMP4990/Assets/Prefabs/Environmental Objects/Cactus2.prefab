@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1568966013860471506}
   m_Layer: 0
   m_Name: Cactus2
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

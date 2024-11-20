@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CraftingManager : MonoBehaviour
 {
+    public InventoryManager inventoryManager;
     public static CraftingManager instance;
     public List<CraftingReceipes> receipes;
 
@@ -46,7 +47,7 @@ public class CraftingManager : MonoBehaviour
     {
         foreach (var ingredient in recipe.ingredients)
         {
-            if (InventoryManager.instance != null && !InventoryManager.instance.HasItem(ingredient.item, ingredient.count))
+            if (inventoryManager != null && !inventoryManager.HasItem(ingredient.item, ingredient.count))
             {
                 return false;
             }

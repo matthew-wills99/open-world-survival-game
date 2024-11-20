@@ -6,7 +6,7 @@ public class CraftingBarUI : MonoBehaviour
 {
     public Transform content; // Assign the 'Content' GameObject from the Scroll View
     public GameObject craftableItemPrefab;
-    private InventoryManager inventoryManager;
+    public InventoryManager inventoryManager;
     private CraftingManager craftingManager;
     public static CraftingBarUI instance;
     void Awake()
@@ -21,16 +21,19 @@ public class CraftingBarUI : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void Start()
+    {
+        craftingManager = CraftingManager.instance;
+    }
+
     public void EStart()
     {
-        inventoryManager = InventoryManager.instance;
-        craftingManager = CraftingManager.instance;
         UpdateCraftingBar();
     }
 
     public void UpdateCraftingBar()
     {
-        Debug.Log("Updating Crafting Bar...");
+        //Debug.Log("Updating Crafting Bar...");
 
         // Clear existing items in the crafting bar
         foreach (Transform child in content)
@@ -54,14 +57,14 @@ public class CraftingBarUI : MonoBehaviour
         // If there are no craftable recipes, hide the crafting bar
         if (craftableRecipes.Count == 0)
         {
-            Debug.Log("No craftable recipes. Hiding crafting bar.");
+            //Debug.Log("No craftable recipes. Hiding crafting bar.");
             gameObject.SetActive(false);
             return;
         }
 
         // Show the crafting bar and display only craftable recipes
         gameObject.SetActive(true);
-        Debug.Log($"Displaying {craftableRecipes.Count} craftable recipes.");
+        //Debug.Log($"Displaying {craftableRecipes.Count} craftable recipes.");
 
         foreach (var recipe in craftableRecipes)
         {

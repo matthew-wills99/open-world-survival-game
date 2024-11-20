@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Runtime.InteropServices.ComTypes;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Security.Cryptography.X509Certificates;
-using UnityEditor;
 using UnityEngine;
+
+using static Utils;
     //This script is for the inventory. Managing the slots, items, stacks, classes, etc.\
 public class InventoryManager : MonoBehaviour
 {
+    public InventoryItemIndex inventoryItemIndex;
+
     //Allows other scripts to use this script (Building, resources, etc.)
     public static InventoryManager instance;
     public List<Item> startItems;
@@ -20,6 +18,8 @@ public class InventoryManager : MonoBehaviour
 
     public Transform inventoryContainer;
     public Transform toolbarContainer;
+
+    public bool isLoaded = false;
    
 
     [Header("UI")]
@@ -55,19 +55,34 @@ public class InventoryManager : MonoBehaviour
     private void Awake(){
         instance = this;
         GetInventorySlots();
+
     }
     //Making sure the slot selected at the start is the first slot, then adds starting items.
     private void Start(){
         GetInventorySlots();
         ChangeSelectedSlot(0);
+        inventoryPanel.SetActive(isInventoryOpen);
+
+        /*foreach (var item in startItems){
+            Debug.Log("Now");
+            AddItem(item);
+        }*/
+
+        CraftingBarUI.instance.UpdateCraftingBar();
+
+        if(!isLoaded)
+        {
+            isLoaded = true;
+        }
+    }
+
+    public void EStart()
+    {
+        GetInventorySlots();
         foreach (var item in startItems){
             Debug.Log("Now");
             AddItem(item);
         }
-        inventoryPanel.SetActive(isInventoryOpen);
-
-        CraftingBarUI.instance.UpdateCraftingBar();
-
     }
 
     //Changing which slot the user selects
@@ -169,8 +184,8 @@ public class InventoryManager : MonoBehaviour
     }
 
     public bool HasItem (Item item, int count){
-        Debug.Log("Checking for item: " + item.itemName);
-        Debug.Log("Inventory Slots Count: " + inventorySlots.Count);
+       // Debug.Log("Checking for item: " + item.itemName);
+        //Debug.Log("Inventory Slots Count: " + inventorySlots.Count);
         int itemCount = 0;
         for(int i = 0; i < inventorySlots.Count; i++){
             InventorySlot slot = inventorySlots[i];
@@ -183,7 +198,7 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
-        Debug.LogWarning("Item not found: " + item.itemName);
+        //Debug.LogWarning("Item not found: " + item.itemName);
         return false;
     }
 
@@ -253,4 +268,39 @@ public class InventoryManager : MonoBehaviour
         return false;  
     }     
 
+    public List<CInventoryItem> GetSavedInventory()
+    {
+        List<CInventoryItem> savedItems = new List<CInventoryItem>();
+
+        GetInventorySlots();
+        foreach(InventorySlot slot in inventorySlots)
+        {
+            if(slot == null)
+            {
+                Debug.Log("slot null");
+            }
+            if(slot.GetComponentInChildren<InventoryItem>() == null)
+            {
+                Debug.Log("inv item null");
+            }
+            if(slot != null && slot.GetComponentInChildren<InventoryItem>() != null)
+            {
+                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+                Item item = itemInSlot.item;
+                int count = itemInSlot.count;
+                Debug.Log($"Saved: {item.name}, {count}");
+                savedItems.Add(new CInventoryItem(item.index, count));
+            }
+        }
+        return savedItems;
+    }
+
+    public void LoadInventory(List<CInventoryItem> items)
+    {
+        GetInventorySlots();
+        foreach(CInventoryItem item in items)
+        {
+            AddItem(inventoryItemIndex.GetItemById(item.Idx), item.Count);
+        }
+    }
 }

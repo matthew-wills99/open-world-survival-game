@@ -19,6 +19,7 @@ public class MapManager : MonoBehaviour
     public DayNightCycle dayNightCycle;
     public UpdateableBlocks updateableBlocks;
     public PlaceableBlockIndex placeableBlockIndex;
+    public InventoryManager inventoryManager;
 
     public bool generateWorldOnStartup = true;
 
@@ -984,11 +985,22 @@ public class MapManager : MonoBehaviour
 
         gameLoopManager.GenerateStartingMobs();
 
+        inventoryManager.EStart();
+
         dayNightCycle.Setup();
-        
-        SaveWorld();
+
+        StartCoroutine(WaitForWorldReady());
 
         gameLoop = true;
+    }
+
+    private IEnumerator WaitForWorldReady()
+    {
+        while(!inventoryManager.isLoaded)
+        {
+            yield return null;
+        }
+        SaveWorld();
     }
 
     public void LoadExistingWorld(string wn, WorldData worldData)
@@ -1096,6 +1108,8 @@ public class MapManager : MonoBehaviour
 
         dayNightCycle.Load(worldData.DayNightState, worldData.DayNightStateTimer, worldData.DayNightAlpha);
 
+        inventoryManager.LoadInventory(worldData.InventoryItems);
+
         gameLoop = true;
     }
 
@@ -1122,7 +1136,9 @@ public class MapManager : MonoBehaviour
             DayNightStateTimer = dayNightCycle.GetTimer(),
             DayNightAlpha = dayNightCycle.GetAlpha(),
             PlaceableBlocks = updateableBlocks.GetPlaceableBlocks(),
+            InventoryItems = inventoryManager.GetSavedInventory(),
         };
+
         saveWorldScript.SaveWorld(worldName, worldData);
     }
 

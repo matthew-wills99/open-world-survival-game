@@ -76,11 +76,11 @@ public class PorcupineSpawner : MonoBehaviour
 
     public bool CanPlaceHere(int x, int y)
     {
-        Debug.Log($"Trying {x}, {y}");
+        //Debug.Log($"Trying {x}, {y}");
         // trying to place in water (will add bridges)
         if(waterTilemap.GetTile(new Vector3Int(x, y, 0)) != null)
         {
-            Debug.Log("Water");
+            //Debug.Log("Water");
             return false;
         }
         // make sure no other tile already exists
@@ -88,7 +88,7 @@ public class PorcupineSpawner : MonoBehaviour
         {
             return true;
         }
-        Debug.Log("above ground chunks");
+        //Debug.Log("above ground chunks");
         return false;
     }
 

@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4674532893050261390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9127367013725734957}
+  - component: {fileID: 1292255785453871558}
+  m_Layer: 0
+  m_Name: InventoryItemIndex
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9127367013725734957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4674532893050261390}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -25.043465, y: 62.83753, z: -0.20840734}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1292255785453871558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4674532893050261390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 538c9bed4bdd9de4da92aacf52a6a2b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wood: {fileID: 11400000, guid: 63381a471c92dc041a3b98c199406512, type: 2}
+  stick: {fileID: 11400000, guid: 743530d96c0c03e458d5c1de391ba6b8, type: 2}
+  treeBark: {fileID: 11400000, guid: c4495252d96f767448ba0bd7a75afb6d, type: 2}
+  treeSapling: {fileID: 11400000, guid: 091bb0e8feb9d464fa4a75401a77dcb6, type: 2}
+  fiber: {fileID: 11400000, guid: be34d2f1d976f0a48abcc3fb87f16f3a, type: 2}
+  stone: {fileID: 11400000, guid: 72832a2c669f5b940a8c9f661555413e, type: 2}
+  flint: {fileID: 11400000, guid: f778cb7973fcd16419da36ef10d1d35e, type: 2}
+  rawCactus: {fileID: 11400000, guid: 3fb40d84c7f294c4f994d2dc137b02a6, type: 2}
+  sandstone: {fileID: 11400000, guid: 3d72463018f2a5c4ebb2d3faf4ac7518, type: 2}
+  obsidian: {fileID: 11400000, guid: fc5bd568c48102a4b929004f57ac8637, type: 2}
+  clay: {fileID: 11400000, guid: 8251bd8d3c2384746ba0168bc919f9c6, type: 2}
+  ironOre: {fileID: 11400000, guid: 670289d1833ddb34d88898b1341d73be, type: 2}
+  copperOre: {fileID: 11400000, guid: 220ea5083fd89b048bae97dc437deb5c, type: 2}
+  goldNugget: {fileID: 11400000, guid: 02fb243903d92fa449f51384a475a9bc, type: 2}
+  ironIngot: {fileID: 11400000, guid: 0e14f4edab7071142902df9769bb7de8, type: 2}
+  copperIngot: {fileID: 11400000, guid: 9da719f523970524cb66ca1056584e85, type: 2}
+  goldIngot: {fileID: 11400000, guid: 239b9a2814138e7449841c8f107592e0, type: 2}
+  workbench: {fileID: 11400000, guid: 4ba8e2f6f8a060947a916e81d4eaac43, type: 2}
+  torch: {fileID: 11400000, guid: 8b7e2e3cd0e5e7c4db8bc01ec68c48e7, type: 2}
+  campfire: {fileID: 11400000, guid: 731f8b7a1bdfbee4c8b51c64c9e9240a, type: 2}
+  flintPickaxe: {fileID: 11400000, guid: df20cce3a7841cc4e8a63ede9b4246f5, type: 2}
+  flintHatchet: {fileID: 11400000, guid: 53d470e901f8248408e978c80cfaa30f, type: 2}
+  stonePickaxe: {fileID: 11400000, guid: 0400de7e055f90247afa8568f4767043, type: 2}
+  stoneHatchet: {fileID: 11400000, guid: 3ed3974dd4fa3f3468b33e1bb21bd2e8, type: 2}
+  forge: {fileID: 11400000, guid: f098c44a2dfb894408092e40885ba18e, type: 2}
+  ironPickaxe: {fileID: 11400000, guid: 932f041629e7097488d2f00aa8e818d1, type: 2}
+  ironAxe: {fileID: 11400000, guid: 976c0f397557f5a4d836421ff9c0427d, type: 2}
+  chest: {fileID: 11400000, guid: a86baa80a9f790b46910010f58f4bd37, type: 2}
+  treeSap: {fileID: 11400000, guid: c9d7b0c388239c5489c52d8ceab241b2, type: 2}
+  cactusSapling: {fileID: 11400000, guid: 3b1b11a8526597642b252b5e7c97952b, type: 2}
+  woodenFence: {fileID: 11400000, guid: a32417d145299e74a8d116015f0182c6, type: 2}
+  woodenGate: {fileID: 11400000, guid: 3fb2b8d18140a8243857c37c37054ed1, type: 2}
