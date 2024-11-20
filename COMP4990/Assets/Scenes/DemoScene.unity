@@ -128,6 +128,57 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 358981886}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &82498036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 82498038}
+  - component: {fileID: 82498037}
+  m_Layer: 0
+  m_Name: PlaceableBlockIndex
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &82498037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82498036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d368a670d14128144b618b8004240fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fencePfb: {fileID: 7040296693887309728, guid: 24af465bcc3b59e409692e4f854dc255,
+    type: 3}
+  gatePfb: {fileID: 1415204951388822898, guid: 44fc7dafb9bbfd54f820e53cdde95afd, type: 3}
+  workbenchPfb: {fileID: 1703519036924841499, guid: 4f0c899e2e85e74468b28dec9b86196a,
+    type: 3}
+  forgePfb: {fileID: 1703519036924841499, guid: 820ed1cc80b19f94e9adc8fbf94ebabb,
+    type: 3}
+--- !u!4 &82498038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82498036}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.016896, y: 16.406023, z: -0.3580245}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &155013785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1848,6 +1899,7 @@ MonoBehaviour:
   porcupineSpawner: {fileID: 1826678901}
   parentPorcupineObj: {fileID: 213568332}
   porcupineCap: 20
+  porcupinesPlaced: 0
   porcupineMin: 2
   porcupineMax: 5
   spawnMobsInterval: 120
@@ -2869,9 +2921,19 @@ PrefabInstance:
       objectReference: {fileID: 871574526}
     - target: {fileID: 3357446990721112138, guid: 6ca98a24e7634fb4f9817f56d326a42e,
         type: 3}
+      propertyPath: dayNightCycle
+      value: 
+      objectReference: {fileID: 1129342937}
+    - target: {fileID: 3357446990721112138, guid: 6ca98a24e7634fb4f9817f56d326a42e,
+        type: 3}
       propertyPath: groundTilemap
       value: 
       objectReference: {fileID: 871574527}
+    - target: {fileID: 3357446990721112138, guid: 6ca98a24e7634fb4f9817f56d326a42e,
+        type: 3}
+      propertyPath: gameLoopManager
+      value: 
+      objectReference: {fileID: 1129342936}
     - target: {fileID: 3357446990721112138, guid: 6ca98a24e7634fb4f9817f56d326a42e,
         type: 3}
       propertyPath: saveWorldScript
@@ -2884,6 +2946,16 @@ PrefabInstance:
       objectReference: {fileID: 994121265}
     - target: {fileID: 3357446990721112138, guid: 6ca98a24e7634fb4f9817f56d326a42e,
         type: 3}
+      propertyPath: porcupineSpawner
+      value: 
+      objectReference: {fileID: 1826678901}
+    - target: {fileID: 3357446990721112138, guid: 6ca98a24e7634fb4f9817f56d326a42e,
+        type: 3}
+      propertyPath: updateableBlocks
+      value: 
+      objectReference: {fileID: 1963371269}
+    - target: {fileID: 3357446990721112138, guid: 6ca98a24e7634fb4f9817f56d326a42e,
+        type: 3}
       propertyPath: aboveGroundTilemap
       value: 
       objectReference: {fileID: 871574525}
@@ -2892,6 +2964,11 @@ PrefabInstance:
       propertyPath: playerSortingOrder
       value: 
       objectReference: {fileID: 1214144989}
+    - target: {fileID: 3357446990721112138, guid: 6ca98a24e7634fb4f9817f56d326a42e,
+        type: 3}
+      propertyPath: placeableBlockIndex
+      value: 
+      objectReference: {fileID: 82498037}
     - target: {fileID: 3357446990721112138, guid: 6ca98a24e7634fb4f9817f56d326a42e,
         type: 3}
       propertyPath: generateWorldOnStartup
@@ -3006,6 +3083,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 254312548}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1963371269 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6492087485137377622, guid: 11d86a69df20f704680536cd6f80e15f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1010298943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef9e9713530e9a4c99b458b65a9c619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2006784204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3301,3 +3390,4 @@ SceneRoots:
   - {fileID: 213568333}
   - {fileID: 1402722848}
   - {fileID: 1277431079}
+  - {fileID: 82498038}

@@ -21103,5 +21103,8 @@
       "Ty": 1
     }
   },
-  "Structures": []
+  "Structures": [],
+  "Porcupines": [],
+  "PorcupinesPlaced": 20,
+  "PorcupineCap": 20
 }

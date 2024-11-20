@@ -7,6 +7,7 @@ public abstract class Placeable : MonoBehaviour
 {
     public GameObject placeableParent;
     public int id;
+    public int PID;
     public bool isGate;
     public bool isHorizontal;
     public bool isOpen;

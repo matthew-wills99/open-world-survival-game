@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,15 +10,39 @@ public class DayNightCycle : MonoBehaviour
     public float transitionDuration = 5f; // Duration of transitions (day-to-night and night-to-day) in seconds
     public float maxNightAlpha = 0.5f; // Maximum darkness at night (0 to 1)
 
-    private enum CycleState { Day, TransitionToNight, Night, TransitionToDay }
+    public enum CycleState { Day, TransitionToNight, Night, TransitionToDay }
     private CycleState currentState;
     private float stateTimer;
+    private float overlayAlpha;
 
-    private void Start()
+    public void Setup()
     {
         currentState = CycleState.Day; // Start with day
         stateTimer = dayDuration;
         SetOverlayAlpha(0f); // Fully transparent at start
+    }
+
+    public void Load(CycleState cs, float timer, float alpha)
+    {
+        currentState = cs;
+        stateTimer = timer;
+        overlayAlpha = alpha;
+        SetOverlayAlpha(alpha);
+    }
+
+    public CycleState GetCurrentState()
+    {
+        return currentState;
+    }
+
+    public float GetTimer()
+    {
+        return stateTimer;
+    }
+
+    public float GetAlpha()
+    {
+        return overlayAlpha;
     }
 
     private void Update()
@@ -72,5 +97,6 @@ public class DayNightCycle : MonoBehaviour
     private void SetOverlayAlpha(float alpha)
     {
         darkOverlay.color = new Color(0f, 0f, 0f, alpha);
+        overlayAlpha = alpha;
     }
 }

@@ -244,6 +244,18 @@ public class Utils : MonoBehaviour
         }
     }
 
+    public class CPorcupine
+    {
+        public int X {get; set;}
+        public int Y {get; set;}
+
+        public CPorcupine(int x, int y)
+        {
+            X = y;
+            Y = x;
+        }
+    }
+
     /// <summary>
     /// Stores the position, radius, required space and index of a structure.
     /// </summary>
@@ -276,6 +288,22 @@ public class Utils : MonoBehaviour
             XRad = xRad;
             YUp = yUp;
             YDown = yDown;
+        }
+    }
+
+    public class PlaceableBlock
+    {
+        public int PID {get; set;}
+        public int X {get; set;}
+        public int Y {get; set;}
+        public int Z {get; set;}
+
+        public PlaceableBlock(int pid, int x, int y, int z)
+        {
+            PID = pid;
+            X = x;
+            Y = y;
+            Z = z;
         }
     }
 
@@ -371,6 +399,13 @@ public class Utils : MonoBehaviour
         public Dictionary<string, Rock> Rocks {get; set;}
         public Dictionary<string, Cactus> Cacti {get; set;}
         public List<Structure> Structures {get; set;}
+        public List<CPorcupine> Porcupines {get; set;}
+        public int PorcupinesPlaced {get; set;}
+        public int PorcupineCap {get; set;}
+        public DayNightCycle.CycleState DayNightState {get; set;}
+        public float DayNightStateTimer {get; set;}
+        public float DayNightAlpha {get; set;}
+        public List<PlaceableBlock> PlaceableBlocks {get; set;}
     }
 
     /// <summary>

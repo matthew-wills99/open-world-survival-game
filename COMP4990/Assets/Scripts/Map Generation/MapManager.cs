@@ -14,6 +14,12 @@ using Tree = Utils.Tree; // yea
 
 public class MapManager : MonoBehaviour
 {
+    public PorcupineSpawner porcupineSpawner;
+    public GameLoop gameLoopManager;
+    public DayNightCycle dayNightCycle;
+    public UpdateableBlocks updateableBlocks;
+    public PlaceableBlockIndex placeableBlockIndex;
+
     public bool generateWorldOnStartup = true;
 
     // out of 100 rock chances
@@ -975,6 +981,10 @@ public class MapManager : MonoBehaviour
                 break;
         }
         GenerateMap();
+
+        gameLoopManager.GenerateStartingMobs();
+
+        dayNightCycle.Setup();
         
         SaveWorld();
 
@@ -1006,15 +1016,21 @@ public class MapManager : MonoBehaviour
 
         foreach(Tree tree in treeObjects.Values)
         {
-            Instantiate(tileIndex.GetObject(tree.Index), ChunkToWorldPos(tree.Cx, tree.Cy, tree.Tx, tree.Ty, chunkSize), quaternion.identity, treeEmpty.transform);
+            Vector3Int ctwp = ChunkToWorldPos(tree.Cx, tree.Cy, tree.Tx, tree.Ty, chunkSize);
+            Vector3 newPos = new Vector3(ctwp.x + 0.5f, ctwp.y + 0.5f, ctwp.z);
+            Instantiate(tileIndex.GetObject(tree.Index), newPos, quaternion.identity, treeEmpty.transform);
         }
         foreach(Rock rock in rockObjects.Values)
         {
-            Instantiate(tileIndex.GetObject(rock.Index), ChunkToWorldPos(rock.Cx, rock.Cy, rock.Tx, rock.Ty, chunkSize), quaternion.identity, rockEmpty.transform);
+            Vector3Int ctwp = ChunkToWorldPos(rock.Cx, rock.Cy, rock.Tx, rock.Ty, chunkSize);
+            Vector3 newPos = new Vector3(ctwp.x + 0.5f, ctwp.y + 0.5f, ctwp.z);
+            Instantiate(tileIndex.GetObject(rock.Index), newPos, quaternion.identity, rockEmpty.transform);
         }
         foreach(Cactus cactus in cactusObjects.Values)
         {
-            Instantiate(tileIndex.GetObject(cactus.Index), ChunkToWorldPos(cactus.Cx, cactus.Cy, cactus.Tx, cactus.Ty, chunkSize), quaternion.identity, cactusEmpty.transform);
+            Vector3Int ctwp = ChunkToWorldPos(cactus.Cx, cactus.Cy, cactus.Tx, cactus.Ty, chunkSize);
+            Vector3 newPos = new Vector3(ctwp.x + 0.5f, ctwp.y + 0.5f, ctwp.z);
+            Instantiate(tileIndex.GetObject(cactus.Index), newPos, quaternion.identity, cactusEmpty.transform);
         }
 
         foreach(Chunk chunk in groundChunks.Values)
@@ -1023,7 +1039,10 @@ public class MapManager : MonoBehaviour
             {
                 for(int y = 0; y < chunkSize; y++)
                 {
-                    groundTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, x, y, chunkSize), tileIndex.GetTile(chunk.ChunkTiles[x, y]));
+                    if(chunk.ChunkTiles[x, y] != -1)
+                    {
+                        groundTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, x, y, chunkSize), tileIndex.GetTile(chunk.ChunkTiles[x, y]));
+                    }
                 }
             }
         }
@@ -1033,22 +1052,50 @@ public class MapManager : MonoBehaviour
             {
                 for(int y = 0; y < chunkSize; y++)
                 {
-                    waterTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, x, y, chunkSize), tileIndex.GetTile(chunk.ChunkTiles[x, y]));
+                    if(chunk.ChunkTiles[x, y] != -1)
+                    {
+                        waterTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, x, y, chunkSize), tileIndex.GetTile(chunk.ChunkTiles[x, y]));
+                    }
+                    
                 }
             }
         }
-        foreach(Chunk chunk in aboveGroundChunks.Values)
+        /*foreach(Chunk chunk in aboveGroundChunks.Values)
         {
             for(int x = 0; x < chunkSize; x++)
             {
                 for(int y = 0; y < chunkSize; y++)
                 {
-                    aboveGroundTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, x, y, chunkSize), tileIndex.GetTile(chunk.ChunkTiles[x, y]));
+                    if(chunk.ChunkTiles[x, y] != -1)
+                    {
+                        aboveGroundTilemap.SetTile(ChunkToWorldPos(chunk.X, chunk.Y, x, y, chunkSize), tileIndex.GetTile(chunk.ChunkTiles[x, y]));
+                    }
                 }
             }
-        }
+        }*/
 
         allStructures = worldData.Structures;
+
+        waterController.Setup(waterTilemap, waterChunks, chunkSize, mapSizeInChunks);
+
+        foreach(PlaceableBlock placeableBlock in worldData.PlaceableBlocks)
+        {
+            Instantiate(placeableBlockIndex.GetPfbById(placeableBlock.PID), new Vector3(placeableBlock.X + 0.5f, placeableBlock.Y + 0.5f, placeableBlock.Z), Quaternion.identity);
+        }
+
+        // porcupine CPorcupine..
+        // porcupines placed
+        // porcupine cap
+        gameLoopManager.LoadExisting(worldData.PorcupineCap, worldData.PorcupinesPlaced);
+        foreach(CPorcupine p in worldData.Porcupines)
+        {
+            Debug.Log("PLACING PORCUPINESSS");
+            porcupineSpawner.PlacePorcupine(p.X, p.Y);
+        }
+        
+
+        dayNightCycle.Load(worldData.DayNightState, worldData.DayNightStateTimer, worldData.DayNightAlpha);
+
         gameLoop = true;
     }
 
@@ -1067,7 +1114,14 @@ public class MapManager : MonoBehaviour
             Trees = treeObjects,
             Rocks = rockObjects,
             Cacti = cactusObjects,
-            Structures = allStructures
+            Structures = allStructures,
+            Porcupines = porcupineSpawner.GetPorcupinesListForWorldGen(),
+            PorcupinesPlaced = gameLoopManager.porcupinesPlaced,
+            PorcupineCap = gameLoopManager.porcupineCap,
+            DayNightState = dayNightCycle.GetCurrentState(),
+            DayNightStateTimer = dayNightCycle.GetTimer(),
+            DayNightAlpha = dayNightCycle.GetAlpha(),
+            PlaceableBlocks = updateableBlocks.GetPlaceableBlocks(),
         };
         saveWorldScript.SaveWorld(worldName, worldData);
     }
@@ -1090,7 +1144,8 @@ public class MapManager : MonoBehaviour
             //UpdateWaterTilemapAnimations();
             if(Input.GetKeyDown(KeyCode.S))
             {
-                //SaveWorld();
+                SaveWorld();
+                Debug.Log("Saved");
             }
 
             playerSortingOrder.UpdateSortingOrder();

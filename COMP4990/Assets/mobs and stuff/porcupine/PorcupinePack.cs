@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+using static Utils;
+
 public class PorcupinePack: MonoBehaviour
 {
     private Vector3Int origin;
@@ -12,7 +14,9 @@ public class PorcupinePack: MonoBehaviour
     public PorcupineSpawner porcupineSpawner;
     int mapSize;
 
-    public void InitializePack(Vector3Int origin, int size, GameObject parent)
+    private List<GameObject> porcupines = new List<GameObject>();
+
+    public List<GameObject> InitializePack(Vector3Int origin, int size, GameObject parent)
     {
         this.origin = origin;
 
@@ -23,6 +27,8 @@ public class PorcupinePack: MonoBehaviour
         }
 
         mapSize = porcupineSpawner.mapSize;
+
+        return porcupines;
     }
 
     private void CreateNewPorcupine(GameObject parent)
@@ -38,12 +44,16 @@ public class PorcupinePack: MonoBehaviour
             Vector3Int porcupinePos = new Vector3Int(newX, newY, origin.z);
             GameObject p = Instantiate(porcupinePfb, porcupinePos, Quaternion.identity);
             p.transform.parent = parent.transform;
+            porcupines.Add(p);
+            Debug.Log("Add to the list here too:");
         }
         else
         {
             // Spawn at origin if outside the map boundaries or position not allowed
             GameObject p = Instantiate(porcupinePfb, origin, Quaternion.identity);
             p.transform.parent = parent.transform;
+            porcupines.Add(p);
+            Debug.Log("Add to the list");
         }
     }
 

@@ -18,7 +18,7 @@ public class GameLoop : MonoBehaviour
     */
 
     public int porcupineCap = 20;
-    private int porcupinesPlaced = 0;
+    public int porcupinesPlaced = 0;
 
     public int porcupineMin = 2;
     public int porcupineMax = 5;
@@ -33,7 +33,14 @@ public class GameLoop : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
+    public void LoadExisting(int pCap, int pPlaced)
+    {
+        porcupineCap = pCap;
+        porcupinesPlaced = pPlaced;
+    }
+
+    // replaced Start()
+    public void GenerateStartingMobs()
     {
         SpawnMobs();
     }

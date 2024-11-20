@@ -30,6 +30,7 @@ public class DynamicGate : Placeable
     public DynamicGate()
     {
         id = 102; // wooden gate
+        PID = 1;
         isOpen = false;
         isHorizontal = true;
         useableTools = new ETool[]

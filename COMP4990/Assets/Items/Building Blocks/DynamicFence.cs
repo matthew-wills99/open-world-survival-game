@@ -8,6 +8,7 @@ public class DynamicFence : Placeable
     public DynamicFence()
     {
         id = 101; // wooden fence
+        PID = 0;
         useableTools = new ETool[]
         {
             ETool.Axe

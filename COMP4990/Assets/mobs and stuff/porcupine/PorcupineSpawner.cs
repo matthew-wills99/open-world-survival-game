@@ -1,7 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+
+using static Utils;
 
 public class PorcupineSpawner : MonoBehaviour
 {
@@ -12,11 +13,32 @@ public class PorcupineSpawner : MonoBehaviour
     [SerializeField] private Tilemap waterTilemap = null;
     [SerializeField] private Tilemap aboveGroundTilemap = null;
 
-    private GameObject lastSpawnedPack;
+    private List<GameObject> allPorcupines = new List<GameObject>();
 
     private void Awake()
     {
         mapSize = mapManager.mapSizeInChunks * mapManager.chunkSize;
+    }
+
+    public void PlacePorcupine(int x, int y)
+    {
+        Instantiate(porcupinePfb, new Vector3Int(x, y, 0), Quaternion.identity);
+    }
+
+    public List<CPorcupine> GetPorcupinesListForWorldGen()
+    {
+        Debug.Log("Here");
+        List<CPorcupine> returnList = new List<CPorcupine>();
+        foreach(GameObject p in allPorcupines)
+        {
+            if(p != null)
+            {
+                Debug.Log("Deep");
+                CPorcupine cPorcupine = new CPorcupine(Mathf.FloorToInt(p.transform.position.x), Mathf.FloorToInt(p.transform.position.y));
+                returnList.Add(cPorcupine);
+            }
+        }
+        return returnList;
     }
 
     public void SpawnPorcupinePack(int porcupinesPerPack, GameObject parent)
@@ -29,14 +51,12 @@ public class PorcupineSpawner : MonoBehaviour
         PorcupinePack newPack = packObj.AddComponent<PorcupinePack>();
         newPack.porcupinePfb = porcupinePfb;
         newPack.porcupineSpawner = this;
-        newPack.InitializePack(randomPos, porcupinesPerPack, parent);
 
-        lastSpawnedPack = packObj;
-    }
-
-    public GameObject GetLastSpawnedPack()
-    {
-        return lastSpawnedPack;
+        List<GameObject> porcupinesFromPack = newPack.InitializePack(randomPos, porcupinesPerPack, parent);
+        foreach(GameObject p in porcupinesFromPack)
+        {
+            allPorcupines.Add(p);
+        }
     }
 
     private Vector3Int GetRandomSpawnPosition()

@@ -5,11 +5,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using static Utils;
 
-using Tree = Utils.Tree;
 using System.IO;
 using System;
 using System.Linq;
-using UnityEngine.Tilemaps;
 
 public class SaveWorldScript : MonoBehaviour
 {
@@ -19,7 +17,17 @@ public class SaveWorldScript : MonoBehaviour
     // every chunk and every tile in chunk (including variant)
     // every tree position, every cactus position, every rock position and variant
     // every structure position and type
-    // every enemy within x distance from each player <-- do when have enemy
+
+    /*
+    to do:
+    Inventory of all players
+    All mobs
+        Mob types, their positions
+        Mob cap
+        Mob cap used up
+    Day-Night progress
+    Placed objects and their states
+    */
 
     readonly string extension = "json";
     readonly string directory = "Assets/Saved Worlds/";
