@@ -189,7 +189,7 @@ public class Porcupine : Animal
 
         if (currentHealth <= 0)
         {
-            Die();
+            //Die();
         }
     }
 

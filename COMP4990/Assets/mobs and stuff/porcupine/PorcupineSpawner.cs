@@ -5,39 +5,38 @@ using UnityEngine.Tilemaps;
 
 public class PorcupineSpawner : MonoBehaviour
 {
-    public int packs = 3;
-    public int porcupinesPerPack = 5;
     public int spawnAreaRadius = 15;
-
     public int mapSize = 0;
-
     public GameObject porcupinePfb;
-
     public MapManager mapManager;
     [SerializeField] private Tilemap waterTilemap = null;
     [SerializeField] private Tilemap aboveGroundTilemap = null;
 
-    private void Start()
+    private GameObject lastSpawnedPack;
+
+    private void Awake()
     {
         mapSize = mapManager.mapSizeInChunks * mapManager.chunkSize;
-
-        SpawnPorcupinePacks();
     }
 
-    private void SpawnPorcupinePacks()
+    public void SpawnPorcupinePack(int porcupinesPerPack, GameObject parent)
     {
-        for(int i = 0; i < packs; i++)
-        {
-            Vector3Int randomPos = GetRandomSpawnPosition();
-            Debug.Log("Here");
-            GameObject packObj = new GameObject($"PorcupinePack_{i + 1}");
-            packObj.transform.position = randomPos;
+        Vector3Int randomPos = GetRandomSpawnPosition();
+        GameObject packObj = new GameObject("PorcupinePack");
+        packObj.transform.parent = parent.transform;
+        packObj.transform.position = randomPos;
 
-            PorcupinePack newPack = packObj.AddComponent<PorcupinePack>();
-            newPack.porcupinePfb = porcupinePfb;
-            newPack.porcupineSpawner = this;
-            newPack.InitializePack(randomPos, porcupinesPerPack);
-        }
+        PorcupinePack newPack = packObj.AddComponent<PorcupinePack>();
+        newPack.porcupinePfb = porcupinePfb;
+        newPack.porcupineSpawner = this;
+        newPack.InitializePack(randomPos, porcupinesPerPack, parent);
+
+        lastSpawnedPack = packObj;
+    }
+
+    public GameObject GetLastSpawnedPack()
+    {
+        return lastSpawnedPack;
     }
 
     private Vector3Int GetRandomSpawnPosition()
@@ -48,7 +47,7 @@ public class PorcupineSpawner : MonoBehaviour
             int x = Random.Range(-mapSize / 2, mapSize / 2+ 1);
             int y = Random.Range(-mapSize / 2, mapSize / 2 + 1);
 
-            if(CanPlaceHere(x, y))
+            if(CanPlaceHere(x, y) && IsWithinMapBounds(x, y))
             {
                 return new Vector3Int(x, y, 0);
             }
@@ -71,5 +70,10 @@ public class PorcupineSpawner : MonoBehaviour
         }
         Debug.Log("above ground chunks");
         return false;
+    }
+
+    private bool IsWithinMapBounds(int x, int y)
+    {
+        return x >= -mapSize && x <= mapSize && y >= -mapSize && y <= mapSize;
     }
 }

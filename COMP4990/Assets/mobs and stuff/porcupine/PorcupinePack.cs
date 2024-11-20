@@ -6,34 +6,26 @@ using UnityEngine.Tilemaps;
 public class PorcupinePack: MonoBehaviour
 {
     private Vector3Int origin;
-    private int size;
-    private List<GameObject> porcupines;
 
     private int maxDeviationFromOrigin = 10;
-
     public GameObject porcupinePfb;
-
     public PorcupineSpawner porcupineSpawner;
-
     int mapSize;
 
-    public void InitializePack(Vector3Int origin, int size)
+    public void InitializePack(Vector3Int origin, int size, GameObject parent)
     {
         this.origin = origin;
-        this.size = size;
-
-        porcupines = new List<GameObject>();
 
         // create the porcupines
         for(int i = 0; i < size; i++)
         {
-            CreateNewPorcupine();
+            CreateNewPorcupine(parent);
         }
 
         mapSize = porcupineSpawner.mapSize;
     }
 
-    private void CreateNewPorcupine()
+    private void CreateNewPorcupine(GameObject parent)
     {
         int xOffset = Random.Range(-maxDeviationFromOrigin, maxDeviationFromOrigin + 1);
         int yOffset = Random.Range(-maxDeviationFromOrigin, maxDeviationFromOrigin + 1);
@@ -44,19 +36,19 @@ public class PorcupinePack: MonoBehaviour
         if (IsWithinMapBounds(newX, newY) && porcupineSpawner.CanPlaceHere(newX, newY))
         {
             Vector3Int porcupinePos = new Vector3Int(newX, newY, origin.z);
-            GameObject porcupine = Instantiate(porcupinePfb, porcupinePos, Quaternion.identity);
-            porcupines.Add(porcupine);
+            GameObject p = Instantiate(porcupinePfb, porcupinePos, Quaternion.identity);
+            p.transform.parent = parent.transform;
         }
         else
         {
             // Spawn at origin if outside the map boundaries or position not allowed
-            GameObject porcupine = Instantiate(porcupinePfb, origin, Quaternion.identity);
-            porcupines.Add(porcupine);
+            GameObject p = Instantiate(porcupinePfb, origin, Quaternion.identity);
+            p.transform.parent = parent.transform;
         }
     }
 
     private bool IsWithinMapBounds(int x, int y)
     {
-        return x >= -mapSize && x <= mapSize && y >= -mapSize && y <= mapSize;
+        return x >= -mapSize && x <= mapSize && y >= -mapSize && y <= mapSize && porcupineSpawner.CanPlaceHere(x, y);
     }
 }

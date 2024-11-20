@@ -12,10 +12,4 @@ public abstract class Animal : MonoBehaviour
     protected float hitDuration = 0.2f;
 
     public abstract void Hit(float damage, Transform attacker);
-
-    public virtual void Die()
-    {
-        Debug.Log($"{gameObject.name} died");
-        Destroy(gameObject);
-    }
 }

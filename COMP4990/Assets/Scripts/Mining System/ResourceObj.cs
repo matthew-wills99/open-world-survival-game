@@ -43,7 +43,7 @@ public class ResourceObj : MonoBehaviour
                 {
                     int yield = Mathf.RoundToInt(1 * toolObj.resourceMultiplier);
                     collectedDrops.Add(new ItemDrop(drop.item, yield, drop.dropChance));
-                    Debug.Log($"Hit: {drop.item}, got: {yield}, remaining health: {health}");
+                    //Debug.Log($"Hit: {drop.item}, got: {yield}, remaining health: {health}");
                 }
             }
         }

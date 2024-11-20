@@ -95,7 +95,7 @@ public class Hyena : Animal
 
         if (currentHealth <= 0)
         {
-            Die();
+            //Die();
         }
     }
 

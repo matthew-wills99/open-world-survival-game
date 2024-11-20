@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
 
 /*
@@ -185,7 +186,7 @@ public class TPorcupine : Animal
         // only wander when the animal is not mad
         while(!isMad)
         {
-            Debug.Log($"isMad anim: {anim.GetBool("isMad")}");
+            //Debug.Log($"isMad anim: {anim.GetBool("isMad")}");
 
             // reset the list of available directions
             availableDirections = new List<EDirection>(directions);
@@ -197,7 +198,7 @@ public class TPorcupine : Animal
             // pick a random amount of time to move for
             moveTime = Random.Range(primaryMoveTime.min, primaryMoveTime.max);
 
-            Debug.Log($"Starting primary movement in direction: {primaryDirection} for {moveTime}s.");
+            //Debug.Log($"Starting primary movement in direction: {primaryDirection} for {moveTime}s.");
 
             // move in direction for time
             yield return StartCoroutine(Move(primaryDirection, moveTime));
@@ -208,12 +209,12 @@ public class TPorcupine : Animal
                 secondaryDirection = availableDirections[Random.Range(0, availableDirections.Count)];
                 moveTime = Random.Range(secondaryMoveTime.min, secondaryMoveTime.max);
 
-                Debug.Log($"Starting secondary movement in direction: {secondaryDirection} for {moveTime}s.");
+                //Debug.Log($"Starting secondary movement in direction: {secondaryDirection} for {moveTime}s.");
 
                 yield return StartCoroutine(Move(secondaryDirection, moveTime));
             }
         
-            Debug.Log("Starting idle.");
+            //Debug.Log("Starting idle.");
 
             // idle for random time in range
             anim.SetTrigger("switchIdle");
@@ -252,7 +253,7 @@ public class TPorcupine : Animal
             StartCoroutine(HitEffect());
         }
         currentState = EState.Chase;
-        Debug.Log("Setting mad");
+        //Debug.Log("Setting mad");
         anim.SetBool("isMad", true);
         anim.SetTrigger("switchIdle");
 
@@ -390,6 +391,15 @@ public class TPorcupine : Animal
         }
     }
 
+    private void Die()
+    {
+        if(GameLoop.Instance != null)
+        {
+            GameLoop.Instance.OnPorcupineDeath();
+        }
+        Destroy(gameObject);
+    }
+
     private IEnumerator HitEffect()
     {
         spriteRenderer.color = hitColour;
@@ -416,7 +426,7 @@ public class TPorcupine : Animal
             if(porcupine != null && porcupine != this && !porcupine.IsMad())
             {
                 porcupine.Hit(0, target);
-                Debug.Log("a new porcupine is mad");
+                //Debug.Log("a new porcupine is mad");
             }
         }
     }
