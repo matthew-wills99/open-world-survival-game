@@ -61,6 +61,7 @@ public class InventoryManager : MonoBehaviour
         GetInventorySlots();
         ChangeSelectedSlot(0);
         foreach (var item in startItems){
+            Debug.Log("Now");
             AddItem(item);
         }
         inventoryPanel.SetActive(isInventoryOpen);

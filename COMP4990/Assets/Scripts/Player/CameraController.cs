@@ -12,6 +12,21 @@ public class CameraController: MonoBehaviour
     public Vector2 minBounds;
     public Vector2 maxBounds;
 
+    public MapManager mapManager;
+
+    public int offsetYBounds = 6;
+    public int offsetXBounds = 12;
+    // y = 6
+    // x = 12
+
+    public void UpdateBounds()
+    {
+        minBounds.x = -(mapManager.mapSizeInChunks * mapManager.chunkSize / 2 - offsetXBounds);
+        minBounds.y = -(mapManager.mapSizeInChunks * mapManager.chunkSize / 2 - offsetYBounds);
+        maxBounds.x = mapManager.mapSizeInChunks * mapManager.chunkSize / 2 - offsetXBounds;
+        maxBounds.y = mapManager.mapSizeInChunks * mapManager.chunkSize / 2 - offsetYBounds;
+    }
+
     void FixedUpdate() {
         Vector3 desiredPosition = target.position + offset;
 

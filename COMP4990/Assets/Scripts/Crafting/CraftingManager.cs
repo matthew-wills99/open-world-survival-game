@@ -46,7 +46,7 @@ public class CraftingManager : MonoBehaviour
     {
         foreach (var ingredient in recipe.ingredients)
         {
-            if (!InventoryManager.instance.HasItem(ingredient.item, ingredient.count))
+            if (InventoryManager.instance != null && !InventoryManager.instance.HasItem(ingredient.item, ingredient.count))
             {
                 return false;
             }

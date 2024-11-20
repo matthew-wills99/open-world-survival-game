@@ -4,19 +4,28 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using static Utils;
-using ExtrasClipperLib;
-using System;
-using UnityEngine.UIElements;
 
 public class MenuManager : MonoBehaviour
 {
     public MapManager mapManager;
     public SaveWorldScript saveWorldScript;
 
+    public CameraController cameraController;
+
     public TMP_FontAsset font;
     public int fontSize = 48;
 
     public GameObject menuCanvas;
+
+    public GameObject gameCanvas;
+    public GameObject player;
+    public GameObject music;
+    public GameObject gameLoop;
+    public GameObject playerActionManager;
+    public GameObject eventSystem;
+    public GameObject inventoryManager;
+    public GameObject waterController;
+    public GameObject worldController;
 
     public GameObject mainMenu;
     public GameObject optionsMenu;
@@ -291,7 +300,7 @@ public class MenuManager : MonoBehaviour
                     case "YES":
                         Debug.Log("YES CONFIRM LOAD WORLD");
                         saveWorldScript.LoadWorld(saveWorldScript.GetAllWorlds()[selectedWorld]);
-                        menuCanvas.SetActive(false);
+                        PrepToExitMenu();
                         break;
                     case "NO":
                         ToggleLoadGameScreen();
@@ -359,8 +368,8 @@ public class MenuManager : MonoBehaviour
         Debug.Log($"Generating {worldNameInput.text}, a {worldSize} world with seed {seedInput.text}");
         
         mapManager.GenerateNewWorld(worldNameInput.text, worldSize, int.Parse(seedInput.text));
+        PrepToExitMenu();
 
-        menuCanvas.SetActive(false);
     }
 
     // add bar to show how far down the list you are
@@ -674,5 +683,22 @@ public class MenuManager : MonoBehaviour
         worldSizeIndex = worldSizes.IndexOf(MapSize.Small);
         worldSize = MapSize.Small;
         worldSizeSelection.text = worldSize.ToString();
+    }
+
+    // enable the stuff
+    private void PrepToExitMenu()
+    {
+        menuCanvas.SetActive(false);
+        gameCanvas.SetActive(true);
+        player.SetActive(true);
+        music.SetActive(true);
+        gameLoop.SetActive(true);
+        playerActionManager.SetActive(true);
+        eventSystem.SetActive(true);
+        inventoryManager.SetActive(true);
+        waterController.SetActive(true);
+        worldController.SetActive(true);
+
+        cameraController.UpdateBounds();
     }
 }
