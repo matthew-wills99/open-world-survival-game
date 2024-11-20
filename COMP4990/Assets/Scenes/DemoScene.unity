@@ -2095,6 +2095,11 @@ PrefabInstance:
       objectReference: {fileID: 1340042793}
     - target: {fileID: 3665328347725836375, guid: 132770d3ca740604e911d4efdd92bb43,
         type: 3}
+      propertyPath: craftingBarUI
+      value: 
+      objectReference: {fileID: 2084227100}
+    - target: {fileID: 3665328347725836375, guid: 132770d3ca740604e911d4efdd92bb43,
+        type: 3}
       propertyPath: craftingManager
       value: 
       objectReference: {fileID: 989991111}
@@ -3110,6 +3115,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1350936335}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2084227100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8166840888584478022, guid: 0be0a30160b7b5b4a9f69449e19ce0e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1350936335}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084227099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4eb3ad8a0115b4a9daec7f853359d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2140359167
 GameObject:
   m_ObjectHideFlags: 0

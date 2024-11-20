@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour
     public SaveWorldScript saveWorldScript;
 
     public CameraController cameraController;
+    public CraftingBarUI craftingBarUI;
 
     public TMP_FontAsset font;
     public int fontSize = 48;
@@ -700,5 +701,6 @@ public class MenuManager : MonoBehaviour
         worldController.SetActive(true);
 
         cameraController.UpdateBounds();
+        craftingBarUI.EStart();
     }
 }

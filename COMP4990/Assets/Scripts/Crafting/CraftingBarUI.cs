@@ -21,7 +21,7 @@ public class CraftingBarUI : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void Start()
+    public void EStart()
     {
         inventoryManager = InventoryManager.instance;
         craftingManager = CraftingManager.instance;
