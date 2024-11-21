@@ -158,6 +158,9 @@ public class DynamicGate : Placeable
     }
 
 
+    /*
+    2 GATES NEXT TO EACH OTHER CAUSES INFINITE STACK
+    */
     public override void UpdateBlock(bool fromNeighbour)
     {
         bool hasFenceUp = IsFenceAt(up);
@@ -166,14 +169,14 @@ public class DynamicGate : Placeable
         if(hasFenceUp && hasFenceDown && isHorizontal)
         {
             isHorizontal = false;
-            UpdateSurroundingBlocks();
             UpdateSprite();
+            UpdateSurroundingBlocks();
         }
         else if(!hasFenceUp || !hasFenceDown && !isHorizontal)
         {
             isHorizontal = true;
-            UpdateSurroundingBlocks();
             UpdateSprite();
+            UpdateSurroundingBlocks();
         }
 
         if(!fromNeighbour)
@@ -245,7 +248,7 @@ public class DynamicGate : Placeable
         // open and horizontal
         if(isOpen && isHorizontal)
         {
-            Debug.Log("Now open and horizontal");
+            //Debug.Log("Now open and horizontal");
             nonTriggerCollider.pathCount = 2;
             nonTriggerCollider.SetPath(0, horizontalOpen[0]);
             nonTriggerCollider.SetPath(1, horizontalOpen[1]);
@@ -256,7 +259,7 @@ public class DynamicGate : Placeable
         // closed and horizontal
         else if(!isOpen && isHorizontal)
         {
-            Debug.Log("Now closed and horizontal");
+            //Debug.Log("Now closed and horizontal");
             nonTriggerCollider.pathCount = 1;
             nonTriggerCollider.points = horizontalClosed;
             nonTriggerCollider.enabled = false;
@@ -266,7 +269,7 @@ public class DynamicGate : Placeable
         // open and vertical
         else if(isOpen && !isHorizontal)
         {
-            Debug.Log("Now open and vertical");
+            //Debug.Log("Now open and vertical");
             nonTriggerCollider.pathCount = 2;
             nonTriggerCollider.SetPath(0, verticalOpen[0]);
             nonTriggerCollider.SetPath(1, verticalOpen[1]);
@@ -277,7 +280,7 @@ public class DynamicGate : Placeable
         // closed and vertical
         else if(!isOpen && !isHorizontal)
         {
-            Debug.Log("Now closed and vertical");
+            //Debug.Log("Now closed and vertical");
             nonTriggerCollider.pathCount = 1;
             nonTriggerCollider.points = verticalClosed;
             nonTriggerCollider.enabled = false;
