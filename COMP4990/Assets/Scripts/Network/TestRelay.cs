@@ -33,6 +33,12 @@ public class TestRelay : MonoBehaviour
             Debug.Log(joinCode);
             RelayServerData relayServerData = new RelayServerData(allocation, "dtls");
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
+            if(NetworkManager.Singleton.StartHost())
+            {
+                Debug.Log("Host Started With Relay");
+            }else{
+                Debug.LogError("Host Faild with relay");
+            }
         } catch (RelayServiceException e) {
             Debug.Log(e);
         }

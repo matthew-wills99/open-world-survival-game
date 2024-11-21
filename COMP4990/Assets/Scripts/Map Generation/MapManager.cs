@@ -1008,8 +1008,8 @@ public class MapManager : MonoBehaviour
         }
         else
         {
-            CreateMultiPlayer();
             NetworkManager.Singleton.StartHost();
+            CreateMultiPlayer();
         }
 
         gameLoop = true;
