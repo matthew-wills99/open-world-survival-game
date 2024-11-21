@@ -14,6 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 1
   itemName: Wood
+  isTool: 0
+  toolObj: {fileID: 0}
+  isPlaceable: 0
+  obj: {fileID: 0}
+  isTile: 0
+  isWeapon: 0
+  weapon: {fileID: 0}
   tile: {fileID: 0}
   type: 2
   actionType: 2

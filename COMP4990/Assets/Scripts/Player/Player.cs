@@ -12,6 +12,19 @@ public class Player : MonoBehaviour
     Vector3 mouseWorldPosition;
 
     public CameraController cameraController;
+    public static Player instance; // Singleton instance
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         currentHealth = maxHealth;
