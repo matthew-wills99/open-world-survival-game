@@ -7442,7 +7442,7 @@
       "Tx": 13,
       "Ty": 5,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(-4, 3) : T(14, 5)": {
@@ -7452,7 +7452,7 @@
       "Tx": 14,
       "Ty": 5,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(-3, -2) : T(0, 3)": {
@@ -7462,7 +7462,7 @@
       "Tx": 0,
       "Ty": 3,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-4, -2) : T(15, 3)": {
@@ -7472,7 +7472,7 @@
       "Tx": 15,
       "Ty": 3,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-3, -2) : T(1, 4)": {
@@ -7482,7 +7482,7 @@
       "Tx": 1,
       "Ty": 4,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-3, -2) : T(0, 4)": {
@@ -7492,7 +7492,7 @@
       "Tx": 0,
       "Ty": 4,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-3, -1) : T(2, 8)": {
@@ -7502,7 +7502,7 @@
       "Tx": 2,
       "Ty": 8,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(-3, -1) : T(1, 7)": {
@@ -7512,7 +7512,7 @@
       "Tx": 1,
       "Ty": 7,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(-3, 1) : T(5, 7)": {
@@ -7522,7 +7522,7 @@
       "Tx": 5,
       "Ty": 7,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-3, 1) : T(4, 6)": {
@@ -7532,7 +7532,7 @@
       "Tx": 4,
       "Ty": 6,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-3, 1) : T(5, 6)": {
@@ -7542,7 +7542,7 @@
       "Tx": 5,
       "Ty": 6,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-3, 1) : T(4, 7)": {
@@ -7552,7 +7552,7 @@
       "Tx": 4,
       "Ty": 7,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-2, 0) : T(6, 13)": {
@@ -7562,7 +7562,7 @@
       "Tx": 6,
       "Ty": 13,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(-2, 0) : T(5, 13)": {
@@ -7572,7 +7572,7 @@
       "Tx": 5,
       "Ty": 13,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(-2, 0) : T(7, 12)": {
@@ -7582,7 +7582,7 @@
       "Tx": 7,
       "Ty": 12,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(-2, 2) : T(3, 0)": {
@@ -7592,7 +7592,7 @@
       "Tx": 3,
       "Ty": 0,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-2, 2) : T(2, 1)": {
@@ -7602,7 +7602,7 @@
       "Tx": 2,
       "Ty": 1,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-2, 2) : T(4, 0)": {
@@ -7612,7 +7612,7 @@
       "Tx": 4,
       "Ty": 0,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-2, 2) : T(3, 1)": {
@@ -7622,7 +7622,7 @@
       "Tx": 3,
       "Ty": 1,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-1, 0) : T(15, 13)": {
@@ -7632,7 +7632,7 @@
       "Tx": 15,
       "Ty": 13,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-1, 0) : T(15, 14)": {
@@ -7642,7 +7642,7 @@
       "Tx": 15,
       "Ty": 14,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(-1, 0) : T(15, 12)": {
@@ -7652,7 +7652,7 @@
       "Tx": 15,
       "Ty": 12,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(0, 0) : T(0, 14)": {
@@ -7662,7 +7662,7 @@
       "Tx": 0,
       "Ty": 14,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(0, 0) : T(6, 1)": {
@@ -7672,7 +7672,7 @@
       "Tx": 6,
       "Ty": 1,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(0, 0) : T(6, 2)": {
@@ -7682,7 +7682,7 @@
       "Tx": 6,
       "Ty": 2,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(1, -3) : T(1, 11)": {
@@ -7692,7 +7692,7 @@
       "Tx": 1,
       "Ty": 11,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, -3) : T(0, 10)": {
@@ -7702,7 +7702,7 @@
       "Tx": 0,
       "Ty": 10,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, -3) : T(2, 11)": {
@@ -7712,7 +7712,7 @@
       "Tx": 2,
       "Ty": 11,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, -3) : T(6, 4)": {
@@ -7722,7 +7722,7 @@
       "Tx": 6,
       "Ty": 4,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(1, -3) : T(6, 5)": {
@@ -7732,7 +7732,7 @@
       "Tx": 6,
       "Ty": 5,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(1, -2) : T(12, 14)": {
@@ -7742,7 +7742,7 @@
       "Tx": 12,
       "Ty": 14,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, -2) : T(12, 15)": {
@@ -7752,7 +7752,7 @@
       "Tx": 12,
       "Ty": 15,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, -2) : T(11, 14)": {
@@ -7762,7 +7762,7 @@
       "Tx": 11,
       "Ty": 14,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, -1) : T(0, 7)": {
@@ -7772,7 +7772,7 @@
       "Tx": 0,
       "Ty": 7,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, -1) : T(1, 6)": {
@@ -7782,7 +7782,7 @@
       "Tx": 1,
       "Ty": 6,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, -1) : T(1, 7)": {
@@ -7792,7 +7792,7 @@
       "Tx": 1,
       "Ty": 7,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, -1) : T(0, 10)": {
@@ -7802,7 +7802,7 @@
       "Tx": 0,
       "Ty": 10,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, -1) : T(0, 11)": {
@@ -7812,7 +7812,7 @@
       "Tx": 0,
       "Ty": 11,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(0, -1) : T(15, 10)": {
@@ -7822,7 +7822,7 @@
       "Tx": 15,
       "Ty": 10,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, -1) : T(3, 14)": {
@@ -7832,7 +7832,7 @@
       "Tx": 3,
       "Ty": 14,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(1, -1) : T(3, 13)": {
@@ -7842,7 +7842,7 @@
       "Tx": 3,
       "Ty": 13,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(1, -1) : T(2, 13)": {
@@ -7852,7 +7852,7 @@
       "Tx": 2,
       "Ty": 13,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(1, -1) : T(2, 14)": {
@@ -7862,7 +7862,7 @@
       "Tx": 2,
       "Ty": 14,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(1, 0) : T(1, 15)": {
@@ -7872,7 +7872,7 @@
       "Tx": 1,
       "Ty": 15,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, 0) : T(0, 14)": {
@@ -7882,7 +7882,7 @@
       "Tx": 0,
       "Ty": 14,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(1, 0) : T(2, 15)": {
@@ -7892,7 +7892,7 @@
       "Tx": 2,
       "Ty": 15,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(2, -2) : T(13, 0)": {
@@ -7902,7 +7902,7 @@
       "Tx": 13,
       "Ty": 0,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(2, -3) : T(14, 15)": {
@@ -7912,7 +7912,7 @@
       "Tx": 14,
       "Ty": 15,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(2, 0) : T(3, 13)": {
@@ -7922,7 +7922,7 @@
       "Tx": 3,
       "Ty": 13,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(2, 0) : T(3, 12)": {
@@ -7932,7 +7932,7 @@
       "Tx": 3,
       "Ty": 12,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(2, 0) : T(12, 10)": {
@@ -7942,7 +7942,7 @@
       "Tx": 12,
       "Ty": 10,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(2, 0) : T(13, 11)": {
@@ -7952,7 +7952,7 @@
       "Tx": 13,
       "Ty": 11,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(2, 0) : T(12, 9)": {
@@ -7962,7 +7962,7 @@
       "Tx": 12,
       "Ty": 9,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(2, 0) : T(15, 7)": {
@@ -7972,7 +7972,7 @@
       "Tx": 15,
       "Ty": 7,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(2, 0) : T(15, 8)": {
@@ -7982,7 +7982,7 @@
       "Tx": 15,
       "Ty": 8,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(2, 2) : T(4, 8)": {
@@ -7992,7 +7992,7 @@
       "Tx": 4,
       "Ty": 8,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(2, 2) : T(5, 9)": {
@@ -8002,7 +8002,7 @@
       "Tx": 5,
       "Ty": 9,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(2, 2) : T(5, 7)": {
@@ -8012,7 +8012,7 @@
       "Tx": 5,
       "Ty": 7,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(2, 3) : T(14, 9)": {
@@ -8022,7 +8022,7 @@
       "Tx": 14,
       "Ty": 9,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(2, 3) : T(14, 8)": {
@@ -8032,7 +8032,7 @@
       "Tx": 14,
       "Ty": 8,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(3, -3) : T(10, 15)": {
@@ -8042,7 +8042,7 @@
       "Tx": 10,
       "Ty": 15,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(3, -3) : T(11, 15)": {
@@ -8052,7 +8052,7 @@
       "Tx": 11,
       "Ty": 15,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(3, -2) : T(11, 0)": {
@@ -8062,7 +8062,7 @@
       "Tx": 11,
       "Ty": 0,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(3, -2) : T(2, 0)": {
@@ -8072,7 +8072,7 @@
       "Tx": 2,
       "Ty": 0,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(3, -2) : T(1, 0)": {
@@ -8082,7 +8082,7 @@
       "Tx": 1,
       "Ty": 0,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(3, -2) : T(8, 10)": {
@@ -8092,7 +8092,7 @@
       "Tx": 8,
       "Ty": 10,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(3, -2) : T(8, 9)": {
@@ -8102,7 +8102,7 @@
       "Tx": 8,
       "Ty": 9,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(3, -2) : T(9, 9)": {
@@ -8112,7 +8112,7 @@
       "Tx": 9,
       "Ty": 9,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(3, -2) : T(7, 10)": {
@@ -8122,7 +8122,7 @@
       "Tx": 7,
       "Ty": 10,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(3, -2) : T(10, 2)": {
@@ -8132,7 +8132,7 @@
       "Tx": 10,
       "Ty": 2,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(3, -2) : T(11, 1)": {
@@ -8142,7 +8142,7 @@
       "Tx": 11,
       "Ty": 1,
       "ParentCluster": {
-        "children": 2
+        "children": 4
       }
     },
     "C(3, 0) : T(7, 4)": {
@@ -8152,7 +8152,7 @@
       "Tx": 7,
       "Ty": 4,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(3, 0) : T(7, 3)": {
@@ -8162,7 +8162,7 @@
       "Tx": 7,
       "Ty": 3,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(3, 0) : T(6, 4)": {
@@ -8172,7 +8172,7 @@
       "Tx": 6,
       "Ty": 4,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(3, 0) : T(8, 3)": {
@@ -8182,7 +8182,7 @@
       "Tx": 8,
       "Ty": 3,
       "ParentCluster": {
-        "children": 4
+        "children": 6
       }
     },
     "C(3, 3) : T(3, 0)": {
@@ -8192,7 +8192,7 @@
       "Tx": 3,
       "Ty": 0,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(3, 3) : T(2, 0)": {
@@ -8202,7 +8202,7 @@
       "Tx": 2,
       "Ty": 0,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     },
     "C(3, 2) : T(3, 15)": {
@@ -8212,7 +8212,7 @@
       "Tx": 3,
       "Ty": 15,
       "ParentCluster": {
-        "children": 3
+        "children": 5
       }
     }
   },
@@ -8562,92 +8562,11 @@
     }
   },
   "Structures": [],
-  "Porcupines": [
-    {
-      "X": 58,
-      "Y": 36
-    },
-    {
-      "X": 57,
-      "Y": 36
-    },
-    {
-      "X": -41,
-      "Y": -64
-    },
-    {
-      "X": -42,
-      "Y": -64
-    },
-    {
-      "X": -58,
-      "Y": -25
-    },
-    {
-      "X": -58,
-      "Y": -25
-    },
-    {
-      "X": -58,
-      "Y": -25
-    },
-    {
-      "X": -59,
-      "Y": -25
-    },
-    {
-      "X": -59,
-      "Y": -25
-    },
-    {
-      "X": 39,
-      "Y": 22
-    },
-    {
-      "X": 39,
-      "Y": 22
-    },
-    {
-      "X": 38,
-      "Y": 22
-    },
-    {
-      "X": 38,
-      "Y": 22
-    },
-    {
-      "X": 31,
-      "Y": 4
-    },
-    {
-      "X": 30,
-      "Y": 4
-    },
-    {
-      "X": 64,
-      "Y": -55
-    },
-    {
-      "X": 63,
-      "Y": -55
-    },
-    {
-      "X": 63,
-      "Y": -55
-    },
-    {
-      "X": -40,
-      "Y": -31
-    },
-    {
-      "X": -41,
-      "Y": -31
-    }
-  ],
+  "Porcupines": [],
   "PorcupinesPlaced": 20,
   "PorcupineCap": 20,
   "DayNightState": 0,
-  "DayNightStateTimer": 599.9,
+  "DayNightStateTimer": 481.92865,
   "DayNightAlpha": 0.0,
   "PlaceableBlocks": [],
   "InventoryItems": [
@@ -8670,6 +8589,34 @@
     {
       "Idx": 101,
       "Count": 19
+    },
+    {
+      "Idx": 1,
+      "Count": 6
+    },
+    {
+      "Idx": 2,
+      "Count": 2
+    },
+    {
+      "Idx": 5,
+      "Count": 6
+    },
+    {
+      "Idx": 15,
+      "Count": 5
+    },
+    {
+      "Idx": 6,
+      "Count": 3
+    },
+    {
+      "Idx": 3,
+      "Count": 1
+    },
+    {
+      "Idx": 4,
+      "Count": 1
     }
   ]
 }
