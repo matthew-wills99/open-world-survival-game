@@ -14,6 +14,13 @@ using Tree = Utils.Tree; // yea
 
 public class MapManager : MonoBehaviour
 {
+    public bool multiplayer = false;
+
+    public CameraController cameraController;
+    public PlayerActionManager playerActionManager;
+
+    public GameObject playerPfb;
+
     public PorcupineSpawner porcupineSpawner;
     public GameLoop gameLoopManager;
     public DayNightCycle dayNightCycle;
@@ -991,7 +998,24 @@ public class MapManager : MonoBehaviour
 
         StartCoroutine(WaitForWorldReady());
 
+        if(!multiplayer)
+        {
+            CreatePlayer();
+        }
+        else
+        {
+            // multiplayer
+        }
+
         gameLoop = true;
+    }
+
+    private void CreatePlayer()
+    {
+        GameObject player = Instantiate(playerPfb);
+        playerSortingOrder = player.GetComponent<SortingOrder>();
+        cameraController.target = player.transform;
+        playerActionManager.player = player.transform;
     }
 
     private IEnumerator WaitForWorldReady()
@@ -1109,6 +1133,16 @@ public class MapManager : MonoBehaviour
         dayNightCycle.Load(worldData.DayNightState, worldData.DayNightStateTimer, worldData.DayNightAlpha);
 
         inventoryManager.LoadInventory(worldData.InventoryItems);
+
+        if(!multiplayer)
+        {
+            // create player pfb
+            CreatePlayer();
+        }
+        else
+        {
+            // connect to server
+        }
 
         gameLoop = true;
     }

@@ -28,13 +28,16 @@ public class CameraController: MonoBehaviour
     }
 
     void FixedUpdate() {
-        Vector3 desiredPosition = target.position + offset;
+        if(target != null)
+        {
+            Vector3 desiredPosition = target.position + offset;
 
 
-        float clampedX = Mathf.Clamp(desiredPosition.x, minBounds.x, maxBounds.x);
-        float clampedY = Mathf.Clamp(desiredPosition.y, minBounds.y, maxBounds.y);
+            float clampedX = Mathf.Clamp(desiredPosition.x, minBounds.x, maxBounds.x);
+            float clampedY = Mathf.Clamp(desiredPosition.y, minBounds.y, maxBounds.y);
 
-        transform.position = new Vector3(clampedX, clampedY, desiredPosition.z);
+            transform.position = new Vector3(clampedX, clampedY, desiredPosition.z);
+        }
         
         //transform.LookAt(target);
     }

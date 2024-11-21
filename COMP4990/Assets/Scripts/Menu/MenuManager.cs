@@ -19,7 +19,6 @@ public class MenuManager : MonoBehaviour
     public GameObject menuCanvas;
 
     public GameObject gameCanvas;
-    public GameObject player;
     public GameObject music;
     public GameObject gameLoop;
     public GameObject playerActionManager;
@@ -691,7 +690,6 @@ public class MenuManager : MonoBehaviour
     {
         menuCanvas.SetActive(false);
         gameCanvas.SetActive(true);
-        player.SetActive(true);
         music.SetActive(true);
         gameLoop.SetActive(true);
         playerActionManager.SetActive(true);
@@ -699,7 +697,7 @@ public class MenuManager : MonoBehaviour
         inventoryManager.SetActive(true);
         waterController.SetActive(true);
         worldController.SetActive(true);
-
+        
         cameraController.UpdateBounds();
         craftingBarUI.EStart();
     }
