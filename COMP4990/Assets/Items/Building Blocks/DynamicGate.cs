@@ -165,17 +165,15 @@ public class DynamicGate : Placeable
 
         if(hasFenceUp && hasFenceDown && isHorizontal)
         {
-            // we vertical now
-            Debug.Log("Fence up and down");
             isHorizontal = false;
-            UpdateSprite();
             UpdateSurroundingBlocks();
+            UpdateSprite();
         }
         else if(!hasFenceUp || !hasFenceDown && !isHorizontal)
         {
             isHorizontal = true;
-            UpdateSprite();
             UpdateSurroundingBlocks();
+            UpdateSprite();
         }
 
         if(!fromNeighbour)
@@ -187,7 +185,6 @@ public class DynamicGate : Placeable
 
     private void UpdateSprite()
     {
-        Debug.Log("Fence maxing");
         int index = 0;
         if (isOpen) index |= 0b0010;  // 2 (Open)
         if (isHorizontal) index |= 0b0001; // 1 (Horizontal)

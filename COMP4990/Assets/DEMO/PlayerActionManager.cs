@@ -155,7 +155,7 @@ public class PlayerActionManager : MonoBehaviour
             // has selectable tag
             if(hit.collider.transform.CompareTag("Selectable"))
             {
-                Debug.Log("Selectable");
+                //Debug.Log("Selectable");
                 // if its a tree
                 if(hit.transform.name == "Upper" || hit.transform.name == "Lower")
                 {
@@ -171,7 +171,7 @@ public class PlayerActionManager : MonoBehaviour
                 // not a tree
                 else
                 {
-                    Debug.Log("she hover on my rock til i cactus");
+                    //Debug.Log("she hover on my rock til i cactus");
                     highlight = hit.transform;
                     hit.transform.gameObject.GetComponent<Hover>().StartHover();
                     currentlySelectedObject = hit.transform;
