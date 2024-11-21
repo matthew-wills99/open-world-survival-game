@@ -6,6 +6,10 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Unity.Mathematics;
+using Unity.Netcode;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static Utils;
@@ -1004,7 +1008,7 @@ public class MapManager : MonoBehaviour
         }
         else
         {
-            // multiplayer
+            CreateMultiPlayer();
         }
 
         gameLoop = true;
@@ -1017,7 +1021,14 @@ public class MapManager : MonoBehaviour
         cameraController.target = player.transform;
         playerActionManager.player = player.transform;
     }
-
+        private void CreateMultiPlayer()
+    {
+        GameObject player = Instantiate(playerPfb);
+        player.GetComponent<NetworkObject>().SpawnWithOwnership(NetworkManager.Singleton.LocalClientId);
+        playerSortingOrder = player.GetComponent<SortingOrder>();
+        cameraController.target = player.transform;
+        playerActionManager.player = player.transform;
+    }
     private IEnumerator WaitForWorldReady()
     {
         while(!inventoryManager.isLoaded)

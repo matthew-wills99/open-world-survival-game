@@ -152,7 +152,8 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3458901817077228851, guid: 2e98fdf5902ff32468106326ebb3f22f,
+        type: 3}
     - target: {fileID: 1130905043652165761, guid: a3ea3860dd23151409e0e269037595ad,
         type: 3}
       propertyPath: mapManager
@@ -2886,6 +2887,11 @@ PrefabInstance:
       objectReference: {fileID: 155013786}
     - target: {fileID: 3357446990721112138, guid: 6ca98a24e7634fb4f9817f56d326a42e,
         type: 3}
+      propertyPath: multiplayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3357446990721112138, guid: 6ca98a24e7634fb4f9817f56d326a42e,
+        type: 3}
       propertyPath: waterTilemap
       value: 
       objectReference: {fileID: 871574526}
@@ -2943,7 +2949,8 @@ PrefabInstance:
         type: 3}
       propertyPath: playerSortingOrder
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -163097478974623265, guid: 2e98fdf5902ff32468106326ebb3f22f,
+        type: 3}
     - target: {fileID: 3357446990721112138, guid: 6ca98a24e7634fb4f9817f56d326a42e,
         type: 3}
       propertyPath: placeableBlockIndex
@@ -3019,6 +3026,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4576322752981437269, guid: dfcdac01f81b79b4b93cbeab3ddf9739,
+        type: 3}
+      propertyPath: NetworkConfig.PlayerPrefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6206423384878536526, guid: dfcdac01f81b79b4b93cbeab3ddf9739,
         type: 3}
       propertyPath: m_Name

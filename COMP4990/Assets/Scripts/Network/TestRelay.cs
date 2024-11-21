@@ -44,7 +44,6 @@ public class TestRelay : MonoBehaviour
             JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
             RelayServerData relayServerData = new RelayServerData(joinAllocation, "dtls");
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
-            await RelayService.Instance.JoinAllocationAsync(joinCode);
         }catch (RelayServiceException e){
             Debug.Log(e);
         }
