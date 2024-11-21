@@ -24,6 +24,7 @@ public class CraftingBarUI : MonoBehaviour
     public void Start()
     {
         craftingManager = CraftingManager.instance;
+        UpdateCraftingBar();
     }
 
     public void EStart()
