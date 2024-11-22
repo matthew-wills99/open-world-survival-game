@@ -1,11 +1,10 @@
 using Unity.Netcode;
-using TMPro; // Use Text if you're not using TextMeshPro
+using TMPro; // Only if using TextMeshPro
 using UnityEngine;
 
-public class MultiplayerNameTag : NetworkBehaviour
+public class PlayerNameTag : NetworkBehaviour
 {
-    [SerializeField] private TextMeshProUGUI nameTag; // Reference to the Text component
-    private NetworkVariable<string> playerName = new NetworkVariable<string>();
+    [SerializeField] private TextMeshProUGUI nameTag; // Or use Text if not using TMP_Text
 
     public override void OnNetworkSpawn()
     {
@@ -13,32 +12,24 @@ public class MultiplayerNameTag : NetworkBehaviour
         {
             if (IsHost)
             {
-                playerName.Value = "Player 1";
+                SetName("Player 1");
             }
             else
             {
-                playerName.Value = "Player 2";
+                SetName("Player 2");
             }
         }
-
-        // Subscribe to changes in the playerName NetworkVariable
-        playerName.OnValueChanged += UpdateNameTag;
-
-        // Set initial text (for cases when it has already been set before spawn)
-        UpdateNameTag("", playerName.Value);
     }
 
-    private void UpdateNameTag(string oldValue, string newValue)
+    private void SetName(string playerName)
     {
         if (nameTag != null)
         {
-            nameTag.text = newValue;
+            nameTag.text = playerName;
         }
-    }
-
-    private void OnDestroy()
-    {
-        // Unsubscribe to avoid memory leaks
-        playerName.OnValueChanged -= UpdateNameTag;
+        else
+        {
+            Debug.LogError("Name tag Text is not assigned!");
+        }
     }
 }
