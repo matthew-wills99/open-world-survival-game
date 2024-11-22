@@ -45,6 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d9b18030e915347bed1d46cf3a92d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multiplayer: 0
+  cameraController: {fileID: 0}
+  playerActionManager: {fileID: 0}
+  playerPfb: {fileID: 0}
+  porcupineSpawner: {fileID: 0}
+  gameLoopManager: {fileID: 0}
+  dayNightCycle: {fileID: 0}
+  updateableBlocks: {fileID: 0}
+  placeableBlockIndex: {fileID: 0}
+  inventoryManager: {fileID: 0}
   generateWorldOnStartup: 1
   stoneChance: 22
   copperOreChance: 49
@@ -226,3 +236,4 @@ MonoBehaviour:
   bubble1Controller: {fileID: 9100000, guid: 11336536251975b41b02e41a654a7423, type: 2}
   bubble2Controller: {fileID: 9100000, guid: 5e338d3fb3ad0054b8317c4429c7f4f0, type: 2}
   ripple1Controller: {fileID: 9100000, guid: dc5a81e350a9c414faafdf6d86e66dba, type: 2}
+  woodenFence: {fileID: 0}

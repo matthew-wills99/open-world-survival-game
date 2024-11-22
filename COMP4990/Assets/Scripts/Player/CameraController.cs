@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 public class CameraController: MonoBehaviour
 {
@@ -13,12 +14,11 @@ public class CameraController: MonoBehaviour
     public Vector2 maxBounds;
 
     public MapManager mapManager;
-
     public int offsetYBounds = 6;
     public int offsetXBounds = 12;
     // y = 6
     // x = 12
-
+    
     public void UpdateBounds()
     {
         minBounds.x = -(mapManager.mapSizeInChunks * mapManager.chunkSize / 2 - offsetXBounds);
