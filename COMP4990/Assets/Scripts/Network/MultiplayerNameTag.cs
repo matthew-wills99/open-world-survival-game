@@ -1,42 +1,35 @@
 using Unity.Netcode;
-using TMPro;
+using TMPro; // Only if using TextMeshPro
 using UnityEngine;
 
-public class MultiplayerNameTag : NetworkBehaviour
+public class NetworkplayerNameTag : NetworkBehaviour
 {
-    public GameObject nameTagPrefab;
-    public Vector3 nameTagOffset = new Vector3(0, 1.5f, 0);    
-    private GameObject nameTagInstance;
-    private TMP_Text nameText;
+    [SerializeField] private TextMeshProUGUI nameTag; // Or use Text if not using TMP_Text
 
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner) return;
-        nameTagInstance = Instantiate(nameTagPrefab);
-        nameTagInstance.transform.SetParent(transform);
-        nameTagInstance.transform.localPosition = nameTagOffset;
-        nameText = nameTagInstance.GetComponentInChildren<TMP_Text>();
-        nameText.text = $"Player {OwnerClientId + 1}";
-    }
-
-    void LateUpdate()
-    {
-        if (nameTagInstance != null)
+        if (IsOwner)
         {
-            Camera mainCamera = Camera.main;
-            if (mainCamera != null)
+            if (IsHost)
             {
-                nameTagInstance.transform.LookAt(mainCamera.transform);
-                nameTagInstance.transform.Rotate(0, 180, 0);
+                SetName("Player 1");
+            }
+            else
+            {
+                SetName("Player 2");
             }
         }
     }
 
-    private void OnDestroy()
+    private void SetName(string playerName)
     {
-        if (nameTagInstance != null)
+        if (nameTag != null)
         {
-            Destroy(nameTagInstance);
+            nameTag.text = playerName;
+        }
+        else
+        {
+            Debug.LogError("Name tag Text is not assigned!");
         }
     }
 }
