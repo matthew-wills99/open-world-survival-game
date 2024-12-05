@@ -27,11 +27,6 @@ public class CraftingBarUI : MonoBehaviour
         UpdateCraftingBar();
     }
 
-    public void EStart()
-    {
-        UpdateCraftingBar();
-    }
-
     public void UpdateCraftingBar()
     {
         //Debug.Log("Updating Crafting Bar...");

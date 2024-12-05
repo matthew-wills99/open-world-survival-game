@@ -64,25 +64,16 @@ public class InventoryManager : MonoBehaviour
         ChangeSelectedSlot(0);
         inventoryPanel.SetActive(isInventoryOpen);
 
-        /*foreach (var item in startItems){
+        foreach (var item in startItems){
             Debug.Log("Now");
             AddItem(item);
-        }*/
+        }
 
         CraftingBarUI.instance.UpdateCraftingBar();
 
         if(!isLoaded)
         {
             isLoaded = true;
-        }
-    }
-
-    public void EStart()
-    {
-        GetInventorySlots();
-        foreach (var item in startItems){
-            Debug.Log("Now");
-            AddItem(item);
         }
     }
 

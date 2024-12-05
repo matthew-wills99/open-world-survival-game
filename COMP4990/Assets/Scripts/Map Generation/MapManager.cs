@@ -996,40 +996,13 @@ public class MapManager : MonoBehaviour
 
         gameLoopManager.GenerateStartingMobs();
 
-        inventoryManager.EStart();
-
         dayNightCycle.Setup();
 
         StartCoroutine(WaitForWorldReady());
 
-        if(!multiplayer)
-        {
-            CreatePlayer();
-        }
-        else
-        {
-            NetworkManager.Singleton.StartHost();
-            CreateMultiPlayer();
-        }
-
         gameLoop = true;
     }
 
-    private void CreatePlayer()
-    {
-        GameObject player = Instantiate(playerPfb);
-        playerSortingOrder = player.GetComponent<SortingOrder>();
-        cameraController.target = player.transform;
-        playerActionManager.player = player.transform;
-    }
-        private void CreateMultiPlayer()
-    {
-        GameObject player = Instantiate(playerPfb);
-        player.GetComponent<NetworkObject>().SpawnWithOwnership(NetworkManager.Singleton.LocalClientId);
-        playerSortingOrder = player.GetComponent<SortingOrder>();
-        cameraController.target = player.transform;
-        playerActionManager.player = player.transform;
-    }
     private IEnumerator WaitForWorldReady()
     {
         while(!inventoryManager.isLoaded)
@@ -1146,16 +1119,6 @@ public class MapManager : MonoBehaviour
 
         inventoryManager.LoadInventory(worldData.InventoryItems);
 
-        if(!multiplayer)
-        {
-            // create player pfb
-            CreatePlayer();
-        }
-        else
-        {
-            // connect to server
-        }
-
         gameLoop = true;
     }
 
@@ -1197,6 +1160,7 @@ public class MapManager : MonoBehaviour
     public void SetWaterChunks(Dictionary<string, Chunk> wc)
     {
         waterChunks = wc;
+
     }
 
     void Update()
@@ -1204,11 +1168,11 @@ public class MapManager : MonoBehaviour
         if(gameLoop)
         {
             //UpdateWaterTilemapAnimations();
-            if(Input.GetKeyDown(KeyCode.S))
-            {
-                SaveWorld();
-                Debug.Log("Saved");
-            }
+            //if(Input.GetKeyDown(KeyCode.S))
+            //{
+            //    SaveWorld();
+            //    Debug.Log("Saved");
+            //}
 
             playerSortingOrder.UpdateSortingOrder();
         }

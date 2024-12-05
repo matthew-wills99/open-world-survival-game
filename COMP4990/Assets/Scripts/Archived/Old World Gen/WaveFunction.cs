@@ -138,7 +138,7 @@ public class WaveFunction : MonoBehaviour
                     var test = grid[x, y];
                     int tileID = grid[x, y].PossibleStates.First() + offset; // important add offset
 
-                    mapController.tempTilemap.SetTile(new Vector3Int(X + x, Y + y, 0), tileIndex.GetTileIndex()[tileID]);
+                    //mapController.tempTilemap.SetTile(new Vector3Int(X + x, Y + y, 0), tileIndex.GetTileIndex()[tileID]);
 
                     //Vector3Int coords = new Vector3Int(X + x - radius, Y + y - radius, 0);
                     //mapController.PlaceTile(coords, tileID);

@@ -24,7 +24,7 @@ public class PlacementController : MonoBehaviour
         Vector3Int cellPos = tilemap.WorldToCell(mouseWorldPosition);
         if(tilemap.GetTile(cellPos) == null)
         {
-            mapController.PlaceTile(cellPos, selectedTile);
+            //mapController.PlaceTile(cellPos, selectedTile);
 
             MapController.Coords chunkPos = mapController.GetChunkCoords(cellPos.x, cellPos.y);
             //Debug.Log($"Placed tile. Tilemap coords: ({cellPos.x}, {cellPos.y}) Chunk coords: ({chunkPos.xCoord}, {chunkPos.yCoord}) Tile in chunk coords: ({cellPos.x % mapController.chunkSize},{cellPos.y % mapController.chunkSize})");
@@ -37,7 +37,7 @@ public class PlacementController : MonoBehaviour
         Vector3Int cellPos = tilemap.WorldToCell(mouseWorldPosition);
         if(tilemap.GetTile(cellPos) != null)
         {
-            mapController.PlaceTile(cellPos, -1);
+            //mapController.PlaceTile(cellPos, -1);
             tilemap.SetTile(cellPos, null);
         }
     }

@@ -300,7 +300,6 @@ public class MenuManager : MonoBehaviour
                     case "YES":
                         Debug.Log("YES CONFIRM LOAD WORLD");
                         saveWorldScript.LoadWorld(saveWorldScript.GetAllWorlds()[selectedWorld]);
-                        PrepToExitMenu();
                         break;
                     case "NO":
                         ToggleLoadGameScreen();
@@ -368,8 +367,6 @@ public class MenuManager : MonoBehaviour
         Debug.Log($"Generating {worldNameInput.text}, a {worldSize} world with seed {seedInput.text}");
         
         mapManager.GenerateNewWorld(worldNameInput.text, worldSize, int.Parse(seedInput.text));
-        PrepToExitMenu();
-
     }
 
     // add bar to show how far down the list you are
@@ -683,22 +680,5 @@ public class MenuManager : MonoBehaviour
         worldSizeIndex = worldSizes.IndexOf(MapSize.Small);
         worldSize = MapSize.Small;
         worldSizeSelection.text = worldSize.ToString();
-    }
-
-    // enable the stuff
-    private void PrepToExitMenu()
-    {
-        menuCanvas.SetActive(false);
-        gameCanvas.SetActive(true);
-        music.SetActive(true);
-        gameLoop.SetActive(true);
-        playerActionManager.SetActive(true);
-        eventSystem.SetActive(true);
-        inventoryManager.SetActive(true);
-        waterController.SetActive(true);
-        worldController.SetActive(true);
-        
-        cameraController.UpdateBounds();
-        craftingBarUI.EStart();
     }
 }

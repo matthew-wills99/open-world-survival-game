@@ -20,37 +20,37 @@ public class SortingOrder : MonoBehaviour
     {
         PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();
 
-    if (polygonCollider != null)
-    {
-        // Use the lowest vertex of the specified PolygonCollider2D
-        Vector2[] points = polygonCollider.points;
-        lowestPointY = float.MaxValue;
-        
-        foreach (Vector2 point in points)
+        if (polygonCollider != null)
         {
-            Vector3 worldPoint = transform.TransformPoint(point);
-            if (worldPoint.y < lowestPointY)
+            // Use the lowest vertex of the specified PolygonCollider2D
+            Vector2[] points = polygonCollider.points;
+            lowestPointY = float.MaxValue;
+            
+            foreach (Vector2 point in points)
             {
-                lowestPointY = worldPoint.y;
+                Vector3 worldPoint = transform.TransformPoint(point);
+                if (worldPoint.y < lowestPointY)
+                {
+                    lowestPointY = worldPoint.y;
+                }
             }
-        }
-    }
-    else
-    {
-        // Fallback to the SpriteRenderer's bounding box if no collider is present
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
-            lowestPointY = spriteRenderer.bounds.min.y;
         }
         else
         {
-            // Default to the object's transform position if neither is found
-            lowestPointY = transform.position.y;
+            // Fallback to the SpriteRenderer's bounding box if no collider is present
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                lowestPointY = spriteRenderer.bounds.min.y;
+            }
+            else
+            {
+                // Default to the object's transform position if neither is found
+                lowestPointY = transform.position.y;
+            }
         }
-    }
 
-    // Update sorting order based on the lowest point
-    sortingGroup.sortingOrder = Mathf.RoundToInt(-lowestPointY * sortingScale);
+        // Update sorting order based on the lowest point
+        sortingGroup.sortingOrder = Mathf.RoundToInt(-lowestPointY * sortingScale);
     }
 }

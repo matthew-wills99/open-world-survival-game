@@ -14,22 +14,11 @@ public class PlayerMovement : NetworkBehaviour
     public Animator animator;
     Vector2 movement;
 
-    private NetworkVariable<Vector2> networkMovement = new NetworkVariable<Vector2>();
-    private NetworkVariable<float> networkSpeed = new NetworkVariable<float>();
     // Update is called once per frame
     void Update()
     {
-        if(IsOwner)
-        {
-            ProcessInput();
-            Animate();
-            UpdateAnimationServerRpc(movement, movement.sqrMagnitude);
-        }
-        else
-        {
-            ApplyNetworkedAnimation();
-        }
-        
+        ProcessInput();
+        Animate();
     }
 
     void ProcessInput()
@@ -52,18 +41,5 @@ public class PlayerMovement : NetworkBehaviour
     private void FixedUpdate() {
         //Moves the player
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-    }
-
-    [ServerRpc]
-    private void UpdateAnimationServerRpc(Vector2 moveInput, float speed)
-    {
-        networkMovement.Value = moveInput;
-        networkSpeed.Value = speed;
-    }
-
-    private void ApplyNetworkedAnimation(){
-        animator.SetFloat("Horizontal", networkMovement.Value.x);
-        animator.SetFloat("Vertical", networkMovement.Value.y);
-        animator.SetFloat("Speed", networkSpeed.Value);
     }
 }

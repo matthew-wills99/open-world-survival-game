@@ -71,7 +71,7 @@ public class BetterWaveFunction : MonoBehaviour
         int sx = cx - gridSize + startCell.X;
         int sy = cy - gridSize + startCell.Y;
 
-        mapController.tempTilemap.SetTile(new Vector3Int(sx, sy, 0), tileIndex.GetTileIndex()[2/*startCell.PossibleStates.First() + 4*/]);
+        //mapController.tempTilemap.SetTile(new Vector3Int(sx, sy, 0), tileIndex.GetTileIndex()[2/*startCell.PossibleStates.First() + 4*/]);
         startCell.Collapsed = true;
         PropagateConstaints(startCell.X, startCell.Y);
 
@@ -136,7 +136,7 @@ public class BetterWaveFunction : MonoBehaviour
             int x = cx - gridSize + minEntropyCell.X;
             int y = cy - gridSize + minEntropyCell.Y;
 
-            mapController.tempTilemap.SetTile(new Vector3Int(x, y, 0), tileIndex.GetTileIndex()[state + 4]);
+            //mapController.tempTilemap.SetTile(new Vector3Int(x, y, 0), tileIndex.GetTileIndex()[state + 4]);
 
             grid[minEntropyCell.X, minEntropyCell.Y].Collapsed = true;
 
@@ -250,7 +250,7 @@ public class BetterWaveFunction : MonoBehaviour
                             state = random.Next(21, 24 + 1);
                             break;
                     }
-                    mapController.tempTilemap.SetTile(new Vector3Int(cx - gridSize + nx, cx - gridSize + ny, 0), tileIndex.GetTileIndex()[state + 4]);
+                    //mapController.tempTilemap.SetTile(new Vector3Int(cx - gridSize + nx, cx - gridSize + ny, 0), tileIndex.GetTileIndex()[state + 4]);
                     //PropagateConstaints(nx, ny);
                 }
             }

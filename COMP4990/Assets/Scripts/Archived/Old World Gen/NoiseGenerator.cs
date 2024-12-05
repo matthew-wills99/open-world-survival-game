@@ -13,7 +13,7 @@ public class NoiseGenerator : MonoBehaviour
     public float offsetY = 0f;
 
     System.Random random;
-    public MapController mapController;
+    //public MapController mapController;
 
     // TODO fix this shit
     public Color[] biomes;
@@ -23,7 +23,7 @@ public class NoiseGenerator : MonoBehaviour
 
     void Start()
     {
-        random = new System.Random(mapController.GetWorldSeed());
+        random = new System.Random(/*mapController.GetWorldSeed()*/100);
         offsetX = random.Next() / 10000;
         offsetY = random.Next() / 10000;
     }
@@ -51,26 +51,32 @@ public class NoiseGenerator : MonoBehaviour
         return texture;
     }
 
-    Color CalculateColour(int x, int y)
+    public Color CalculateColour(int x, int y)
     {
+        // Get Perlin noise value for (x, y)
         float xCoord = (float)x / width * scale + offsetX;
         float yCoord = (float)y / height * scale + offsetY;
 
         float sample = Mathf.Clamp(Mathf.PerlinNoise(xCoord, yCoord), 0f, 1f);
 
-        if(useColour)
+        if (useColour)
         {
-            // iterate thru biomes descending order
-            for(int i = biomes.Length - 1; i >= 0; i--)
+            // Ensure biome thresholds are in ascending order and match the biomes array
+            for (int i = 0; i < biomeThresholds.Length; i++)
             {
-                if(sample >= biomeThresholds[i])
+                if (sample < biomeThresholds[i])
                 {
-                    return biomes[i]; // ? i think?
+                    return biomes[i];
                 }
             }
+
+            // If sample is greater than the last threshold, return the last biome color
+            return biomes[biomes.Length - 1];
         }
+
+        // Return grayscale if useColour is false
         return new Color(sample, sample, sample);
-    } 
+    }
 
     // return a noise value for a given tile coordinate
     public float GetTileNoise(int x, int y)
@@ -78,5 +84,7 @@ public class NoiseGenerator : MonoBehaviour
         float t = Mathf.Clamp(Mathf.PerlinNoise((float)x / width * scale + offsetX, (float)y / height * scale + offsetY), 0f, 1f);
         return t;
     }
+
+    
 
 }

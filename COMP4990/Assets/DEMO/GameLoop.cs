@@ -76,7 +76,6 @@ public class GameLoop : MonoBehaviour
 
     public void OnPorcupineDeath()
     {
-        Debug.Log("RIP lil bro");
         porcupinesPlaced--;
     }
 }
