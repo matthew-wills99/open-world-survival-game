@@ -2,7 +2,7 @@ using Unity.Netcode;
 using TMPro; // Only if using TextMeshPro
 using UnityEngine;
 
-public class NetworkplayerNameTag : NetworkBehaviour
+public class PlayerNameTag : NetworkBehaviour
 {
     [SerializeField] private TextMeshProUGUI nameTag; // Or use Text if not using TMP_Text
 
