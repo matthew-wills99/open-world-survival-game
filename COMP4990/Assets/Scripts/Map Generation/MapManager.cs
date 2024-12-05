@@ -998,18 +998,7 @@ public class MapManager : MonoBehaviour
 
         dayNightCycle.Setup();
 
-        StartCoroutine(WaitForWorldReady());
-
         gameLoop = true;
-    }
-
-    private IEnumerator WaitForWorldReady()
-    {
-        while(!inventoryManager.isLoaded)
-        {
-            yield return null;
-        }
-        SaveWorld();
     }
 
     public void LoadExistingWorld(string wn, WorldData worldData)
