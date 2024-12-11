@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+/*
+    Inventory Slot script. Crates, colours, and sets the inventory slots accordingly
+*/
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
     public Image image;

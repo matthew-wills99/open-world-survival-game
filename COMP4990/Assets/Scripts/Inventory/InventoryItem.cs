@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-//This script is for items and stacking items, and dragging items
+/*
+This Script is for Inventory Items. It manages inventory items, including stacking, dragging, and showing tooltips.
+*/
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("UI")]
@@ -12,12 +14,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public TMP_Text countText;
     [HideInInspector] public Transform parentAfterDrag; //Dragging item movement
     [HideInInspector] public int count = 1; 
-    public Item item; //Whats the item homes?
+    public Item item; //Refrence to the item with its inventory slot
 
     private bool isPointerOverItem;
 
-    //Item Sprites are loaded in to the correct type
-    //The stack count is refreshed
+    //Initialize item with its properties after updating the crafting ui
     public void InitialiseItem(Item newItem){
         item = newItem;
         image.sprite = newItem.image;
@@ -42,13 +43,13 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         
     }
 
-    //Dragging the dragging lol
+    //Dragging an item
     public void OnDrag(PointerEventData eventData){
         Debug.Log("Dragging");
         transform.position = Input.mousePosition;
         
     }
-
+    //This moves the item to the correct Item slot once OnDrag is over
     //Raycast true so we can place it on the right item slot
     public void OnEndDrag(PointerEventData eventData){
         Debug.Log($"End Drag : {transform.name}");
@@ -56,7 +57,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         image.raycastTarget = true;
     }
     
-    // hi yusuf
+    //Pointer entring the item slot
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(TooltipManager.Instance != null)
@@ -65,7 +66,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             isPointerOverItem = true;
         }
     }
-
+    //Pointer exiting itemslot
     public void OnPointerExit(PointerEventData eventData)
     {
         if(TooltipManager.Instance != null)
@@ -75,6 +76,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
+    //Update tooltip position if the pointer is over the item
     void Update()
     {
         if(isPointerOverItem && TooltipManager.Instance != null)

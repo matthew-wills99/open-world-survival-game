@@ -40,7 +40,7 @@ public class DemoScript : MonoBehaviour
             Debug.Log("No Item Used!");
         }
     }
-
+    //Crafting a specific item
     public void CraftItem(){
         bool result = craftingManager.CraftItem(itemToCraft, inventoryManager);
         if(result == true){

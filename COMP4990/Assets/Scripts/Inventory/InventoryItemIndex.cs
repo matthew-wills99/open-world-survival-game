@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+    This is the Item Index class.  It manages and retrieves items in the inventory system we have implemented. 
+    It maps unique Item IDs to their corresponding item instances.
+*/
 public class InventoryItemIndex : MonoBehaviour
 {
     public Item wood;

@@ -31,7 +31,7 @@ public class CraftingItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         craftButton.onClick.RemoveAllListeners();
         craftButton.onClick.AddListener(() => TryCraftItem());
     }
-
+    //Testing crafting
     private void TryCraftItem()
     {
         if (craftingManager.hasAllMaterials(recipe))

@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using static Utils;
-    //This script is for the inventory. Managing the slots, items, stacks, classes, etc.\
+/*
+    This script is the inventory manager, used inside the unity as an object. This initializes and displays the Inventory with the correct information using other scripts
+    aswell.
+*/
 public class InventoryManager : MonoBehaviour
 {
     public InventoryItemIndex inventoryItemIndex;
@@ -194,6 +197,7 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
+    //Removes item from inventory for crafting and such
     public bool RemoveItem(Item item)
     {
         for (int i = 0; i < inventorySlots.Count; i++)
@@ -222,7 +226,7 @@ public class InventoryManager : MonoBehaviour
         } 
         return false;  
     } 
-
+    //Updates inventory and crafting bar when crafting
     public bool RemoveItemForCrafting(Item item, int count)
     {
         Debug.Log(count);
@@ -259,7 +263,7 @@ public class InventoryManager : MonoBehaviour
         } 
         return false;  
     }     
-
+    //Saves the inventory for differnt worlds
     public List<CInventoryItem> GetSavedInventory()
     {
         List<CInventoryItem> savedItems = new List<CInventoryItem>();
@@ -286,7 +290,7 @@ public class InventoryManager : MonoBehaviour
         }
         return savedItems;
     }
-
+    //Loads the inventory
     public void LoadInventory(List<CInventoryItem> items)
     {
         GetInventorySlots();
