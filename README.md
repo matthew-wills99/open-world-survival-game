@@ -1,2 +1,4 @@
 # COMP4990
-Comp sci capstone
+Computer Science Capstone Project
+
+Using Unity 2022.3.35f1
