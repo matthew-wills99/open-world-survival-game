@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475e14aef79838b4b84a815f3680cd10, type: 3}
+  m_Name: BlockIndex
+  m_EditorClassIdentifier: 
+  blocks:
+  - blockID: 1
+    blockName: Grass
+    blockScriptable: {fileID: 11400000, guid: bfc45c904349a8e4593d4a363d5cd16c, type: 2}
+  - blockID: 2
+    blockName: Sand
+    blockScriptable: {fileID: 11400000, guid: 861c8286bfe680146bf624d144115315, type: 2}
+  - blockID: 3
+    blockName: Water
+    blockScriptable: {fileID: 11400000, guid: 756ab2bc24ea446499ae2cd96dea340d, type: 2}
+  - blockID: 0
+    blockName: SNAnd
+    blockScriptable: {fileID: 11400000, guid: 861c8286bfe680146bf624d144115315, type: 2}
