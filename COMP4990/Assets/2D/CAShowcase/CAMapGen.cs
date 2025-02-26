@@ -7,6 +7,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static EUtils;
+using EBiome = EUtils.EBiome;
 
 using Tree = EUtils.Tree; // yea
 
@@ -87,9 +88,9 @@ public class MapGen : MonoBehaviour
     // value is maximum amount of biomes allowed
     Dictionary<BiomeEnum, int> biomeAmounts;
 
-    List<Biome> forestBiomes;
-    List<Biome> desertBiomes;
-    List<Biome> allBiomes;
+    List<EBiome> forestBiomes;
+    List<EBiome> desertBiomes;
+    List<EBiome> allBiomes;
     List<Structure> allStructures;
     //int[] biomeTiles = {32, 33};
 
@@ -338,18 +339,18 @@ public class MapGen : MonoBehaviour
                     // we have randomly selected a chunk from the list, and that chunk is able to spawn a biome
                     int tx = FindValidBiomeLocation(cx, cy).Item1;
                     int ty = FindValidBiomeLocation(cx, cy).Item2;
-                    Biome placedBiome = null;
+                    EBiome placedBiome = null;
                     switch(biome)
                     {
                         case BiomeEnum.Forest:
-                            placedBiome = new Biome(BiomeEnum.Forest, cx, cy, tx, ty, forestTile, forestBiome);
+                            placedBiome = new EBiome(BiomeEnum.Forest, cx, cy, tx, ty, forestTile, forestBiome);
                             forestBiomes.Add(placedBiome);
                             groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = forestTile;
                             biomeChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = forestBiome;
                             //groundTilemap.SetTile(ChunkToWorldPos(cx, cy, tx, ty, chunkSize), tileIndex.GetTile(forestTile));
                             break;
                         case BiomeEnum.Desert:
-                            placedBiome = new Biome(BiomeEnum.Desert, cx, cy, tx, ty, desertTile, desertBiome);
+                            placedBiome = new EBiome(BiomeEnum.Desert, cx, cy, tx, ty, desertTile, desertBiome);
                             desertBiomes.Add(placedBiome);
                             groundChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = desertTile;
                             biomeChunks[GetChunkKey(cx, cy)].ChunkTiles[tx, ty] = desertBiome;
@@ -375,7 +376,7 @@ public class MapGen : MonoBehaviour
     {
         int[,] directions = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
         // spread all the biomes
-        foreach (Biome biome in allBiomes)
+        foreach (EBiome biome in allBiomes)
         {
             // x, y, distance
             Queue<Tuple<int, int, int>> queue = new Queue<Tuple<int, int, int>>();
@@ -509,7 +510,7 @@ public class MapGen : MonoBehaviour
 
         // low x of chunk
 
-        foreach(Biome biome in allBiomes)
+        foreach(EBiome biome in allBiomes)
         {
             yield return new WaitForSeconds(000f);
             if(biome.TileIndex != -1) // biome tile index is -1 if that biome does not have a tile
@@ -848,9 +849,9 @@ public class MapGen : MonoBehaviour
             {1, new Structure(2, 3, 2, 1)}
         };
 
-        forestBiomes = new List<Biome>();
-        desertBiomes = new List<Biome>();
-        allBiomes = new List<Biome>();
+        forestBiomes = new List<EBiome>();
+        desertBiomes = new List<EBiome>();
+        allBiomes = new List<EBiome>();
         allStructures = new List<Structure>();
 
         treeObjects = new Dictionary<string, Tree>();

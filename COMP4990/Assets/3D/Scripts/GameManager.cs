@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance {get; private set;}
 
     public MapGenerator mapGenerator;
+    public BiomeGenerator biomeGenerator;
+    public RiverGenerator riverGenerator;
     public ChunkLoader chunkLoader;
 
     public Dictionary<long, int[,]> chunks;
@@ -24,14 +26,12 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        chunks = mapGenerator.GenerateMap();
         chunkSize = mapGenerator.GetChunkSize();
     }
 
     private void Start()
     {
+        chunks = mapGenerator.GenerateMap();
         chunkLoader.UpdateChunks();
     }
 }

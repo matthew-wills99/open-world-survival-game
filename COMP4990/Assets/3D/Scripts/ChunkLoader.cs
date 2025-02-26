@@ -78,7 +78,6 @@ public class ChunkLoader : MonoBehaviour
             for (int cy = targetChunk.y - renderDistance; cy <= targetChunk.y + renderDistance; cy++)
             {
                 long chunkKey = GetChunkKey(cx, cy);
-
                 /*
                 make sure we are not trying to load a chunk that does not exist
                 e.g. standing on the border of the map trying to render a chunk outside the map
@@ -110,7 +109,7 @@ public class ChunkLoader : MonoBehaviour
 
             // wait until next frame to continue loading chunks if enough chunks have already been loaded.
             chunksLoaded++;
-            if (chunksLoaded % maxChunkLoadActionsPerFrame == 0)
+            if(chunksLoaded % maxChunkLoadActionsPerFrame == 0)
             {
                 yield return null; // wait for next frame
             }
@@ -151,6 +150,11 @@ public class ChunkLoader : MonoBehaviour
     private void LoadChunk(int cx, int cy) 
     {
         long chunkKey = GetChunkKey(cx, cy);
+
+        if(chunkParentObjects.ContainsKey(chunkKey))
+        {
+            return;
+        }
 
         // Empty gameobject that will be used as a 'folder' to hold all the block gameobjects within a chunk (looks nice in the hierarchy)
         GameObject chunkParentObject = new GameObject($"Chunk: ({cx}, {cy})");

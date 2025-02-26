@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ccd553c006ee5c468c2a2a09c8d5a20, type: 3}
-  m_Name: MapGenerator
+  m_Name: Map 2
   m_EditorClassIdentifier: 
-  seed: 154
-  mapSizeInChunks: 48
-  mapSizeInBlocks: 384
-  halfMap: 24
+  seed: 262
+  mapSizeInChunks: 24
+  mapSizeInBlocks: 192
+  halfMap: 12
   centreTerrainThreshold: 68
   regularTerrainThreshold: 58
-  smoothingPasses: 0
+  smoothingPasses: 7

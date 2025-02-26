@@ -1,17 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using static Utils;
+
 [CreateAssetMenu(fileName = "BlockIndex", menuName = "Block Index")]
 public class BlockIndex : ScriptableObject
 {
-    [System.Serializable]
-    public class BlockEntry
-    {
-        public int blockID; // The unique ID for the block
-        public string blockName; // Name of the block
-        public BlockScriptable blockScriptable; // The associated ScriptableObject
-    }
-
     public List<BlockEntry> blocks = new List<BlockEntry>();
 
     private Dictionary<int, BlockScriptable> blockLookupByID;
@@ -25,6 +19,8 @@ public class BlockIndex : ScriptableObject
 
         foreach (var entry in blocks)
         {
+            entry.blockScriptable.SetID(entry.blockID);
+
             if (!blockLookupByID.ContainsKey(entry.blockID))
             {
                 blockLookupByID.Add(entry.blockID, entry.blockScriptable);
@@ -72,5 +68,18 @@ public class BlockIndex : ScriptableObject
 
         Debug.LogError($"Block name '{name}' not found!");
         return null;
+    }
+
+    public List<int> GetTerrainBlocks()
+    {
+        List<int> terrainBlocks = new List<int>();
+        foreach(BlockEntry block in blocks)
+        {
+            if(block.isTerrain)
+            {
+                terrainBlocks.Add(block.blockID);
+            }
+        }
+        return terrainBlocks;
     }
 }

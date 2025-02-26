@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ccd553c006ee5c468c2a2a09c8d5a20, type: 3}
-  m_Name: MapGenerator
+  m_Script: {fileID: 11500000, guid: 160225897749bcb4c8c4c91ef7c3f9e9, type: 3}
+  m_Name: Stone
   m_EditorClassIdentifier: 
-  seed: 154
-  mapSizeInChunks: 48
-  mapSizeInBlocks: 384
-  halfMap: 24
-  centreTerrainThreshold: 68
-  regularTerrainThreshold: 58
-  smoothingPasses: 0
+  blockName: Stone
+  id: 0
+  topFaceTexture: {fileID: 2800000, guid: c23b212003b79c048a8c8e70f6951c34, type: 3}
+  sideFaceTexture: {fileID: 2800000, guid: c23b212003b79c048a8c8e70f6951c34, type: 3}

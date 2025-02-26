@@ -15,13 +15,31 @@ MonoBehaviour:
   blocks:
   - blockID: 1
     blockName: Grass
+    isTerrain: 1
+    biome: 4
     blockScriptable: {fileID: 11400000, guid: bfc45c904349a8e4593d4a363d5cd16c, type: 2}
   - blockID: 2
     blockName: Sand
+    isTerrain: 1
+    biome: 1
     blockScriptable: {fileID: 11400000, guid: 861c8286bfe680146bf624d144115315, type: 2}
   - blockID: 3
     blockName: Water
+    isTerrain: 0
+    biome: 0
     blockScriptable: {fileID: 11400000, guid: 756ab2bc24ea446499ae2cd96dea340d, type: 2}
-  - blockID: 0
-    blockName: SNAnd
-    blockScriptable: {fileID: 11400000, guid: 861c8286bfe680146bf624d144115315, type: 2}
+  - blockID: 4
+    blockName: ForestGrass
+    isTerrain: 1
+    biome: 2
+    blockScriptable: {fileID: 11400000, guid: 44a2965d8d581044cb5b36accfef9b05, type: 2}
+  - blockID: 5
+    blockName: Snow
+    isTerrain: 1
+    biome: 0
+    blockScriptable: {fileID: 11400000, guid: 6826ff868ca340045b092612608f30d8, type: 2}
+  - blockID: 6
+    blockName: Wasteland
+    isTerrain: 1
+    biome: 3
+    blockScriptable: {fileID: 11400000, guid: 4b4254df311ea9744988768c772ae938, type: 2}

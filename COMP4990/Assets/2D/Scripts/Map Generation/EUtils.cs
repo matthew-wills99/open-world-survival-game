@@ -68,7 +68,7 @@ public class EUtils : MonoBehaviour
     /// <summary>
     /// Stores the type, position and tile index of a biome.
     /// </summary>
-    public class Biome
+    public class EBiome
     {
         public BiomeEnum Type {get; set;}
         public int Cx {get; set;}
@@ -88,7 +88,7 @@ public class EUtils : MonoBehaviour
         /// <param name="ty">Tile Y</param>
         /// <param name="tileIndex">Index of the tile used to paint the biome, see <see cref="global::TileIndex"/></param>
         /// <param name="biomeIndex">Each biome has a unique index</param>
-        public Biome(BiomeEnum type, int cx, int cy, int tx, int ty, int tileIndex, int biomeIndex)
+        public EBiome(BiomeEnum type, int cx, int cy, int tx, int ty, int tileIndex, int biomeIndex)
         {
             Type = type;
             Cx = cx;

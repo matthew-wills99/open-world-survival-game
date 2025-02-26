@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ccd553c006ee5c468c2a2a09c8d5a20, type: 3}
-  m_Name: MapGenerator
+  m_Script: {fileID: 11500000, guid: fdc30931febf1614f97d8f48d3f9b4d5, type: 3}
+  m_Name: RiverGenerator
   m_EditorClassIdentifier: 
-  seed: 154
-  mapSizeInChunks: 48
-  mapSizeInBlocks: 384
-  halfMap: 24
-  centreTerrainThreshold: 68
-  regularTerrainThreshold: 58
-  smoothingPasses: 0
+  numberOfRivers: 2
+  riverAverageLength: 84
+  pointMinDistance: 4
+  riverWidth: 3
+  obstacleThreshold: 0.386

@@ -20,7 +20,6 @@ public class BlockManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void CreateBlock(Vector3Int pos, int index, Transform parent = null)

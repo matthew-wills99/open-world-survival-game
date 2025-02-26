@@ -245,7 +245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa5c52b64599184b840c29f4297fe0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapGenerator: {fileID: 11400000, guid: e0408d94f9ab89d4c8d3f24313c4c141, type: 2}
+  mapGenerator: {fileID: 11400000, guid: 27250529022a50244aaafa00e99f93c2, type: 2}
+  biomeGenerator: {fileID: 11400000, guid: 317cbb06bedae674098f3cf08b62c4f3, type: 2}
+  riverGenerator: {fileID: 11400000, guid: 41e7450fb060340429a3c970f1dbc963, type: 2}
   chunkLoader: {fileID: 1986994562}
   chunkSize: 0
 --- !u!4 &1680039139
@@ -338,8 +340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2039651613}
-  renderDistance: 4
-  maxChunkLoadActionsPerFrame: 10
+  renderDistance: 24
+  maxChunkLoadActionsPerFrame: 20
 --- !u!4 &1986994563
 Transform:
   m_ObjectHideFlags: 0
