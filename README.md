@@ -41,16 +41,16 @@ We store an array of the Item objects, and update the inventory UI accordingly.
 The UI is dynamic and can be adjusted by changing the width and size variables.
 You can drag and drop items from one slot to another.
 
-![alt text](images/inventory-system "Inventory UI")
+![alt text](images/inventory-system.png "Inventory UI")
 
 The crafting bar underneath the inventory automatically populates with recipes that can be crafted based on the items in the inventory.
 The icons serve as buttons that automatically consume the required items for the craft and add the crafted item to the inventory.
 
-![alt text](images/crafting-system "Crafting Bar")
+![alt text](images/crafting-system.png "Crafting Bar")
 
 The following is a list of the items in the game and their crafting recipes
 
-![alt text](images/game-item-list "Game Item List")
+![alt text](images/game-item-list.png "Game Item List")
 
 ***
 
@@ -58,7 +58,7 @@ The following is a list of the items in the game and their crafting recipes
 
 The player could build on a grid square if: there is no environment object in the way, it is on land and not in water, the player is within range of the tile
 
-![alt text](images/building-system "Basic house with placed objects")
+![alt text](images/building-system.png "Basic house with placed objects")
 
 
 
